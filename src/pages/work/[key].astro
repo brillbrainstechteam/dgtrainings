@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Gallery from '../../components/Gallery.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { WORK, type Work, bySlug, progUrl, rich } from '../../lib/site';
+import { album } from '../../lib/photos';
+
+export function getStaticPaths() {
+  return WORK.map((w) => ({ params: { key: w.key }, props: { w } }));
+}
+const { w } = Astro.props as { w: Work };
+const pics = album(w.key);
+const prog = w.program && w.program_slug ? bySlug(w.program_slug) : null;
+const i = WORK.findIndex((x) => x.key === w.key);
+const others = [WORK[(i + 1) % WORK.length], WORK[(i + 2) % WORK.length]];
+---
+<Base title={`${w.client} — Training Gallery`} description={w.blurb} active="work">
+  <section class="phero phero--simple on-dark">
+    <div class="phero-bg"><Image src={pics[0]} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
+    <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
+    <div class="wrap">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><a href="/work/">Our Work</a><span>/</span><span aria-current="page">{w.client}</span></nav>
+        <span class="eyebrow" data-hero>{w.kind}</span>
+        <h1 data-split>{w.client}</h1>
+        <p class="lead" data-hero set:html={rich(w.blurb)} />
+        <div class="facts" data-hero>
+          {w.program && <div>Program<b set:html={rich(w.program)} /></div>}
+          {w.when && <div>When<b>{w.when}</b></div>}
+          {w.where && <div>Where<b>{w.where}</b></div>}
+          <div>Photos<b>{pics.length}</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {w.video && (
+        <div class="frame" data-img style="aspect-ratio:16/9;margin-bottom:28px">
+          <video src={w.video} muted loop playsinline autoplay preload="metadata" aria-label={`${w.client} training clip`} style="width:100%;height:100%;object-fit:cover"></video>
+        </div>
+      )}
+      <Gallery photos={pics} alt={`${w.client} training`} />
+      {prog && (
+        <div class="impact on-dark" style="margin-top:40px" data-reveal>
+          <span class="ico"><Icon name="users" /></span>
+          <div><h3>Explore {prog.name}</h3><p>{prog.tagline} <a class="link-arrow" href={progUrl(prog)}>View program <Icon name="arrow" /></a></p></div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section section--dark on-dark">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">More work</span><h2 data-split>Other <em>engagements</em></h2></div>
+      <div class="wgrid" data-stagger>{others.map((o) => <WorkCard w={o} />)}</div>
+    </div>
+  </section>
+
+  <CtaBand heading={`Plan a session like ${w.client}’s.`} text={`Every program is built around your own products, customers and targets — just as it was for ${w.client}.`} bg={pics[1] ? `${w.key}/02` : `${w.key}/01`} compact />
+</Base>
+<style>
+  .on-dark .wgrid .wcard { background: var(--grey-900); border-color: rgba(255,255,255,.08); }
+  .on-dark .wgrid .wcard h3 { color: #fff; } .on-dark .wgrid .wcard p { color: rgba(255,255,255,.72); } .on-dark .wgrid .wcard .meta { color: var(--teal); }
+</style>

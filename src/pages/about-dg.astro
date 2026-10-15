@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Gallery from '../components/Gallery.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Venn from '../components/diagrams/Venn.astro';
+import Timeline from '../components/diagrams/Timeline.astro';
+import { TRAINER as T } from '../lib/site';
+import { photo } from '../lib/photos';
+
+const expertise = [
+  { title: 'Business', items: ['25+ years inside businesses', 'Brand & management consultant', 'Marketing and sales expert'] },
+  { title: 'People', items: ['17 years in training', '35,000+ professionals trained', 'Builder of work culture'] },
+  { title: 'Jewellery', items: ['Dedicated since 2011', 'Retail · wholesale · manufacturing', '100+ entrepreneurs'] },
+];
+const career = [
+  { tag: '25+ years ago', icon: 'store', title: 'Inside businesses', text: 'Brand consultant, management consultant, marketer and natural copywriter.' },
+  { tag: '17 years ago', icon: 'users', title: 'Into training', text: 'One mission: helping people and teams perform at their very best.' },
+  { tag: '2011', icon: 'sparkle', title: 'The jewellery industry', text: 'Dedicated to jewellers across retail, wholesale and manufacturing.' },
+  { tag: 'Today', icon: 'globe', title: '35,000+ professionals', text: '100+ entrepreneurs partnered, across 20 cities and 3 countries.' },
+];
+const moments = ['safalta-sangam/01', 'shivam-jewels/08', 'safalta-sangam/03', 'shilpi/02', 'jg/04'].map(photo);
+---
+<Base title="About the Trainer — Dipen Ghatalia (DG)" description={T.bio[0]} active="about">
+  <section class="phero phero--simple on-dark">
+    <div class="phero-bg"><Image src={photo('safalta-sangam/05')} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
+    <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
+    <div class="wrap">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><span aria-current="page">About the Trainer</span></nav>
+        <span class="eyebrow" data-hero>{T.heading}</span>
+        <h1 data-split>Dipen Ghatalia <em>(DG)</em></h1>
+        <p class="lead" data-hero>{T.title}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap trainer">
+      <div class="portrait">
+        <div class="frame" data-img><Image src={photo('gitanjali-2025/02')} alt="Dipen Ghatalia beside the Life and Work Culture Transformation Training title screen" widths={[500, 800]} sizes="(max-width: 960px) 90vw, 480px" loading="eager" /></div>
+      </div>
+      <div>
+        <h2 data-split>{T.headline}</h2>
+        {T.bio.map((b) => <p class="lead" data-reveal>{b}</p>)}
+        <blockquote class="sig" data-reveal>{T.quote}<cite>— Dipen Ghatalia</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark on-dark">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">Expertise</span><h2 data-split>Experience from the counter, <em>not just the classroom</em></h2></div>
+        <p class="lead" data-reveal>Business know-how, a gift for people, and deep roots in the jewellery industry — DG works where all three meet.</p>
+      </div>
+      <Venn sets={expertise} center="DG" centerSub="where they meet" />
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">The journey</span><h2 data-split>From business to <em>building teams</em></h2></div>
+      <Timeline phases={career} />
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">On stage</span><h2 data-split>From community forums to <em>company floors</em></h2></div>
+        <a href="/work/" class="link-arrow" data-reveal>See all client galleries <Icon name="arrow" /></a>
+      </div>
+      <Gallery photos={moments} alt="DG leading a session" layout="strip" />
+      <div class="btns" style="margin-top:36px;justify-content:center" data-reveal>
+        <a href="/contact/" class="btn">Invite DG to Train Your Team <Icon name="arrow" class="arr" /></a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Bring DG to your team." text="Share your goals and team size — we’ll suggest the right format, from a single workshop to a year-long journey." bg="safalta-sangam/02" compact />
+</Base>

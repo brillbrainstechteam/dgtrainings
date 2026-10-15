@@ -1,0 +1,32 @@
+---
+// Pyramid: foundations at the base, the goal at the apex; each layer has a note.
+interface Props { apex: string; layers: { title: string; text: string }[] } // layers listed top → base
+const { apex, layers } = Astro.props;
+const n = layers.length + 1;
+---
+<div class="pyr" data-stagger>
+  <div class="py-row"><span class="py-band py-apex" style={`--w:${100 / n}%`} aria-hidden="true"></span><span class="py-note py-note--apex"><small>The goal</small>{apex}</span></div>
+  {layers.map((l, i) => (
+    <div class="py-row">
+      <span class="py-band" style={`--w:${(100 * (i + 2)) / n}%`}><b>{l.title}</b></span>
+      <span class="py-note">{l.text}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .pyr { display: grid; gap: 6px; max-width: 1000px; margin: 0 auto; }
+  .py-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: center; }
+  .py-band { justify-self: center; width: var(--w); min-height: 70px; display: grid; place-items: center; text-align: center; padding: 10px 26px; color: #fff; font-weight: 700; background: linear-gradient(90deg, var(--grey-900), var(--grey-800)); clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 100%, 0 100%); transition: background .4s; }
+  .py-band b { font-size: .98rem; }
+  .py-row:hover .py-band:not(.py-apex) { background: linear-gradient(90deg, var(--teal-ink), var(--teal-600)); }
+  .py-apex { background: var(--teal); color: var(--grey-950); clip-path: polygon(50% 0, 100% 100%, 0 100%); padding: 22px 8px 8px; min-height: 96px; font-family: var(--display); font-size: .95rem; line-height: 1.15; place-items: end center; }
+  .py-note { font-size: .92rem; color: var(--muted); border-left: 2px solid var(--teal-100); padding-left: 16px; }
+  .py-note--apex { font-family: var(--display); font-size: 1.35rem; font-style: italic; color: var(--ink); line-height: 1.2; border-left-color: var(--teal); }
+  .py-note--apex small { display: block; font-family: var(--sans); font-style: normal; font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 4px; }
+  @media (max-width: 760px) {
+    .py-row { grid-template-columns: 1fr; gap: 4px; }
+    .py-note { border: 0; padding: 0 0 8px; text-align: center; }
+    .py-band { width: calc(var(--w) * .7 + 30%); }
+  }
+</style>

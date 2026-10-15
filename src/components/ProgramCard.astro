@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { type Program, progUrl } from '../lib/site';
+import { photo } from '../lib/photos';
+interface Props { p: Program; compact?: boolean }
+const { p, compact } = Astro.props;
+---
+<a href={progUrl(p)} class="pcard">
+  <div class="pimg">
+    <Image src={photo(p.hero)} alt="" widths={[480, 760]} sizes="(max-width: 640px) 100vw, (max-width: 1140px) 50vw, 400px" />
+    <span class="num">{p.num === '+' ? '✦' : p.num}</span>
+    <span class="tag">{p.tag}</span>
+  </div>
+  <div class="pbody">
+    <h3>{p.name}</h3>
+    <div class="tl">{p.tagline}</div>
+    {!compact && <p>{p.card}</p>}
+    <div class="focus">{p.focus}</div>
+    <span class="link-arrow">View program <Icon name="arrow" /></span>
+  </div>
+</a>

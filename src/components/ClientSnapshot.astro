@@ -1,0 +1,61 @@
+---
+// Snapshot of every business DG has trained. Cards with photos link to their gallery.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { CLIENTS, WORK, workUrl } from '../lib/site';
+import { album } from '../lib/photos';
+
+const initials = (n: string) => n.replace(/[’'.]/g, '').split(/\s+/).filter((w) => /^[A-Z]/.test(w)).slice(0, 2).map((w) => w[0]).join('');
+const cards = CLIENTS.map((c) => {
+  const w = c.key ? WORK.find((x) => x.key === c.key) : undefined;
+  return { ...c, w, cover: w ? album(w.key)[0] : undefined };
+});
+const countries = ['India', ...new Set(CLIENTS.map((c) => c.where).filter((x) => x && x !== 'Ratlam'))];
+---
+<div class="snap">
+  <div class="snap-facts" data-stagger>
+    <div><strong data-count>{CLIENTS.length}</strong><span>jewellery businesses trained</span></div>
+    <div><strong data-count>{countries.length}</strong><span>countries — {countries.join(' · ')}</span></div>
+    <div><strong data-count>4</strong><span>segments — retail, wholesale, manufacturing, export</span></div>
+  </div>
+  <ul class="snap-grid" role="list" data-stagger>
+    {cards.map((c) => {
+      const inner = (
+        <>
+          {c.cover && <Image src={c.cover} alt="" class="snap-bg" widths={[400]} sizes="300px" />}
+          <span class="mono" aria-hidden="true">{initials(c.name)}</span>
+          <span class="nm">{c.name}</span>
+          {c.where && <span class="loc"><Icon name="pin" />{c.where}</span>}
+          {c.w && <span class="link-arrow">Photos <Icon name="arrow" /></span>}
+        </>
+      );
+      return <li>{c.w ? <a class="snap-card has-photo" href={workUrl(c.w)}>{inner}</a> : <div class="snap-card">{inner}</div>}</li>;
+    })}
+  </ul>
+</div>
+
+<style>
+  .snap-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--grey-200); border: 1px solid var(--grey-200); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 28px; }
+  .snap-facts div { background: var(--grey-900); padding: 28px 30px; }
+  .snap-facts strong { display: block; font-family: var(--display); font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; color: var(--teal); line-height: 1; margin-bottom: 8px; }
+  .snap-facts span { color: rgba(255,255,255,.8); font-size: .92rem; }
+  .snap-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+  .snap-card { position: relative; isolation: isolate; overflow: hidden; height: 100%; min-height: 168px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 22px; background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius); transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .4s, color .4s; }
+  .snap-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--teal); }
+  .mono { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--grey-900); color: var(--teal); font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin-bottom: auto; transition: transform .6s var(--ease); }
+  .snap-card:hover .mono { transform: rotate(-8deg) scale(1.06); }
+  .nm { font-family: var(--display); font-size: 1.22rem; font-weight: 600; line-height: 1.2; color: var(--ink); margin-top: 18px; }
+  .loc { display: inline-flex; align-items: center; gap: 5px; font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-ink); }
+  .loc :global(svg) { width: 14px; height: 14px; }
+  .snap-card .link-arrow { font-size: .82rem; }
+  /* cards with photos reveal the training photo on hover */
+  .snap-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0; transform: scale(1.1); transition: opacity .6s var(--ease), transform 1s var(--ease); }
+  .has-photo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(25,26,28,.35), rgba(25,26,28,.92)); opacity: 0; transition: opacity .6s var(--ease); }
+  .has-photo:hover .snap-bg, .has-photo:focus-visible .snap-bg { opacity: 1; transform: none; }
+  .has-photo:hover::before, .has-photo:focus-visible::before { opacity: 1; }
+  .has-photo:hover .nm, .has-photo:focus-visible .nm { color: #fff; }
+  .has-photo:hover .loc, .has-photo:hover .link-arrow { color: var(--teal); }
+  .has-photo { border-color: var(--teal-100); }
+  @media (hover: none) { .has-photo .snap-bg { opacity: .9; transform: none; } .has-photo::before { opacity: 1; } .has-photo .nm { color: #fff; } .has-photo .loc, .has-photo .link-arrow { color: var(--teal); } }
+  @media (max-width: 760px) { .snap-facts { grid-template-columns: 1fr; } .snap-grid { grid-template-columns: 1fr 1fr; } .snap-card { min-height: 150px; padding: 18px; } .nm { font-size: 1.08rem; } }
+</style>

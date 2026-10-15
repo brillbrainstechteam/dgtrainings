@@ -1,0 +1,169 @@
+---
+// One diagram per program, chosen to fit that program's content (all text comes from content.json).
+import Hub from './diagrams/Hub.astro';
+import Rings from './diagrams/Rings.astro';
+import Timeline from './diagrams/Timeline.astro';
+import Funnel from './diagrams/Funnel.astro';
+import Pyramid from './diagrams/Pyramid.astro';
+import Track from './diagrams/Track.astro';
+import Route from './diagrams/Route.astro';
+import Checklist from './diagrams/Checklist.astro';
+import Cadence from './diagrams/Cadence.astro';
+import Flowchart from './diagrams/Flowchart.astro';
+import { type Program, dots } from '../lib/site';
+import { photo } from '../lib/photos';
+interface Props { p: Program }
+const { p } = Astro.props;
+const mod = (title: string) => p.modules?.find((m: any) => m[0].startsWith(title))?.[1] ?? '';
+const parts = (s: string | string[]) => (Array.isArray(s) ? s : s.split(/;\s*/)).map((x: string) => x.replace(/\.$/, ''));
+
+let kind = 'hub';
+let heading = '', lead = '';
+let data: any = {};
+
+switch (p.slug) {
+  case 'life-work-culture-transformation':
+    kind = 'rings';
+    heading = 'Five levels of <em>transformation</em>';
+    lead = 'LWCT starts with the individual and works outward — each level builds on the one inside it.';
+    data = { core: 'You', levels: [
+      { title: 'Personal', text: 'Self-awareness, growth mindset, emotional intelligence, habits and confidence.' },
+      { title: 'Professional', text: 'Grooming, punctuality, etiquette, SMART goals and career growth.' },
+      { title: 'Team', text: 'The Humble–Hungry–Smart team member and a high-performance culture.' },
+      { title: 'Organisational', text: 'Company values, loyalty, open communication and change management.' },
+      { title: 'Business', text: 'Pricing, key metrics, EMI/BNPL and luxury brand positioning.' },
+    ] };
+    break;
+  case 'business-technical-sales-expert':
+    kind = 'funnel';
+    heading = 'The showroom <em>selling process</em>';
+    lead = 'From the first greeting to the repeat visit — the sequence every associate practises in role-plays.';
+    data = { outcome: 'A lifelong client', stages: [
+      { title: 'Greet & first impression', text: 'Grooming, body language and a warm welcome.' },
+      { title: 'Understand the need', text: 'Questioning and active listening — occasion, budget, preference.' },
+      { title: 'Explain with authority', text: 'Purity, hallmarking, the 4Cs and certificates, told as a story.' },
+      { title: 'Handle objections', text: 'Price, gold-rate days and online comparisons — answered calmly.' },
+      { title: 'Close & upsell', text: 'Closing techniques, cross-selling by occasion, old-gold exchange.' },
+      { title: 'After-sales', text: 'Care, repair, buy-back and the follow-up that brings them back.' },
+    ] };
+    break;
+  case 'exhibitions-training':
+    kind = 'timeline';
+    heading = 'Before. During. <em>After.</em>';
+    lead = 'Every department gets a role in each phase — so the booth runs as one team and the leads turn into orders.';
+    data = { phases: [
+      { tag: 'Phase 1', icon: 'pen', title: 'Before the show', items: ['Invitations to the client list', 'Stall, lighting and display ready', 'Stock selected, QC’d and tagged', 'Documents, insurance and vendors'] },
+      { tag: 'Phase 2', icon: 'users', title: 'On the show days', items: ['Welcome, seat and serve every visitor', 'Digital catalogue and order slips', 'Lead capture beyond the visiting card', 'Daily QC, count and safe wrap-up'] },
+      { tag: 'Every evening', icon: 'refresh', title: 'End-of-day routine', items: parts(mod('End-of-day routine')) },
+      { tag: 'Phase 3', icon: 'trend', title: 'After the show', items: ['Lead list entered the same week', 'Thank-you creatives to all visitors', 'Every prospect called within 3 days', 'Quotations, dispatch and invoicing'] },
+    ] };
+    break;
+  case 'leadership-training':
+    kind = 'cadence';
+    heading = 'The rhythm of a <em>great manager</em>';
+    lead = 'Routines that make the showroom run the same way every day — whether the owner is in or not.';
+    data = { lanes: [
+      { when: 'Every day', note: 'Open, lead, close', steps: ['Day-begin routine', 'Daily meeting', 'Attend key customers', 'Day-end routine'] },
+      { when: 'Every week', note: 'Track and coach', steps: ['Target tracking', 'One-on-ones', 'Constructive feedback', 'Rotate staff across categories'] },
+      { when: 'Every month', note: 'Review and reward', steps: ['Monthly meeting', 'Performance review & report card', 'Reward top performers'] },
+    ] };
+    break;
+  case 'digital-shakti':
+    kind = 'hub';
+    heading = 'One phone. <em>Every tool your team needs.</em>';
+    lead = 'Everything is taught on the participant’s own smartphone, with jewellery-business examples.';
+    data = { title: 'Your smartphone', sub: 'Learnt hands-on, in plain language', items: [
+      { label: 'WhatsApp Business', text: 'Catalogue, labels, broadcasts', icon: 'chat' },
+      { label: 'Instagram & Facebook', text: 'Posts, reels, business pages', icon: 'instagram' },
+      { label: 'YouTube', text: 'Shorts and uploads', icon: 'youtube' },
+      { label: 'Google My Business', text: 'Reviews and ratings', icon: 'pin' },
+      { label: 'UPI & bank apps', text: 'Safe digital payments', icon: 'check' },
+      { label: 'Spot-rate apps', text: 'Live gold & silver rates', icon: 'trend' },
+      { label: 'PDF & scanner', text: 'Professional documents', icon: 'pen' },
+      { label: 'Zoom & ChatGPT', text: 'Meetings and AI help', icon: 'sparkle' },
+    ] };
+    break;
+  case 'telemarketing-training':
+    kind = 'flow';
+    heading = 'How a <em>trained call</em> flows';
+    lead = 'The right opening, a clear reason to engage, a ready answer for every reply — and a strong next step.';
+    data = {
+      start: 'The opening — the first 10 seconds',
+      step: { title: 'A clear reason to call', chips: ['New collection', 'Birthday or anniversary', 'Festive offer', 'Exhibition invite', 'Post-purchase thanks'] },
+      decision: 'The customer replies',
+      branches: [
+        { reply: 'Not interested', response: 'Turn the objection into a conversation, not an argument.' },
+        { reply: 'Call me later', response: 'Agree a time, then log it so the callback happens.' },
+        { reply: 'I already have a jeweller', response: 'Offer a reason to visit — without pressure.' },
+      ],
+      end: ['Store visit', 'Callback', 'Logged in the tracker'],
+    };
+    break;
+  case 'management-training':
+    kind = 'pyramid';
+    heading = 'Build it from the <em>ground up</em>';
+    lead = 'Strengthen every facet of the business, rebuild its foundations, and put operations on autopilot.';
+    data = { apex: 'A business that runs without you', layers: [
+      { title: 'Key team development', text: 'Your key people take ownership of results.' },
+      { title: 'Leadership capability', text: 'Owners and partners lead with clarity, not firefighting.' },
+      { title: 'Manager development', text: 'Managers run daily operations to one standard.' },
+      { title: 'Systems', text: 'The foundation — processes that run without daily supervision.' },
+    ] };
+    break;
+  case 'marketing-mastery':
+    kind = 'track';
+    heading = 'From attention <em>to loyalty</em>';
+    lead = 'Attract, engage and retain the right customers — and keep them coming back.';
+    data = { from: 'Attention', to: 'Loyalty', milestones: [
+      { title: 'Business promotion', text: 'A steady stream of new prospects.' },
+      { title: 'Client engagement', text: 'The right customers, engaged the right way.' },
+      { title: 'Campaigns', text: 'Relationships converted into remarkable revenue.' },
+      { title: 'Customer loyalty', text: 'Customers who keep coming back.' },
+    ] };
+    break;
+  case 'sales-tour-training':
+    kind = 'route';
+    heading = 'Every day on the road <em>pays for itself</em>';
+    lead = 'Plan and strategise before you travel, then run every buyer meeting with a systematic, proactive approach.';
+    data = { start: 'Plan', end: 'Orders', stops: [
+      { title: 'Tour planning', text: 'Strategy before the ticket' },
+      { title: 'Field execution', text: 'A disciplined day on the road' },
+      { title: 'Buyer meetings', text: 'Systematic and proactive' },
+      { title: 'Lead handling', text: 'Every enquiry captured' },
+      { title: 'Follow-up', text: 'Meetings turned into orders' },
+    ] };
+    break;
+  case 'orientation-training':
+    kind = 'check';
+    heading = 'The right start, <em>from day one</em>';
+    lead = 'A warm, structured welcome for every new joiner.';
+    data = { badge: 'New joiner', badgeSub: 'Welcome to the team', items: [
+      { title: 'Company & product knowledge', text: 'A clear picture of your company, its products and services.' },
+      { title: 'Code of conduct', text: 'How things are done here — and why.' },
+      { title: 'Jewellery business basics', text: 'The essentials every team member should know.' },
+      { title: 'Culture & key people', text: 'An introduction to the people and the culture they are joining.' },
+    ] };
+    break;
+  default:
+    // programs without a detailed sheet yet: their focus areas around the program
+    heading = 'What the program <em>focuses on</em>';
+    lead = `Built for: ${p.ideal}.`;
+    data = { title: p.short, sub: p.tagline, img: photo(p.img), items: dots(p.focus).map((f: string) => ({ label: f })) };
+}
+---
+<div class="pdiag">
+  <div class="head head--row">
+    <div><span class="eyebrow">At a glance</span><h2 data-split set:html={heading} /></div>
+    <p class="lead" data-reveal>{lead}</p>
+  </div>
+  {kind === 'rings' && <Rings {...data} />}
+  {kind === 'funnel' && <Funnel {...data} />}
+  {kind === 'timeline' && <Timeline {...data} />}
+  {kind === 'hub' && <Hub {...data} />}
+  {kind === 'cadence' && <Cadence {...data} />}
+  {kind === 'flow' && <Flowchart {...data} />}
+  {kind === 'pyramid' && <Pyramid {...data} />}
+  {kind === 'track' && <Track {...data} />}
+  {kind === 'route' && <Route {...data} />}
+  {kind === 'check' && <Checklist {...data} />}
+</div>

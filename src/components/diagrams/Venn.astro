@@ -1,0 +1,38 @@
+---
+// Three overlapping circles; where they meet is what makes the subject distinctive.
+interface Props { sets: { title: string; items: string[] }[]; center: string; centerSub?: string }
+const { sets, center, centerSub } = Astro.props;
+---
+<div class="venn" data-venn>
+  <div class="venn-art">
+    {sets.map((s, i) => (
+      <div class={`vc vc${i + 1}`}>
+        <div class="vc-txt"><b>{s.title}</b>{s.items.map((t) => <span>{t}</span>)}</div>
+      </div>
+    ))}
+    <div class="venn-core"><strong>{center}</strong>{centerSub && <span>{centerSub}</span>}</div>
+  </div>
+</div>
+
+<style>
+  .venn-art { position: relative; width: min(100%, 720px); aspect-ratio: 1.12; margin: 0 auto; }
+  .vc { position: absolute; width: 58%; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(85,214,201,.55); background: rgba(85,214,201,.1); display: flex; transition: background .4s, transform .6s var(--ease); }
+  .vc:hover { background: rgba(85,214,201,.2); }
+  .vc1 { left: 0; top: 0; }
+  .vc2 { right: 0; top: 0; }
+  .vc3 { left: 21%; bottom: 0; }
+  .vc-txt { display: grid; gap: 4px; align-content: start; color: rgba(255,255,255,.8); font-size: .84rem; line-height: 1.35; }
+  .vc-txt b { font-family: var(--display); font-size: 1.45rem; color: #fff; font-weight: 600; margin-bottom: 4px; }
+  .vc1 .vc-txt { padding: 22% 0 0 14%; max-width: 62%; }
+  .vc2 .vc-txt { padding: 22% 0 0 0; margin-left: auto; margin-right: 14%; max-width: 50%; text-align: right; }
+  .vc3 .vc-txt { padding: 0; margin: auto auto 14%; max-width: 62%; text-align: center; }
+  .venn-core { position: absolute; left: 50%; top: 47%; translate: -50% -50%; width: 19%; aspect-ratio: 1; border-radius: 50%; background: var(--teal); color: var(--grey-950); display: grid; place-content: center; text-align: center; box-shadow: 0 0 0 8px rgba(85,214,201,.2), var(--shadow-lg); }
+  .venn-core strong { font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2.2rem); line-height: 1; font-weight: 700; }
+  .venn-core span { font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+  @media (max-width: 700px) {
+    .venn-art { aspect-ratio: auto; display: grid; gap: 12px; }
+    .vc { position: static; width: auto; aspect-ratio: auto; border-radius: var(--radius); padding: 18px 20px; }
+    .vc .vc-txt { padding: 0 !important; margin: 0 !important; max-width: none !important; text-align: left !important; }
+    .venn-core { position: static; translate: none; width: 110px; margin: 0 auto; order: -1; }
+  }
+</style>

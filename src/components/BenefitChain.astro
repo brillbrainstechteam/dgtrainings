@@ -1,0 +1,45 @@
+---
+// Process diagram: how training turns into business benefit (copy from the home-page "Why train" content).
+import Icon from './Icon.astro';
+interface Props { steps: { icon: string; title: string; text: string }[] }
+const { steps } = Astro.props;
+---
+<div class="chain" data-chain>
+  <span class="chain-track" aria-hidden="true"><i></i></span>
+  <ol role="list">
+    {steps.map((s, i) => (
+      <li class:list={['cnode', { last: i === steps.length - 1 }]}>
+        <span class="cbadge"><Icon name={s.icon} /></span>
+        <span class="cnum">Step {String(i + 1).padStart(2, '0')}</span>
+        <h3>{s.title}</h3>
+        <p>{s.text}</p>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .chain { position: relative; }
+  .chain ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n, 5), 1fr); gap: 22px; position: relative; }
+  .chain-track { position: absolute; left: 6%; right: 6%; top: 37px; height: 3px; background: rgba(255,255,255,.12); border-radius: 3px; overflow: hidden; }
+  .chain-track i { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--teal-600), var(--teal)); transform-origin: left; }
+  .cnode { position: relative; text-align: center; padding: 0 6px; }
+  .cbadge { position: relative; z-index: 1; width: 76px; height: 76px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; background: var(--grey-800); color: var(--teal); border: 2px solid rgba(85,214,201,.35); box-shadow: 0 0 0 8px var(--grey-900); transition: background .5s, color .5s, transform .5s var(--ease); }
+  .cbadge :global(svg) { width: 30px; height: 30px; }
+  .cnode:hover .cbadge { transform: translateY(-4px) scale(1.05); }
+  .cnode.last .cbadge, .cnode.lit .cbadge { background: var(--teal); color: var(--grey-950); border-color: var(--teal); }
+  /* chevron between nodes, echoing the DG slide header */
+  .cnode:not(.last)::after { content: ""; position: absolute; z-index: 2; top: 30px; right: -19px; width: 16px; height: 17px; background: var(--teal); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+  .cnum { display: block; font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .cnode h3 { color: #fff; font-size: 1.4rem; margin-bottom: 8px; }
+  .cnode p { color: rgba(255,255,255,.72); font-size: .92rem; margin: 0; }
+  @media (max-width: 960px) {
+    .chain ol { grid-template-columns: 1fr; gap: 26px; }
+    .chain-track { left: 37px; right: auto; top: 20px; bottom: 20px; width: 3px; height: auto; }
+    .chain-track i { transform-origin: top; }
+    .cnode { display: grid; grid-template-columns: 76px 1fr; column-gap: 20px; text-align: left; padding: 0; }
+    .cbadge { grid-row: span 3; margin: 0; }
+    .cnode:not(.last)::after { top: auto; bottom: -24px; right: auto; left: 30px; transform: rotate(90deg); }
+    .cnum { margin-top: 8px; }
+  }
+</style>

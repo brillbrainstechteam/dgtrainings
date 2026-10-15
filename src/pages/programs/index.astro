@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ProgramCard from '../../components/ProgramCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Staircase from '../../components/diagrams/Staircase.astro';
+import { HOME as H, SIGNATURE, PROGRAMS, progUrl } from '../../lib/site';
+import { photo } from '../../lib/photos';
+const extra = PROGRAMS.filter((p) => p.extra);
+const link = (slug: string) => { const p = PROGRAMS.find((x) => x.slug === slug)!; return { label: p.short === 'LWCT' ? 'Culture (LWCT)' : p.short, href: progUrl(p) }; };
+const journey = [
+  { stage: 'Foundation', note: 'Start everyone right', items: ['orientation-training', 'digital-shakti'].map(link) },
+  { stage: 'Culture', note: 'Mindset, habits, ownership', items: ['life-work-culture-transformation'].map(link) },
+  { stage: 'Selling skills', note: 'Know it, sell it, call it', items: ['business-technical-sales-expert', 'telemarketing-training', 'marketing-mastery'].map(link) },
+  { stage: 'In the field', note: 'Tours and trade shows', items: ['sales-tour-training', 'exhibitions-training'].map(link) },
+  { stage: 'Leadership', note: 'Managers and owners', items: ['leadership-training', 'management-training'].map(link) },
+];
+const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sales & customer-facing'], ['B', 'Back office & production'], ['N', 'New joiners']];
+---
+<Base title="Training Programs" description="Ten practical training programs for jewellery retailers, wholesalers and manufacturers — find the right one for every role in your team." active="programs">
+  <section class="phero phero--simple on-dark">
+    <div class="phero-bg"><Image src={photo('shivam-jewels/06')} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
+    <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
+    <div class="wrap">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><span aria-current="page">Programs</span></nav>
+        <span class="eyebrow" data-hero>Programs</span>
+        <h1 data-split>The right program for <em>every role in your team</em></h1>
+        <p class="lead" data-hero>Choose one to solve today’s challenge, or combine several into a year-long journey of transformation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">An example journey</span><h2 data-split>Combine programs into a <em>year of growth</em></h2></div>
+        <p class="lead" data-reveal>One way teams build up, step by step — every journey is planned around your business. Tap any program to explore it.</p>
+      </div>
+      <Staircase steps={journey} top="A team that performs" />
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">Who is it for?</span><h2 data-split>Match programs to <em>people</em></h2></div>
+        <p class="lead" data-reveal>Read across to see who each program is built for — or down a column to plan training for one group.</p>
+      </div>
+      <div class="matrix-wrap" data-reveal>
+        <table class="matrix">
+          <thead><tr><th scope="col">Program</th>{roles.map(([, r]) => <th scope="col"><span>{r}</span></th>)}</tr></thead>
+          <tbody>
+            {PROGRAMS.map((p) => (
+              <tr>
+                <th scope="row"><a href={progUrl(p)}><b>{p.num === '+' ? '✦' : p.num}</b>{p.name}</a></th>
+                {roles.map(([k, r]) => <td>{p.roles.includes(k) ? <span class="dot" role="img" aria-label={`Built for ${r}`}></span> : <span class="sr-only">—</span>}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">{H.prog_label}</span><h2 data-split>Explore <em>each program</em></h2></div>
+      <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} />)}</div>
+      <div class="head" style="margin-top:72px"><span class="eyebrow">Also offered</span><h2 data-split>Specialist <em>workshop</em></h2></div>
+      <div class="grid3" data-stagger>{extra.map((p) => <ProgramCard p={p} />)}</div>
+    </div>
+  </section>
+
+  <CtaBand heading="Not sure which program fits?" text="Tell us about your team and your goals — we’ll recommend the right program, or design a combination." primary={H.btn2} bg="shivam-jewels/02" compact />
+</Base>
+
+<style>
+  .matrix-wrap { overflow-x: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); background: #fff; }
+  .matrix { width: 100%; border-collapse: collapse; min-width: 760px; }
+  .matrix th, .matrix td { padding: 14px 16px; border-bottom: 1px solid var(--grey-100); text-align: center; }
+  .matrix thead th { background: var(--grey-900); color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .04em; vertical-align: bottom; }
+  .matrix thead th:first-child { text-align: left; }
+  .matrix tbody th { text-align: left; font-weight: 600; font-size: .95rem; }
+  .matrix tbody th a { display: flex; gap: 12px; align-items: baseline; transition: color .3s; }
+  .matrix tbody th a:hover { color: var(--teal-ink); }
+  .matrix tbody th b { font-family: var(--display); color: var(--teal-ink); width: 24px; flex: none; }
+  .matrix tbody tr { transition: background .3s; }
+  .matrix tbody tr:hover { background: var(--teal-50); }
+  .matrix tbody tr:last-child th, .matrix tbody tr:last-child td { border-bottom: 0; }
+  .dot { display: inline-block; width: 18px; height: 18px; background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+</style>

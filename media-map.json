@@ -1,0 +1,240 @@
+{
+  "_help": "Each key becomes a photo folder in src/assets/work/<key>/. 'source' is relative to ../Media. 'files' picks specific photos in order (first = cover); leave 'files' out to take up to 'max' photos spread evenly through the folder. 'video' grabs still frames (and optionally a short loop) from a video. Run: npm run media Missing folders are skipped (existing photos are kept).",
+  "saheli-aurum": {
+    "video": "saheli aurum.mov",
+    "frames": [
+      45,
+      91,
+      136,
+      181,
+      227,
+      272,
+      318,
+      363,
+      410,
+      455
+    ],
+    "loop": {
+      "start": 132,
+      "duration": 10,
+      "out": "public/media/showroom-loop.mp4"
+    }
+  },
+  "gitanjali-2025": {
+    "source": "Gitanjali Jewellers/GJ",
+    "files": [
+      "Copy of IMG20250906083907.jpg",
+      "Copy of IMG20250906074917.jpg",
+      "Copy of IMG20250906095040.jpg",
+      "Copy of IMG20250906083937.jpg",
+      "Copy of IMG20250906083947.jpg",
+      "Copy of 20250906_094145.jpg",
+      "Copy of IMG20250906074724.jpg",
+      "Copy of IMG20250906083757.jpg",
+      "Copy of IMG20250906095057.jpg",
+      "Copy of IMG20250906083805.jpg"
+    ]
+  },
+  "gitanjali-2026": {
+    "source": "Gitanjali Jewellers/GJ/Feb 2026",
+    "files": [
+      "20260217_075642.jpg",
+      "20260216_092509.jpg",
+      "20260217_100452.jpg",
+      "20260218_094704.jpg",
+      "20260217_075644.jpg",
+      "20260216_093538.jpg",
+      "20260217_100453.jpg",
+      "20260218_094646.jpg",
+      "20260217_075601.jpg",
+      "20260216_092141.jpg",
+      "20260216_093520.jpg",
+      "20260216_092310.jpg"
+    ]
+  },
+  "srk-hongkong": {
+    "source": "SRK Hongkong-20261015T115954Z-1-001/SRK Hongkong",
+    "files": [
+      "Copy of Copy of FB_IMG_1567819936310.jpg",
+      "Copy of Copy of FB_IMG_1567819978655.jpg",
+      "Copy of Copy of FB_IMG_1567819929362.jpg",
+      "Copy of IMG-20140907-WA0036.jpg",
+      "Copy of Copy of FB_IMG_1567819943948.jpg",
+      "Copy of IMG-20140906-WA0012-SMILE.jpg",
+      "Copy of Copy of FB_IMG_1567819932886.jpg",
+      "Copy of Copy of FB_IMG_1567819971945.jpg"
+    ]
+  },
+  "antraa": {
+    "source": "Antraa 2026",
+    "max": 12
+  },
+  "chetmani": {
+    "source": "Chetmani",
+    "max": 12
+  },
+  "dc": {
+    "source": "DC 1",
+    "files": [
+      "Copy of dcjewellers (5).jpeg",
+      "Copy of dcjewellers (3).jpeg",
+      "Copy of dcjewellers (8).jpeg",
+      "Copy of dcjewellers (6).jpeg",
+      "Copy of dcjewellers (9).jpeg",
+      "Copy of dcjewellers (10).jpeg"
+    ]
+  },
+  "dishaa-platinum": {
+    "source": "Dishaa Platinum",
+    "files": [
+      "Copy of Copy of WhatsApp Image 2022-05-31 at 11.36.12 AM.jpeg",
+      "Copy of Copy of WhatsApp Image 2022-05-31 at 11.36.11 AM (1).jpeg",
+      "Copy of Copy of WhatsApp Image 2022-05-31 at 11.36.10 AM.jpeg"
+    ]
+  },
+  "dp": {
+    "source": "DP 1",
+    "files": [
+      "Copy of 15 August 2016_02_camera 35 .JPG",
+      "Copy of 15 August 2016_01_PWS_103.jpg",
+      "Copy of 15 August 2016_01_PWS_269.jpg",
+      "Copy of 15 August 2016_01_PWS_139.jpg",
+      "Copy of Copy of FB_IMG_1564628274758.jpg",
+      "Copy of Copy of FB_IMG_1564628281532.jpg",
+      "Copy of 15 August 2016_01_PWS_070.jpg",
+      "Copy of 15 August 2016_02_camera 44 .JPG",
+      "Copy of Copy of FB_IMG_1534571728944.jpg",
+      "Copy of 15 August 2016_01_PWS_075.jpg",
+      "Copy of Copy of FB_IMG_1564628283920.jpg",
+      "Copy of 15 August 2016_01_PWS_261.jpg"
+    ]
+  },
+  "hz": {
+    "source": "HZ",
+    "max": 12
+  },
+  "jg": {
+    "source": "JG 1",
+    "files": [
+      "Copy of Copy of FB_IMG_1600832269277.jpg",
+      "Copy of Copy of FB_IMG_1600832264084.jpg",
+      "Copy of Copy of FB_IMG_1600832258377.jpg",
+      "Copy of Copy of FB_IMG_1600832266688.jpg",
+      "Copy of IMG-20140917-WA0033.jpg",
+      "Copy of Copy of FB_IMG_1600832261511.jpg"
+    ]
+  },
+  "kc": {
+    "source": "KC 1",
+    "max": 12
+  },
+  "mkg": {
+    "source": "MKG 1",
+    "max": 12
+  },
+  "pakeezah-kenya": {
+    "source": "Pakeezah Kenya",
+    "max": 12
+  },
+  "paras-gold": {
+    "source": "Paras Gold",
+    "files": [
+      "Copy of 198A9089.JPG",
+      "Copy of 198A9090.JPG",
+      "Copy of 198A9160.JPG",
+      "Copy of 198A9094.JPG",
+      "Copy of 198A9088.JPG",
+      "Copy of 198A9158.JPG"
+    ]
+  },
+  "pcg": {
+    "source": "PCG 1",
+    "files": [
+      "Copy of Copy of PCJ TRAINING.jpeg"
+    ]
+  },
+  "safalta-sangam": {
+    "source": "Safalta Sangam",
+    "files": [
+      "Copy of VV1_1657.JPG",
+      "Copy of VV1_1663.JPG",
+      "Copy of VV1_1749.JPG",
+      "Copy of VV1_1669.JPG",
+      "Copy of VV1_1653.JPG",
+      "Copy of VV1_1650.JPG",
+      "Copy of VV1_1791.JPG",
+      "Copy of VV1_1666.JPG",
+      "Copy of VV1_1751.JPG",
+      "Copy of VV1_1719.JPG"
+    ]
+  },
+  "sejal-jewellers": {
+    "source": "Sejal Jewellers",
+    "files": [
+      "Copy of IMG_20160912_142710(1).jpg"
+    ]
+  },
+  "shilpi": {
+    "source": "Shilpi 1",
+    "files": [
+      "Copy of IMG-20160412-WA0044.jpg",
+      "Copy of IMG-20160412-WA0043.jpg",
+      "Copy of IMG-20160412-WA0045.jpg",
+      "Copy of IMG-20160412-WA0039.jpg",
+      "Copy of IMG-20160412-WA0031.jpg"
+    ]
+  },
+  "shivam-jewels": {
+    "source": "Shivam Jewels",
+    "files": [
+      "Shivam 2\\Copy of 064A6946.JPG",
+      "Shivam 2\\Copy of 064A6869.JPG",
+      "April 2023\\Copy of Copy of IMG-20230323-WA0005.jpg",
+      "Shivam 2\\Copy of 064A6881.JPG",
+      "Shivam 2\\Copy of 064A6857.JPG",
+      "Shivam 1\\Copy of Copy of IMG20220415083638.jpg",
+      "Shivam 1\\Copy of Copy of IMG20220415095400.jpg",
+      "April 2023\\Copy of Copy of IMG-20230322-WA0002.jpg",
+      "Shivam 2\\Copy of 064A6874.JPG",
+      "Shivam 2\\Copy of 064A6940.JPG",
+      "Shivam 2\\Copy of 064A6863.JPG",
+      "Shivam 2\\Copy of 064A6875.JPG",
+      "Shivam 2\\Copy of 064A6882.JPG",
+      "Shivam 2\\Copy of 064A6947.JPG"
+    ]
+  },
+  "smj": {
+    "source": "SMJ 1",
+    "max": 12
+  },
+  "suraj-bhan": {
+    "source": "Suraj Bhan",
+    "files": [
+      "Copy of Copy of IMG-20200120-WA0133.jpg",
+      "2025\\Copy of IMG-20250112-WA0031.jpg",
+      "Copy of Copy of SAVE_20200128_062302.jpg",
+      "Copy of Copy of SAVE_20200128_062435.jpg",
+      "Copy of Copy of IMG-20200120-WA0141.jpg",
+      "Copy of Copy of SAVE_20200128_062128.jpg",
+      "Copy of Copy of IMG-20200120-WA0132.jpg",
+      "Copy of Copy of IMG-20200120-WA0136.jpg"
+    ]
+  },
+  "unique-factory": {
+    "source": "Unique factory",
+    "files": [
+      "Copy of Copy of IMG_5625(1).JPG",
+      "Copy of Copy of IMG_5626(1).JPG",
+      "Copy of Copy of IMG_5575.JPG",
+      "Copy of Copy of IMG_5618(1).JPG",
+      "Copy of Copy of IMG_5623(1).JPG",
+      "Copy of Copy of IMG_5629(1).JPG",
+      "Copy of Copy of IMG_5619.JPG",
+      "Copy of Copy of IMG_5573.JPG"
+    ]
+  },
+  "vchains": {
+    "source": "VChains",
+    "max": 12
+  }
+}

@@ -1,0 +1,55 @@
+---
+// Per-program process diagram: Learn → Apply → Results → Measure, built from the program's own content.
+import Icon from './Icon.astro';
+import { type Program, dots, rich } from '../lib/site';
+interface Props { p: Program }
+const { p } = Astro.props;
+const first = p.modules[0][0], last = p.modules[p.modules.length - 1][0];
+const stages = [
+  { icon: 'book', k: 'Learn', title: `${p.modules.length} modules`, text: `From “${first}” to “${last}” — built on your own products and customers.` },
+  { icon: 'tool', k: 'Apply', title: 'Practise it', items: dots(p.method) },
+  { icon: 'trend', k: 'Results', title: 'See it on the floor', items: p.outcomes },
+  { icon: 'chart', k: 'Measure', title: 'Prove it', text: p.impact },
+];
+---
+<div class="path" data-path>
+  {stages.map((s, i) => (
+    <div class="pstage">
+      <div class="phead">
+        <span class="pico"><Icon name={s.icon} /></span>
+        <span class="pk">0{i + 1} · {s.k}</span>
+      </div>
+      <h3>{s.title}</h3>
+      {s.items ? <ul>{s.items.map((t: string) => <li set:html={rich(t)} />)}</ul> : <p>{s.text}</p>}
+      {i < stages.length - 1 && <span class="parrow" aria-hidden="true"><i></i><i></i></span>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+  .pstage { position: relative; background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); padding: 26px 24px; border-top: 4px solid var(--teal); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+  .pstage:last-child { background: var(--grey-900); border-color: var(--grey-900); border-top-color: var(--teal); }
+  .pstage:last-child h3 { color: #fff; } .pstage:last-child p { color: rgba(255,255,255,.8); }
+  .pstage:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .phead { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .pico { width: 46px; height: 46px; border-radius: 14px; background: var(--teal-50); color: var(--teal-ink); display: grid; place-items: center; flex: none; }
+  .pstage:last-child .pico { background: var(--teal); color: var(--grey-950); }
+  .pico :global(svg) { width: 22px; height: 22px; }
+  .pk { font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-ink); }
+  .pstage:last-child .pk { color: var(--teal); }
+  .pstage h3 { font-size: 1.3rem; margin-bottom: 10px; }
+  .pstage ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .pstage li { position: relative; padding-left: 18px; font-size: .9rem; color: var(--muted); line-height: 1.5; }
+  .pstage li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; background: var(--teal-600); transform: rotate(45deg); }
+  .pstage p { font-size: .92rem; margin: 0; }
+  /* double chevron connector between stages */
+  .parrow { position: absolute; z-index: 2; top: 50%; right: -30px; display: flex; transform: translateY(-50%); }
+  .parrow i { width: 13px; height: 22px; margin-right: -4px; background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+  .parrow i + i { background: var(--grey); }
+  @media (max-width: 1100px) { .path { grid-template-columns: 1fr 1fr; } .pstage:nth-child(2) .parrow { display: none; } }
+  @media (max-width: 640px) {
+    .path { grid-template-columns: 1fr; gap: 30px; }
+    .parrow, .pstage:nth-child(2) .parrow { display: flex; top: auto; bottom: -27px; right: auto; left: 50%; transform: translateX(-50%) rotate(90deg); }
+  }
+</style>

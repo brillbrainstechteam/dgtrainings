@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Icon from '../components/Icon.astro';
+import { CONTACT, SIGNATURE, PROGRAMS, tel, wa, progUrl } from '../lib/site';
+
+interface Props { title: string; description: string; active?: string; header?: 'transparent' | 'solid' }
+const { title, description, active, header = 'transparent' } = Astro.props;
+const fullTitle = title.includes('DG Trainings') ? title : `${title} | DG Trainings`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script is:inline>if (!matchMedia('(prefers-reduced-motion: reduce)').matches && location.search.indexOf('static') < 0) document.documentElement.classList.add('motion'); setTimeout(function () { if (!window.__dgMotion) document.documentElement.classList.remove('motion'); }, 3000);</script>
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#232426" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+  <ClientRouter fallback="swap" />
+</head>
+<body data-header={header}>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="tb-l">
+        <a href={tel(CONTACT.phone_training)}>{CONTACT.phone_training}</a>
+        <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      </div>
+      <div class="tb-r">
+        <a class="wa" href={wa()} target="_blank" rel="noopener">WhatsApp us</a>
+        <a href="https://www.brillbrainsconsultants.com/" rel="noopener">A BrillBrains company</a>
+      </div>
+    </div>
+  </div>
+  <header class="header">
+    <div class="wrap">
+      <a href="/" class="logo" aria-label="DG Trainings — home">
+        <span class="dg">DG</span><span class="tr">TRAININGS</span><span class="pp">POWER TO PERFORMANCE</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <div class="dd">
+          <a href="/programs/" class:list={{ active: active === 'programs' }}>Programs</a>
+          <div class="dd-menu">
+            {PROGRAMS.map((p) => <a href={progUrl(p)}><b>{p.num === '+' ? '✦' : p.num}</b>{p.name}</a>)}
+          </div>
+        </div>
+        <a href="/work/" class:list={{ active: active === 'work' }}>Our Work</a>
+        <a href="/about-dg/" class:list={{ active: active === 'about' }}>About DG</a>
+        <a href="/#approach">Approach</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/contact/" class:list={{ active: active === 'contact' }}>Contact</a>
+        <a href="/contact/" class="btn btn--sm">Book a Training</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main"><slot /></main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <a href="/" class="logo" aria-label="DG Trainings — home"><span class="dg">DG</span><span class="tr">TRAININGS</span><span class="pp">POWER TO PERFORMANCE</span></a>
+          <p>Business training for the jewellery industry, in partnership with BrillBrains Consultants (Strategic &amp; Creative Forever).</p>
+          <div class="social">
+            <a href="#" aria-label="Instagram"><Icon name="instagram" /></a>
+            <a href="#" aria-label="Facebook"><Icon name="facebook" /></a>
+            <a href="#" aria-label="LinkedIn"><Icon name="linkedin" /></a>
+            <a href="#" aria-label="YouTube"><Icon name="youtube" /></a>
+          </div>
+        </div>
+        <div>
+          <h4>Programs</h4>
+          <ul>{SIGNATURE.slice(0, 5).map((p) => <li><a href={progUrl(p)}>{p.name}</a></li>)}</ul>
+        </div>
+        <div>
+          <h4>More programs</h4>
+          <ul>{PROGRAMS.slice(5).map((p) => <li><a href={progUrl(p)}>{p.name}</a></li>)}</ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/work/">Our Work</a></li>
+            <li><a href="/about-dg/">About the Trainer</a></li>
+            <li><a href="https://www.brillbrainsconsultants.com/">Consulting Services</a></li>
+            <li><a href="https://www.brillbrainsconsultants.com/">Hiring Solutions</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbottom">
+        <span>© {new Date().getFullYear()} BrillBrains Consultants Pvt. Ltd. All rights reserved.</span>
+        <nav aria-label="Legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href={wa()} target="_blank" rel="noopener" aria-label="Chat with DG Trainings on WhatsApp"><Icon name="whatsapp" /></a>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <img src="" alt="" />
+    <button class="lb-btn lb-close" type="button" aria-label="Close"><Icon name="x" /></button>
+    <button class="lb-btn lb-prev" type="button" aria-label="Previous photo"><Icon name="arrow" class="flip" /></button>
+    <button class="lb-btn lb-next" type="button" aria-label="Next photo"><Icon name="arrow" /></button>
+    <span class="lb-count"></span>
+  </dialog>
+
+  <script>
+    import '../scripts/motion';
+    (window as any).__dgMotion = true;
+  </script>
+  <style is:global>.flip { transform: scaleX(-1); }</style>
+</body>
+</html>

@@ -1,0 +1,74 @@
+---
+// "Circle with pointers": a centre node with items placed around a ring, joined by connector lines.
+import Icon from '../Icon.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+export interface HubItem { label: string; text?: string; icon?: string; href?: string }
+interface Props { title: string; sub?: string; img?: ImageMetadata; items: HubItem[]; dark?: boolean }
+const { title, sub, img, items, dark } = Astro.props;
+const n = items.length;
+// place items on an ellipse; start at the top, clockwise
+const pos = items.map((_, i) => {
+  const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  return { x: 50 + 41 * Math.cos(a), y: 50 + 41 * Math.sin(a) };
+});
+---
+<div class:list={['hub', { 'hub--dark': dark }]} data-hub style={`--n:${n}`}>
+  <div class="hub-stage">
+    <svg class="hub-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="41" class="hub-ring" />
+      {pos.map((p) => <line x1="50" y1="50" x2={p.x.toFixed(2)} y2={p.y.toFixed(2)} class="hub-line" />)}
+    </svg>
+    <div class="hub-core">
+      {img && <Image src={img} alt="" width={240} height={240} class="hub-img" />}
+      <div class="hub-core-txt"><strong>{title}</strong>{sub && <span>{sub}</span>}</div>
+    </div>
+    <ul class="hub-items" role="list">
+      {items.map((it, i) => {
+        const El = it.href ? 'a' : 'div';
+        return (
+          <li class="hub-item" style={`left:${pos[i].x.toFixed(2)}%;top:${pos[i].y.toFixed(2)}%`}>
+            <El class="hub-pill" href={it.href}>
+              <span class="hub-dot">{it.icon ? <Icon name={it.icon} /> : String(i + 1).padStart(2, '0')}</span>
+              <span class="hub-lbl">{it.label}{it.text && <small>{it.text}</small>}</span>
+            </El>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .hub { --line: var(--grey-300); --pill: #fff; --pill-ink: var(--ink); }
+  .hub--dark { --line: rgba(255,255,255,.18); --pill: var(--grey-800); --pill-ink: #fff; }
+  .hub-stage { position: relative; width: min(100%, 760px); aspect-ratio: 1.25; margin: 0 auto; }
+  .hub-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .hub-ring { fill: none; stroke: var(--teal-600); stroke-width: .25; stroke-dasharray: 1 1.6; vector-effect: non-scaling-stroke; transform-origin: 50% 50%; animation: hubspin 60s linear infinite; }
+  .hub-line { stroke: var(--line); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  @keyframes hubspin { to { transform: rotate(360deg); } }
+  .hub-core { position: absolute; left: 50%; top: 50%; width: 30%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; overflow: hidden; display: grid; place-items: center; text-align: center; background: var(--grey-900); color: #fff; box-shadow: 0 0 0 10px var(--teal-50), 0 0 0 11px var(--teal-100), var(--shadow-lg); z-index: 2; }
+  .hub--dark .hub-core { box-shadow: 0 0 0 10px rgba(85,214,201,.12), var(--shadow-lg); }
+  .hub-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .28; filter: grayscale(.3); }
+  .hub-core-txt { position: relative; padding: 12%; display: grid; gap: 6px; }
+  .hub-core strong { font-family: var(--display); font-size: clamp(1.05rem, 2vw, 1.6rem); line-height: 1.12; color: var(--teal); font-weight: 600; }
+  .hub-core span { font-size: clamp(.68rem, 1vw, .8rem); color: rgba(255,255,255,.82); line-height: 1.35; }
+  .hub-items { list-style: none; margin: 0; padding: 0; }
+  .hub-item { position: absolute; translate: -50% -50%; z-index: 3; width: max-content; max-width: 220px; }
+  .hub-pill { display: flex; align-items: center; gap: 10px; background: var(--pill); color: var(--pill-ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px 6px 6px; box-shadow: var(--shadow); transition: transform .5s var(--ease), border-color .3s, box-shadow .5s var(--ease); }
+  a.hub-pill:hover, .hub-pill:hover { transform: translateY(-3px) scale(1.03); border-color: var(--teal); box-shadow: var(--shadow-lg); }
+  .hub-dot { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--grey-900); color: var(--teal); font-family: var(--display); font-weight: 600; font-size: .9rem; }
+  .hub--dark .hub-dot { background: var(--teal); color: var(--grey-950); }
+  .hub-dot :global(svg) { width: 18px; height: 18px; }
+  .hub-lbl { font-weight: 700; font-size: .88rem; line-height: 1.25; }
+  .hub-lbl small { display: block; font-weight: 500; font-size: .74rem; opacity: .7; margin-top: 2px; }
+  @media (max-width: 760px) {
+    .hub-stage { aspect-ratio: auto; width: 100%; }
+    .hub-lines { display: none; }
+    .hub-core { position: relative; left: auto; top: auto; translate: none; width: 190px; margin: 0 auto 26px; }
+    .hub-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .hub-item { position: static; translate: none; max-width: none; width: auto; }
+    .hub-pill { border-radius: 16px; height: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hub-ring { animation: none; } }
+</style>

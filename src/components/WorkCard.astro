@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { type Work, workUrl, rich } from '../lib/site';
+import { album } from '../lib/photos';
+interface Props { w: Work; video?: boolean }
+const { w, video } = Astro.props;
+const pics = album(w.key);
+---
+<a href={workUrl(w)} class="wcard">
+  <div class="wimg">
+    {video && w.video ? (
+      <video src={w.video} muted loop playsinline autoplay preload="none" aria-hidden="true" />
+    ) : (
+      <Image src={pics[0]} alt={`${w.client} training session`} widths={[600, 1000]} sizes="(max-width: 960px) 80vw, 760px" />
+    )}
+    <div class="thumbs" aria-hidden="true">{pics.slice(1, 4).map((p) => <Image src={p} alt="" width={128} height={128} />)}</div>
+  </div>
+  <div class="wbody">
+    <span class="meta">{[w.kind, w.when, w.where].filter(Boolean).join(' · ')}</span>
+    <h3>{w.client}</h3>
+    <p set:html={rich(w.program ?? w.blurb)} />
+    <span class="link-arrow">View {pics.length} photos <Icon name="arrow" /></span>
+  </div>
+</a>

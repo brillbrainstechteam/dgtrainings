@@ -1,0 +1,301 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ClientSnapshot from '../components/ClientSnapshot.astro';
+import BenefitChain from '../components/BenefitChain.astro';
+import ApproachCycle from '../components/ApproachCycle.astro';
+
+const chain = [
+  { icon: 'users', title: 'Train your team', text: 'Right skills, processes and accountability — in one structured programme.' },
+  { icon: 'target', title: 'More leads', text: 'Your team attracts and engages the right customers.' },
+  { icon: 'trend', title: 'Better conversions', text: 'More enquiries turn into sales — at a higher bill value.' },
+  { icon: 'heart', title: 'Stronger relationships', text: 'Customers come back, and bring others with them.' },
+  { icon: 'sparkle', title: 'Sustainable growth', text: 'Every customer interaction becomes an opportunity for growth.' },
+];
+import { HOME as H, TRAINER as T, SIGNATURE, WORK, GENERIC_TESTIMONIALS, rich } from '../lib/site';
+import { photo } from '../lib/photos';
+
+const poster = photo('saheli-aurum/03');
+// "Untrained vs trained" from the home-page content, split into matching pairs
+const whyPairs = [
+  ['Learns in bits and pieces, every single day', 'Aligned in mindset'],
+  ['Leads go unattended', 'Confident in every conversation'],
+  ['Sales opportunities are missed', 'Accountable for results'],
+  ['Customer experiences vary', 'One standard of excellence'],
+  ['Business growth remains unpredictable', 'Growth you can plan for'],
+];
+const featured = ['saheli-aurum', 'shivam-jewels', 'dp', 'unique-factory', 'suraj-bhan', 'srk-hongkong'].map((k) => WORK.find((w) => w.key === k)!);
+const audiences = [
+  { icon: 'store', img: 'suraj-bhan/01', note: 'Showroom & counter teams' },
+  { icon: 'boxes', img: 'jg/02', note: 'B2B sales & order desks' },
+  { icon: 'factory', img: 'unique-factory/01', note: 'Production & factory teams' },
+  { icon: 'globe', img: 'srk-hongkong/02', note: 'Trade-show & overseas teams' },
+];
+---
+<Base title="DG Trainings — Power to Performance | Business Training for the Jewellery Industry" description={H.sub}>
+  <!-- HERO with showroom-training video loop -->
+  <section class="hero on-dark">
+    <div class="hero-media">
+      <video src="/media/showroom-loop.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" poster={poster.src}></video>
+    </div>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-hero>{H.eyebrow}</span>
+        <h1 data-split>Build a powerful team. Build an empire. <em>Be unstoppable.</em></h1>
+        <p class="sub" data-hero>{H.sub}</p>
+        <p class="support" data-hero>{H.support}</p>
+        <div class="btns" data-hero>
+          <a href="#programs" class="btn btn--teal">{H.btn1} <Icon name="arrow" class="arr" /></a>
+          <a href="/contact/" class="btn btn--ghost">{H.btn2}</a>
+        </div>
+      </div>
+      <div class="stats" aria-label="DG Trainings at a glance">
+        {H.stats.map(([n, l]) => <div class="stat" data-hero><strong data-count>{n}</strong><span>{l}</span></div>)}
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
+  </section>
+
+  <!-- CLIENT MARQUEE -->
+  <div class="marquee" aria-label="Clients">
+    <a class="mq-label" href="#clients"><b>{H.clients.length}</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
+    <div class="mq-view">
+      <div class="marquee-track">
+        {[0, 1].map((k) => (
+          <div class="marquee-group" aria-hidden={k === 1 ? 'true' : undefined}>
+            {H.clients.map((c) => <><span>{c}</span><i></i></>)}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- WHOM WE TRAIN -->
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">Whom we train</span>
+          <h2 data-split>{H.whom_label}</h2>
+        </div>
+        <p class="lead" data-reveal>{H.whom_text}</p>
+      </div>
+      <div class="aud" data-stagger>
+        {H.audiences.map((a, i) => (
+          <div class="tile">
+            <Image src={photo(audiences[i].img)} alt="" widths={[400, 700]} sizes="(max-width: 640px) 100vw, (max-width: 1140px) 50vw, 300px" />
+            <span class="ic"><Icon name={audiences[i].icon} /></span>
+            <h3>{a}</h3>
+            <p>{audiences[i].note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TRAIN: before / after comparison board -->
+  <section class="section section--tint" aria-labelledby="why-h">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">Why train your team?</span>
+          <h2 id="why-h" data-split>Turn team potential into <em>business profit.</em></h2>
+        </div>
+        <p class="lead" data-reveal>{H.why_intro}</p>
+      </div>
+      <div class="why-grid">
+        <div class="vs" data-vs>
+          <div class="vs-row vs-head">
+            <div class="vs-bad"><span class="vs-ic"><Icon name="x" /></span><span><b>Untrained team</b><small>Learns in fragments</small></span></div>
+            <div class="vs-mid"><span class="vs-badge">VS</span></div>
+            <div class="vs-good"><span class="vs-ic"><Icon name="check" /></span><span><b>Trained team</b><small>One standard of excellence</small></span></div>
+          </div>
+          {whyPairs.map(([bad, good]) => (
+            <div class="vs-row">
+              <div class="vs-bad"><Icon name="x" class="vs-i" />{bad}</div>
+              <div class="vs-mid" aria-hidden="true"><i></i><i></i></div>
+              <div class="vs-good"><Icon name="check" class="vs-i" />{good}</div>
+            </div>
+          ))}
+        </div>
+        <div class="collage">
+          <div class="frame c1" data-img><Image src={photo('shivam-jewels/04')} alt="DG running a role-play with team members in front of the group" widths={[500, 800]} sizes="(max-width: 960px) 80vw, 460px" /></div>
+          <div class="frame c2" data-img><Image src={photo('dp/05')} alt="Flip-chart workshop on a showroom floor" widths={[400, 600]} sizes="(max-width: 960px) 50vw, 300px" /></div>
+          <div class="badge" data-reveal><strong>Role-plays,</strong><span>not lectures — practised on your own floor, with your own products</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFIT CHAIN (process diagram) -->
+  <section class="section section--dark on-dark" aria-labelledby="chain-h">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">How training pays off</span>
+          <h2 id="chain-h" data-split>From trained team to <em>sustainable growth</em></h2>
+        </div>
+        <p class="lead" data-reveal>{H.why_close}</p>
+      </div>
+      <BenefitChain steps={chain} />
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section" id="programs">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">{H.prog_label}</span>
+          <h2 data-split>Nine programs. One promise: <em>a team that performs.</em></h2>
+        </div>
+        <p class="lead" data-reveal>{H.prog_intro}</p>
+      </div>
+      <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} compact />)}</div>
+      <p class="center" style="margin-top:44px" data-reveal><a href="/programs/" class="btn btn--outline">See all programs, including Telemarketing <Icon name="arrow" class="arr" /></a></p>
+    </div>
+  </section>
+
+  <!-- WORK SHOWCASE (horizontal pinned scroll on desktop) -->
+  <section class="work on-dark" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">Inside the room</span>
+          <h2 id="work-h" data-split>Showrooms, factories, <em>ballrooms and boardrooms</em></h2>
+        </div>
+        <p class="lead" data-reveal>A few of the teams DG has trained — swipe through, then open any gallery.</p>
+      </div>
+    </div>
+    <div class="work-track">
+      {featured.map((w, i) => <WorkCard w={w} video={i === 0} />)}
+      <a href="/work/" class="wcard wcard--intro">
+        <span class="eyebrow">Gallery</span>
+        <h3 style="color:#fff;font-size:2.4rem">{WORK.length} client galleries</h3>
+        <span class="link-arrow">Our Work <Icon name="arrow" /></span>
+      </a>
+    </div>
+    <div class="wrap" style="padding-top:0;padding-bottom:60px"><div class="work-progress"><i></i></div></div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section section--tint" id="approach">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">{H.approach_label}</span>
+          <h2 data-split>From first conversation to <em>measurable progress.</em></h2>
+        </div>
+        <p class="lead" data-reveal><b style="color:var(--ink)">{H.approach_sub}</b> {H.approach_intro}</p>
+      </div>
+      <ApproachCycle steps={H.steps} center="Measurable progress" sub="A structured approach to lasting change" />
+    </div>
+  </section>
+
+  <!-- TRAINER -->
+  <section class="section section--white" id="trainer">
+    <div class="wrap trainer">
+      <div class="portrait">
+        <div class="frame" data-img><Image src={photo('shilpi/03')} alt="Portrait of Dipen Ghatalia" widths={[500, 800]} sizes="(max-width: 960px) 90vw, 480px" /></div>
+        <div class="badge" data-reveal><strong>Since 2011</strong><span>Dedicated to the jewellery industry</span></div>
+      </div>
+      <div>
+        <span class="eyebrow">About the Trainer</span>
+        <h2 data-split>Meet the mind behind the <em>transformation</em></h2>
+        <h3 style="margin-bottom:2px" data-reveal>{T.name}</h3>
+        <div class="role" data-reveal>{T.title}</div>
+        <h4 data-reveal>{T.headline}</h4>
+        <blockquote class="sig" data-reveal>{T.quote}<cite>— Dipen Ghatalia</cite></blockquote>
+        <div class="btns" data-reveal>
+          <a href="/contact/" class="btn">Invite DG to Train Your Team <Icon name="arrow" class="arr" /></a>
+          <a href="/about-dg/" class="btn btn--outline">Meet DG</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT SNAPSHOT -->
+  <section class="section section--tint" id="clients">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <span class="eyebrow">Client snapshot</span>
+          <h2 data-split>{H.clients_h}</h2>
+        </div>
+        <p class="lead" data-reveal>{H.clients_intro}</p>
+      </div>
+      <ClientSnapshot />
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section--dark on-dark">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">What clients say</span>
+        <h2 data-split>Teams that changed how they <em>sell, lead and work</em></h2>
+      </div>
+      <div class="tgrid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))" data-stagger>
+        {GENERIC_TESTIMONIALS.map((t) => <figure class="tcard"><span class="q" aria-hidden="true">“</span><p set:html={rich(t)} /></figure>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--white" id="faq">
+    <div class="wrap">
+      <div class="head center"><span class="eyebrow">FAQs</span><h2 data-split>Questions, answered</h2></div>
+      <Faq items={H.faqs} />
+    </div>
+  </section>
+
+  <CtaBand heading={H.cta_h} text={H.cta_text} />
+</Base>
+
+<style>
+  .why-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(36px, 5vw, 72px); align-items: center; }
+  .vs { background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+  .vs-row { display: grid; grid-template-columns: 1fr 64px 1fr; align-items: stretch; }
+  .vs-row + .vs-row .vs-bad { border-top: 1px solid var(--grey-100); }
+  .vs-row + .vs-row .vs-good { border-top: 1px solid rgba(255,255,255,.07); }
+  .vs-bad, .vs-good { display: flex; align-items: center; gap: 12px; padding: 18px 22px; font-size: .97rem; line-height: 1.4; transition: background .35s, color .35s; }
+  .vs-bad { color: var(--grey-500); }
+  .vs-good { background: var(--grey-900); color: #fff; font-weight: 600; }
+  .vs-row:not(.vs-head):hover .vs-bad { background: var(--grey-50); }
+  .vs-row:not(.vs-head):hover .vs-good { background: var(--grey-800); }
+  .vs :global(.vs-i) { width: 18px; height: 18px; flex: none; }
+  .vs-bad :global(.vs-i) { color: #C2474A; opacity: .75; }
+  .vs-good :global(.vs-i) { color: var(--teal); }
+  /* middle strip fades light to dark, with a chevron on each row: the transformation */
+  .vs-mid { position: relative; display: flex; align-items: center; justify-content: center; background: linear-gradient(90deg, #fff, var(--grey-900)); }
+  .vs-mid i { width: 11px; height: 18px; margin-right: -3px; background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+  .vs-mid i + i { background: var(--teal); }
+  .vs-head .vs-bad, .vs-head .vs-good { padding: 24px 22px; }
+  .vs-head .vs-bad { background: var(--grey-50); border-bottom: 1px solid var(--grey-200); }
+  .vs-head .vs-good { background: var(--grey-950); border-bottom: 1px solid rgba(255,255,255,.08); }
+  .vs-head b { display: block; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; }
+  .vs-head .vs-good b { color: var(--teal); }
+  .vs-head small { display: block; font-family: var(--display); font-style: italic; font-size: 1.15rem; font-weight: 500; margin-top: 2px; }
+  .vs-head .vs-bad small { color: var(--grey-800); }
+  .vs-ic { width: 40px; height: 40px; flex: none; border-radius: 50%; display: grid; place-items: center; }
+  .vs-ic :global(svg) { width: 20px; height: 20px; }
+  .vs-head .vs-bad .vs-ic { background: #fff; color: #C2474A; border: 1px solid var(--grey-200); }
+  .vs-head .vs-good .vs-ic { background: var(--teal); color: var(--grey-950); }
+  .vs-head .vs-mid { background: linear-gradient(90deg, var(--grey-50), var(--grey-950)); }
+  .vs-badge { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: var(--grey-950); font-family: var(--display); font-weight: 700; font-size: 1rem; box-shadow: 0 0 0 5px rgba(85,214,201,.25); }
+  @media (max-width: 960px) { .why-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) {
+    .vs-row { grid-template-columns: 1fr 34px 1fr; }
+    .vs-bad, .vs-good { padding: 14px 12px; font-size: .86rem; gap: 8px; }
+    .vs-head .vs-bad, .vs-head .vs-good { padding: 16px 12px; flex-direction: column; align-items: flex-start; }
+    .vs-head small { font-size: .95rem; }
+    .vs :global(.vs-i) { display: none; }
+    .vs-badge { width: 34px; height: 34px; font-size: .78rem; }
+    .vs-mid i { width: 8px; height: 13px; }
+  }
+</style>

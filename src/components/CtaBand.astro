@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { CONTACT, tel, wa } from '../lib/site';
+import { photo } from '../lib/photos';
+interface Props { heading: string; text: string; primary?: string; bg?: string; compact?: boolean }
+const { heading, text, primary = 'Book Your Appointment', bg = 'gitanjali-2025/03', compact } = Astro.props;
+---
+<section class:list={['cta on-dark', { 'cta--compact': compact }]} aria-labelledby="cta-h">
+  <div class="cta-bg" data-parallax="8"><Image src={photo(bg)} alt="" widths={[1000, 1600]} sizes="100vw" /></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Let’s talk</span>
+      <h2 id="cta-h" data-split>{heading}</h2>
+      <p class="lead" data-reveal>{text}</p>
+      <div class="btns" data-reveal>
+        <a href="/contact/" class="btn btn--teal">{primary} <Icon name="arrow" class="arr" /></a>
+        <a href={wa()} class="btn btn--ghost" target="_blank" rel="noopener"><Icon name="whatsapp" /> WhatsApp Us</a>
+      </div>
+    </div>
+    {!compact && <div class="contact-box" data-reveal>
+      <ul class="contact-list">
+        <li><a href={tel(CONTACT.phone_training)}><span class="ico"><Icon name="phone" /></span><span><small>Training appointments</small>{CONTACT.phone_training}</span></a></li>
+        <li><a href={tel(CONTACT.phone_ops)}><span class="ico"><Icon name="phone" /></span><span><small>Operations</small>{CONTACT.phone_ops}</span></a></li>
+        <li><a href={`mailto:${CONTACT.email}`}><span class="ico"><Icon name="mail" /></span><span><small>Email</small>{CONTACT.email}</span></a></li>
+      </ul>
+    </div>}
+  </div>
+</section>
+<style>
+  .cta--compact .wrap { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .cta--compact .lead { margin-inline: auto; }
+  .cta--compact .btns { justify-content: center; }
+</style>

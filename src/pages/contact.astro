@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { CONTACT, PROGRAMS, tel, wa, rich } from '../lib/site';
+import { photo } from '../lib/photos';
+---
+<Base title="Contact — Plan Training for Your Team" description="Tell us about your business and the results you want. We’ll recommend the right program — or build one for you." active="contact">
+  <section class="phero phero--simple on-dark">
+    <div class="phero-bg"><Image src={photo('paras-gold/03')} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
+    <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
+    <div class="wrap">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><span aria-current="page">Contact</span></nav>
+        <span class="eyebrow" data-hero>Connect</span>
+        <h1 data-split>Let’s plan training for <em>your team</em></h1>
+        <p class="lead" data-hero>Tell us about your business and the results you want. We’ll recommend the right program — or build one for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="wrap split" style="align-items:start">
+      <div>
+        <h2 data-split>Your team’s next level is <em>one call away</em></h2>
+        <ul class="contact-list contact-list--light" data-stagger>
+          <li><a href={tel(CONTACT.phone_training)}><span class="ico"><Icon name="phone" /></span><span><small>Training appointments</small>{CONTACT.phone_training}</span></a></li>
+          <li><a href={tel(CONTACT.phone_ops)}><span class="ico"><Icon name="phone" /></span><span><small>Operations</small>{CONTACT.phone_ops}</span></a></li>
+          <li><a href={`mailto:${CONTACT.email}`}><span class="ico"><Icon name="mail" /></span><span><small>Email</small>{CONTACT.email}</span></a></li>
+          <li><a href={`mailto:${CONTACT.email_bb}`}><span class="ico"><Icon name="mail" /></span><span><small>BrillBrains</small>{CONTACT.email_bb}</span></a></li>
+          <li><a href={wa()} target="_blank" rel="noopener"><span class="ico"><Icon name="whatsapp" /></span><span><small>WhatsApp</small>Chat with us</span></a></li>
+          <li><span class="row"><span class="ico"><Icon name="pin" /></span><span><small>Address</small><span set:html={rich(CONTACT.address)} /></span></span></li>
+        </ul>
+      </div>
+
+      <form class="form" id="plan" novalidate data-email={CONTACT.email} data-wa={CONTACT.whatsapp} data-reveal>
+        <div class="row2">
+          <label>Full name *<input name="name" autocomplete="name" required placeholder="Your name" /></label>
+          <label>Business name<input name="business" autocomplete="organization" placeholder="Jewellery brand / company" /></label>
+        </div>
+        <div class="row2">
+          <label>Phone / WhatsApp *<input name="phone" type="tel" autocomplete="tel" required placeholder="+91" inputmode="tel" /></label>
+          <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <label>Program of interest
+          <select name="program">
+            <option value="">Not sure — recommend one</option>
+            {PROGRAMS.map((p) => <option value={p.slug}>{p.name}</option>)}
+          </select>
+        </label>
+        <label>Team size &amp; goals<textarea name="goals" placeholder="How many people, which roles, and what you want to improve"></textarea></label>
+        <p class="err" role="alert" hidden>Please add your name and phone number so we can reach you.</p>
+        <button class="btn" type="submit" data-via="wa"><Icon name="whatsapp" /> Send on WhatsApp</button>
+        <button class="btn btn--outline" type="submit" data-via="mail" style="margin-top:10px"><Icon name="mail" /> Send by email</button>
+        <p class="fine">Your request opens in WhatsApp or your email app, ready to send to our training team.</p>
+      </form>
+    </div>
+  </section>
+</Base>
+<style>
+  .contact-list--light { margin-top: 28px; }
+  .contact-list--light a:hover { background: #fff; }
+  .contact-list--light .ico { background: var(--grey-900); color: var(--teal); }
+</style>

@@ -1,0 +1,53 @@
+---
+// Branching flow: start → step → decision (three branches with responses) → merged outcome.
+interface Props { start: string; step: { title: string; chips: string[] }; decision: string; branches: { reply: string; response: string }[]; end: string[] }
+const { start, step, decision, branches, end } = Astro.props;
+---
+<div class="flow" data-flow>
+  <div class="fl-node fl-start"><span class="fl-k">Start</span>{start}</div>
+  <span class="fl-v" aria-hidden="true"></span>
+  <div class="fl-node fl-step"><span class="fl-k">Then</span><b>{step.title}</b><div class="fl-chips">{step.chips.map((c) => <span>{c}</span>)}</div></div>
+  <span class="fl-v" aria-hidden="true"></span>
+  <div class="fl-decision"><span>{decision}</span></div>
+  <div class="fl-branches">
+    {branches.map((b) => (
+      <div class="fl-br">
+        <div class="fl-reply">“{b.reply}”</div>
+        <span class="fl-v fl-v--s" aria-hidden="true"></span>
+        <div class="fl-resp"><span class="fl-k">Ready response</span>{b.response}</div>
+      </div>
+    ))}
+  </div>
+  <div class="fl-end">{end.map((e, i) => <><span class="fl-endnode">{e}</span>{i < end.length - 1 && <i aria-hidden="true"></i>}</>)}</div>
+</div>
+
+<style>
+  .flow { display: flex; flex-direction: column; align-items: center; max-width: 980px; margin: 0 auto; }
+  .fl-node { background: #fff; border: 1px solid var(--grey-200); border-radius: 14px; padding: 16px 22px; text-align: center; font-weight: 700; color: var(--ink); box-shadow: var(--shadow); max-width: 560px; }
+  .fl-start { background: var(--grey-900); color: #fff; border-color: var(--grey-900); border-radius: 999px; padding: 14px 28px; }
+  .fl-k { display: block; font-size: .66rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 4px; }
+  .fl-start .fl-k { color: var(--teal); }
+  .fl-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
+  .fl-chips span { font-size: .76rem; font-weight: 600; background: var(--teal-50); color: var(--teal-ink); border-radius: 999px; padding: 5px 11px; }
+  .fl-v { width: 2px; height: 30px; background: var(--teal-600); position: relative; }
+  .fl-v::after { content: ""; position: absolute; left: 50%; bottom: -2px; width: 8px; height: 8px; border-right: 2px solid var(--teal-600); border-bottom: 2px solid var(--teal-600); transform: translateX(-50%) rotate(45deg); }
+  .fl-v--s { height: 22px; }
+  .fl-decision { position: relative; width: 150px; height: 150px; display: grid; place-items: center; margin: 4px 0; }
+  .fl-decision::before { content: ""; position: absolute; inset: 22px; background: var(--teal); rotate: 45deg; border-radius: 14px; box-shadow: var(--shadow); }
+  .fl-decision span { position: relative; max-width: 96px; text-align: center; font-weight: 800; font-size: .86rem; line-height: 1.2; color: var(--grey-950); }
+  .fl-branches { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; padding-top: 30px; }
+  .fl-branches::before { content: ""; position: absolute; top: 0; left: 16.6%; right: 16.6%; height: 30px; border: 2px solid var(--teal-600); border-bottom: 0; border-radius: 14px 14px 0 0; }
+  .fl-branches::after { content: ""; position: absolute; top: -12px; left: 50%; width: 2px; height: 12px; background: var(--teal-600); }
+  .fl-br { display: flex; flex-direction: column; align-items: center; }
+  .fl-reply { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--ink); background: #fff; border: 1px dashed var(--grey-300); border-radius: 14px; padding: 12px 16px; text-align: center; width: 100%; }
+  .fl-resp { background: var(--grey-900); color: rgba(255,255,255,.85); border-radius: 14px; padding: 14px 16px; font-size: .88rem; text-align: center; width: 100%; flex: 1; }
+  .fl-resp .fl-k { color: var(--teal); }
+  .fl-end { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 30px; padding-top: 26px; border-top: 2px solid var(--teal-600); width: 66%; position: relative; }
+  .fl-endnode { background: var(--teal); color: var(--grey-950); font-weight: 800; border-radius: 999px; padding: 10px 18px; font-size: .9rem; }
+  .fl-end i { width: 12px; height: 18px; background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+  @media (max-width: 760px) {
+    .fl-branches { grid-template-columns: 1fr; padding-top: 0; }
+    .fl-branches::before, .fl-branches::after { display: none; }
+    .fl-end { width: 100%; }
+  }
+</style>

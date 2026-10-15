@@ -1,0 +1,31 @@
+---
+// Cadence lanes: what happens every day / week / month, as rows of linked steps.
+interface Props { lanes: { when: string; note: string; steps: string[] }[] }
+const { lanes } = Astro.props;
+---
+<div class="cad" data-stagger>
+  {lanes.map((l, i) => (
+    <div class="cad-lane" style={`--k:${i}`}>
+      <div class="cad-when"><b>{l.when}</b><small>{l.note}</small></div>
+      <ol class="cad-steps" role="list">
+        {l.steps.map((s) => <li>{s}</li>)}
+      </ol>
+    </div>
+  ))}
+</div>
+
+<style>
+  .cad { display: grid; gap: 14px; }
+  .cad-lane { display: grid; grid-template-columns: 210px 1fr; border-radius: 18px; overflow: hidden; border: 1px solid var(--grey-200); background: #fff; }
+  .cad-when { background: var(--grey-900); color: #fff; padding: 20px 22px; display: flex; flex-direction: column; justify-content: center; position: relative; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); }
+  .cad-lane:nth-child(2) .cad-when { background: var(--grey-800); }
+  .cad-lane:nth-child(3) .cad-when { background: var(--teal-ink); }
+  .cad-when b { font-family: var(--display); font-size: 1.45rem; font-weight: 600; color: var(--teal); }
+  .cad-lane:nth-child(3) .cad-when b { color: #fff; }
+  .cad-when small { font-size: .8rem; opacity: .75; }
+  .cad-steps { list-style: none; margin: 0; padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; counter-reset: s; }
+  .cad-steps li { position: relative; background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 999px; padding: 9px 16px; font-size: .9rem; font-weight: 600; color: var(--ink); transition: background .3s, border-color .3s; }
+  .cad-steps li:hover { background: var(--teal-50); border-color: var(--teal); }
+  .cad-steps li:not(:last-child)::after { content: ""; display: inline-block; width: 8px; height: 8px; margin-left: 14px; border-top: 2px solid var(--teal-600); border-right: 2px solid var(--teal-600); rotate: 45deg; vertical-align: 1px; }
+  @media (max-width: 760px) { .cad-lane { grid-template-columns: 1fr; } .cad-when { clip-path: none; } }
+</style>

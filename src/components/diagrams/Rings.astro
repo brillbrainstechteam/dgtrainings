@@ -1,0 +1,37 @@
+---
+// Concentric rings: each level wraps the one before (inner → outer), with a legend.
+interface Props { levels: { title: string; text: string }[]; core?: string }
+const { levels, core = 'You' } = Astro.props;
+const n = levels.length;
+---
+<div class="rings" data-rings>
+  <div class="rings-art" aria-hidden="true">
+    {levels.map((_, i) => {
+      const k = n - i; // draw outermost first
+      const a = ((-120 + (k - 1) * 32) * Math.PI) / 180; // fan the numbers out across the top-right
+      const bx = (50 + 50 * Math.cos(a)).toFixed(1), by = (50 + 50 * Math.sin(a)).toFixed(1);
+      return <span class="ring" style={`--s:${(k + 1) / (n + 1)};--o:${0.1 + (n - k) * 0.06}`}><b style={`left:${bx}%;top:${by}%`}>{String(k).padStart(2, '0')}</b></span>;
+    })}
+    <span class="ring-core">{core}</span>
+  </div>
+  <ol class="rings-legend" role="list">
+    {levels.map((l, i) => (
+      <li><span class="rn">{String(i + 1).padStart(2, '0')}</span><div><h3>{l.title}</h3><p>{l.text}</p></div></li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .rings { display: grid; grid-template-columns: minmax(280px, 460px) 1fr; gap: clamp(32px, 5vw, 70px); align-items: center; }
+  .rings-art { position: relative; aspect-ratio: 1; }
+  .ring { position: absolute; left: 50%; top: 50%; width: calc(var(--s) * 100%); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 2px solid var(--teal-600); background: rgba(36,178,163, var(--o)); }
+  .ring b { position: absolute; translate: -50% -50%; background: var(--grey-900); color: var(--teal); font-family: var(--display); font-weight: 600; font-size: .9rem; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 4px var(--grey-50); }
+  .ring-core { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 22%; aspect-ratio: 1; border-radius: 50%; background: var(--grey-900); color: var(--teal); display: grid; place-items: center; font-family: var(--display); font-size: clamp(.9rem, 1.6vw, 1.2rem); font-weight: 600; box-shadow: var(--shadow-lg); }
+  .rings-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .rings-legend li { display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--grey-200); }
+  .rings-legend li:last-child { border: 0; }
+  .rn { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--teal-50); color: var(--teal-ink); display: grid; place-items: center; font-family: var(--display); font-weight: 600; }
+  .rings-legend h3 { font-size: 1.3rem; margin-bottom: 4px; }
+  .rings-legend p { margin: 0; font-size: .92rem; color: var(--muted); }
+  @media (max-width: 860px) { .rings { grid-template-columns: 1fr; } .rings-art { max-width: 340px; width: 100%; margin: 0 auto; } }
+</style>

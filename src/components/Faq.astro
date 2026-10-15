@@ -1,0 +1,13 @@
+---
+import { rich } from '../lib/site';
+interface Props { items: string[][] }
+const { items } = Astro.props;
+---
+<div class="faq" data-stagger>
+  {items.map(([q, a], i) => (
+    <details class="acc" open={i === 0}>
+      <summary>{q}</summary>
+      <div class="acc-body"><div class="acc-inner"><p set:html={rich(a)} /></div></div>
+    </details>
+  ))}
+</div>

@@ -1,0 +1,73 @@
+---
+// Circular process diagram for Discover → Design → Deliver → Sustain.
+import Icon from './Icon.astro';
+interface Props { steps: string[][]; center: string; sub: string }
+const { steps, center, sub } = Astro.props;
+const icons = ['search', 'pen', 'play', 'refresh'];
+const areas = ['n', 'e', 's', 'w'];
+// four arcs on a circle (r=150, centre 200,200) leaving gaps at the 4 nodes, each ending in an arrow
+const R = 150, C = 200, gap = 16;
+const pt = (deg: number) => [C + R * Math.cos((deg * Math.PI) / 180), C + R * Math.sin((deg * Math.PI) / 180)].map((v) => v.toFixed(1));
+const arcs = [-90, 0, 90, 180].map((a) => {
+  const [x1, y1] = pt(a + gap), [x2, y2] = pt(a + 90 - gap);
+  return `M${x1} ${y1} A${R} ${R} 0 0 1 ${x2} ${y2}`;
+});
+const nodes = [-90, 0, 90, 180].map(pt);
+---
+<div class="cycle" data-cycle>
+  <div class="ring" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <marker id="cy-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M0 0 10 5 0 10 3 5z" fill="#24B2A3" />
+        </marker>
+      </defs>
+      <circle cx="200" cy="200" r="150" class="ring-bg" />
+      {arcs.map((d) => <path d={d} class="ring-arc" marker-end="url(#cy-arrow)" />)}
+      {nodes.map(([x, y], i) => <g class="ring-node"><circle cx={x} cy={y} r="24" /><text x={x} y={+y + 7}>{i + 1}</text></g>)}
+    </svg>
+    <div class="ring-center">
+      <strong>{center}</strong>
+      <span>{sub}</span>
+    </div>
+  </div>
+  <ol role="list">
+    {steps.map(([t, d], i) => (
+      <li class={`cy-step a-${areas[i]}`}>
+        <span class="cy-ico"><Icon name={icons[i]} /></span>
+        <div><span class="cy-n">0{i + 1}</span><h3>{t}</h3><p>{d}</p></div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .cycle { position: relative; }
+  .cycle ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 420px 1fr; grid-template-rows: auto 1fr auto; grid-template-areas: ". n ." "w c e" ". s ."; gap: 18px 36px; align-items: center; }
+  .ring { position: absolute; left: 50%; top: 50%; width: 420px; height: 420px; transform: translate(-50%, -50%); }
+  .ring svg { width: 100%; height: 100%; overflow: visible; }
+  .ring-bg { fill: none; stroke: var(--grey-200); stroke-width: 1.5; stroke-dasharray: 3 7; }
+  .ring-arc { fill: none; stroke: var(--teal-600); stroke-width: 3; stroke-linecap: round; }
+  .ring-node circle { fill: var(--grey-900); stroke: #fff; stroke-width: 5; }
+  .ring-node text { fill: var(--teal); font-family: var(--display); font-size: 20px; font-weight: 600; text-anchor: middle; }
+  .ring-center { position: absolute; inset: 27%; border-radius: 50%; background: var(--grey-900); color: #fff; display: grid; place-content: center; text-align: center; padding: 18px; box-shadow: 0 0 0 12px var(--teal-50), var(--shadow-lg); }
+  .ring-center strong { font-family: var(--display); font-size: 1.45rem; line-height: 1.15; font-weight: 600; color: var(--teal); }
+  .ring-center span { font-size: .78rem; color: rgba(255,255,255,.75); margin-top: 8px; line-height: 1.4; }
+  .cy-step { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); max-width: 380px; transition: transform .5s var(--ease), border-color .4s; }
+  .cy-step:hover { transform: translateY(-4px); border-color: var(--teal); }
+  .a-n { grid-area: n; justify-self: center; } .a-s { grid-area: s; justify-self: center; }
+  .a-e { grid-area: e; justify-self: start; } .a-w { grid-area: w; justify-self: end; }
+  .cy-ico { flex: none; width: 48px; height: 48px; border-radius: 14px; background: var(--teal-50); color: var(--teal-ink); display: grid; place-items: center; }
+  .cy-ico :global(svg) { width: 22px; height: 22px; }
+  .cy-n { font-size: .7rem; font-weight: 800; letter-spacing: .18em; color: var(--teal-ink); }
+  .cy-step h3 { font-size: 1.4rem; margin: 2px 0 6px; }
+  .cy-step p { font-size: .92rem; color: var(--muted); margin: 0; }
+  /* leave the centre cell for the ring */
+  .cycle ol::before { content: ""; grid-area: c; height: 420px; }
+  @media (max-width: 1100px) {
+    .cycle ol { grid-template-columns: 1fr; grid-template-areas: none; grid-template-rows: none; gap: 14px; }
+    .cycle ol::before { display: none; }
+    .ring { position: relative; left: auto; top: auto; transform: none; width: min(320px, 80vw); height: min(320px, 80vw); margin: 0 auto 28px; }
+    .cy-step { grid-area: auto !important; max-width: none; justify-self: stretch !important; }
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+// Milestone track: a gradient arrow from one state to another, with milestones alternating above/below.
+interface Props { from: string; to: string; milestones: { title: string; text: string }[] }
+const { from, to, milestones } = Astro.props;
+---
+<div class="trk" data-track>
+  <div class="trk-ends"><span>{from}</span><span>{to}</span></div>
+  <div class="trk-bar" aria-hidden="true"><i></i></div>
+  <ol class="trk-ms" role="list" style={`--n:${milestones.length}`}>
+    {milestones.map((m, i) => (
+      <li>
+        <span class="trk-pin">{String(i + 1).padStart(2, '0')}</span>
+        <div class="trk-card"><b>{m.title}</b><p>{m.text}</p></div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .trk { position: relative; }
+  .trk-ends { display: flex; justify-content: space-between; font-family: var(--display); font-style: italic; font-size: clamp(1.3rem, 2.4vw, 1.9rem); color: var(--ink); margin-bottom: 10px; }
+  .trk-ends span:last-child { color: var(--teal-ink); }
+  .trk-bar { position: relative; height: 14px; border-radius: 999px; background: var(--grey-200); margin-right: 18px; }
+  .trk-bar::after { content: ""; position: absolute; right: -18px; top: 50%; translate: 0 -50%; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 20px solid var(--teal-600); }
+  .trk-bar i { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, var(--grey-500), var(--teal-600)); transform-origin: left; }
+  .trk-ms { list-style: none; margin: -27px 0 0; padding: 0 18px 0 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 16px; }
+  .trk-ms li { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .trk-pin { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--grey-900); color: var(--teal); font-family: var(--display); font-weight: 600; box-shadow: 0 0 0 6px var(--grey-50); position: relative; z-index: 1; }
+  .trk-card { position: relative; background: #fff; border: 1px solid var(--grey-200); border-radius: 14px; padding: 16px 18px; margin-top: 20px; box-shadow: var(--shadow); width: 100%; transition: border-color .3s, transform .4s var(--ease); }
+  .trk-card::before { content: ""; position: absolute; left: 50%; top: -9px; width: 16px; height: 16px; background: #fff; border-left: 1px solid var(--grey-200); border-top: 1px solid var(--grey-200); translate: -50% 0; rotate: 45deg; }
+  .trk-ms li:hover .trk-card { border-color: var(--teal); transform: translateY(-3px); }
+  .trk-card b { display: block; font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+  .trk-card p { margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.45; }
+  @media (max-width: 860px) {
+    .trk-ms { grid-template-columns: 1fr; margin-top: 18px; gap: 12px; padding: 0; }
+    .trk-ms li { flex-direction: row; text-align: left; gap: 14px; }
+    .trk-card { margin: 0; flex: 1; } .trk-card::before { display: none; }
+  }
+</style>

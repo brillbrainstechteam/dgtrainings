@@ -1,0 +1,16 @@
+---
+// Clickable photo set that opens in the site lightbox. layout: 'strip' (5 photos) | 'masonry' (all)
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { photos: ImageMetadata[]; alt: string; layout?: 'strip' | 'masonry' }
+const { photos, alt, layout = 'masonry' } = Astro.props;
+const list = layout === 'strip' ? photos.slice(0, 5) : photos;
+const full = await Promise.all(list.map((p) => getImage({ src: p, width: 1600, format: 'webp' })));
+---
+<div class={layout} data-gallery data-stagger>
+  {list.map((p, i) => (
+    <button type="button" data-full={full[i].src} aria-label={`Open photo ${i + 1} of ${list.length}`}>
+      <Image src={p} alt={`${alt} — photo ${i + 1}`} widths={[400, 700]} sizes={layout === 'strip' && i === 0 ? '(max-width: 640px) 100vw, 600px' : '(max-width: 640px) 50vw, 400px'} />
+    </button>
+  ))}
+</div>

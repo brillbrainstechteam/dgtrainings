@@ -1,0 +1,35 @@
+---
+// Funnel: stages narrowing toward the outcome, each with a short explanation.
+interface Props { stages: { title: string; text: string }[]; outcome: string }
+const { stages, outcome } = Astro.props;
+const n = stages.length;
+---
+<div class="funnel" data-funnel>
+  <ol role="list">
+    {stages.map((s, i) => (
+      <li style={`--w:${100 - i * (46 / Math.max(n - 1, 1))}%`}>
+        <span class="f-bar"><b>{String(i + 1).padStart(2, '0')}</b>{s.title}</span>
+        <span class="f-txt">{s.text}</span>
+      </li>
+    ))}
+  </ol>
+  <div class="f-out"><span>Result</span>{outcome}</div>
+</div>
+
+<style>
+  .funnel ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .funnel li { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .f-bar { justify-self: center; width: var(--w); display: flex; align-items: center; gap: 14px; padding: 16px 22px; color: #fff; font-weight: 700; font-size: .98rem; background: linear-gradient(90deg, var(--grey-900), var(--grey-800)); clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 14px 100%); transition: background .4s; }
+  .funnel li:hover .f-bar { background: linear-gradient(90deg, var(--teal-ink), var(--teal-600)); }
+  .f-bar b { font-family: var(--display); color: var(--teal); font-weight: 600; font-size: 1.1rem; }
+  .funnel li:hover .f-bar b { color: #fff; }
+  .f-txt { font-size: .92rem; color: var(--muted); border-left: 2px solid var(--teal-100); padding-left: 18px; }
+  .f-out { width: 30%; margin: 10px 0 0 calc((55% - 30%) / 2); text-align: center; background: var(--teal); color: var(--grey-950); padding: 16px; border-radius: 0 0 22px 22px; font-family: var(--display); font-size: 1.25rem; font-weight: 600; }
+  .f-out span { display: block; font-family: var(--sans); font-size: .68rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+  @media (max-width: 760px) {
+    .funnel li { grid-template-columns: 1fr; gap: 6px; }
+    .f-bar { width: calc(var(--w) * .9 + 10%); font-size: .9rem; }
+    .f-txt { border: 0; padding: 0 0 10px; text-align: center; }
+    .f-out { width: 70%; margin: 6px auto 0; }
+  }
+</style>

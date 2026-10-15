@@ -1,0 +1,51 @@
+---
+// Phase timeline: dots on a line, a card per phase. Horizontal on desktop, vertical on mobile.
+import Icon from '../Icon.astro';
+import { rich } from '../../lib/site';
+interface Props { phases: { tag: string; title: string; items?: string[]; text?: string; icon?: string }[]; dark?: boolean }
+const { phases, dark } = Astro.props;
+---
+<div class:list={['tl', { 'tl--dark': dark }]} data-timeline style={`--n:${phases.length}`}>
+  <span class="tl-line" aria-hidden="true"><i></i></span>
+  <ol role="list">
+    {phases.map((p) => (
+      <li class="tl-ph">
+        <span class="tl-dot">{p.icon ? <Icon name={p.icon} /> : ''}</span>
+        <span class="tl-tag">{p.tag}</span>
+        <h3>{p.title}</h3>
+        {p.items && <ul>{p.items.map((t) => <li set:html={rich(t)} />)}</ul>}
+        {p.text && <p set:html={rich(p.text)} />}
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .tl { position: relative; }
+  .tl ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 22px; }
+  .tl-line { position: absolute; left: 0; right: 0; top: 27px; height: 2px; background: var(--grey-200); }
+  .tl--dark .tl-line { background: rgba(255,255,255,.14); }
+  .tl-line i { display: block; height: 100%; background: var(--teal); transform-origin: left; }
+  /* phase cards hang from the line */
+  .tl-ph { position: relative; background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); padding: 44px 24px 24px; margin-top: 27px; }
+  .tl--dark .tl-ph { background: var(--grey-800); border-color: rgba(255,255,255,.08); color: rgba(255,255,255,.8); }
+  .tl-dot { position: absolute; top: -24px; left: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--grey-900); color: var(--teal); display: grid; place-items: center; box-shadow: 0 0 0 6px var(--grey-50); }
+  .tl--dark .tl-dot { background: var(--teal); color: var(--grey-950); box-shadow: 0 0 0 6px var(--grey-900); }
+  .tl-dot :global(svg) { width: 22px; height: 22px; }
+  .tl-tag { font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-ink); }
+  .tl--dark .tl-tag { color: var(--teal); }
+  .tl-ph h3 { font-size: 1.35rem; margin: 4px 0 10px; }
+  .tl--dark .tl-ph h3 { color: #fff; }
+  .tl-ph ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+  .tl-ph li { position: relative; padding-left: 18px; font-size: .9rem; line-height: 1.5; color: var(--muted); }
+  .tl--dark .tl-ph li { color: rgba(255,255,255,.75); }
+  .tl-ph li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; background: var(--teal-600); transform: rotate(45deg); }
+  .tl-ph p { margin: 0; font-size: .92rem; }
+  @media (max-width: 900px) {
+    .tl ol { grid-template-columns: 1fr; gap: 18px; padding-left: 34px; }
+    .tl-line { left: 23px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
+    .tl-line i { transform-origin: top; }
+    .tl-ph { margin-top: 0; padding: 22px 22px 22px 40px; }
+    .tl-dot { top: 18px; left: -34px; width: 40px; height: 40px; }
+  }
+</style>
