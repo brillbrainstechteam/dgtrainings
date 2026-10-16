@@ -203,7 +203,7 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(5px); }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
 .badge { background: var(--grey-950); color: #fff; border-radius: var(--radius); padding: 18px 22px; box-shadow: var(--shadow-lg); border-left: 4px solid var(--teal); max-width: 250px; z-index: 2; }
 .badge strong { color: var(--teal); font-family: var(--display); font-size: 2rem; display: block; line-height: 1.05; font-weight: 600; }
-.badge span { font-size: .84rem; color: rgba(255,255,255,.8); }
+.badge span { display: block; margin-top: 4px; font-size: .86rem; line-height: 1.45; color: rgba(255,255,255,.8); }
 
 /* ---------- program cards ---------- */
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
