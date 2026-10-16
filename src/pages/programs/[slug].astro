@@ -41,7 +41,7 @@ const sections = p.full
     <div class="wrap">
       <div>
         <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><a href="/programs/">Programs</a><span>/</span><span aria-current="page">{p.short}</span></nav>
-        <span class="eyebrow" data-hero>{p.extra ? 'Also offered' : `Program ${p.num}`} · {p.tag}</span>
+        <span class="eyebrow" data-hero>{`Program ${p.num}`} · {p.tag}</span>
         <h1 data-split>{title}</h1>
         <p class="tagline" data-hero>{tagline}</p>
         <p class="intro" data-hero>{intro}</p>
@@ -185,7 +185,7 @@ const sections = p.full
 
   <section class:list={['section', p.full ? 'section--white' : 'section--tint']}>
     <div class="wrap">
-      <div class="head"><span class="eyebrow">Related programs</span><h2 data-split>Pairs well <em>with</em></h2></div>
+      <div class="head"><span class="eyebrow">Keep exploring</span><h2 data-split>Explore Our <em>Other Programs</em></h2></div>
       <div class="grid3" data-stagger>{related.map((r) => <ProgramCard p={r} compact />)}</div>
     </div>
   </section>

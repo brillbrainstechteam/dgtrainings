@@ -12,7 +12,7 @@ import ApproachCycle from '../components/ApproachCycle.astro';
 import Playbook from '../components/Playbook.astro';
 
 const chain = [
-  { icon: 'users', title: 'Train your team', text: 'Right skills, processes and accountability — in one structured programme.' },
+  { icon: 'users', title: 'Train your team', text: 'Right skills, processes and accountability — in one structured program.' },
   { icon: 'target', title: 'More leads', text: 'Your team attracts and engages the right customers.' },
   { icon: 'trend', title: 'Better conversions', text: 'More enquiries turn into sales — at a higher bill value.' },
   { icon: 'heart', title: 'Stronger relationships', text: 'Customers come back, and bring others with them.' },
@@ -46,10 +46,9 @@ const audiences = [
     </div>
     <div class="wrap">
       <div>
-        <span class="eyebrow" data-hero>{H.eyebrow}</span>
-        <h1 data-split>Build a powerful team. Build an empire. <em>Be unstoppable.</em></h1>
+        <h1 class="hero-h1" data-split><span class="h1-brand">DG Trainings —</span> Where Great Teams Aren’t Born… <em>They’re Trained.</em></h1>
+        <p class="hero-tag" data-hero>{H.headline_sub}</p>
         <p class="sub" data-hero>{H.sub}</p>
-        <p class="support" data-hero>{H.support}</p>
         <div class="btns" data-hero>
           <a href="#programs" class="btn btn--teal">{H.btn1} <Icon name="arrow" class="arr" /></a>
           <a href="/contact/" class="btn btn--ghost">{H.btn2}</a>
@@ -64,7 +63,7 @@ const audiences = [
 
   <!-- CLIENT MARQUEE -->
   <div class="marquee" aria-label="Clients">
-    <a class="mq-label" href="#clients"><b>{H.clients.length}</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
+    <a class="mq-label" href="#clients"><b>100+</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
     <div class="mq-view">
       <div class="marquee-track">
         {[0, 1].map((k) => (
@@ -156,12 +155,12 @@ const audiences = [
       <div class="head head--row">
         <div>
           <span class="eyebrow">{H.prog_label}</span>
-          <h2 data-split>Nine programs. One promise: <em>a team that performs.</em></h2>
+          <h2 data-split>Ten programs. One promise: <em>a team that performs.</em></h2>
         </div>
         <p class="lead" data-reveal>{H.prog_intro}</p>
       </div>
       <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} compact />)}</div>
-      <p class="center" style="margin-top:44px" data-reveal><a href="/programs/" class="btn btn--outline">See all programs, including Telemarketing <Icon name="arrow" class="arr" /></a></p>
+      <p class="center" style="margin-top:44px" data-reveal><a href="/programs/" class="btn btn--outline">Compare all 10 programs <Icon name="arrow" class="arr" /></a></p>
     </div>
   </section>
 
@@ -206,7 +205,7 @@ const audiences = [
     <div class="wrap trainer">
       <div class="portrait">
         <div class="frame" data-img><Image src={photo('shilpi/03')} alt="Portrait of Dipen Ghatalia" widths={[500, 800]} sizes="(max-width: 960px) 90vw, 480px" /></div>
-        <div class="badge" data-reveal><strong>Since 2011</strong><span>Dedicated to the jewellery industry</span></div>
+        <div class="badge" data-reveal><strong>17 years</strong><span>shaping teams through training</span></div>
       </div>
       <div>
         <span class="eyebrow">About the Trainer</span>

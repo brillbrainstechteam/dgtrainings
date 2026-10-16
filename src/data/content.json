@@ -9,14 +9,14 @@
  },
  "TRAINER_SHORT": "Dipen Ghatalia (DG) — 25+ years in business, 17 years in training",
  "HOME": {
-  "eyebrow": "DG Trainings — Power to Performance",
-  "headline": "Build a powerful team. Build an empire. Be unstoppable.",
-  "sub": "For 17 years, DG Trainings has turned retail floors, wholesale desks and manufacturing units into high-performing teams — sharper in sales, stronger in leadership and united by a culture of ownership. From retail and wholesale to manufacturing, our practical training programmes turn everyday business challenges into opportunities for growth.",
+  "eyebrow": "DG Trainings",
+  "headline": "Where Great Teams Aren’t Born… They’re Trained.",
+  "sub": "For 17 years, DG Trainings has turned retail floors, wholesale desks and manufacturing units into high-performing teams — sharper in sales, stronger in leadership and united by a culture of ownership. From retail and wholesale to manufacturing, our practical training programs turn everyday business challenges into opportunities for growth.",
   "support": "Because the finest jewellery deserves the finest people behind the counter.",
-  "btn1": "Explore the 9 Programs",
+  "btn1": "Explore the 10 Programs",
   "btn2": "Design My Team’s Training Plan",
   "whom_label": "Built for every team in the jewellery business",
-  "whom_text": "From industry-specific expertise to transferable business skills, our programmes are tailored to the needs of your organisation and the people who drive it.",
+  "whom_text": "From industry-specific expertise to transferable business skills, our programs are tailored to the needs of your organisation and the people who drive it.",
   "audiences": [
    "Retail Jewellers",
    "Wholesalers",
@@ -45,24 +45,24 @@
    ],
    [
     "20",
-    "cities and 3 countries, one standard of excellence"
+    "cities across 3 countries, one standard of excellence"
    ],
    [
     "100+",
-    "entrepreneurs and jewellery brands empowered"
+    "entrepreneurs and jewellery businesses empowered"
    ],
    [
-    "9",
+    "10",
     "signature training programs"
    ]
   ],
   "prog_label": "Signature Programs",
-  "prog_h": "Nine programs. One promise: a team that performs.",
+  "prog_h": "Ten programs. One promise: a team that performs.",
   "prog_intro": "Every program is crafted around your business — your products, your customers, your targets. Choose one to solve today’s challenge, or combine several into a year-long journey of transformation.",
   "approach_label": "Our Approach",
   "approach_h": "From first conversation to Measurable Progress.",
   "approach_sub": "A Structured Approach to Lasting Change.",
-  "approach_intro": "No off-the-shelf slides. Every engagement begins with your business and ends with behaviour your customers can see and feel. Our training programmes focus on strengthening employee capabilities, improving customer interactions and building the skills that translate into better business performance.",
+  "approach_intro": "No off-the-shelf slides. Every engagement begins with your business and ends with behaviour your customers can see and feel. Our training programs focus on strengthening employee capabilities, improving customer interactions and building the skills that translate into better business performance.",
   "steps": [
    [
     "Discover",
@@ -132,13 +132,14 @@
    ]
   ],
   "cta_h": "Invest in your team today. Watch your business transform every day.",
-  "cta_text": "Upgrade your people with the knowledge, skills and confidence to deliver excellence in every interaction. Your team’s next level is just one call or WhatsApp away."
+  "cta_text": "Upgrade your people with the knowledge, skills and confidence to deliver excellence in every interaction. Your team’s next level is just one call or WhatsApp away.",
+  "headline_sub": "Practical Learning. Powerful Outcomes."
  },
  "TRAINER": {
   "heading": "Meet the Mind Behind the Transformation",
   "name": "Dipen Ghatalia (DG)",
   "title": "DG Trainings — Power to Performance · Brand & Management Consultant",
-  "headline": "25 years of business wisdom. 17 years of turning teams into forces.",
+  "headline": "25+ years of business wisdom. 17 years of turning teams into forces.",
   "bio": [
    "Dipen Ghatalia has spent more than 25 years inside businesses — as a brand consultant, management consultant, marketer and natural copywriter. For the last 17 of those years, he has channelled that experience into one mission: helping people and teams perform at their very best.",
    "With experience across retail, wholesale and manufacturing, he works with business leaders and teams to strengthen workplace culture, management practices and professional capability. He has partnered with 100+ entrepreneurs and trained more than 35,000 professionals across 20 cities and 3 countries.",
@@ -149,7 +150,7 @@
    "25+ years of business experience",
    "17 years of experience in training",
    "35,000+ professionals trained",
-   "20 cities and countries — national and global experience",
+   "20 cities across 3 countries — national and global experience",
    "Worked with 100+ entrepreneurs",
    "Brand Consultant & Management Consultant",
    "Marketing and Sales Expert",
@@ -312,7 +313,7 @@
    "takeaways_label": "Signature activities",
    "takeaways": "Brand Awareness Challenge · Role Play activities · Team activities",
    "impact": "We help you track attendance, punctuality, attrition, team feedback and performance metrics before and after — so culture change becomes visible.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities and countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and his core expertise is building and shaping work culture.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and his core expertise is building and shaping work culture.",
    "faqs": [
     [
      "Is LWCT only for sales staff?",
@@ -503,7 +504,7 @@
    "takeaways": "Ready-answer FAQ sheet · Objection-handling scripts · Selling process checklist",
    "impact_h": "We measure what matters",
    "impact": "We help you track conversion rate, average bill value, upsell rate and repeat customers before and after the program — so you see the return, not just the certificate.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities and countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — from the showroom counter to the boardroom.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — from the showroom counter to the boardroom.",
    "faqs": [
     [
      "Is the program customised to our products?",
@@ -637,7 +638,7 @@
    ],
    "method": "Hands-on on participants’ own phones · Step-by-step screenshots and tutorial videos · Q&A after every section · Plain, simple language",
    "impact": "Simple before/after skill checks and live tasks — e.g., set up a WhatsApp catalogue, share a scanned PDF, post a reel.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities and countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — making technology simple and useful for every jewellery business.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — making technology simple and useful for every jewellery business.",
    "faqs": [
     [
      "Our staff have very basic phone knowledge. Will they be able to learn?",
@@ -667,7 +668,7 @@
    "num": "06",
    "tag": "Field Sales",
    "full": false,
-   "name": "Sales Tour Training (B2B)",
+   "name": "Sales Tour Training",
    "short": "Sales Tours",
    "tagline": "Every tour, a success story.",
    "card": "Sales tours are expensive, and every day on the road should pay for itself. Your team learns to plan and strategise before they travel, and to run every buyer meeting with a systematic, proactive approach.",
@@ -798,7 +799,7 @@
    "takeaways_label": "Take-aways",
    "takeaways": "Exhibition responsibility matrix (who does what, when) · Lead capture format · End-of-day checklist · After-show follow-up plan",
    "impact": "Track visitors engaged, qualified leads captured, orders booked, follow-up speed and cost per order — show versus show.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities and countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — including years of experience on both sides of the B2B table.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — including years of experience on both sides of the B2B table.",
    "faqs": [
     [
      "Should non-sales teams attend?",
@@ -837,7 +838,7 @@
    "focus": "Decision-making · Team leadership · Accountability · Motivation",
    "ideal": "Heads of department and senior managers",
    "img": "dp/05",
-   "intro": "Great businesses are built on great leadership. This programme equips showroom managers and heads of department to streamline daily operations, lead and motivate teams, build a culture of accountability, improve employee retention and drive measurable business performance.",
+   "intro": "Great businesses are built on great leadership. This program equips showroom managers and heads of department to streamline daily operations, lead and motivate teams, build a culture of accountability, improve employee retention and drive measurable business performance.",
    "glance": [
     [
      "Format",
@@ -867,7 +868,7 @@
    "overview_h": "A great team starts with a great manager.",
    "overview": [
     "Employees look up to their manager — for direction, standards and motivation. Strong leadership builds trust, strengthens teamwork and creates an environment where people feel valued and perform at their best.",
-    "This programme equips managers to lead with confidence, establish clear standards, streamline daily operations, develop their teams and drive measurable results — from opening the showroom to reviewing performance."
+    "This program equips managers to lead with confidence, establish clear standards, streamline daily operations, develop their teams and drive measurable results — from opening the showroom to reviewing performance."
    ],
    "highlights": [
     "Clear roles and responsibilities — 18 areas every manager owns",
@@ -945,7 +946,7 @@
     "Optional track — Owners & Directors (Management Training)",
     "For owners, partners and directors: strengthen every facet of the business, put operations on autopilot and take growth to the next level. [Add curriculum when the owners’ deck is ready]"
    ],
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities and countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and has worked with 100+ entrepreneurs and their management teams.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and has worked with 100+ entrepreneurs and their management teams.",
    "faqs": [
     [
      "Is this for owners or managers?",
@@ -992,10 +993,9 @@
   },
   {
    "slug": "telemarketing-training",
-   "num": "+",
+   "num": "10",
    "tag": "Calling",
    "full": true,
-   "extra": true,
    "name": "Telemarketing Training",
    "short": "Telemarketing",
    "tagline": "Every ‘Hello’ is an opportunity.",
@@ -1076,7 +1076,7 @@
    "attend": [
     "Dedicated telecallers and CRM executives",
     "Showroom staff who follow up with customers by phone",
-    "Managers who want a measurable calling programme"
+    "Managers who want a measurable calling program"
    ],
    "outcomes_h": "What changes after the training",
    "outcomes": [
@@ -1086,8 +1086,8 @@
     "Stronger relationships and more repeat business"
    ],
    "method": "Interactive session · Live call demonstrations · Role-play of tricky responses · Ready scripts and checklists",
-   "impact": "Evaluate improvement in call quality, customer engagement, follow-ups and conversions after the programme.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities and countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and is a natural copywriter who knows how words win customers.",
+   "impact": "Evaluate improvement in call quality, customer engagement, follow-ups and conversions after the program.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and is a natural copywriter who knows how words win customers.",
    "faqs": [
     [
      "Will you give us scripts?",
@@ -1153,7 +1153,7 @@
    "program_slug": "life-work-culture-transformation",
    "when": "September 2025",
    "where": null,
-   "blurb": "A full-team culture programme — sales, back office and support together — building ownership, discipline and energy from the inside out."
+   "blurb": "A full-team culture program — sales, back office and support together — building ownership, discipline and energy from the inside out."
   },
   {
    "key": "suraj-bhan",
@@ -1243,7 +1243,7 @@
    "program_slug": "sales-tour-training",
    "when": "2014",
    "where": null,
-   "blurb": "A full-day classroom programme with group exercises and presentations by the team."
+   "blurb": "A full-day classroom program with group exercises and presentations by the team."
   },
   {
    "key": "dishaa-platinum",

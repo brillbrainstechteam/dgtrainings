@@ -47,7 +47,7 @@ const others = CLIENTS.filter((c) => !withGallery.has(c.name)).map((c) => c.name
       <div class="head"><span class="eyebrow">Galleries</span><h2 data-split>Open any <em>engagement</em></h2></div>
       <div class="wgrid" data-stagger>{WORK.map((w, i) => <WorkCard w={w} video={i === 0} />)}</div>
       {others.length > 0 && (
-        <p class="others" data-reveal><b>Also trained:</b> {others.join(' · ')} <mark class="tbc">galleries to be added</mark></p>
+        <p class="others" data-reveal><b>Also featured:</b> {others.join(' · ')} <mark class="tbc">galleries to be added</mark></p>
       )}
     </div>
   </section>

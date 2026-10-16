@@ -6,7 +6,6 @@ import CtaBand from '../../components/CtaBand.astro';
 import Staircase from '../../components/diagrams/Staircase.astro';
 import { HOME as H, SIGNATURE, PROGRAMS, progUrl } from '../../lib/site';
 import { photo } from '../../lib/photos';
-const extra = PROGRAMS.filter((p) => p.extra);
 const link = (slug: string) => { const p = PROGRAMS.find((x) => x.slug === slug)!; return { label: p.short === 'LWCT' ? 'Culture (LWCT)' : p.short, href: progUrl(p) }; };
 const journey = [
   { stage: 'Foundation', note: 'Start everyone right', items: ['orientation-training', 'digital-shakti'].map(link) },
@@ -67,8 +66,6 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
     <div class="wrap">
       <div class="head"><span class="eyebrow">{H.prog_label}</span><h2 data-split>Explore <em>each program</em></h2></div>
       <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} />)}</div>
-      <div class="head" style="margin-top:72px"><span class="eyebrow">Also offered</span><h2 data-split>Specialist <em>workshop</em></h2></div>
-      <div class="grid3" data-stagger>{extra.map((p) => <ProgramCard p={p} />)}</div>
     </div>
   </section>
 
