@@ -4,7 +4,6 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import ProgramCard from '../components/ProgramCard.astro';
 import WorkCard from '../components/WorkCard.astro';
-import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ClientSnapshot from '../components/ClientSnapshot.astro';
 import BenefitChain from '../components/BenefitChain.astro';
@@ -155,12 +154,12 @@ const audiences = [
       <div class="head head--row">
         <div>
           <span class="eyebrow">{H.prog_label}</span>
-          <h2 data-split>Ten programs. One promise: <em>a team that performs.</em></h2>
+          <h2 data-split>Nine programs. One promise: <em>a team that performs.</em></h2>
         </div>
         <p class="lead" data-reveal>{H.prog_intro}</p>
       </div>
       <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} compact />)}</div>
-      <p class="center" style="margin-top:44px" data-reveal><a href="/programs/" class="btn btn--outline">Compare all 10 programs <Icon name="arrow" class="arr" /></a></p>
+      <p class="center" style="margin-top:44px" data-reveal><a href="/programs/" class="btn btn--outline">Compare all 9 programs <Icon name="arrow" class="arr" /></a></p>
     </div>
   </section>
 
@@ -194,7 +193,7 @@ const audiences = [
           <span class="eyebrow">{H.approach_label}</span>
           <h2 data-split>From first conversation to <em>measurable progress.</em></h2>
         </div>
-        <p class="lead" data-reveal><b style="color:var(--ink)">{H.approach_sub}</b> {H.approach_intro}</p>
+        <p class="lead" data-reveal>Four stages, built around your business — never an off-the-shelf template. <a class="link-arrow" href="/approach/">See our full approach <Icon name="arrow" /></a></p>
       </div>
       <ApproachCycle steps={H.steps} center="Measurable progress" sub="A structured approach to lasting change" />
     </div>
@@ -246,14 +245,6 @@ const audiences = [
       <div class="tgrid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))" data-stagger>
         {GENERIC_TESTIMONIALS.map((t) => <figure class="tcard"><span class="q" aria-hidden="true">“</span><p set:html={rich(t)} /></figure>)}
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section--white" id="faq">
-    <div class="wrap">
-      <div class="head center"><span class="eyebrow">FAQs</span><h2 data-split>Questions, answered</h2></div>
-      <Faq items={H.faqs} />
     </div>
   </section>
 

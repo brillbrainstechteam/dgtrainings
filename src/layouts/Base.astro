@@ -57,8 +57,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </div>
         <a href="/work/" class:list={{ active: active === 'work' }}>Our Work</a>
         <a href="/about-dg/" class:list={{ active: active === 'about' }}>About DG</a>
-        <a href="/#approach">Approach</a>
-        <a href="/#faq">FAQ</a>
+        <a href="/approach/" class:list={{ active: active === 'approach' }}>Approach</a>
+        <a href="/approach/#faq">FAQ</a>
         <a href="/contact/" class:list={{ active: active === 'contact' }}>Contact</a>
         <a href="/contact/" class="btn btn--sm">Book a Training</a>
       </nav>

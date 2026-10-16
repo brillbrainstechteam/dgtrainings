@@ -6,10 +6,10 @@ import { bySlug, progUrl } from '../lib/site';
 
 const pages = [
   { q: 'When was the last time your team was trained?', slug: 'life-work-culture-transformation' },
-  { q: 'Is your team ready for the next stage of growth?', slug: 'management-training' },
+  { q: 'Is your team ready for the next stage of growth?', slug: 'orientation-training' },
   { q: 'Is your marketing team delivering results?', slug: 'marketing-mastery' },
   { q: 'Is your team keeping up with digital change?', slug: 'digital-shakti' },
-  { q: 'Are your managers bringing out the best in their teams?', slug: 'leadership-training' },
+  { q: 'Are your managers bringing out the best in their teams?', slug: 'leadership-management' },
   { q: 'Is your customer getting the experience your brand promises?', slug: 'business-technical-sales-expert' },
   { q: 'Your targets are set. Is your team delivering?', slug: 'telemarketing-training' },
 ].map((p) => ({ ...p, prog: bySlug(p.slug) }));

@@ -4,7 +4,6 @@ import Hub from './diagrams/Hub.astro';
 import Rings from './diagrams/Rings.astro';
 import Timeline from './diagrams/Timeline.astro';
 import Funnel from './diagrams/Funnel.astro';
-import Pyramid from './diagrams/Pyramid.astro';
 import Track from './diagrams/Track.astro';
 import Route from './diagrams/Route.astro';
 import Checklist from './diagrams/Checklist.astro';
@@ -58,7 +57,7 @@ switch (p.slug) {
       { tag: 'Phase 3', icon: 'trend', title: 'After the show', items: ['Lead list entered the same week', 'Thank-you creatives to all visitors', 'Every prospect called within 3 days', 'Quotations, dispatch and invoicing'] },
     ] };
     break;
-  case 'leadership-training':
+  case 'leadership-management':
     kind = 'cadence';
     heading = 'The rhythm of a <em>great manager</em>';
     lead = 'Routines that make the showroom run the same way every day — whether the owner is in or not.';
@@ -99,17 +98,6 @@ switch (p.slug) {
       end: ['Store visit', 'Callback', 'Logged in the tracker'],
     };
     break;
-  case 'management-training':
-    kind = 'pyramid';
-    heading = 'Build it from the <em>ground up</em>';
-    lead = 'Strengthen every facet of the business, rebuild its foundations, and put operations on autopilot.';
-    data = { apex: 'A business that runs without you', layers: [
-      { title: 'Key team development', text: 'Your key people take ownership of results.' },
-      { title: 'Leadership capability', text: 'Owners and partners lead with clarity, not firefighting.' },
-      { title: 'Manager development', text: 'Managers run daily operations to one standard.' },
-      { title: 'Systems', text: 'The foundation — processes that run without daily supervision.' },
-    ] };
-    break;
   case 'marketing-mastery':
     kind = 'track';
     heading = 'From attention <em>to loyalty</em>';
@@ -124,24 +112,24 @@ switch (p.slug) {
   case 'sales-tour-training':
     kind = 'route';
     heading = 'Every day on the road <em>pays for itself</em>';
-    lead = 'Plan and strategise before you travel, then run every buyer meeting with a systematic, proactive approach.';
-    data = { start: 'Plan', end: 'Orders', stops: [
-      { title: 'Tour planning', text: 'Strategy before the ticket' },
-      { title: 'Field execution', text: 'A disciplined day on the road' },
-      { title: 'Buyer meetings', text: 'Systematic and proactive' },
-      { title: 'Lead handling', text: 'Every enquiry captured' },
-      { title: 'Follow-up', text: 'Meetings turned into orders' },
+    lead = 'Most tours lose value in the details. This program fixes the full cycle: before, during and after the tour.';
+    data = { start: 'Before', end: 'Orders', stops: [
+      { title: 'Plan the tour', text: 'Client research and a day-wise schedule' },
+      { title: 'Confirm & pack', text: 'Meetings confirmed, sample kit ready' },
+      { title: 'Present & negotiate', text: 'Every client meeting counts' },
+      { title: 'Follow up', text: 'CRM and 30/90-day relationship cycles' },
+      { title: 'Track ROI', text: 'The return on every tour' },
     ] };
     break;
   case 'orientation-training':
     kind = 'check';
     heading = 'The right start, <em>from day one</em>';
-    lead = 'A warm, structured welcome for every new joiner.';
+    lead = 'One consistent message for every new joiner, in every branch.';
     data = { badge: 'New joiner', badgeSub: 'Welcome to the team', items: [
-      { title: 'Company & product knowledge', text: 'A clear picture of your company, its products and services.' },
-      { title: 'Code of conduct', text: 'How things are done here — and why.' },
-      { title: 'Jewellery business basics', text: 'The essentials every team member should know.' },
-      { title: 'Culture & key people', text: 'An introduction to the people and the culture they are joining.' },
+      { title: 'Your story, mission & values', text: 'Told in a way that builds pride from day one.' },
+      { title: 'Leadership, people & presence', text: 'Who’s who, how the company is organised and where it operates.' },
+      { title: 'Every key policy, explained simply', text: 'Work hours, leave, salary, promotion, grievance and travel.' },
+      { title: 'Code of conduct & customer promise', text: 'The standards everyone follows — on the floor and off it.' },
     ] };
     break;
   default:
@@ -162,7 +150,6 @@ switch (p.slug) {
   {kind === 'hub' && <Hub {...data} />}
   {kind === 'cadence' && <Cadence {...data} />}
   {kind === 'flow' && <Flowchart {...data} />}
-  {kind === 'pyramid' && <Pyramid {...data} />}
   {kind === 'track' && <Track {...data} />}
   {kind === 'route' && <Route {...data} />}
   {kind === 'check' && <Checklist {...data} />}
