@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { CONTACT, PROGRAMS, tel, wa, rich } from '../lib/site';
+import Faq from '../components/Faq.astro';
+import { CONTACT, PROGRAMS, HOME as H, tel, wa, rich } from '../lib/site';
 import { photo } from '../lib/photos';
 ---
 <Base title="Contact — Plan Training for Your Team" description="Tell us about your business and the results you want. We’ll recommend the right program — or build one for you." active="contact">
@@ -54,6 +55,16 @@ import { photo } from '../lib/photos';
         <button class="btn btn--outline" type="submit" data-via="mail" style="margin-top:10px"><Icon name="mail" /> Send by email</button>
         <p class="fine">Your request opens in WhatsApp or your email app, ready to send to our training team.</p>
       </form>
+    </div>
+  </section>
+
+  <section class="section section--white" id="faq">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">FAQs</span><h2 data-split>Questions, <em>answered</em></h2></div>
+        <p class="lead" data-reveal>Quick answers before you call. Anything else, ask us on WhatsApp.</p>
+      </div>
+      <Faq items={H.faqs} />
     </div>
   </section>
 </Base>

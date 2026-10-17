@@ -53,7 +53,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       <nav class="nav" id="nav" aria-label="Main">
         <div class="dd">
-          <a href="/programs/" class:list={{ active: active === 'programs' }}>Programs</a>
+          <a href="/programs/" class:list={{ active: active === 'programs' }}>Our Programs</a>
           <div class="dd-menu">
             <div class="dd-cols">
               {MENU.map((g) => (
@@ -69,10 +69,9 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
           </div>
         </div>
         <a href="/work/" class:list={{ active: active === 'work' }}>Our Work</a>
-        <a href="/about-dg/" class:list={{ active: active === 'about' }}>About DG</a>
         <a href="/approach/" class:list={{ active: active === 'approach' }}>Approach</a>
-        <a href="/approach/#faq">FAQ</a>
-        <a href="/contact/" class:list={{ active: active === 'contact' }}>Contact</a>
+        <a href="/about-dg/" class:list={{ active: active === 'about' }}>About DG</a>
+        <a href="/contact/" class:list={{ active: active === 'contact' }}>Contact Us</a>
         <a href="/contact/" class="btn btn--sm">Book a Training</a>
       </nav>
     </div>

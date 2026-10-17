@@ -23,7 +23,7 @@ const { tiles } = Astro.props;
   .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; gap: 14px; }
   .bt { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--radius-lg); display: flex; flex-direction: column; justify-content: space-between; padding: 22px; color: #fff; }
   .bt1 { grid-column: span 2; grid-row: span 2; }
-  .bt4, .bt6 { grid-column: span 2; }
+  .bt4, .bt5, .bt6 { grid-column: span 2; }
   .bt :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.2s var(--ease); }
   .bt::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(25,26,28,.15), rgba(25,26,28,.88)); transition: background .5s; }
   .bt:hover :global(img) { transform: scale(1.07); }
@@ -33,6 +33,6 @@ const { tiles } = Astro.props;
   .bt-txt b { display: block; font-family: var(--display); font-size: 1.5rem; font-weight: 600; line-height: 1.15; }
   .bt1 .bt-txt b { font-size: 2.1rem; }
   .bt-txt small { display: block; font-size: .86rem; color: rgba(255,255,255,.8); margin-top: 4px; }
-  @media (max-width: 900px) { .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 190px; } .bt1 { grid-column: span 2; } .bt4 { grid-column: span 1; } }
-  @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } .bt1, .bt4 { grid-column: auto; grid-row: auto; } }
+  @media (max-width: 900px) { .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 190px; } .bt1 { grid-column: span 2; } .bt4, .bt5 { grid-column: span 1; } }
+  @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } .bt1, .bt4, .bt5, .bt6 { grid-column: auto; grid-row: auto; } }
 </style>

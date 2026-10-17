@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { HOME as H, PROGRAMS, progUrl, rich } from '../lib/site';
 import { photo } from '../lib/photos';
@@ -104,13 +103,6 @@ const measured = PROGRAMS.filter((p) => p.impact);
           </a>
         ))}
       </div>
-    </div>
-  </section>
-
-  <section class="section section--tint" id="faq">
-    <div class="wrap">
-      <div class="head center"><span class="eyebrow">FAQs</span><h2 data-split>Questions, answered</h2></div>
-      <Faq items={H.faqs} />
     </div>
   </section>
 

@@ -251,18 +251,6 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(5px); }
 .work { background: var(--grey-950); color: #fff; overflow: hidden; }
 .work .wrap { padding-top: clamp(48px, 5vw, 72px); }
 .work-track { display: flex; gap: 28px; padding: 0 max(28px, calc((100vw - var(--wrap)) / 2 + 28px)) clamp(40px, 5vw, 64px); width: max-content; }
-.wcard { position: relative; width: min(78vw, 760px); flex: none; display: grid; grid-template-rows: auto 1fr; background: var(--grey-900); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-lg); overflow: hidden; }
-.wcard .wimg { position: relative; aspect-ratio: 16/9; overflow: hidden; }
-.wcard .wimg img, .wcard .wimg video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-.wcard:hover .wimg img, .wcard:hover .wimg video { transform: scale(1.05); }
-.wcard .thumbs { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 8px; }
-.wcard .thumbs img { width: 64px; height: 64px; border-radius: 10px; object-fit: cover; border: 2px solid rgba(255,255,255,.85); }
-.wcard .wbody { padding: 26px 30px 30px; display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: end; }
-.wcard .meta { font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); font-weight: 800; grid-column: 1 / -1; }
-.wcard h3 { color: #fff; font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin: 0; }
-.wcard p { color: rgba(255,255,255,.72); margin: 0; font-size: .95rem; grid-column: 1; }
-.wcard .link-arrow { grid-column: 2; grid-row: 2 / 4; align-self: center; }
-.wcard--intro { width: min(78vw, 440px); background: none; border: 0; display: flex; flex-direction: column; justify-content: center; }
 .work-progress { height: 2px; background: rgba(255,255,255,.12); margin: 0 28px; max-width: var(--wrap); }
 .work-progress i { display: block; height: 100%; background: var(--teal); transform: scaleX(0); transform-origin: left; }
 
@@ -308,7 +296,7 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 .tcard p { color: rgba(255,255,255,.85); margin: 0; font-size: 1.02rem; }
 
 /* ---------- FAQ / accordions ---------- */
-.faq { max-width: 880px; margin: 0 auto; }
+.faq { border-top: 1px solid var(--grey-200); }
 .acc { border-bottom: 1px solid var(--grey-200); }
 .acc summary { list-style: none; cursor: pointer; padding: 26px 56px 26px 0; font-weight: 700; font-size: 1.08rem; position: relative; color: var(--ink); transition: color .3s; }
 .acc summary:hover { color: var(--teal-ink); }
@@ -448,12 +436,7 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 .lb-count { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.7); font-size: .85rem; letter-spacing: .1em; }
 
 /* work index cards */
-.wgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-.wgrid .wcard { width: auto; background: #fff; border: 1px solid var(--grey-200); color: var(--text); transition: transform .6s var(--ease), box-shadow .6s var(--ease); }
-.wgrid .wcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-.wgrid .wcard h3 { color: var(--ink); }
-.wgrid .wcard p { color: var(--muted); }
-.wgrid .wcard .meta { color: var(--teal-ink); }
+.wgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin-top: 26px; }
 .facts div { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.6); font-weight: 700; }
 .facts b { display: block; font-family: var(--display); text-transform: none; letter-spacing: 0; font-size: 1.25rem; color: #fff; font-weight: 600; margin-top: 4px; }
@@ -527,13 +510,13 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
   .portrait { max-width: 520px; }
   .chev-deco { display: none; }
   .subnav { top: 70px; }
-  .wgrid { grid-template-columns: 1fr; }
+  .wgrid { grid-template-columns: 1fr 1fr; }
   .work-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 80px; }
   .work-track::-webkit-scrollbar { display: none; }
-  .wcard { scroll-snap-align: center; }
   .work-progress { display: none; }
 }
 @media (max-width: 640px) {
+  .wgrid { grid-template-columns: 1fr; }
   body { font-size: 16px; }
   .wrap { padding: 0 18px; }
   .topbar .tb-l a:nth-child(2), .topbar .tb-r a:last-child { display: none; }
@@ -549,8 +532,6 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
   .collage { min-height: 380px; } .collage .c2 { border-width: 5px; }
   .portrait::before { inset: 18px -10px -12px 18px; } .portrait .badge { left: 12px; }
   .strip { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; } .strip button:first-child { grid-column: span 2; grid-row: auto; }
-  .wcard .wbody { grid-template-columns: 1fr; padding: 22px; } .wcard .link-arrow { grid-column: 1; grid-row: auto; }
-  .wcard .thumbs img { width: 48px; height: 48px; }
   .scroll-cue { display: none; }
   .mq-label { padding-right: 34px; font-size: .62rem; letter-spacing: .14em; } .mq-label b { font-size: 1.5rem; } .mq-label .mq-txt { display: none; }
   .fbig { font-size: 2rem; }
