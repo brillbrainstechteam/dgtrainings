@@ -1,0 +1,104 @@
+---
+// Expanding gallery: client panels side by side; the active one widens to show its photo and story.
+// Hover, focus or tap to switch; it advances on its own while on screen. No scroll-jacking.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { type Work, workUrl, rich } from '../lib/site';
+import { album } from '../lib/photos';
+interface Props { items: Work[] }
+const { items } = Astro.props;
+const panels = items.map((w) => ({ w, pics: album(w.key) }));
+---
+<div class="wg" data-gallery-x>
+  {panels.map(({ w, pics }, i) => (
+    <a class:list={['wg-p', { 'is-on': i === 0 }]} href={workUrl(w)} aria-label={`${w.client} — view ${pics.length} photos`}>
+      {w.video && i === 0
+        ? <video class="wg-media" src={w.video} muted loop playsinline autoplay preload="metadata" poster={pics[0].src} aria-hidden="true"></video>
+        : <Image class="wg-media" src={pics[0]} alt="" widths={[600, 1100]} sizes="(max-width: 760px) 100vw, 800px" />}
+      <span class="wg-shade" aria-hidden="true"></span>
+      <span class="wg-idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+      <span class="wg-spine" aria-hidden="true">{w.client}</span>
+      <div class="wg-body">
+        <span class="wg-meta">{[w.kind, w.when, w.where].filter(Boolean).join(' · ')}</span>
+        <h3>{w.client}</h3>
+        <p set:html={rich(w.blurb)} />
+        <div class="wg-foot">
+          <span class="wg-thumbs" aria-hidden="true">{pics.slice(1, 4).map((p) => <Image src={p} alt="" width={96} height={96} />)}</span>
+          <span class="wg-cta">{pics.length} photos <Icon name="arrow" /></span>
+        </div>
+      </div>
+      <span class="wg-bar" aria-hidden="true"><i></i></span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .wg { display: flex; gap: 10px; height: clamp(440px, 46vw, 560px); }
+  .wg-p { position: relative; flex: 1 1 0; min-width: 0; border-radius: 22px; overflow: hidden; isolation: isolate; color: #fff; transition: flex-grow .9s cubic-bezier(.22,1,.36,1), box-shadow .5s; cursor: pointer; }
+  .wg-p.is-on { flex-grow: 5.2; box-shadow: 0 30px 60px -28px rgba(0,0,0,.8); }
+  .wg-p :global(.wg-media) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transform: scale(1.12); filter: grayscale(.6) brightness(.75); transition: transform 1.4s var(--ease), filter .8s; }
+  .wg-p.is-on :global(.wg-media) { transform: scale(1); filter: none; }
+  .wg-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(25,26,28,.25) 0%, rgba(25,26,28,.2) 40%, rgba(25,26,28,.92) 100%); transition: background .6s; }
+  .wg-p:not(.is-on) .wg-shade { background: rgba(25,26,28,.62); }
+  .wg-p:not(.is-on):hover .wg-shade { background: rgba(15,113,104,.55); }
+  .wg-idx { position: absolute; top: 18px; left: 18px; font-family: var(--display); font-size: 1.1rem; font-weight: 600; color: var(--teal); }
+  .wg-spine { position: absolute; left: 50%; bottom: 28px; translate: -50% 0; writing-mode: vertical-rl; rotate: 180deg; font-family: var(--display); font-size: 1.35rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em; transition: opacity .4s; }
+  .wg-p.is-on .wg-spine { opacity: 0; }
+  .wg-body { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(22px, 2.6vw, 34px); opacity: 0; transform: translateY(24px); transition: opacity .5s ease .0s, transform .6s var(--ease) 0s; pointer-events: none; }
+  .wg-p.is-on .wg-body { opacity: 1; transform: none; transition-delay: .35s; pointer-events: auto; }
+  .wg-meta { font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
+  .wg-body h3 { color: #fff; font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 6px 0 8px; }
+  .wg-body p { color: rgba(255,255,255,.82); max-width: 520px; margin: 0 0 18px; font-size: .98rem; }
+  .wg-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .wg-thumbs { display: flex; }
+  .wg-thumbs :global(img) { width: 52px; height: 52px; object-fit: cover; border-radius: 12px; border: 2px solid rgba(255,255,255,.9); margin-right: -10px; box-shadow: 0 6px 14px rgba(0,0,0,.35); }
+  .wg-cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: .9rem; color: var(--grey-950); background: var(--teal); padding: 10px 16px; border-radius: 999px; }
+  .wg-cta :global(svg) { width: 16px; height: 16px; transition: transform .4s var(--ease); }
+  .wg-p:hover .wg-cta :global(svg) { transform: translateX(4px); }
+  .wg-bar { position: absolute; left: 0; right: 0; top: 0; height: 3px; background: rgba(255,255,255,.15); opacity: 0; transition: opacity .4s; }
+  .wg-p.is-on .wg-bar { opacity: 1; }
+  .wg-bar i { display: block; height: 100%; background: var(--teal); transform-origin: left; transform: scaleX(var(--prog, 0)); }
+  @media (max-width: 760px) {
+    .wg { flex-direction: column; height: auto; }
+    .wg-p { flex: none; height: 76px; transition: height .8s cubic-bezier(.22,1,.36,1); }
+    .wg-p.is-on { height: 420px; }
+    .wg-spine { writing-mode: horizontal-tb; rotate: none; left: 60px; bottom: auto; top: 50%; translate: 0 -50%; font-size: 1.2rem; }
+    .wg-idx { top: 50%; translate: 0 -50%; }
+    .wg-p.is-on .wg-idx { top: 18px; translate: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .wg-p, .wg-p :global(.wg-media), .wg-body { transition: none; } }
+</style>
+
+<script>
+  const STEP = 4500;
+  function initWorkGallery() {
+    const root = document.querySelector<HTMLElement>('[data-gallery-x]');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    const panels = [...root.querySelectorAll<HTMLAnchorElement>('.wg-p')];
+    const touch = matchMedia('(hover: none)').matches;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.includes('static');
+    let i = 0, hover = false, visible = false, start = performance.now(), raf = 0;
+    const set = (n: number) => { i = (n + panels.length) % panels.length; panels.forEach((p, k) => p.classList.toggle('is-on', k === i)); start = performance.now(); };
+    panels.forEach((p, k) => {
+      if (!touch) p.addEventListener('mouseenter', () => set(k));
+      p.addEventListener('focus', () => set(k));
+      // on touch screens the first tap opens the panel, the second follows the link
+      p.addEventListener('click', (e) => { if (k !== i) { e.preventDefault(); set(k); } });
+    });
+    root.addEventListener('mouseenter', () => (hover = true));
+    root.addEventListener('mouseleave', () => { hover = false; start = performance.now(); });
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; start = performance.now(); }, { threshold: .35 });
+    io.observe(root);
+    const tick = () => {
+      const t = performance.now() - start;
+      const p = hover || !visible || reduce ? 0 : Math.min(t / STEP, 1);
+      panels[i].style.setProperty('--prog', String(p));
+      if (p >= 1) set(i + 1);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    document.addEventListener('astro:before-swap', () => { cancelAnimationFrame(raf); io.disconnect(); }, { once: true });
+  }
+  document.addEventListener('astro:page-load', initWorkGallery);
+</script>

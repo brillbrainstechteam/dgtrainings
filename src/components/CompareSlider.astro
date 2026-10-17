@@ -1,0 +1,72 @@
+---
+// Before/after slider: the same team photo, grey and dull on the "untrained" side, vivid on the "trained" side.
+// Drag the handle (or use the arrow keys); it sweeps once on its own when it scrolls into view.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+interface Props { img: ImageMetadata; pairs: string[][]; alt: string }
+const { img, pairs, alt } = Astro.props;
+---
+<div class="cs" data-compare style="--pos:50%">
+  <!-- untrained layer (full width, underneath) -->
+  <div class="cs-layer cs-bad">
+    <Image src={img} alt="" class="cs-img" widths={[900, 1500]} sizes="(max-width: 760px) 100vw, 1200px" />
+    <div class="cs-panel">
+      <span class="cs-label"><Icon name="x" /> Untrained team</span>
+      <b class="cs-title">Learns in fragments</b>
+      <ul>{pairs.map(([bad]) => <li><Icon name="x" />{bad}</li>)}</ul>
+    </div>
+  </div>
+  <!-- trained layer (clipped from the handle to the right) -->
+  <div class="cs-layer cs-good">
+    <Image src={img} alt={alt} class="cs-img" widths={[900, 1500]} sizes="(max-width: 760px) 100vw, 1200px" />
+    <div class="cs-panel">
+      <span class="cs-label"><Icon name="check" /> Trained team</span>
+      <b class="cs-title">One standard of excellence</b>
+      <ul>{pairs.map(([, good]) => <li><Icon name="check" />{good}</li>)}</ul>
+    </div>
+  </div>
+  <div class="cs-handle" aria-hidden="true"><span class="cs-knob"><i></i><i></i></span><span class="cs-hint">Drag to compare</span></div>
+  <input class="cs-range" type="range" min="0" max="100" value="50" aria-label="Compare an untrained team with a trained team" />
+</div>
+
+<style>
+  .cs { position: relative; height: clamp(460px, 42vw, 560px); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); isolation: isolate; user-select: none; }
+  .cs-layer { position: absolute; inset: 0; }
+  .cs :global(.cs-img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cs-bad :global(.cs-img) { filter: grayscale(1) contrast(.85) brightness(.7); }
+  .cs-bad::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(30,31,33,.9) 0%, rgba(30,31,33,.62) 38%, rgba(30,31,33,.18) 70%, rgba(30,31,33,.1) 100%); }
+  .cs-good { clip-path: inset(0 0 0 var(--pos)); }
+  .cs-good::after { content: ""; position: absolute; inset: 0; background: linear-gradient(270deg, rgba(10,74,68,.92) 0%, rgba(15,113,104,.66) 38%, rgba(36,178,163,.18) 70%, rgba(36,178,163,.08) 100%); }
+  .cs-panel { position: absolute; z-index: 1; top: 0; bottom: 0; width: 40%; display: flex; flex-direction: column; justify-content: center; padding: 0 clamp(20px, 3vw, 40px); color: #fff; }
+  .cs-bad .cs-panel { left: 0; }
+  .cs-good .cs-panel { right: 0; text-align: left; }
+  .cs-label { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); }
+  .cs-good .cs-label { background: var(--teal); color: var(--grey-950); border-color: var(--teal); }
+  .cs-label :global(svg) { width: 14px; height: 14px; }
+  .cs-title { font-family: var(--display); font-style: italic; font-weight: 500; font-size: clamp(1.5rem, 2.4vw, 2rem); margin: 14px 0 16px; line-height: 1.15; }
+  .cs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .cs li { display: flex; align-items: flex-start; gap: 10px; font-size: .98rem; line-height: 1.4; }
+  .cs-bad li { color: rgba(255,255,255,.72); }
+  .cs-good li { font-weight: 600; }
+  .cs li :global(svg) { width: 16px; height: 16px; flex: none; margin-top: 3px; }
+  .cs-bad li :global(svg) { color: #e07a7c; }
+  .cs-good li :global(svg) { color: var(--teal); }
+  .cs-handle { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--pos); width: 0; pointer-events: none; }
+  .cs-handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: -1.5px; width: 3px; background: #fff; box-shadow: 0 0 18px rgba(85,214,201,.8); }
+  .cs-knob { position: absolute; top: 50%; left: 0; translate: -50% -50%; width: 64px; height: 64px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 6px rgba(255,255,255,.25); }
+  .cs-knob i { width: 10px; height: 16px; background: var(--grey-900); clip-path: polygon(100% 0, 50% 0, 0 50%, 50% 100%, 100% 100%, 50% 50%); }
+  .cs-knob i + i { background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+  .cs-hint { position: absolute; top: calc(50% + 44px); left: 0; translate: -50% 0; white-space: nowrap; font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: rgba(25,26,28,.6); padding: 5px 10px; border-radius: 999px; transition: opacity .5s; }
+  .cs.touched .cs-hint { opacity: 0; }
+  .cs-range { position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+  .cs-range:focus-visible + .cs-knob, .cs:has(.cs-range:focus-visible) .cs-knob { outline: 3px solid var(--teal); outline-offset: 4px; }
+  @media (max-width: 760px) {
+    .cs { height: auto; overflow: visible; box-shadow: none; display: grid; gap: 14px; }
+    .cs-layer { position: relative; border-radius: var(--radius-lg); overflow: hidden; min-height: 300px; clip-path: none; }
+    .cs-panel { position: relative; width: auto; padding: 28px 22px; }
+    .cs-handle, .cs-range { display: none; }
+    .cs-bad::after { background: rgba(30,31,33,.84); }
+    .cs-good::after { background: linear-gradient(160deg, rgba(10,74,68,.92), rgba(15,113,104,.85)); }
+  }
+</style>

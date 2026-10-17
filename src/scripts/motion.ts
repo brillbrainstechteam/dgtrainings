@@ -300,17 +300,6 @@ function motion() {
     tl.fromTo(el.querySelector('.venn-core'), { scale: 0 }, { scale: 1, duration: .7, ease: 'back.out(2.2)' }, .8);
   });
 
-  // Horizontal work showcase (desktop only)
-  const mm = gsap.matchMedia();
-  mm.add('(min-width: 961px)', () => {
-    const sec = document.querySelector<HTMLElement>('.work');
-    const track = sec?.querySelector<HTMLElement>('.work-track');
-    if (!sec || !track) return;
-    const dist = () => track.scrollWidth - innerWidth;
-    gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: .8, invalidateOnRefresh: true, anticipatePin: 1 } });
-    const bar = sec.querySelector('.work-progress i');
-    if (bar) gsap.to(bar, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), scrub: true } });
-  });
 }
 
 
@@ -391,9 +380,26 @@ function tilt() {
   });
 }
 
+/** Before/after slider: drag or keys move the divider; one demo sweep when it first appears. */
+function compareSlider() {
+  $('[data-compare]').forEach((el) => {
+    const range = el.querySelector<HTMLInputElement>('.cs-range')!;
+    const setPos = (v: number) => { el.style.setProperty('--pos', v + '%'); range.value = String(Math.round(v)); };
+    range.addEventListener('input', () => { el.classList.add('touched'); setPos(+range.value); });
+    if (reduce()) return;
+    const proxy = { v: 50 };
+    const demo = gsap.timeline({ paused: true, onUpdate: () => { if (!el.classList.contains('touched')) setPos(proxy.v); } })
+      .to(proxy, { v: 76, duration: 1.1, ease: 'power2.inOut' })
+      .to(proxy, { v: 24, duration: 1.4, ease: 'power2.inOut' })
+      .to(proxy, { v: 50, duration: 1, ease: 'power2.inOut' });
+    ScrollTrigger.create({ trigger: el, start: 'top 70%', once: true, onEnter: () => demo.play() });
+    range.addEventListener('pointerdown', () => { el.classList.add('touched'); demo.kill(); });
+  });
+}
+
 function init() {
   header(); accordions(); lightbox(); contactForm(); scrollProgress(); programFilter(); cycleHighlight(); tilt();
-  ctx = gsap.context(() => { subnav(); if (!reduce()) motion(); });
+  ctx = gsap.context(() => { subnav(); compareSlider(); if (!reduce()) motion(); });
   // fonts can shift line breaks — re-measure once loaded
   document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
