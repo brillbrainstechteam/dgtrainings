@@ -478,575 +478,8 @@
    "roles": "OM"
   },
   {
-   "slug": "marketing-mastery",
-   "num": "03",
-   "tag": "Marketing",
-   "full": false,
-   "name": "Marketing Mastery",
-   "short": "Marketing",
-   "tagline": "Turn attention into loyalty.",
-   "card": "Equip your team to attract, engage and retain the right customers — and to keep them coming back. Learn to bring in a steady stream of new prospects and convert relationships into remarkable revenue.",
-   "focus": "Business promotion · Client engagement · Campaigns · Customer loyalty",
-   "ideal": "Marketing, sales and customer-facing teams",
-   "img": "paras-gold/02",
-   "related": [
-    "telemarketing-training",
-    "digital-shakti",
-    "business-technical-sales-expert"
-   ],
-   "hero": "paras-gold/01",
-   "roles": "S"
-  },
-  {
-   "slug": "business-technical-sales-expert",
-   "num": "04",
-   "tag": "Sales",
-   "full": true,
-   "name": "Business & Technical – Sales Expert Training",
-   "short": "Sales Expert",
-   "tagline": "Know every piece. Close every deal.",
-   "card": "Your team gains deep business and technical knowledge of your products and domain, paired with proven sales tactics. The result: salespeople who speak with authority, handle any client and close with confidence.",
-   "focus": "Product & technical knowledge · Client handling · Negotiation · Relationship building",
-   "ideal": "Showroom, wholesale and B2B sales teams",
-   "img": "suraj-bhan/01",
-   "intro": "Today’s jewellery customer researches online, compares prices and asks harder questions than ever. This program turns your showroom team into true jewellery experts — fluent in metals, diamonds and gemstones, confident on high gold-price days, and skilled at turning every walk-in into a lifelong client.",
-   "glance": [
-    [
-     "Format",
-     "On-site at your showroom or a training venue · Classroom + role-play + live floor practice"
-    ],
-    [
-     "Duration",
-     "[X] days / [X] hours [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "Showroom sales associates, floor managers and new sales hires"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "Jewellery isn’t sold. It’s trusted.",
-   "overview": [
-    "A customer buying jewellery is buying emotion, status and security — often with the savings of a lifetime. They need a salesperson who can explain hallmarking in one sentence, walk them through a diamond certificate, and justify the price with confidence, not discounts.",
-    "This program combines deep technical knowledge with proven retail selling skills — so your team speaks with authority, handles price objections calmly and builds the kind of trust that brings customers back for every occasion."
-   ],
-   "highlights": [
-    "Master metals and stones — gold, silver, platinum, diamonds, gemstones and pearls",
-    "Read and explain GIA/IGI certificates and hallmarking with confidence",
-    "Sell profitably in a high gold-price market — lightweight, diamond and old-gold exchange strategies",
-    "A complete showroom selling process — from greeting to closing to after-sales",
-    "Win the online-researched, price-sensitive and Gen Z customer",
-    "Ready answers to 50+ real customer FAQs [Confirm count]",
-    "Digital selling, CRM and showroom tech knowledge"
-   ],
-   "modules": [
-    [
-     "Understanding India’s jewellery market",
-     "Market overview, growth drivers, regional buying preferences, festive and wedding cycles, key trends (customisation, lab-grown, sustainability, digital) and the success mantras of leading brands."
-    ],
-    [
-     "Technical knowledge — Metals",
-     "Gold purity, hallmarking, alloys and colours; silver and platinum (Pt950); platinum vs white gold vs silver; common malpractices — and how to reassure the customer before they ask."
-    ],
-    [
-     "Technical knowledge — Precious stones",
-     "The 4Cs and reading a certificate; shapes, settings and inclusions; natural vs lab-grown diamonds; gemstones, treatments and navratna; pearls — natural vs cultured."
-    ],
-    [
-     "How jewellery is made",
-     "The journey from design to finished piece; casting, stone-setting and finishing talking points; bespoke orders as an upsell opportunity."
-    ],
-    [
-     "Understanding today’s customer",
-     "Buying triggers and emotional drivers; the online-to-offline customer; handling price-sensitive and sceptical buyers; sustainability and ethical sourcing."
-    ],
-    [
-     "Selling in a high gold-price market",
-     "Cost vs value conversations; lightweight jewellery; gold vs diamond value; old-gold exchange; price transparency on volatile rate days."
-    ],
-    [
-     "Retail selling essentials",
-     "Showroom selling process and body language; questioning and active listening; objection handling and closing; upselling and cross-selling by occasion; storytelling-based selling; after-sales and repeat customers."
-    ],
-    [
-     "Running the business day to day",
-     "Inventory, vendor and barcoding basics; staff roles and simple SOPs; reducing the ‘one person knows everything’ risk."
-    ],
-    [
-     "Selling smarter — digital & trending skills",
-     "Social selling on Instagram and WhatsApp; one system for customer records; CRM for repeat business; basic content creation; tech in the showroom."
-    ],
-    [
-     "What every sales associate should know",
-     "Gold savings schemes and EMI; basic GST and billing; buy-back and exchange policies."
-    ],
-    [
-     "Communication & professionalism",
-     "Grooming and first impressions; regional language and tone; handling difficult customers and complaints."
-    ],
-    [
-     "Customer FAQs — ready answers",
-     "Buying, quality, investment, care, repair, buy-back, pricing and product-specific questions — answered clearly and consistently."
-    ],
-    [
-     "The future of jewellery retail",
-     "Younger buyers and Gen Z; lab-grown and modular jewellery; 3D/CAD; AI, virtual try-on and WhatsApp automation."
-    ]
-   ],
-   "attend": [
-    "Showroom sales associates who want to sell with authority",
-    "Floor and showroom managers who coach the team",
-    "New joiners who need product knowledge fast",
-    "Owners who want one consistent selling standard across counters and branches"
-   ],
-   "outcomes_h": "What changes on your showroom floor",
-   "outcomes": [
-    "Higher walk-in to sale conversion",
-    "Higher average bill value through confident upselling and cross-selling",
-    "More repeat and referral customers",
-    "One consistent, professional selling standard across the team"
-   ],
-   "method": "Interactive classroom sessions · Live product handling · Role-plays of real customer situations · Certificate-reading practice · On-floor coaching [Confirm]",
-   "takeaways_label": "Take-aways",
-   "takeaways": "Ready-answer FAQ sheet · Objection-handling scripts · Selling process checklist",
-   "impact_h": "We measure what matters",
-   "impact": "We help you track conversion rate, average bill value, upsell rate and repeat customers before and after the program — so you see the return, not just the certificate.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — from the showroom counter to the boardroom.",
-   "faqs": [
-    [
-     "Is the program customised to our products?",
-     "Yes. We build examples, role-plays and FAQs around your collections, price points and customers."
-    ],
-    [
-     "Do participants need prior jewellery knowledge?",
-     "No. The program starts from the basics and builds to expert-level talking points, so it works for new joiners and experienced staff alike."
-    ],
-    [
-     "Does it cover lab-grown diamonds and high gold prices?",
-     "Yes — both have dedicated modules, because they are the most-asked questions on the floor today."
-    ],
-    [
-     "Can it be combined with other programs?",
-     "Yes. It pairs well with Life & Work Culture Transformation and Telemarketing Training for a complete retail team upgrade."
-    ]
-   ],
-   "related": [
-    "life-work-culture-transformation",
-    "telemarketing-training",
-    "digital-shakti"
-   ],
-   "cta_h": "Turn your counter staff into jewellery experts.",
-   "cta_text": "Book a free discovery call and we’ll show you how this program fits your showroom, team and targets.",
-   "hero": "saheli-aurum/03",
-   "roles": "OMSN"
-  },
-  {
-   "slug": "digital-shakti",
-   "num": "05",
-   "tag": "Digital",
-   "full": true,
-   "name": "Digital Shakti & Smartphone Training",
-   "short": "Digital Shakti",
-   "tagline": "Digital confidence for every desk.",
-   "card": "Practical, hands-on training that helps every team member use technology with ease in their daily work — and build a strong, growing network for personal and professional success.",
-   "focus": "Practical tech skills · Smartphone mastery · Social networking · Digital confidence",
-   "ideal": "Team members at every level",
-   "img": "dishaa-platinum/02",
-   "intro": "Digital Shakti is the power to learn, grow and help your company grow — digitally. In plain language and with hands-on practice, your team learns to use smartphones, computers, WhatsApp Business, social media and everyday apps like professionals.",
-   "glance": [
-    [
-     "Format",
-     "On-site · Hands-on, phone-in-hand workshop with live demos and Q&A"
-    ],
-    [
-     "Duration",
-     "[X] hours / [X] sessions [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "Team members at every level — especially those less comfortable with technology"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "In a digital world, every employee needs digital power.",
-   "overview": [
-    "A team that can’t share a professional PDF, update a WhatsApp catalogue or use a gold-rate app is slower, less professional and less competitive. Digital Shakti closes that gap — without jargon, and without anyone feeling left behind.",
-    "Every topic is taught on the participant’s own phone, with jewellery-business examples: organising design photos in albums, sending clean scanned documents, editing product pictures and selling through social media."
-   ],
-   "highlights": [
-    "Smartphone mastery — Android and iOS basics, productivity and time tools",
-    "Jewellery-business apps — live spot-rate apps, IIJS and GJEPC, news",
-    "Look professional — PDF converter, document scanner, photo editing, DigiLocker, password manager",
-    "Safe digital payments — bank apps and UPI",
-    "Computer basics, Zoom, WhatsApp Web and ChatGPT",
-    "Instagram, Facebook and YouTube — posting, reels, business pages and engagement",
-    "WhatsApp Business — catalogue, quick replies, labels, broadcasts — and Google My Business"
-   ],
-   "modules": [
-    [
-     "Why technology matters",
-     "The importance of digital knowledge today and the cost of falling behind."
-    ],
-    [
-     "Smartphone essentials",
-     "What makes a phone smart; Android and iOS; Google Calendar, clock, notes and to-do lists; favourites; organising photos into albums for jewellery designs."
-    ],
-    [
-     "Apps that keep you updated",
-     "News apps; IIJS and GJEPC apps; live spot-rate apps for gold and silver; video conferencing."
-    ],
-    [
-     "Professional & security tools",
-     "Photo-to-PDF; document scanning; photo editing for jewellery pictures; file transfer; password manager; DigiLocker."
-    ],
-    [
-     "Digital payments & travel",
-     "Bank apps and UPI step by step; benefits and safety of online payments; booking bus, train and flight tickets."
-    ],
-    [
-     "Computer basics",
-     "What a computer is and does; getting started; WhatsApp Web; joining a Zoom meeting; introduction to ChatGPT."
-    ],
-    [
-     "Social media",
-     "Instagram (posting, stories, reels, business account, insights); Facebook (pages, groups, Marketplace); YouTube (shorts, uploading, getting views); creating engaging content."
-    ],
-    [
-     "WhatsApp & WhatsApp Business",
-     "Groups, broadcasts, status and power features; business profile, catalogue, short links, greeting and away messages, quick replies, labels; do’s and don’ts."
-    ],
-    [
-     "Google My Business",
-     "What it is and how reviews and ratings bring customers to your store."
-    ]
-   ],
-   "attend": [
-    "Sales, counter, back-office and karigar teams who use phones daily",
-    "Senior staff who want to become confident with technology",
-    "Owners who want the whole team digitally ready"
-   ],
-   "outcomes_h": "What changes after Digital Shakti",
-   "outcomes": [
-    "Faster, more professional communication with customers and vendors",
-    "Active, well-managed WhatsApp Business and social profiles",
-    "Safer use of payments, passwords and documents",
-    "A team that is confident — not afraid — of technology"
-   ],
-   "method": "Hands-on on participants’ own phones · Step-by-step screenshots and tutorial videos · Q&A after every section · Plain, simple language",
-   "impact": "Simple before/after skill checks and live tasks — e.g., set up a WhatsApp catalogue, share a scanned PDF, post a reel.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — making technology simple and useful for every jewellery business.",
-   "faqs": [
-    [
-     "Our staff have very basic phone knowledge. Will they be able to learn?",
-     "Absolutely — the program is designed for beginners and moves at a comfortable pace with lots of practice."
-    ],
-    [
-     "Do participants need laptops?",
-     "A smartphone is enough for most modules. The computer module needs a few laptops or desktops at the venue. [Confirm]"
-    ],
-    [
-     "Will employees get practical training?",
-     "Yes. Employees learn step by step how to use digital tools and apps for everyday tasks."
-    ]
-   ],
-   "related": [
-    "telemarketing-training",
-    "marketing-mastery",
-    "orientation-training"
-   ],
-   "cta_h": "Give your team the power of digital.",
-   "cta_text": "Book a session and make your whole team digitally confident — in days, not months.",
-   "hero": "dc/01",
-   "roles": "OSB"
-  },
-  {
-   "slug": "sales-tour-training",
-   "num": "06",
-   "tag": "Field Sales",
-   "full": true,
-   "name": "Sales Tour Training",
-   "short": "Sales Tours",
-   "tagline": "Every tour, a success story.",
-   "card": "Sales tours are expensive, and every day on the road should pay for itself. Your team learns to plan and strategise before they travel, and to run every buyer meeting with a systematic, proactive approach.",
-   "focus": "Tour planning · Field execution · Buyer meetings · Lead handling · Follow-up",
-   "ideal": "Wholesale and manufacturing sales teams",
-   "img": "srk-hongkong/01",
-   "related": [
-    "exhibitions-training",
-    "business-technical-sales-expert",
-    "digital-shakti"
-   ],
-   "hero": "jg/01",
-   "roles": "OMS",
-   "intro": "“You don’t build a business behind a desk — you build it on the tour.” Sales tours are one of the biggest investments a wholesaler or manufacturer makes. This program trains your team to plan smarter, present better, negotiate confidently and follow up relentlessly — so every day on the road pays for itself.",
-   "glance": [
-    [
-     "Format",
-     "On-site · Workshop with checklists, role-plays and kit drills [Confirm]"
-    ],
-    [
-     "Duration",
-     "[X] days / [X] hours [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "B2B sales executives, tour teams, sales managers and business owners of wholesale and manufacturing units"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "Great tours are won before you leave.",
-   "overview": [
-    "Most sales tours lose value in the details — unconfirmed meetings, the wrong samples, weak presentations and follow-ups that never happen. This program fixes the full cycle: before, during and after the tour.",
-    "Your team leaves with ready checklists, scripts, a day-wise planning system and the mindset of a top tour performer — plus the tools to track the return on every tour."
-   ],
-   "highlights": [
-    "A complete Before–During–After tour system",
-    "Day-wise planning, meeting confirmation and travel logistics",
-    "Sample kit organisation and collateral planning — ‘Pack right, present right’",
-    "Client segmentation and personalised presentations",
-    "On-ground objection handling, negotiation and win-back tactics",
-    "CRM, omnichannel follow-up and 30/90-day relationship cycles",
-    "Tour ROI tracking and the digital tools that win tours"
-   ],
-   "modules": [
-    [
-     "Fundamentals",
-     "Understand the purpose of sales tours, your role and responsibilities, field essentials, and the value tours create for the business, clients and your career."
-    ],
-    [
-     "Mindset & psychology",
-     "Build confidence, resilience and emotional intelligence to handle rejection, navigate challenges and approach every sales tour with the right mindset."
-    ],
-    [
-     "Before the tour — preparation",
-     "Plan effective tours through client research, meeting schedules, travel logistics, documentation, sample kits, sales collaterals and professional grooming."
-    ],
-    [
-     "During the tour — execution",
-     "Make every client meeting count through professional etiquette, compelling product presentations, objection handling, negotiation and effective meeting management."
-    ],
-    [
-     "After the tour — follow-up",
-     "Turn meetings into business opportunities through timely follow-ups, CRM updates, client relationship planning, internal coordination and ROI tracking."
-    ],
-    [
-     "Your digital competitive edge",
-     "Use CRM systems, communication platforms and digital productivity tools to streamline planning, strengthen client engagement and improve sales efficiency."
-    ],
-    [
-     "Measuring success & growth",
-     "Track tour performance through key sales metrics, evaluate business outcomes and identify opportunities for continuous improvement and career growth."
-    ]
-   ],
-   "attend": [
-    "Wholesale and manufacturing sales executives who travel to meet retailers",
-    "Sales managers who plan and review tours",
-    "Business owners who want better returns from every tour"
-   ],
-   "outcomes_h": "What changes after the training",
-   "outcomes": [
-    "More confirmed meetings per tour",
-    "More orders per meeting through stronger presentation and negotiation",
-    "Faster follow-up and higher repeat orders",
-    "Lower cost per order and measurable tour ROI"
-   ],
-   "method": "Interactive workshop · Ready checklists and templates · Role-plays of buyer meetings · Kit drills · Follow-up planning",
-   "impact": "Track meetings per tour, orders per meeting, order value, follow-up speed and tour ROI — before and after the program.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — including years of experience on both sides of the B2B table.",
-   "faqs": [
-    [
-     "Does the training cover client relationship building?",
-     "Yes. Participants learn to build trust, understand client needs and strengthen long-term business relationships."
-    ],
-    [
-     "Can you include our brand story and collections?",
-     "Yes. We customise the brand story, product knowledge and presentation modules for your company."
-    ],
-    [
-     "Will participants learn practical techniques?",
-     "Yes. The training focuses on practical sales situations, client handling, objection management and follow-up strategies."
-    ]
-   ],
-   "cta_h": "Make your next tour your best one.",
-   "cta_text": "Tell us about your markets, team and tour plan — we’ll design the training around it."
-  },
-  {
-   "slug": "exhibitions-training",
-   "num": "07",
-   "tag": "Exhibitions",
-   "full": true,
-   "name": "Exhibitions Training",
-   "short": "Exhibitions",
-   "tagline": "Turn footfall into orders.",
-   "card": "Master the practical fundamentals of winning exhibitions, with a clear plan for before, during and after the show. Your booth team learns to prepare well, engage with discipline and convert visitors — for maximum return on every rupee invested.",
-   "focus": "Pre-show preparation · Booth discipline · Conversion · Post-show follow-up",
-   "ideal": "Exhibition and trade-show teams",
-   "img": "gitanjali-2026/03",
-   "intro": "Exhibitions bring a year’s worth of business opportunities into just a few days — making every interaction count. This program trains your whole team, not just sales, to prepare flawlessly, run the booth like a well-oiled machine and follow up fast, so every visitor becomes a lead, and every lead becomes an order.",
-   "glance": [
-    [
-     "Format",
-     "On-site at your office or factory · Workshop with department-wise plans, checklists and role-plays"
-    ],
-    [
-     "Duration",
-     "[X] hours / [X] days [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "Exhibition teams across Sales, Marketing, Order, Inventory, Dispatch, Accounts and Back office — and the managers who lead them"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "Proper planning and preparation prevents poor performance.",
-   "overview": [
-    "Most exhibitions lose value in the details: the wrong stock at the stall, an unprepared team, visitors who leave only a visiting card, and leads that go cold before anyone calls back.",
-    "This program gives every department a clear role before, during and after the show — with ready checklists, a lead-capture format, an end-of-day routine and a follow-up system — so your booth performs as one team and your investment returns as orders."
-   ],
-   "highlights": [
-    "A complete Before–During–After exhibition system",
-    "A department-wise action plan — Marketing, Stall & Display, Order, Sales, Inventory, Dispatch, Accounts and Back office, each with clear owners",
-    "Stock selection, QC, tagging and safe handling from factory to stall and back",
-    "Booth etiquette — the do’s and don’ts of great first impressions",
-    "Lead capture that goes beyond the visiting card",
-    "A same-day order, thank-you and stock-tally routine",
-    "Calling every prospect within 3 days — and measuring the show’s ROI"
-   ],
-   "modules": [
-    [
-     "Why we exhibit",
-     "Meeting new clients, strengthening existing relationships, learning industry developments, watching competitors, building the brand and rapidly growing your lead database."
-    ],
-    [
-     "Team mindset",
-     "Teamwork that divides tasks and multiplies success; you are the face of the brand; one mistake can cost the whole team."
-    ],
-    [
-     "Before the exhibition — department-wise plan",
-     [
-      "<b>Marketing:</b> client lists, invitations by call, SMS, WhatsApp and email",
-      "<b>Stall & Display:</b> location, bookings, lighting, branding, furniture, safe storage",
-      "<b>Sales & Order:</b> stock selection, QC and finalisation",
-      "<b>Inventory:</b> counting, tagging, system entry",
-      "<b>Dispatch:</b> packing and delivery to the stall",
-      "<b>Accounts & Back office:</b> documents, insurance, stationery and vendors"
-     ]
-    ],
-    [
-     "On the exhibition days",
-     "Welcoming guests and hospitality; showing the digital catalogue; taking orders and giving order slips; finding new clients; rate-cut information; emergency stock; daily QC, counting and safe wrap-up."
-    ],
-    [
-     "Booth etiquette — do’s and don’ts",
-     "First impressions; professional greetings; active listening; clear communication; organised displays; avoiding interruptions; building lasting client relationships."
-    ],
-    [
-     "Lead capture — beyond the visiting card",
-     "Name, contact, type of business (trader, manufacturer, retailer, wholesaler), city, number of showrooms and products of interest."
-    ],
-    [
-     "End-of-day routine",
-     "Placing of orders booked; stock count and tally; confirmation to management; securing the stock."
-    ],
-    [
-     "After the exhibition",
-     "Lead list entry; thank-you creatives to all visitors; quotations and order confirmations; ready and made-to-order handling; dispatch, invoicing and booth dismantling."
-    ],
-    [
-     "Grooming & welcome",
-     "Uniform, hygiene and grooming standards; how to greet, seat and serve every visitor."
-    ]
-   ],
-   "attend": [
-    "Sales and marketing teams who meet buyers at the booth",
-    "Order, inventory, dispatch, accounts and back-office teams who make the show run",
-    "Managers who plan and lead the exhibition team",
-    "Owners who want measurable returns from every exhibition"
-   ],
-   "outcomes_h": "What changes at your next show",
-   "outcomes": [
-    "Every department clear on its role — no last-minute chaos",
-    "More qualified leads with complete buyer information",
-    "Higher conversion of booth visits into orders",
-    "Same-day orders and thank-yous, and every lead called within 3 days",
-    "Accurate stock, safe handling and a clear ROI for every show"
-   ],
-   "method": "Interactive workshop · Department-wise planning sessions · Role-plays of booth conversations · Stock and display drills · Follow-up planning",
-   "takeaways_label": "Take-aways",
-   "takeaways": "Exhibition responsibility matrix (who does what, when) · Lead capture format · End-of-day checklist · After-show follow-up plan",
-   "impact": "Track visitors engaged, qualified leads captured, orders booked, follow-up speed and cost per order — show versus show.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — including years of experience on both sides of the B2B table.",
-   "faqs": [
-    [
-     "Should non-sales teams attend?",
-     "Yes — that’s what makes it work. Order, inventory, dispatch, accounts and back-office teams each get their own role in the plan."
-    ],
-    [
-     "Can you schedule it before a specific exhibition?",
-     "Yes. Many clients book it 2–4 weeks before a major show."
-    ],
-    [
-     "Is it customised to our company?",
-     "Yes. The department-wise plan, stock process and checklists are built around your team, products and the shows you attend."
-    ]
-   ],
-   "related": [
-    "sales-tour-training",
-    "business-technical-sales-expert",
-    "leadership-management"
-   ],
-   "cta_h": "Make your next exhibition your most profitable one.",
-   "cta_text": "Tell us about your exhibition calendar and your team — we’ll design the training around your next show.",
-   "hero": "srk-hongkong/02",
-   "roles": "OMSB"
-  },
-  {
    "slug": "orientation-training",
-   "num": "08",
+   "num": "03",
    "tag": "Onboarding",
    "full": true,
    "name": "Orientation Training (Employee Induction)",
@@ -1203,8 +636,162 @@
    "cta_text": "Book a free discovery call — we’ll build an induction program that makes your company proud and your people productive from day one."
   },
   {
+   "slug": "business-technical-sales-expert",
+   "num": "04",
+   "tag": "Sales",
+   "full": true,
+   "name": "Business & Technical – Sales Expert Training",
+   "short": "Sales Expert",
+   "tagline": "Know every piece. Close every deal.",
+   "card": "Your team gains deep business and technical knowledge of your products and domain, paired with proven sales tactics. The result: salespeople who speak with authority, handle any client and close with confidence.",
+   "focus": "Product & technical knowledge · Client handling · Negotiation · Relationship building",
+   "ideal": "Showroom, wholesale and B2B sales teams",
+   "img": "suraj-bhan/01",
+   "intro": "Today’s jewellery customer researches online, compares prices and asks harder questions than ever. This program turns your showroom team into true jewellery experts — fluent in metals, diamonds and gemstones, confident on high gold-price days, and skilled at turning every walk-in into a lifelong client.",
+   "glance": [
+    [
+     "Format",
+     "On-site at your showroom or a training venue · Classroom + role-play + live floor practice"
+    ],
+    [
+     "Duration",
+     "[X] days / [X] hours [Confirm]"
+    ],
+    [
+     "Ideal for",
+     "Showroom sales associates, floor managers and new sales hires"
+    ],
+    [
+     "Language",
+     "English, Hindi & Gujarati [Confirm]"
+    ],
+    [
+     "Batch size",
+     "Up to [XX] participants per batch [Confirm]"
+    ],
+    [
+     "Certificate",
+     "DG Trainings Certificate of Completion for every participant [Confirm]"
+    ]
+   ],
+   "overview_h": "Jewellery isn’t sold. It’s trusted.",
+   "overview": [
+    "A customer buying jewellery is buying emotion, status and security — often with the savings of a lifetime. They need a salesperson who can explain hallmarking in one sentence, walk them through a diamond certificate, and justify the price with confidence, not discounts.",
+    "This program combines deep technical knowledge with proven retail selling skills — so your team speaks with authority, handles price objections calmly and builds the kind of trust that brings customers back for every occasion."
+   ],
+   "highlights": [
+    "Master metals and stones — gold, silver, platinum, diamonds, gemstones and pearls",
+    "Read and explain GIA/IGI certificates and hallmarking with confidence",
+    "Sell profitably in a high gold-price market — lightweight, diamond and old-gold exchange strategies",
+    "A complete showroom selling process — from greeting to closing to after-sales",
+    "Win the online-researched, price-sensitive and Gen Z customer",
+    "Ready answers to 50+ real customer FAQs [Confirm count]",
+    "Digital selling, CRM and showroom tech knowledge"
+   ],
+   "modules": [
+    [
+     "Understanding India’s jewellery market",
+     "Market overview, growth drivers, regional buying preferences, festive and wedding cycles, key trends (customisation, lab-grown, sustainability, digital) and the success mantras of leading brands."
+    ],
+    [
+     "Technical knowledge — Metals",
+     "Gold purity, hallmarking, alloys and colours; silver and platinum (Pt950); platinum vs white gold vs silver; common malpractices — and how to reassure the customer before they ask."
+    ],
+    [
+     "Technical knowledge — Precious stones",
+     "The 4Cs and reading a certificate; shapes, settings and inclusions; natural vs lab-grown diamonds; gemstones, treatments and navratna; pearls — natural vs cultured."
+    ],
+    [
+     "How jewellery is made",
+     "The journey from design to finished piece; casting, stone-setting and finishing talking points; bespoke orders as an upsell opportunity."
+    ],
+    [
+     "Understanding today’s customer",
+     "Buying triggers and emotional drivers; the online-to-offline customer; handling price-sensitive and sceptical buyers; sustainability and ethical sourcing."
+    ],
+    [
+     "Selling in a high gold-price market",
+     "Cost vs value conversations; lightweight jewellery; gold vs diamond value; old-gold exchange; price transparency on volatile rate days."
+    ],
+    [
+     "Retail selling essentials",
+     "Showroom selling process and body language; questioning and active listening; objection handling and closing; upselling and cross-selling by occasion; storytelling-based selling; after-sales and repeat customers."
+    ],
+    [
+     "Running the business day to day",
+     "Inventory, vendor and barcoding basics; staff roles and simple SOPs; reducing the ‘one person knows everything’ risk."
+    ],
+    [
+     "Selling smarter — digital & trending skills",
+     "Social selling on Instagram and WhatsApp; one system for customer records; CRM for repeat business; basic content creation; tech in the showroom."
+    ],
+    [
+     "What every sales associate should know",
+     "Gold savings schemes and EMI; basic GST and billing; buy-back and exchange policies."
+    ],
+    [
+     "Communication & professionalism",
+     "Grooming and first impressions; regional language and tone; handling difficult customers and complaints."
+    ],
+    [
+     "Customer FAQs — ready answers",
+     "Buying, quality, investment, care, repair, buy-back, pricing and product-specific questions — answered clearly and consistently."
+    ],
+    [
+     "The future of jewellery retail",
+     "Younger buyers and Gen Z; lab-grown and modular jewellery; 3D/CAD; AI, virtual try-on and WhatsApp automation."
+    ]
+   ],
+   "attend": [
+    "Showroom sales associates who want to sell with authority",
+    "Floor and showroom managers who coach the team",
+    "New joiners who need product knowledge fast",
+    "Owners who want one consistent selling standard across counters and branches"
+   ],
+   "outcomes_h": "What changes on your showroom floor",
+   "outcomes": [
+    "Higher walk-in to sale conversion",
+    "Higher average bill value through confident upselling and cross-selling",
+    "More repeat and referral customers",
+    "One consistent, professional selling standard across the team"
+   ],
+   "method": "Interactive classroom sessions · Live product handling · Role-plays of real customer situations · Certificate-reading practice · On-floor coaching [Confirm]",
+   "takeaways_label": "Take-aways",
+   "takeaways": "Ready-answer FAQ sheet · Objection-handling scripts · Selling process checklist",
+   "impact_h": "We measure what matters",
+   "impact": "We help you track conversion rate, average bill value, upsell rate and repeat customers before and after the program — so you see the return, not just the certificate.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — from the showroom counter to the boardroom.",
+   "faqs": [
+    [
+     "Is the program customised to our products?",
+     "Yes. We build examples, role-plays and FAQs around your collections, price points and customers."
+    ],
+    [
+     "Do participants need prior jewellery knowledge?",
+     "No. The program starts from the basics and builds to expert-level talking points, so it works for new joiners and experienced staff alike."
+    ],
+    [
+     "Does it cover lab-grown diamonds and high gold prices?",
+     "Yes — both have dedicated modules, because they are the most-asked questions on the floor today."
+    ],
+    [
+     "Can it be combined with other programs?",
+     "Yes. It pairs well with Life & Work Culture Transformation and Telemarketing Training for a complete retail team upgrade."
+    ]
+   ],
+   "related": [
+    "life-work-culture-transformation",
+    "telemarketing-training",
+    "digital-shakti"
+   ],
+   "cta_h": "Turn your counter staff into jewellery experts.",
+   "cta_text": "Book a free discovery call and we’ll show you how this program fits your showroom, team and targets.",
+   "hero": "saheli-aurum/03",
+   "roles": "OMSN"
+  },
+  {
    "slug": "telemarketing-training",
-   "num": "09",
+   "num": "05",
    "tag": "Calling",
    "full": true,
    "name": "Telemarketing Training",
@@ -1322,6 +909,419 @@
    "cta_text": "Book a free discovery call — we’ll show you how a trained calling team can bring customers back every season.",
    "hero": "saheli-aurum/07",
    "roles": "MS"
+  },
+  {
+   "slug": "marketing-mastery",
+   "num": "06",
+   "tag": "Marketing",
+   "full": false,
+   "name": "Marketing Mastery",
+   "short": "Marketing",
+   "tagline": "Turn attention into loyalty.",
+   "card": "Equip your team to attract, engage and retain the right customers — and to keep them coming back. Learn to bring in a steady stream of new prospects and convert relationships into remarkable revenue.",
+   "focus": "Business promotion · Client engagement · Campaigns · Customer loyalty",
+   "ideal": "Marketing, sales and customer-facing teams",
+   "img": "paras-gold/02",
+   "related": [
+    "telemarketing-training",
+    "digital-shakti",
+    "business-technical-sales-expert"
+   ],
+   "hero": "paras-gold/01",
+   "roles": "S"
+  },
+  {
+   "slug": "sales-tour-training",
+   "num": "07",
+   "tag": "Field Sales",
+   "full": true,
+   "name": "Sales Tour Training",
+   "short": "Sales Tours",
+   "tagline": "Every tour, a success story.",
+   "card": "Sales tours are expensive, and every day on the road should pay for itself. Your team learns to plan and strategise before they travel, and to run every buyer meeting with a systematic, proactive approach.",
+   "focus": "Tour planning · Field execution · Buyer meetings · Lead handling · Follow-up",
+   "ideal": "Wholesale and manufacturing sales teams",
+   "img": "srk-hongkong/01",
+   "related": [
+    "exhibitions-training",
+    "business-technical-sales-expert",
+    "digital-shakti"
+   ],
+   "hero": "jg/01",
+   "roles": "OMS",
+   "intro": "“You don’t build a business behind a desk — you build it on the tour.” Sales tours are one of the biggest investments a wholesaler or manufacturer makes. This program trains your team to plan smarter, present better, negotiate confidently and follow up relentlessly — so every day on the road pays for itself.",
+   "glance": [
+    [
+     "Format",
+     "On-site · Workshop with checklists, role-plays and kit drills [Confirm]"
+    ],
+    [
+     "Duration",
+     "[X] days / [X] hours [Confirm]"
+    ],
+    [
+     "Ideal for",
+     "B2B sales executives, tour teams, sales managers and business owners of wholesale and manufacturing units"
+    ],
+    [
+     "Language",
+     "English, Hindi & Gujarati [Confirm]"
+    ],
+    [
+     "Batch size",
+     "Up to [XX] participants per batch [Confirm]"
+    ],
+    [
+     "Certificate",
+     "DG Trainings Certificate of Completion for every participant [Confirm]"
+    ]
+   ],
+   "overview_h": "Great tours are won before you leave.",
+   "overview": [
+    "Most sales tours lose value in the details — unconfirmed meetings, the wrong samples, weak presentations and follow-ups that never happen. This program fixes the full cycle: before, during and after the tour.",
+    "Your team leaves with ready checklists, scripts, a day-wise planning system and the mindset of a top tour performer — plus the tools to track the return on every tour."
+   ],
+   "highlights": [
+    "A complete Before–During–After tour system",
+    "Day-wise planning, meeting confirmation and travel logistics",
+    "Sample kit organisation and collateral planning — ‘Pack right, present right’",
+    "Client segmentation and personalised presentations",
+    "On-ground objection handling, negotiation and win-back tactics",
+    "CRM, omnichannel follow-up and 30/90-day relationship cycles",
+    "Tour ROI tracking and the digital tools that win tours"
+   ],
+   "modules": [
+    [
+     "Fundamentals",
+     "Understand the purpose of sales tours, your role and responsibilities, field essentials, and the value tours create for the business, clients and your career."
+    ],
+    [
+     "Mindset & psychology",
+     "Build confidence, resilience and emotional intelligence to handle rejection, navigate challenges and approach every sales tour with the right mindset."
+    ],
+    [
+     "Before the tour — preparation",
+     "Plan effective tours through client research, meeting schedules, travel logistics, documentation, sample kits, sales collaterals and professional grooming."
+    ],
+    [
+     "During the tour — execution",
+     "Make every client meeting count through professional etiquette, compelling product presentations, objection handling, negotiation and effective meeting management."
+    ],
+    [
+     "After the tour — follow-up",
+     "Turn meetings into business opportunities through timely follow-ups, CRM updates, client relationship planning, internal coordination and ROI tracking."
+    ],
+    [
+     "Your digital competitive edge",
+     "Use CRM systems, communication platforms and digital productivity tools to streamline planning, strengthen client engagement and improve sales efficiency."
+    ],
+    [
+     "Measuring success & growth",
+     "Track tour performance through key sales metrics, evaluate business outcomes and identify opportunities for continuous improvement and career growth."
+    ]
+   ],
+   "attend": [
+    "Wholesale and manufacturing sales executives who travel to meet retailers",
+    "Sales managers who plan and review tours",
+    "Business owners who want better returns from every tour"
+   ],
+   "outcomes_h": "What changes after the training",
+   "outcomes": [
+    "More confirmed meetings per tour",
+    "More orders per meeting through stronger presentation and negotiation",
+    "Faster follow-up and higher repeat orders",
+    "Lower cost per order and measurable tour ROI"
+   ],
+   "method": "Interactive workshop · Ready checklists and templates · Role-plays of buyer meetings · Kit drills · Follow-up planning",
+   "impact": "Track meetings per tour, orders per meeting, order value, follow-up speed and tour ROI — before and after the program.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — including years of experience on both sides of the B2B table.",
+   "faqs": [
+    [
+     "Does the training cover client relationship building?",
+     "Yes. Participants learn to build trust, understand client needs and strengthen long-term business relationships."
+    ],
+    [
+     "Can you include our brand story and collections?",
+     "Yes. We customise the brand story, product knowledge and presentation modules for your company."
+    ],
+    [
+     "Will participants learn practical techniques?",
+     "Yes. The training focuses on practical sales situations, client handling, objection management and follow-up strategies."
+    ]
+   ],
+   "cta_h": "Make your next tour your best one.",
+   "cta_text": "Tell us about your markets, team and tour plan — we’ll design the training around it."
+  },
+  {
+   "slug": "exhibitions-training",
+   "num": "08",
+   "tag": "Exhibitions",
+   "full": true,
+   "name": "Exhibitions Training",
+   "short": "Exhibitions",
+   "tagline": "Turn footfall into orders.",
+   "card": "Master the practical fundamentals of winning exhibitions, with a clear plan for before, during and after the show. Your booth team learns to prepare well, engage with discipline and convert visitors — for maximum return on every rupee invested.",
+   "focus": "Pre-show preparation · Booth discipline · Conversion · Post-show follow-up",
+   "ideal": "Exhibition and trade-show teams",
+   "img": "gitanjali-2026/03",
+   "intro": "Exhibitions bring a year’s worth of business opportunities into just a few days — making every interaction count. This program trains your whole team, not just sales, to prepare flawlessly, run the booth like a well-oiled machine and follow up fast, so every visitor becomes a lead, and every lead becomes an order.",
+   "glance": [
+    [
+     "Format",
+     "On-site at your office or factory · Workshop with department-wise plans, checklists and role-plays"
+    ],
+    [
+     "Duration",
+     "[X] hours / [X] days [Confirm]"
+    ],
+    [
+     "Ideal for",
+     "Exhibition teams across Sales, Marketing, Order, Inventory, Dispatch, Accounts and Back office — and the managers who lead them"
+    ],
+    [
+     "Language",
+     "English, Hindi & Gujarati [Confirm]"
+    ],
+    [
+     "Batch size",
+     "Up to [XX] participants per batch [Confirm]"
+    ],
+    [
+     "Certificate",
+     "DG Trainings Certificate of Completion for every participant [Confirm]"
+    ]
+   ],
+   "overview_h": "Proper planning and preparation prevents poor performance.",
+   "overview": [
+    "Most exhibitions lose value in the details: the wrong stock at the stall, an unprepared team, visitors who leave only a visiting card, and leads that go cold before anyone calls back.",
+    "This program gives every department a clear role before, during and after the show — with ready checklists, a lead-capture format, an end-of-day routine and a follow-up system — so your booth performs as one team and your investment returns as orders."
+   ],
+   "highlights": [
+    "A complete Before–During–After exhibition system",
+    "A department-wise action plan — Marketing, Stall & Display, Order, Sales, Inventory, Dispatch, Accounts and Back office, each with clear owners",
+    "Stock selection, QC, tagging and safe handling from factory to stall and back",
+    "Booth etiquette — the do’s and don’ts of great first impressions",
+    "Lead capture that goes beyond the visiting card",
+    "A same-day order, thank-you and stock-tally routine",
+    "Calling every prospect within 3 days — and measuring the show’s ROI"
+   ],
+   "modules": [
+    [
+     "Why we exhibit",
+     "Meeting new clients, strengthening existing relationships, learning industry developments, watching competitors, building the brand and rapidly growing your lead database."
+    ],
+    [
+     "Team mindset",
+     "Teamwork that divides tasks and multiplies success; you are the face of the brand; one mistake can cost the whole team."
+    ],
+    [
+     "Before the exhibition — department-wise plan",
+     [
+      "<b>Marketing:</b> client lists, invitations by call, SMS, WhatsApp and email",
+      "<b>Stall & Display:</b> location, bookings, lighting, branding, furniture, safe storage",
+      "<b>Sales & Order:</b> stock selection, QC and finalisation",
+      "<b>Inventory:</b> counting, tagging, system entry",
+      "<b>Dispatch:</b> packing and delivery to the stall",
+      "<b>Accounts & Back office:</b> documents, insurance, stationery and vendors"
+     ]
+    ],
+    [
+     "On the exhibition days",
+     "Welcoming guests and hospitality; showing the digital catalogue; taking orders and giving order slips; finding new clients; rate-cut information; emergency stock; daily QC, counting and safe wrap-up."
+    ],
+    [
+     "Booth etiquette — do’s and don’ts",
+     "First impressions; professional greetings; active listening; clear communication; organised displays; avoiding interruptions; building lasting client relationships."
+    ],
+    [
+     "Lead capture — beyond the visiting card",
+     "Name, contact, type of business (trader, manufacturer, retailer, wholesaler), city, number of showrooms and products of interest."
+    ],
+    [
+     "End-of-day routine",
+     "Placing of orders booked; stock count and tally; confirmation to management; securing the stock."
+    ],
+    [
+     "After the exhibition",
+     "Lead list entry; thank-you creatives to all visitors; quotations and order confirmations; ready and made-to-order handling; dispatch, invoicing and booth dismantling."
+    ],
+    [
+     "Grooming & welcome",
+     "Uniform, hygiene and grooming standards; how to greet, seat and serve every visitor."
+    ]
+   ],
+   "attend": [
+    "Sales and marketing teams who meet buyers at the booth",
+    "Order, inventory, dispatch, accounts and back-office teams who make the show run",
+    "Managers who plan and lead the exhibition team",
+    "Owners who want measurable returns from every exhibition"
+   ],
+   "outcomes_h": "What changes at your next show",
+   "outcomes": [
+    "Every department clear on its role — no last-minute chaos",
+    "More qualified leads with complete buyer information",
+    "Higher conversion of booth visits into orders",
+    "Same-day orders and thank-yous, and every lead called within 3 days",
+    "Accurate stock, safe handling and a clear ROI for every show"
+   ],
+   "method": "Interactive workshop · Department-wise planning sessions · Role-plays of booth conversations · Stock and display drills · Follow-up planning",
+   "takeaways_label": "Take-aways",
+   "takeaways": "Exhibition responsibility matrix (who does what, when) · Lead capture format · End-of-day checklist · After-show follow-up plan",
+   "impact": "Track visitors engaged, qualified leads captured, orders booked, follow-up speed and cost per order — show versus show.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — including years of experience on both sides of the B2B table.",
+   "faqs": [
+    [
+     "Should non-sales teams attend?",
+     "Yes — that’s what makes it work. Order, inventory, dispatch, accounts and back-office teams each get their own role in the plan."
+    ],
+    [
+     "Can you schedule it before a specific exhibition?",
+     "Yes. Many clients book it 2–4 weeks before a major show."
+    ],
+    [
+     "Is it customised to our company?",
+     "Yes. The department-wise plan, stock process and checklists are built around your team, products and the shows you attend."
+    ]
+   ],
+   "related": [
+    "sales-tour-training",
+    "business-technical-sales-expert",
+    "leadership-management"
+   ],
+   "cta_h": "Make your next exhibition your most profitable one.",
+   "cta_text": "Tell us about your exhibition calendar and your team — we’ll design the training around your next show.",
+   "hero": "srk-hongkong/02",
+   "roles": "OMSB"
+  },
+  {
+   "slug": "digital-shakti",
+   "num": "09",
+   "tag": "Digital",
+   "full": true,
+   "name": "Digital Shakti & Smartphone Training",
+   "short": "Digital Shakti",
+   "tagline": "Digital confidence for every desk.",
+   "card": "Practical, hands-on training that helps every team member use technology with ease in their daily work — and build a strong, growing network for personal and professional success.",
+   "focus": "Practical tech skills · Smartphone mastery · Social networking · Digital confidence",
+   "ideal": "Team members at every level",
+   "img": "dishaa-platinum/02",
+   "intro": "Digital Shakti is the power to learn, grow and help your company grow — digitally. In plain language and with hands-on practice, your team learns to use smartphones, computers, WhatsApp Business, social media and everyday apps like professionals.",
+   "glance": [
+    [
+     "Format",
+     "On-site · Hands-on, phone-in-hand workshop with live demos and Q&A"
+    ],
+    [
+     "Duration",
+     "[X] hours / [X] sessions [Confirm]"
+    ],
+    [
+     "Ideal for",
+     "Team members at every level — especially those less comfortable with technology"
+    ],
+    [
+     "Language",
+     "English, Hindi & Gujarati [Confirm]"
+    ],
+    [
+     "Batch size",
+     "Up to [XX] participants per batch [Confirm]"
+    ],
+    [
+     "Certificate",
+     "DG Trainings Certificate of Completion for every participant [Confirm]"
+    ]
+   ],
+   "overview_h": "In a digital world, every employee needs digital power.",
+   "overview": [
+    "A team that can’t share a professional PDF, update a WhatsApp catalogue or use a gold-rate app is slower, less professional and less competitive. Digital Shakti closes that gap — without jargon, and without anyone feeling left behind.",
+    "Every topic is taught on the participant’s own phone, with jewellery-business examples: organising design photos in albums, sending clean scanned documents, editing product pictures and selling through social media."
+   ],
+   "highlights": [
+    "Smartphone mastery — Android and iOS basics, productivity and time tools",
+    "Jewellery-business apps — live spot-rate apps, IIJS and GJEPC, news",
+    "Look professional — PDF converter, document scanner, photo editing, DigiLocker, password manager",
+    "Safe digital payments — bank apps and UPI",
+    "Computer basics, Zoom, WhatsApp Web and ChatGPT",
+    "Instagram, Facebook and YouTube — posting, reels, business pages and engagement",
+    "WhatsApp Business — catalogue, quick replies, labels, broadcasts — and Google My Business"
+   ],
+   "modules": [
+    [
+     "Why technology matters",
+     "The importance of digital knowledge today and the cost of falling behind."
+    ],
+    [
+     "Smartphone essentials",
+     "What makes a phone smart; Android and iOS; Google Calendar, clock, notes and to-do lists; favourites; organising photos into albums for jewellery designs."
+    ],
+    [
+     "Apps that keep you updated",
+     "News apps; IIJS and GJEPC apps; live spot-rate apps for gold and silver; video conferencing."
+    ],
+    [
+     "Professional & security tools",
+     "Photo-to-PDF; document scanning; photo editing for jewellery pictures; file transfer; password manager; DigiLocker."
+    ],
+    [
+     "Digital payments & travel",
+     "Bank apps and UPI step by step; benefits and safety of online payments; booking bus, train and flight tickets."
+    ],
+    [
+     "Computer basics",
+     "What a computer is and does; getting started; WhatsApp Web; joining a Zoom meeting; introduction to ChatGPT."
+    ],
+    [
+     "Social media",
+     "Instagram (posting, stories, reels, business account, insights); Facebook (pages, groups, Marketplace); YouTube (shorts, uploading, getting views); creating engaging content."
+    ],
+    [
+     "WhatsApp & WhatsApp Business",
+     "Groups, broadcasts, status and power features; business profile, catalogue, short links, greeting and away messages, quick replies, labels; do’s and don’ts."
+    ],
+    [
+     "Google My Business",
+     "What it is and how reviews and ratings bring customers to your store."
+    ]
+   ],
+   "attend": [
+    "Sales, counter, back-office and karigar teams who use phones daily",
+    "Senior staff who want to become confident with technology",
+    "Owners who want the whole team digitally ready"
+   ],
+   "outcomes_h": "What changes after Digital Shakti",
+   "outcomes": [
+    "Faster, more professional communication with customers and vendors",
+    "Active, well-managed WhatsApp Business and social profiles",
+    "Safer use of payments, passwords and documents",
+    "A team that is confident — not afraid — of technology"
+   ],
+   "method": "Hands-on on participants’ own phones · Step-by-step screenshots and tutorial videos · Q&A after every section · Plain, simple language",
+   "impact": "Simple before/after skill checks and live tasks — e.g., set up a WhatsApp catalogue, share a scanned PDF, post a reel.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — making technology simple and useful for every jewellery business.",
+   "faqs": [
+    [
+     "Our staff have very basic phone knowledge. Will they be able to learn?",
+     "Absolutely — the program is designed for beginners and moves at a comfortable pace with lots of practice."
+    ],
+    [
+     "Do participants need laptops?",
+     "A smartphone is enough for most modules. The computer module needs a few laptops or desktops at the venue. [Confirm]"
+    ],
+    [
+     "Will employees get practical training?",
+     "Yes. Employees learn step by step how to use digital tools and apps for everyday tasks."
+    ]
+   ],
+   "related": [
+    "telemarketing-training",
+    "marketing-mastery",
+    "orientation-training"
+   ],
+   "cta_h": "Give your team the power of digital.",
+   "cta_text": "Book a session and make your whole team digitally confident — in days, not months.",
+   "hero": "dc/01",
+   "roles": "OSB"
   }
  ],
  "WORK": [

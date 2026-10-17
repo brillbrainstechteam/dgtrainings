@@ -8,6 +8,13 @@ interface Props { title: string; description: string; active?: string; header?: 
 const { title, description, active, header = 'transparent' } = Astro.props;
 const fullTitle = title.includes('DG Trainings') ? title : `${title} | DG Trainings`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Programs menu: grouped into three themes, with short labels that scan quickly
+const P = (slug: string) => PROGRAMS.find((x) => x.slug === slug)!;
+const MENU = [
+  { title: 'Culture & leadership', items: [[P('life-work-culture-transformation'), 'Life & Work Culture'], [P('leadership-management'), 'Leadership & Management'], [P('orientation-training'), 'Orientation & Induction']] },
+  { title: 'Sales & customers', items: [[P('business-technical-sales-expert'), 'Sales Expert'], [P('telemarketing-training'), 'Telemarketing'], [P('marketing-mastery'), 'Marketing Mastery']] },
+  { title: 'Field, events & digital', items: [[P('sales-tour-training'), 'Sales Tour'], [P('exhibitions-training'), 'Exhibitions'], [P('digital-shakti'), 'Digital Shakti']] },
+] as const;
 ---
 <!doctype html>
 <html lang="en">
@@ -52,7 +59,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <div class="dd">
           <a href="/programs/" class:list={{ active: active === 'programs' }}>Programs</a>
           <div class="dd-menu">
-            {PROGRAMS.map((p) => <a href={progUrl(p)}><b>{p.num === '+' ? '✦' : p.num}</b>{p.name}</a>)}
+            <div class="dd-cols">
+              {MENU.map((g) => (
+                <div class="dd-col">
+                  <span class="dd-h">{g.title}</span>
+                  {g.items.map(([p, label]) => (
+                    <a href={progUrl(p)}><b>{p.num}</b><span><strong>{label}</strong><small>{p.tagline}</small></span></a>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <a class="dd-all" href="/programs/">View all {PROGRAMS.length} programs <Icon name="arrow" /></a>
           </div>
         </div>
         <a href="/work/" class:list={{ active: active === 'work' }}>Our Work</a>
