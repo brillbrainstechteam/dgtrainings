@@ -4,7 +4,6 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import ProgramCard from '../components/ProgramCard.astro';
 import CtaBand from '../components/CtaBand.astro';
-import ClientSnapshot from '../components/ClientSnapshot.astro';
 import BenefitChain from '../components/BenefitChain.astro';
 import ApproachCycle from '../components/ApproachCycle.astro';
 import Playbook from '../components/Playbook.astro';
@@ -63,7 +62,7 @@ const audiences = [
 
   <!-- CLIENT MARQUEE -->
   <div class="marquee" aria-label="Clients">
-    <a class="mq-label" href="#clients"><b>100+</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
+    <a class="mq-label" href="/work/"><b>100+</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
     <div class="mq-view">
       <div class="marquee-track">
         {[0, 1].map((k) => (
@@ -197,20 +196,6 @@ const audiences = [
           <a href="/about-dg/" class="btn btn--outline">Meet DG</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CLIENT SNAPSHOT -->
-  <section class="section section--tint" id="clients">
-    <div class="wrap">
-      <div class="head head--row">
-        <div>
-          <span class="eyebrow">Client snapshot</span>
-          <h2 data-split>{H.clients_h}</h2>
-        </div>
-        <p class="lead" data-reveal>{H.clients_intro}</p>
-      </div>
-      <ClientSnapshot />
     </div>
   </section>
 
