@@ -6,7 +6,9 @@ import ProgramCard from '../../components/ProgramCard.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Gallery from '../../components/Gallery.astro';
-import ImpactPath from '../../components/ImpactPath.astro';
+import ProgramSnapshot from '../../components/ProgramSnapshot.astro';
+import ModuleExplorer from '../../components/ModuleExplorer.astro';
+import ProgramResults from '../../components/ProgramResults.astro';
 import ProgramDiagram from '../../components/ProgramDiagram.astro';
 import { PROGRAMS, type Program, bySlug, rich, dots, wa, workFor, workUrl, WORK } from '../../lib/site';
 import { photo, album } from '../../lib/photos';
@@ -24,14 +26,11 @@ const related = (p.related as string[]).map(bySlug);
 const galleryWork = workFor(p.slug)[0] ?? WORK.find((w) => p.hero.startsWith(w.key + '/'))!;
 const galleryPhotos = album(galleryWork.key);
 
-// Only the program-specific facts (language, batch size and certificate are the same everywhere — see FAQs)
-const glance: string[][] = (p.glance ?? [['Ideal for', p.ideal], ['Format', 'On-site at your showroom, office or factory [Confirm]']])
-  .filter(([k]: string[]) => ['Format', 'Duration', 'Ideal for'].includes(k));
 // The program-specific part of DG's bio ("… — and his core expertise is …")
 const trainerAngle = p.trainer_bio?.split(' — ').slice(1).join(' — ').replace(/^and (is )?/, '').replace(/\.$/, '').replace(/^./, (c: string) => c.toUpperCase());
 
 const sections = p.full
-  ? [['overview', 'Overview'], ['glance', 'At a glance'], ['impact', 'Impact'], ['highlights', 'Highlights'], ['curriculum', 'Curriculum'], ['audience', 'Who attends'], ['floor', 'In action'], ['faqs', 'FAQs']]
+  ? [['overview', 'Overview'], ['glance', 'At a glance'], ['curriculum', 'Curriculum'], ['results', 'Results'], ['audience', 'Who attends'], ['floor', 'In action'], ['faqs', 'FAQs']]
   : [];
 ---
 <Base title={`${title} — ${tagline}`} description={intro} active="programs">
@@ -50,22 +49,12 @@ const sections = p.full
           <a href={wa(`Hi DG Trainings, I'd like to know more about ${p.name}.`)} class="btn btn--ghost" target="_blank" rel="noopener"><Icon name="whatsapp" /> WhatsApp Us</a>
         </div>
       </div>
-      <aside class="glance" aria-labelledby="glance-h" data-hero>
-        <h2 id="glance-h">Program snapshot</h2>
-        <dl>
-          {glance.map(([k, v]) => <div><dt>{k}</dt><dd set:html={rich(v)} /></div>)}
-          {p.full && <div><dt>Modules</dt><dd>{p.modules.length} modules · {p.highlights.length} key highlights</dd></div>}
-        </dl>
-        <a class="trainer-line" href="/about-dg/">
-          <Image src={photo('shilpi/03')} alt="" width={100} height={100} />
-          <span><b>Led by Dipen Ghatalia (DG)</b><br />{trainerAngle ?? 'Brand & management consultant, 17 years in training'}</span>
-        </a>
-      </aside>
+      <ProgramSnapshot p={p} trainerAngle={trainerAngle} />
     </div>
   </section>
 
   {sections.length > 0 && (
-    <nav class="subnav" aria-label="On this page"><div class="wrap">{sections.map(([id, l]) => <a href={`#${id}`}>{l}</a>)}</div></nav>
+    <nav class="subnav" aria-label="On this page"><div class="wrap"><div class="sn-track">{sections.map(([id, l], i) => <a href={`#${id}`}><i>{String(i + 1).padStart(2, '0')}</i>{l}</a>)}</div></div></nav>
   )}
 
   {p.full ? (
@@ -76,26 +65,16 @@ const sections = p.full
             <span class="eyebrow">Overview</span>
             <h2 data-split>{p.overview_h}</h2>
             {p.overview.map((t: string) => <p class="lead" data-reveal>{t}</p>)}
+            <div class="method" data-reveal>
+              <span class="method-k">How it’s taught</span>
+              <ul>{dots(p.method).map((m) => <li set:html={rich(m)} />)}</ul>
+            </div>
           </div>
           <div class="frame" data-img style="aspect-ratio:4/5"><Image src={photo(p.img)} alt={`${p.name} — DG Trainings session`} widths={[500, 800]} sizes="(max-width: 960px) 100vw, 540px" /></div>
         </div>
       </section>
 
       <section class="section section--tint" id="glance"><div class="wrap"><ProgramDiagram p={p} /></div></section>
-
-      <section class="section section--white" id="impact">
-        <div class="wrap">
-          <div class="head"><span class="eyebrow">How it pays off</span><h2 data-split>{p.outcomes_h}</h2></div>
-          <ImpactPath p={p} />
-        </div>
-      </section>
-
-      <section class="section section--tint" id="highlights">
-        <div class="wrap">
-          <div class="head"><span class="eyebrow">Key highlights</span><h2 data-split>What makes it <em>different</em></h2></div>
-          <div class="hl" data-stagger>{p.highlights.map((h: string, i: number) => <div><i>{String(i + 1).padStart(2, '0')}</i><span set:html={rich(h)} /></div>)}</div>
-        </div>
-      </section>
 
       <section class="section section--white" id="curriculum">
         <div class="wrap">
@@ -104,23 +83,21 @@ const sections = p.full
               <span class="eyebrow">The curriculum</span>
               <h2 data-split>{p.modules.length} modules, <em>tailored to you</em></h2>
             </div>
-            <button class="toggle-all" type="button" data-open="false">Expand all modules</button>
+            <p class="lead" data-reveal>Pick a module to see what it covers. Every example is built on your own products and customers.</p>
           </div>
-          <div class="modules" data-stagger>
-            {p.modules.map(([t, body]: [string, string | string[]], i: number) => (
-              <details class="mod" open={i === 0}>
-                <summary><span class="m">{String(i + 1).padStart(2, '0')}</span>{t}</summary>
-                <div class="acc-body"><div class="acc-inner">
-                  {Array.isArray(body) ? <ul>{body.map((b) => <li set:html={rich(b)} />)}</ul> : <p set:html={rich(body)} />}
-                </div></div>
-              </details>
-            ))}
-          </div>
+          <ModuleExplorer modules={p.modules} id={`mx-${p.slug}`} />
           {p.optional_track && <div class="note" style="margin-top:24px" data-reveal><b>{p.optional_track[0]}</b><br /><span set:html={rich(p.optional_track[1])} /></div>}
         </div>
       </section>
 
-      <section class="section section--tint" id="audience">
+      <section class="section section--tint" id="results">
+        <div class="wrap">
+          <div class="head"><span class="eyebrow">Results</span><h2 data-split>{p.outcomes_h}</h2></div>
+          <ProgramResults p={p} />
+        </div>
+      </section>
+
+      <section class="section section--white" id="audience">
         <div class="wrap cols2" data-stagger>
           <div class="panel">
             <span class="eyebrow">Who should attend</span>
@@ -161,7 +138,7 @@ const sections = p.full
     </>
   )}
 
-  <section class="section section--white" id="floor">
+  <section class:list={['section', p.full ? 'section--tint' : 'section--white']} id="floor">
     <div class="wrap">
       <div class="head head--row">
         <div>
@@ -175,7 +152,7 @@ const sections = p.full
   </section>
 
   {p.full && (
-    <section class="section section--tint" id="faqs">
+    <section class="section section--white" id="faqs">
       <div class="wrap">
         <div class="head center"><span class="eyebrow">FAQs</span><h2 data-split>About this <em>program</em></h2></div>
         <Faq items={p.faqs} />
@@ -183,7 +160,7 @@ const sections = p.full
     </section>
   )}
 
-  <section class:list={['section', p.full ? 'section--white' : 'section--tint']}>
+  <section class="section section--tint">
     <div class="wrap">
       <div class="head"><span class="eyebrow">Keep exploring</span><h2 data-split>Explore Our <em>Other Programs</em></h2></div>
       <div class="grid3" data-stagger>{related.map((r) => <ProgramCard p={r} compact />)}</div>
@@ -194,6 +171,8 @@ const sections = p.full
 </Base>
 
 <style>
-  .trainer-line { transition: background .3s; }
-  .trainer-line:hover { background: var(--teal-50); }
+  .method { margin-top: 26px; padding: 20px 22px; border-radius: 20px; background: var(--grey-50); border: 1px solid var(--grey-100); }
+  .method-k { display: block; font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 12px; }
+  .method ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .method li { font-size: .86rem; font-weight: 600; padding: 8px 13px; border-radius: 999px; background: #fff; border: 1px solid var(--grey-200); color: var(--ink); }
 </style>

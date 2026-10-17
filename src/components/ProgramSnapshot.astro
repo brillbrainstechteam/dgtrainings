@@ -1,0 +1,69 @@
+---
+// Hero-side snapshot of a program: four quick facts, focus areas and who leads it.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { type Program } from '../lib/site';
+import { photo } from '../lib/photos';
+interface Props { p: Program; trainerAngle?: string }
+const { p, trainerAngle } = Astro.props;
+const clean = (s?: string) => s?.replace(/\s*\[Confirm\]/gi, '').trim();
+const g: Record<string, string> = Object.fromEntries(p.glance ?? []);
+const [where, how] = (clean(g.Format) ?? 'On-site at your showroom, office or factory').split(' · ');
+const facts = [
+  { icon: 'pin', k: 'Where', v: where },
+  { icon: 'pen', k: 'Duration', v: 'Planned around your team and schedule' },
+  { icon: 'users', k: 'Ideal for', v: p.ideal },
+  { icon: 'book', k: 'Curriculum', v: p.full ? `${p.modules.length} modules` : 'Shared on a discovery call', href: p.full ? '#curriculum' : undefined },
+];
+const focus = (p.focus as string).split(' · ');
+---
+<aside class="snap" aria-labelledby="snap-h" data-hero>
+  <div class="snap-top">
+    <h2 id="snap-h">Program snapshot</h2>
+    <span class="snap-num">{p.num}</span>
+  </div>
+  <div class="snap-facts">
+    {facts.map((f) => {
+      const El = f.href ? 'a' : 'div';
+      return (
+        <El class="sf" href={f.href}>
+          <span class="sf-ic"><Icon name={f.icon} /></span>
+          <span><small>{f.k}</small><b>{f.v}</b></span>
+        </El>
+      );
+    })}
+  </div>
+  {how && <p class="snap-how"><span>How it runs</span>{how}</p>}
+  <div class="snap-focus" aria-label="Focus areas">{focus.map((f) => <span>{f}</span>)}</div>
+  <a class="snap-trainer" href="/about-dg/">
+    <Image src={photo('shilpi/03')} alt="" width={100} height={100} />
+    <span><b>Led by Dipen Ghatalia (DG)</b><small>{trainerAngle ?? 'Brand & management consultant, 17 years in training'}</small></span>
+    <Icon name="arrow" />
+  </a>
+</aside>
+
+<style>
+  .snap { position: relative; overflow: hidden; background: #fff; color: var(--text); border-radius: 28px; padding: 28px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.6); }
+  .snap::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, var(--teal), var(--teal-ink)); }
+  .snap-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .snap h2 { font-family: var(--sans); font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .18em; color: var(--teal-ink); margin: 0; }
+  .snap-num { font-family: var(--display); font-size: 2.2rem; font-weight: 600; line-height: 1; color: transparent; -webkit-text-stroke: 1.2px var(--teal-600); }
+  .snap-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sf { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 16px; background: var(--grey-50); border: 1px solid var(--grey-100); transition: border-color .3s, background .3s, transform .4s var(--ease); }
+  a.sf:hover { border-color: var(--teal); background: var(--teal-50); transform: translateY(-2px); }
+  .sf-ic { flex: none; width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(140deg, var(--teal), var(--teal-ink)); color: #fff; }
+  .sf-ic :global(svg) { width: 18px; height: 18px; }
+  .sf small { display: block; font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-500); }
+  .sf b { display: block; font-size: .88rem; font-weight: 700; color: var(--ink); line-height: 1.35; margin-top: 2px; }
+  .snap-how { margin: 14px 0 0; font-size: .88rem; color: var(--muted); }
+  .snap-how span { display: block; font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 2px; }
+  .snap-focus { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .snap-focus span { font-size: .76rem; font-weight: 700; padding: 6px 11px; border-radius: 999px; background: var(--teal-50); color: var(--teal-ink); border: 1px solid var(--teal-100); }
+  .snap-trainer { display: flex; gap: 12px; align-items: center; margin-top: 18px; padding: 12px 14px; border-radius: 16px; background: var(--grey-900); color: #fff; transition: background .3s; }
+  .snap-trainer:hover { background: var(--teal-ink); }
+  .snap-trainer :global(img) { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid var(--teal); }
+  .snap-trainer span { display: grid; gap: 1px; font-size: .84rem; margin-right: auto; }
+  .snap-trainer small { color: rgba(255,255,255,.72); font-size: .8rem; line-height: 1.35; }
+  .snap-trainer > :global(svg) { width: 18px; height: 18px; flex: none; color: var(--teal); }
+  @media (max-width: 420px) { .snap-facts { grid-template-columns: 1fr; } .snap { padding: 22px; } }
+</style>

@@ -366,13 +366,15 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 .glance .trainer-line { display: flex; gap: 14px; align-items: center; background: var(--grey-50); border-radius: 14px; padding: 12px 14px; margin-top: 10px; font-size: .84rem; }
 .glance .trainer-line img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; flex: none; }
 
-.subnav { position: sticky; top: 72px; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-200); }
-.subnav .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-.subnav .wrap::-webkit-scrollbar { display: none; }
-.subnav a { position: relative; white-space: nowrap; padding: 17px 14px; font-size: .85rem; font-weight: 700; color: var(--grey-500); transition: color .3s; }
-.subnav a::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--teal); transform: scaleX(0); transition: transform .45s var(--ease); }
-.subnav a:hover, .subnav a.on { color: var(--ink); }
-.subnav a.on::after { transform: scaleX(1); }
+.subnav { position: sticky; top: 72px; z-index: 40; padding: 12px 0; background: rgba(247,247,245,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--grey-200); }
+.subnav .wrap { display: flex; }
+.sn-track { display: flex; gap: 4px; padding: 5px; margin: 0 auto; max-width: 100%; overflow-x: auto; scrollbar-width: none; border-radius: 999px; background: #fff; border: 1px solid var(--grey-200); box-shadow: 0 12px 30px -22px rgba(25,26,28,.5); }
+.sn-track::-webkit-scrollbar { display: none; }
+.subnav a { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; padding: 10px 16px; border-radius: 999px; font-size: .86rem; font-weight: 700; color: var(--grey-500); transition: color .3s, background .35s var(--ease), box-shadow .35s; }
+.subnav a i { font-style: normal; font-family: var(--display); font-size: .82rem; font-weight: 600; color: var(--teal-600); transition: color .3s; }
+.subnav a:hover { color: var(--ink); background: var(--grey-50); }
+.subnav a.on { color: #fff; background: linear-gradient(135deg, var(--grey-900), #15302c); box-shadow: 0 8px 18px -10px rgba(15,113,104,.8); }
+.subnav a.on i { color: var(--teal); }
 
 .hl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .hl > div { display: flex; gap: 18px; align-items: flex-start; background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 22px 24px; transition: border-color .4s, box-shadow .5s var(--ease), transform .5s var(--ease); }
