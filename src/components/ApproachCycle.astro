@@ -96,4 +96,10 @@ const nodes = [-90, 0, 90, 180].map(pt);
     .ring { position: relative; left: auto; top: auto; transform: none; width: min(320px, 80vw); height: min(320px, 80vw); margin: 0 auto 28px; }
     .cy-step { grid-area: auto !important; max-width: none; justify-self: stretch !important; }
   }
+  @media (max-width: 640px) {
+    .cy-step { padding: 20px 20px 24px; border-radius: 20px; }
+    .cy-wm { font-size: 4.4rem; top: -8px; }
+    .cy-step h3 { font-size: 1.3rem; }
+    .cycle .cy-step.is-active { transform: none; }
+  }
 </style>

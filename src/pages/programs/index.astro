@@ -59,13 +59,21 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
           </tbody>
         </table>
       </div>
+      <ul class="mcards" role="list">
+        {PROGRAMS.map((p) => (
+          <li>
+            <a href={progUrl(p)}><b>{p.num}</b><span>{p.name}</span></a>
+            <div>{roles.filter(([k]) => p.roles.includes(k)).map(([, r]) => <i>{r}</i>)}</div>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
   <section class="section section--tint">
     <div class="wrap">
       <div class="head"><span class="eyebrow">{H.prog_label}</span><h2 data-split>Explore <em>each program</em></h2></div>
-      <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} />)}</div>
+      <div class="grid3 rail" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} />)}</div>
     </div>
   </section>
 
@@ -87,5 +95,15 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
   .matrix tbody tr { transition: background .3s; }
   .matrix tbody tr:hover { background: var(--teal-50); }
   .matrix tbody tr:last-child th, .matrix tbody tr:last-child td { border-bottom: 0; }
+  .mcards { display: none; list-style: none; margin: 0; padding: 0; }
+  @media (max-width: 760px) {
+    .matrix-wrap { display: none; }
+    .mcards { display: grid; gap: 10px; }
+    .mcards li { background: #fff; border: 1px solid var(--grey-200); border-radius: 18px; padding: 16px; }
+    .mcards a { display: flex; gap: 12px; align-items: baseline; font-weight: 700; color: var(--ink); }
+    .mcards a b { font-family: var(--display); color: var(--teal-ink); flex: none; }
+    .mcards div { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .mcards i { font-style: normal; font-size: .76rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: var(--teal-50); color: var(--teal-ink); }
+  }
   .dot { display: inline-block; width: 18px; height: 18px; background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
 </style>

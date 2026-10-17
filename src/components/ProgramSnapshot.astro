@@ -65,5 +65,11 @@ const focus = (p.focus as string).split(' · ');
   .snap-trainer span { display: grid; gap: 1px; font-size: .84rem; margin-right: auto; }
   .snap-trainer small { color: rgba(255,255,255,.72); font-size: .8rem; line-height: 1.35; }
   .snap-trainer > :global(svg) { width: 18px; height: 18px; flex: none; color: var(--teal); }
-  @media (max-width: 420px) { .snap-facts { grid-template-columns: 1fr; } .snap { padding: 22px; } }
+  @media (max-width: 640px) {
+    .snap { padding: 20px; border-radius: 22px; }
+    .sf { padding: 11px 12px; border-radius: 14px; }
+    .sf-ic { display: none; }
+    .sf b { font-size: .84rem; }
+    .snap-how { display: none; }
+  }
 </style>

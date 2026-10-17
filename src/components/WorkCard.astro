@@ -42,4 +42,14 @@ const pics = album(w.key);
   :global(.on-dark) .gcard h3 { color: #fff; }
   :global(.on-dark) .gcard p { color: rgba(255,255,255,.7); }
   :global(.on-dark) .g-meta, :global(.on-dark) .g-link { color: var(--teal); }
+  @media (max-width: 640px) {
+    .gcard { border-radius: 16px; }
+    .g-img { aspect-ratio: 1; }
+    .g-count { right: 8px; bottom: 8px; font-size: .66rem; padding: 4px 8px; }
+    .g-body { padding: 12px 12px 14px; }
+    .g-meta { font-size: .6rem; letter-spacing: .1em; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+    .g-body h3 { font-size: 1.05rem; margin: 4px 0 8px; }
+    .g-body p { display: none; }
+    .g-link { font-size: .8rem; }
+  }
 </style>

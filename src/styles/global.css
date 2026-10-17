@@ -589,3 +589,48 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
   radial-gradient(ellipse 50% 70% at 0% 0%, rgba(36,178,163,.3), transparent 70%),
   radial-gradient(ellipse 50% 70% at 100% 100%, rgba(15,113,104,.45), transparent 70%),
   linear-gradient(135deg, #12302d 0%, #1c1e20 45%, #1a2224 70%, #0e2a27 100%); overflow: hidden; }
+
+/* ================= mobile layout pass ================= */
+/* grid children may shrink below their content width (stops forms/tables pushing the page wider) */
+.split > *, .cols2 > *, .hero .wrap > *, .phero .wrap > *, .cta .wrap > *, .trainer > * { min-width: 0; }
+.rail::-webkit-scrollbar, .pf-grid::-webkit-scrollbar, .stats::-webkit-scrollbar, .pf-tabs::-webkit-scrollbar { display: none; }
+@media (max-width: 640px) {
+  .section { padding: 52px 0; }
+  .head { margin-bottom: 24px; }
+  .lead { font-size: 1rem; }
+  /* hero: stats become a swipeable strip */
+  .hero .wrap { gap: 30px; padding-bottom: 48px; }
+  .stats { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; gap: 10px; margin: 0 -18px; padding: 0 18px 6px; scrollbar-width: none; }
+  .stat { flex: 0 0 44%; scroll-snap-align: start; padding: 16px 14px; }
+  .stat strong { font-size: 1.85rem; margin-bottom: 6px; }
+  .stat span { font-size: .78rem; }
+  /* who we train: 2 × 2 tiles */
+  .aud { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { aspect-ratio: 4 / 5; padding: 14px; border-radius: 18px; }
+  .tile .ic { width: 34px; height: 34px; border-radius: 10px; }
+  .tile .ic svg { width: 18px; height: 18px; }
+  .tile h3 { font-size: 1.08rem; line-height: 1.2; }
+  .tile p { font-size: .74rem; }
+  /* program cards: one swipeable row with the next card peeking in */
+  .pf-grid, .rail { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; gap: 14px; margin: 0 -18px; padding: 4px 18px 16px; scrollbar-width: none; }
+  .pf-grid > *, .rail > * { scroll-snap-align: center; }
+  /* program filter: one scrolling row of pills */
+  .pf-tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; max-width: 100%; border-radius: 999px; scrollbar-width: none; margin-bottom: 20px; }
+  .pf-tabs button { flex: none; padding: 9px 14px; font-size: .84rem; min-height: 40px; }
+  /* overview photos: landscape on phones so the copy isn't pushed far down */
+  .split > .frame[style*="4/5"] { aspect-ratio: 4 / 3 !important; }
+  /* footer: links in two columns */
+  .footer .wrap { padding-top: 44px; }
+  .fgrid { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+  .fgrid > :first-child, .fgrid > :last-child { grid-column: 1 / -1; }
+  .footer ul { gap: 8px; font-size: .86rem; }
+  .wa-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+  .wa-float svg { width: 26px; height: 26px; }
+  .subnav { padding: 8px 0; }
+  .subnav a { padding: 9px 13px; font-size: .82rem; }
+  .phero .wrap { gap: 32px; padding-bottom: 52px; }
+  .contact-list a, .contact-list .row { padding: 12px 8px; gap: 12px; min-width: 0; }
+  .contact-list a > span:last-child, .contact-list .row > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+  /* galleries: two compact columns */
+  .wgrid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
