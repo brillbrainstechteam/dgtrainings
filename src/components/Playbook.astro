@@ -1,6 +1,6 @@
 ---
 // "The DG Playbook": a fanned deck of question cards. The top card sweeps away every few seconds
-// and tucks in at the back, revealing the next question. Pauses on hover/focus, has pause/prev/next,
+// and tucks in at the back, revealing the next question. Holds while hovered, has prev/next arrows,
 // swipe on touch, and a gentle fade for reduced-motion visitors.
 import Icon from './Icon.astro';
 import { bySlug, progUrl } from '../lib/site';
@@ -15,8 +15,6 @@ const cards = [
   { q: 'Is your customer getting the [[experience]] your brand promises?', slug: 'business-technical-sales-expert', icon: 'heart' },
   { q: 'Your targets are set. Is your team [[delivering]]?', slug: 'telemarketing-training', icon: 'check' },
 ].map((c, i) => ({ ...c, prog: bySlug(c.slug), html: c.q.replace(/\[\[(.+?)\]\]/g, '<em>$1</em>'), theme: ['dark', 'teal', 'cream'][i % 3] }));
-const total = cards.length;
-const R = 30, C = 2 * Math.PI * R;
 ---
 <section class="pb on-dark" aria-labelledby="pb-h" data-playbook>
   <span class="pb-blob pb-blob--a" aria-hidden="true"></span>
@@ -27,29 +25,14 @@ const R = 30, C = 2 * Math.PI * R;
       <h2 id="pb-h">Seven questions every <em>jewellery business</em> should ask.</h2>
       <p class="pb-intro">Be honest with each one. If an answer makes you pause, that’s where we start.</p>
 
-      <div class="pb-meter">
-        <div class="pb-ring" aria-hidden="true">
-          <svg viewBox="0 0 72 72"><circle cx="36" cy="36" r={R} class="ring-bg" /><circle cx="36" cy="36" r={R} class="ring-fg" style={`stroke-dasharray:${C.toFixed(1)};stroke-dashoffset:${C.toFixed(1)}`} /></svg>
-          <span class="pb-cur">01</span>
-        </div>
-        <div class="pb-meter-txt"><b>Question <span class="pb-cur2">1</span> of {total}</b><small class="pb-status">Turning automatically</small></div>
-        <div class="pb-controls">
-          <button type="button" class="pb-btn pb-prev" aria-label="Previous question"><Icon name="arrow" class="flip" /></button>
-          <button type="button" class="pb-btn pb-play" aria-label="Pause the playbook" aria-pressed="false">
-            <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
-            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
-          </button>
-          <button type="button" class="pb-btn pb-next" aria-label="Next question"><Icon name="arrow" /></button>
-        </div>
-      </div>
-
-      <div class="pb-steps" role="tablist" aria-label="Choose a question">
-        {cards.map((_, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-go={i}><span>{i + 1}</span></button>)}
+      <div class="pb-controls">
+        <button type="button" class="pb-btn pb-prev" aria-label="Previous question"><Icon name="arrow" class="flip" /></button>
+        <button type="button" class="pb-btn pb-next" aria-label="Next question"><Icon name="arrow" /></button>
       </div>
     </div>
 
     <div class="pb-stage">
-      <div class="pb-deck" aria-live="polite">
+      <div class="pb-deck">
         {cards.map((c, i) => (
           <article class={`pb-card pb-card--${c.theme}`} data-pos={i < 3 ? i : 3} aria-hidden={i === 0 ? 'false' : 'true'}>
             <div class="pc-top">
@@ -86,33 +69,16 @@ const R = 30, C = 2 * Math.PI * R;
   .pb h2 { font-size: clamp(2.1rem, 3.8vw, 3.2rem); margin-bottom: 14px; }
   .pb-intro { color: rgba(255,255,255,.7); font-size: 1.02rem; max-width: 440px; margin-bottom: 30px; }
 
-  .pb-meter { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 16px 18px; border: 1px solid rgba(255,255,255,.1); border-radius: 22px; background: rgba(255,255,255,.04); backdrop-filter: blur(8px); max-width: 520px; }
-  .pb-ring { position: relative; width: 72px; height: 72px; flex: none; }
-  .pb-ring svg { width: 100%; height: 100%; rotate: -90deg; }
-  .ring-bg { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 4; }
-  .ring-fg { fill: none; stroke: var(--teal); stroke-width: 4; stroke-linecap: round; }
-  .pb-cur { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--teal); font-variant-numeric: tabular-nums; }
-  .pb-meter-txt { display: grid; gap: 2px; margin-right: auto; }
-  .pb-meter-txt b { font-size: .95rem; }
-  .pb-meter-txt small { font-size: .78rem; color: rgba(255,255,255,.55); }
-  .pb-controls { display: flex; gap: 8px; }
-  .pb-btn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; display: grid; place-items: center; cursor: pointer; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
+  .pb-controls { display: flex; gap: 12px; }
+  .pb-btn { width: 56px; height: 56px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; display: grid; place-items: center; cursor: pointer; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
   .pb-btn:hover { background: var(--teal); border-color: var(--teal); color: var(--grey-950); transform: scale(1.06); }
-  .pb-btn :global(svg), .pb-btn svg { width: 18px; height: 18px; }
-  .pb-play .i-play { display: none; }
-  .pb-play[aria-pressed="true"] .i-play { display: block; }
-  .pb-play[aria-pressed="true"] .i-pause { display: none; }
-
-  .pb-steps { display: flex; gap: 6px; margin-top: 18px; flex-wrap: wrap; }
-  .pb-steps button { width: 38px; height: 38px; padding: 0; border-radius: 12px; border: 1px solid rgba(255,255,255,.14); background: transparent; color: rgba(255,255,255,.55); font-weight: 700; font-size: .85rem; cursor: pointer; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
-  .pb-steps button:hover { border-color: var(--teal); color: #fff; }
-  .pb-steps button[aria-selected="true"] { background: var(--teal); border-color: var(--teal); color: var(--grey-950); transform: translateY(-3px); }
+  .pb-btn :global(svg) { width: 20px; height: 20px; }
 
   /* the deck */
   .pb-stage { display: grid; gap: 34px; }
   .pb-deck { position: relative; height: clamp(320px, 30vw, 380px); margin: 0 64px 34px 0; perspective: 1600px; }
   .pb-card { position: absolute; inset: 0; display: flex; flex-direction: column; padding: clamp(26px, 3vw, 40px); border-radius: 28px; overflow: hidden; transform-origin: 50% 100%;
-    transition: transform .85s cubic-bezier(.22,1,.36,1), opacity .6s ease, box-shadow .6s; box-shadow: 0 30px 60px -24px rgba(0,0,0,.65); will-change: transform; }
+    transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .45s ease, box-shadow .6s; box-shadow: 0 30px 60px -24px rgba(0,0,0,.65); will-change: transform; }
   .pb-card[data-pos="0"] { transform: none; z-index: 10; }
   .pb-card[data-pos="1"] { transform: translate(30px, 18px) rotate(3.5deg) scale(.955); z-index: 9; }
   .pb-card[data-pos="2"] { transform: translate(56px, 34px) rotate(7deg) scale(.91); z-index: 8; }
@@ -164,16 +130,12 @@ const R = 30, C = 2 * Math.PI * R;
   }
   @media (max-width: 560px) {
     .pb-deck { height: 330px; }
-    .pb-meter { padding: 12px; gap: 12px; }
-    .pb-ring { width: 58px; height: 58px; }
-    .pb-cur { font-size: 1.2rem; }
-    .pb-steps button { width: 34px; height: 34px; }
     .pb-answer .btns { width: 100%; }
   }
 </style>
 
 <script>
-  const INTERVAL = 5000;
+  const INTERVAL = 3000;
 
   function initPlaybook() {
     const root = document.querySelector<HTMLElement>('[data-playbook]');
@@ -181,12 +143,7 @@ const R = 30, C = 2 * Math.PI * R;
     root.dataset.ready = '1';
     const cards = [...root.querySelectorAll<HTMLElement>('.pb-card')];
     const n = cards.length;
-    const steps = [...root.querySelectorAll<HTMLButtonElement>('.pb-steps button')];
-    const cur = root.querySelector('.pb-cur')!, cur2 = root.querySelector('.pb-cur2')!, status = root.querySelector('.pb-status')!;
-    const ring = root.querySelector<SVGCircleElement>('.ring-fg')!;
-    const C = parseFloat(ring.style.strokeDasharray);
-    const play = root.querySelector<HTMLButtonElement>('.pb-play')!;
-    let i = 0, busy = false, paused = false, hover = false, raf = 0, started = 0, elapsed = 0;
+    let i = 0, busy = false, hover = false, timer = 0;
 
     const layout = () => cards.forEach((c, k) => {
       const pos = (k - i + n) % n;
@@ -194,78 +151,53 @@ const R = 30, C = 2 * Math.PI * R;
       c.setAttribute('aria-hidden', String(pos !== 0));
       c.querySelector('a')?.setAttribute('tabindex', pos === 0 ? '0' : '-1');
     });
-    const label = () => {
-      cur.textContent = String(i + 1).padStart(2, '0');
-      cur2.textContent = String(i + 1);
-      steps.forEach((s, k) => s.setAttribute('aria-selected', String(k === i)));
-    };
 
     const go = (to: number) => {
       to = (to + n) % n;
       if (busy || to === i) return;
       busy = true;
-      const forward = (to - i + n) % n <= n / 2;
-      if (forward) {
-        // every card between the current one and the target sweeps off the deck
-        const out = [];
-        for (let k = i; k !== to; k = (k + 1) % n) out.push(cards[k]);
-        out.forEach((c, j) => setTimeout(() => c.classList.add('leaving'), j * 90));
-        i = to; label();
+      if ((to - i + n) % n === 1) {
+        // top card sweeps off to the left and tucks in at the back
+        const out = cards[i];
+        out.classList.add('leaving');
+        i = to;
+        cards.forEach((c, k) => { if (c !== out) c.dataset.pos = String(Math.min((k - i + n) % n, 3)); });
         setTimeout(() => {
-          out.forEach((c) => { c.classList.add('snap'); c.classList.remove('leaving'); });
+          out.classList.add('snap'); out.classList.remove('leaving');
           layout();
-          requestAnimationFrame(() => requestAnimationFrame(() => out.forEach((c) => c.classList.remove('snap'))));
+          requestAnimationFrame(() => requestAnimationFrame(() => out.classList.remove('snap')));
           busy = false;
-        }, 650 + out.length * 90);
-        // reveal the new stack straight away underneath
-        cards.forEach((c, k) => { if (!out.includes(c)) { const pos = (k - to + n) % n; c.dataset.pos = String(Math.min(pos, 3)); } });
+        }, 480);
       } else {
         // going back: the previous card flies in from the left onto the top
         const incoming = cards[to];
         incoming.classList.add('snap', 'leaving');
-        i = to; label();
+        i = to;
         requestAnimationFrame(() => requestAnimationFrame(() => {
           incoming.classList.remove('snap', 'leaving');
           layout();
-          setTimeout(() => (busy = false), 700);
+          setTimeout(() => (busy = false), 500);
         }));
       }
-      restart();
+      schedule();
     };
 
-    const restart = () => { elapsed = 0; started = performance.now(); };
-    const tick = () => {
-      const hold = paused || hover || document.hidden;
-      if (hold) started = performance.now() - elapsed;
-      else {
-        elapsed = performance.now() - started;
-        if (elapsed >= INTERVAL) go(i + 1);
-      }
-      ring.style.strokeDashoffset = String(C * (1 - Math.min(elapsed / INTERVAL, 1)));
-      status.textContent = paused ? 'Paused' : hover ? 'Paused while you read' : 'Turning automatically';
-      raf = requestAnimationFrame(tick);
+    const schedule = () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => { if (hover || document.hidden) schedule(); else go(i + 1); }, INTERVAL);
     };
 
     root.querySelector('.pb-next')!.addEventListener('click', () => go(i + 1));
     root.querySelector('.pb-prev')!.addEventListener('click', () => go(i - 1));
-    steps.forEach((s) => s.addEventListener('click', () => go(+s.dataset.go!)));
-    play.addEventListener('click', () => {
-      paused = !paused;
-      play.setAttribute('aria-pressed', String(paused));
-      play.setAttribute('aria-label', paused ? 'Play the playbook' : 'Pause the playbook');
-    });
     const deck = root.querySelector('.pb-deck')!;
     deck.addEventListener('mouseenter', () => (hover = true));
     deck.addEventListener('mouseleave', () => (hover = false));
-    root.addEventListener('focusin', () => (hover = true));
-    root.addEventListener('focusout', () => (hover = false));
     let x0 = 0;
     deck.addEventListener('touchstart', (e) => { x0 = (e as TouchEvent).touches[0].clientX; }, { passive: true });
     deck.addEventListener('touchend', (e) => { const dx = (e as TouchEvent).changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1); });
 
-    layout(); label(); restart();
-    raf = requestAnimationFrame(tick);
-    document.addEventListener('astro:before-swap', () => cancelAnimationFrame(raf), { once: true });
+    layout(); schedule();
+    document.addEventListener('astro:before-swap', () => clearTimeout(timer), { once: true });
   }
 
   document.addEventListener('astro:page-load', initPlaybook);
