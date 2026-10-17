@@ -9,6 +9,7 @@ import ApproachCycle from '../components/ApproachCycle.astro';
 import Playbook from '../components/Playbook.astro';
 import CompareSlider from '../components/CompareSlider.astro';
 import WorkGallery from '../components/WorkGallery.astro';
+import Reels from '../components/Reels.astro';
 
 const chain = [
   { icon: 'users', title: 'Train your team', text: 'Right skills, processes and accountability — in one structured program.' },
@@ -17,7 +18,7 @@ const chain = [
   { icon: 'heart', title: 'Stronger relationships', text: 'Customers come back, and bring others with them.' },
   { icon: 'sparkle', title: 'Sustainable growth', text: 'Every customer interaction becomes an opportunity for growth.' },
 ];
-import { HOME as H, TRAINER as T, SIGNATURE, WORK, GROUPS, GENERIC_TESTIMONIALS, rich } from '../lib/site';
+import { HOME as H, TRAINER as T, SIGNATURE, WORK, GROUPS, rich } from '../lib/site';
 import { photo } from '../lib/photos';
 
 const poster = photo('saheli-aurum/03');
@@ -211,16 +212,14 @@ const audiences = [
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="section section--dark on-dark">
+  <!-- FROM THE TRAINING FLOOR: real session reels -->
+  <section class="section on-dark reels-sec">
     <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">What clients say</span>
-        <h2 data-split>Teams that changed how they <em>sell, lead and work</em></h2>
+      <div class="head head--row">
+        <div><span class="eyebrow">From the training floor</span><h2 data-split>Teams that changed how they <em>sell, lead and work</em></h2></div>
+        <p class="lead" data-reveal>Real moments from real sessions. Tap the speaker on any reel to hear the room.</p>
       </div>
-      <div class="tgrid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))" data-stagger>
-        {GENERIC_TESTIMONIALS.map((t) => <figure class="tcard"><span class="q" aria-hidden="true">“</span><p set:html={rich(t)} /></figure>)}
-      </div>
+      <Reels />
     </div>
   </section>
 

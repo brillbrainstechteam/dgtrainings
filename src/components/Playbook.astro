@@ -57,12 +57,17 @@ const cards = [
 </section>
 
 <style>
-  .pb { position: relative; background: var(--grey-950); color: #fff; padding: clamp(56px, 6vw, 88px) 0; overflow: hidden; isolation: isolate; }
+  .pb { position: relative; color: #fff;
+    background:
+      radial-gradient(ellipse 55% 70% at 0% 100%, rgba(36,178,163,.34), transparent 70%),
+      radial-gradient(ellipse 45% 60% at 8% 0%, rgba(85,214,201,.16), transparent 70%),
+      radial-gradient(ellipse 50% 70% at 100% 0%, rgba(15,113,104,.5), transparent 70%),
+      linear-gradient(120deg, #10302c 0%, #1b1d1f 38%, #1d2224 62%, #0f2b28 100%); padding: clamp(56px, 6vw, 88px) 0; overflow: hidden; isolation: isolate; }
   /* dotted grid + drifting glows */
   .pb::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.4px); background-size: 26px 26px; mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%); }
   .pb-blob { position: absolute; z-index: -2; border-radius: 50%; filter: blur(70px); opacity: .45; pointer-events: none; }
   .pb-blob--a { width: 460px; height: 460px; background: var(--teal-600); right: 6%; top: -120px; animation: pbdrift 18s ease-in-out infinite alternate; }
-  .pb-blob--b { width: 380px; height: 380px; background: #3b5d63; left: -120px; bottom: -160px; animation: pbdrift 22s ease-in-out infinite alternate-reverse; }
+  .pb-blob--b { width: 420px; height: 420px; background: var(--teal-600); left: -140px; bottom: -180px; animation: pbdrift 22s ease-in-out infinite alternate-reverse; }
   @keyframes pbdrift { to { transform: translate(-80px, 90px) scale(1.15); } }
 
   .pb-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }

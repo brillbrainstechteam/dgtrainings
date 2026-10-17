@@ -32,9 +32,9 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
 
   <section class="section section--tint">
     <div class="wrap">
-      <div class="head head--row">
-        <div><span class="eyebrow">An example journey</span><h2 data-split>Combine programs into a <em>year of growth</em></h2></div>
-        <p class="lead" data-reveal>One way teams build up, step by step — every journey is planned around your business. Tap any program to explore it.</p>
+      <div class="head stair-head">
+        <span class="eyebrow">An example journey</span><h2 data-split>Combine programs into a <em>year of growth</em></h2>
+        <p class="lead" data-reveal>Build your team up, step by step — tap any program to explore.</p>
       </div>
       <Staircase steps={journey} top="A team that performs" />
     </div>
@@ -73,6 +73,8 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
 </Base>
 
 <style>
+  .stair-head { margin-bottom: 0; }
+  .stair-head .lead { margin: 10px 0 0; }
   .matrix-wrap { overflow-x: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); background: #fff; }
   .matrix { width: 100%; border-collapse: collapse; min-width: 760px; }
   .matrix th, .matrix td { padding: 14px 16px; border-bottom: 1px solid var(--grey-100); text-align: center; }

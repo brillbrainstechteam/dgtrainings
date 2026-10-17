@@ -1,0 +1,88 @@
+---
+// Short clips from real sessions. They play muted while on screen; tap a reel to hear it.
+import Icon from './Icon.astro';
+import { wa } from '../lib/site';
+const reels = [
+  { file: 'saheli-aurum', client: 'Saheli Aurum', note: 'On the showroom floor', href: '/work/saheli-aurum/' },
+  { file: 'geetanjali-chant', client: 'Geetanjali Jewellers', note: 'Team pledge, Feb 2026', href: '/work/gitanjali-2026/' },
+  { file: 'shivam-jewels', client: 'Shivam Jewels', note: 'Office team workshop', href: '/work/shivam-jewels/' },
+  { file: 'geetanjali-activity', client: 'Geetanjali Jewellers', note: 'Outdoor team activity', href: '/work/gitanjali-2026/' },
+  { file: 'geetanjali-team', client: 'Geetanjali Jewellers', note: 'One team, one standard', href: '/work/gitanjali-2026/' },
+];
+---
+<div class="reels" data-reels>
+  {reels.map((r) => (
+    <figure class="reel">
+      <video src={`/media/reels/${r.file}.mp4`} poster={`/media/reels/${r.file}.jpg`} muted loop playsinline preload="none"></video>
+      <button type="button" class="reel-snd" aria-label={`Play sound: ${r.client}`} aria-pressed="false">
+        <svg class="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4zM22 9l-6 6M16 9l6 6" /></svg>
+        <svg class="i-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" /></svg>
+      </button>
+      <figcaption><a href={r.href}><b>{r.client}</b><small>{r.note}</small></a></figcaption>
+    </figure>
+  ))}
+</div>
+<div class="reels-foot" data-reveal>
+  <p>Trained with DG? We’d love to feature your team’s story here.</p>
+  <a class="btn btn--ghost" href={wa('Hi DG Trainings, we would like to share feedback about our training.')} target="_blank" rel="noopener"><Icon name="whatsapp" /> Share your feedback</a>
+</div>
+
+<style>
+  .reels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .reel { position: relative; margin: 0; aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; background: var(--grey-900); isolation: isolate; box-shadow: 0 24px 50px -28px rgba(0,0,0,.8); transition: transform .6s var(--ease), box-shadow .6s var(--ease); }
+  .reel:nth-child(even) { translate: 0 34px; }
+  .reel:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -24px rgba(36,178,163,.45); }
+  .reel video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .reel::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 50%, rgba(16,24,24,.92)); pointer-events: none; }
+  .reel::before { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; border: 1px solid rgba(255,255,255,.1); pointer-events: none; transition: border-color .4s; }
+  .reel:hover::before, .reel.is-loud::before { border-color: var(--teal); }
+  .reel figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px; }
+  .reel figcaption a { display: grid; gap: 2px; color: #fff; }
+  .reel figcaption b { font-family: var(--display); font-size: 1.15rem; font-weight: 600; line-height: 1.2; }
+  .reel figcaption small { font-size: .78rem; color: var(--teal); font-weight: 700; letter-spacing: .04em; }
+  .reel-snd { position: absolute; top: 12px; right: 12px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: 0; display: grid; place-items: center; background: rgba(25,26,28,.6); color: #fff; backdrop-filter: blur(6px); cursor: pointer; transition: background .3s, color .3s; }
+  .reel-snd svg { width: 18px; height: 18px; }
+  .reel-snd .i-on, .reel.is-loud .reel-snd .i-off { display: none; }
+  .reel.is-loud .reel-snd .i-on { display: block; }
+  .reel.is-loud .reel-snd, .reel-snd:hover { background: var(--teal); color: var(--grey-950); }
+  .reels-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; margin-top: 70px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.12); }
+  .reels-foot p { margin: 0; font-family: var(--display); font-style: italic; font-size: clamp(1.1rem, 1.7vw, 1.35rem); color: rgba(255,255,255,.88); }
+  @media (max-width: 960px) {
+    .reels { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(220px, 42%); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+    .reels::-webkit-scrollbar { display: none; }
+    .reel { scroll-snap-align: start; }
+    .reel:nth-child(even) { translate: none; }
+    .reels-foot { margin-top: 32px; }
+  }
+  @media (max-width: 560px) { .reels { grid-auto-columns: 70%; } }
+</style>
+
+<script>
+  function initReels() {
+    const root = document.querySelector<HTMLElement>('[data-reels]');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    const reels = [...root.querySelectorAll<HTMLElement>('.reel')];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // play only while on screen
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      const v = e.target.querySelector('video')!;
+      if (e.isIntersecting && !reduce) v.play().catch(() => {});
+      else v.pause();
+    }), { threshold: .35 });
+    reels.forEach((r) => {
+      io.observe(r);
+      const v = r.querySelector('video')!, b = r.querySelector<HTMLButtonElement>('.reel-snd')!;
+      b.addEventListener('click', () => {
+        const loud = v.muted;
+        reels.forEach((o) => { if (o !== r) { o.querySelector('video')!.muted = true; o.classList.remove('is-loud'); o.querySelector('.reel-snd')!.setAttribute('aria-pressed', 'false'); } });
+        v.muted = !loud;
+        if (loud) { v.currentTime = 0; v.play().catch(() => {}); }
+        r.classList.toggle('is-loud', loud);
+        b.setAttribute('aria-pressed', String(loud));
+      });
+    });
+    document.addEventListener('astro:before-swap', () => io.disconnect(), { once: true });
+  }
+  document.addEventListener('astro:page-load', initReels);
+</script>

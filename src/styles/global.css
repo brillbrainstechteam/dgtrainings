@@ -570,9 +570,6 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 .tile:hover p { transform: translateX(6px); color: var(--teal); }
 
 /* approach cycle: one stage lit at a time */
-.cy-step { transition: transform .5s var(--ease), border-color .4s, box-shadow .5s var(--ease), background .4s; }
-.cy-step.is-active { border-color: var(--teal); box-shadow: 0 18px 40px -18px rgba(36,178,163,.55); transform: translateY(-4px); }
-.cy-step.is-active .cy-ico { background: var(--teal); color: var(--grey-950); }
 .ring-node circle { transition: fill .4s, r .4s; }
 .ring-node text { transition: fill .4s; }
 .ring-node.is-active circle { fill: var(--teal); }
@@ -584,3 +581,9 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 
 @media (prefers-reduced-motion: reduce) { .tile::after { display: none; } }
 .why-close { margin: 28px 0 0; max-width: 820px; font-family: var(--display); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.4; color: var(--ink); border-left: 3px solid var(--teal); padding-left: 22px; }
+
+/* home: reels section on a deep teal gradient */
+.reels-sec { background:
+  radial-gradient(ellipse 50% 70% at 0% 0%, rgba(36,178,163,.3), transparent 70%),
+  radial-gradient(ellipse 50% 70% at 100% 100%, rgba(15,113,104,.45), transparent 70%),
+  linear-gradient(135deg, #12302d 0%, #1c1e20 45%, #1a2224 70%, #0e2a27 100%); overflow: hidden; }

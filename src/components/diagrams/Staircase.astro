@@ -6,7 +6,7 @@ const n = steps.length;
 ---
 <div class="stair" data-stagger>
   {steps.map((s, i) => (
-    <div class:list={['st', { 'st--top': i === n - 1 }]} style={`--h:${26 + (i * 46) / (n - 1)}%`}>
+    <div class:list={['st', { 'st--top': i === n - 1 }]} style={`--h:${120 + i * 70}px`}>
       <div class="st-items">{s.items.map((it) => it.href ? <a href={it.href}>{it.label}</a> : <span>{it.label}</span>)}</div>
       <div class="st-block">
         <span class="st-n">{String(i + 1).padStart(2, '0')}</span>
@@ -19,8 +19,8 @@ const n = steps.length;
 </div>
 
 <style>
-  .stair { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end; height: 560px; padding-top: 34px; }
-  .st { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; }
+  .stair { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end; padding-top: 44px; }
+  .st { display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; }
   .st-items { display: flex; flex-direction: column; gap: 6px; }
   .st-items a, .st-items span { display: block; background: #fff; border: 1px solid var(--grey-200); border-radius: 10px; padding: 8px 12px; font-size: .84rem; font-weight: 700; color: var(--ink); transition: border-color .3s, transform .4s var(--ease), background .3s; }
   .st-items a:hover { border-color: var(--teal); background: var(--teal-50); transform: translateY(-2px); }
@@ -36,8 +36,8 @@ const n = steps.length;
   @media (max-width: 900px) {
     .stair { grid-template-columns: 1fr; height: auto; gap: 12px; padding-top: 0; }
     .st { flex-direction: column-reverse; height: auto; }
-    .st-block { height: auto; min-height: 0; border-radius: 14px; margin-left: calc(var(--h) * .25); }
-    .st-items { flex-direction: row; flex-wrap: wrap; margin-left: calc(var(--h) * .25); }
+    .st-block { height: auto; min-height: 0; border-radius: 14px; margin-left: calc((var(--h) - 120px) * .35); }
+    .st-items { flex-direction: row; flex-wrap: wrap; margin-left: calc((var(--h) - 120px) * .35); }
     .st-top { position: static; text-align: right; }
   }
 </style>
