@@ -1,0 +1,33 @@
+---
+// Instagram follow band for @dg_trainings. (Instagram blocks its post embeds from loading in frames,
+// so this links out to the profile rather than showing empty embed boxes.)
+import Icon from './Icon.astro';
+import { CONTACT } from '../lib/site';
+const handle = CONTACT.instagram.replace(/^.*instagram\.com\/([^/?]+).*$/, '$1');
+const lines = ['Transforming people, strengthening businesses', 'From motivation to transformation', 'Building better teams & leaders'];
+---
+<a class="ig" href={CONTACT.instagram} target="_blank" rel="noopener" data-reveal>
+  <span class="ig-badge" aria-hidden="true"><Icon name="instagram" /></span>
+  <span class="ig-txt">
+    <small>Follow DG on Instagram</small>
+    <b>@{handle}</b>
+    <span class="ig-lines">{lines.map((l) => <i>{l}</i>)}</span>
+  </span>
+  <span class="btn btn--teal ig-btn">Follow <Icon name="arrow" class="arr" /></span>
+</a>
+
+<style>
+  .ig { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 22px 28px; flex-wrap: wrap; padding: clamp(24px, 3vw, 36px) clamp(24px, 3.4vw, 44px); border-radius: 28px; color: #fff;
+    background: radial-gradient(ellipse 60% 120% at 0% 100%, rgba(85,214,201,.35), transparent 70%), radial-gradient(ellipse 50% 120% at 100% 0%, rgba(15,113,104,.6), transparent 70%), linear-gradient(120deg, #13302d, #1c1f21 55%, #0f2b28);
+    box-shadow: 0 30px 60px -34px rgba(15,113,104,.8); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+  .ig:hover { transform: translateY(-4px); box-shadow: 0 36px 70px -30px rgba(15,113,104,.9); }
+  .ig-badge { flex: none; width: 72px; height: 72px; border-radius: 22px; display: grid; place-items: center; color: #fff; background: linear-gradient(45deg, #f9ce34, #ee2a7b 50%, #6228d7); box-shadow: 0 14px 30px -12px rgba(238,42,123,.6); transition: transform .6s var(--ease); }
+  .ig:hover .ig-badge { transform: rotate(-8deg) scale(1.05); }
+  .ig-badge :global(svg) { width: 34px; height: 34px; }
+  .ig-txt { display: grid; gap: 4px; margin-right: auto; }
+  .ig-txt small { font-size: .72rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); }
+  .ig-txt b { font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 600; line-height: 1.1; }
+  .ig-lines { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 4px; }
+  .ig-lines i { font-style: normal; font-size: .9rem; color: rgba(255,255,255,.75); display: inline-flex; align-items: center; gap: 8px; }
+  .ig-lines i::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+</style>

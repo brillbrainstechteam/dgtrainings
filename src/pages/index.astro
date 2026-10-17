@@ -10,6 +10,7 @@ import Playbook from '../components/Playbook.astro';
 import CompareSlider from '../components/CompareSlider.astro';
 import WorkGallery from '../components/WorkGallery.astro';
 import Reels from '../components/Reels.astro';
+import InstaFeed from '../components/InstaFeed.astro';
 
 const chain = [
   { icon: 'users', title: 'Train your team', text: 'Right skills, processes and accountability — in one structured program.' },
@@ -223,6 +224,11 @@ const audiences = [
     </div>
   </section>
 
+  <!-- INSTAGRAM -->
+  <section class="section section--tint ig-sec">
+    <div class="wrap"><InstaFeed /></div>
+  </section>
+
   <CtaBand heading={H.cta_h} text={H.cta_text} />
 </Base>
 
@@ -249,5 +255,6 @@ const audiences = [
 </script>
 
 <style>
+  .ig-sec { padding-block: clamp(40px, 5vw, 64px); }
   .why-close { margin: 28px 0 0; max-width: 820px; font-family: var(--display); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.4; color: var(--ink); border-left: 3px solid var(--teal); padding-left: 22px; }
 </style>

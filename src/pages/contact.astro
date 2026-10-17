@@ -60,15 +60,19 @@ import { photo } from '../lib/photos';
 
   <section class="section section--white" id="faq">
     <div class="wrap">
-      <div class="head head--row">
-        <div><span class="eyebrow">FAQs</span><h2 data-split>Questions, <em>answered</em></h2></div>
-        <p class="lead" data-reveal>Quick answers before you call. Anything else, ask us on WhatsApp.</p>
+      <div class="head faq-head">
+        <span class="eyebrow">FAQs</span>
+        <h2 data-split>Questions, <em>answered</em></h2>
+        <p class="lead" data-reveal>Quick answers before you call. Anything else, <a href={wa()} target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
       </div>
       <Faq items={H.faqs} />
     </div>
   </section>
 </Base>
 <style>
+  .faq-head h2 { margin-bottom: 12px; }
+  .faq-head .lead { margin: 0; }
+  .faq-head .lead a { color: var(--teal-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
   .contact-list--light { margin-top: 28px; }
   .contact-list--light a:hover { background: #fff; }
   .contact-list--light .ico { background: var(--grey-900); color: var(--teal); }
