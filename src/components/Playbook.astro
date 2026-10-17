@@ -1,53 +1,66 @@
 ---
-// "The DG Playbook": a book whose pages turn automatically, one question per page.
-// Autoplay pauses on hover/focus and has a pause button; reduced-motion visitors get a fade instead of a 3D turn.
+// "The DG Playbook": a fanned deck of question cards. The top card sweeps away every few seconds
+// and tucks in at the back, revealing the next question. Pauses on hover/focus, has pause/prev/next,
+// swipe on touch, and a gentle fade for reduced-motion visitors.
 import Icon from './Icon.astro';
 import { bySlug, progUrl } from '../lib/site';
 
-const pages = [
-  { q: 'When was the last time your team was trained?', slug: 'life-work-culture-transformation' },
-  { q: 'Is your team ready for the next stage of growth?', slug: 'orientation-training' },
-  { q: 'Is your marketing team delivering results?', slug: 'marketing-mastery' },
-  { q: 'Is your team keeping up with digital change?', slug: 'digital-shakti' },
-  { q: 'Are your managers bringing out the best in their teams?', slug: 'leadership-management' },
-  { q: 'Is your customer getting the experience your brand promises?', slug: 'business-technical-sales-expert' },
-  { q: 'Your targets are set. Is your team delivering?', slug: 'telemarketing-training' },
-].map((p) => ({ ...p, prog: bySlug(p.slug) }));
+// [[...]] marks the words to highlight in each question
+const cards = [
+  { q: 'When was the [[last time]] your team was trained?', slug: 'life-work-culture-transformation', icon: 'users' },
+  { q: 'Is your team ready for the [[next stage of growth]]?', slug: 'orientation-training', icon: 'trend' },
+  { q: 'Is your [[marketing team]] delivering results?', slug: 'marketing-mastery', icon: 'target' },
+  { q: 'Is your team keeping up with [[digital change]]?', slug: 'digital-shakti', icon: 'sparkle' },
+  { q: 'Are your [[managers]] bringing out the best in their teams?', slug: 'leadership-management', icon: 'chart' },
+  { q: 'Is your customer getting the [[experience]] your brand promises?', slug: 'business-technical-sales-expert', icon: 'heart' },
+  { q: 'Your targets are set. Is your team [[delivering]]?', slug: 'telemarketing-training', icon: 'check' },
+].map((c, i) => ({ ...c, prog: bySlug(c.slug), html: c.q.replace(/\[\[(.+?)\]\]/g, '<em>$1</em>'), theme: ['dark', 'teal', 'cream'][i % 3] }));
+const total = cards.length;
+const R = 30, C = 2 * Math.PI * R;
 ---
 <section class="pb on-dark" aria-labelledby="pb-h" data-playbook>
+  <span class="pb-blob pb-blob--a" aria-hidden="true"></span>
+  <span class="pb-blob pb-blob--b" aria-hidden="true"></span>
   <div class="wrap pb-grid">
     <div class="pb-side">
       <span class="eyebrow">The DG Playbook</span>
       <h2 id="pb-h">Seven questions every <em>jewellery business</em> should ask.</h2>
-      <div class="pb-counter" aria-hidden="true"><b class="pb-cur">01</b><span>/ {String(pages.length).padStart(2, '0')}</span></div>
-      <div class="pb-progress" aria-hidden="true"><i></i></div>
-      <div class="pb-controls">
-        <button type="button" class="pb-btn pb-prev" aria-label="Previous question"><Icon name="arrow" class="flip" /></button>
-        <button type="button" class="pb-btn pb-play" aria-label="Pause the playbook" aria-pressed="false">
-          <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
-          <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
-        </button>
-        <button type="button" class="pb-btn pb-next" aria-label="Next question"><Icon name="arrow" /></button>
+      <p class="pb-intro">Be honest with each one. If an answer makes you pause, that’s where we start.</p>
+
+      <div class="pb-meter">
+        <div class="pb-ring" aria-hidden="true">
+          <svg viewBox="0 0 72 72"><circle cx="36" cy="36" r={R} class="ring-bg" /><circle cx="36" cy="36" r={R} class="ring-fg" style={`stroke-dasharray:${C.toFixed(1)};stroke-dashoffset:${C.toFixed(1)}`} /></svg>
+          <span class="pb-cur">01</span>
+        </div>
+        <div class="pb-meter-txt"><b>Question <span class="pb-cur2">1</span> of {total}</b><small class="pb-status">Turning automatically</small></div>
+        <div class="pb-controls">
+          <button type="button" class="pb-btn pb-prev" aria-label="Previous question"><Icon name="arrow" class="flip" /></button>
+          <button type="button" class="pb-btn pb-play" aria-label="Pause the playbook" aria-pressed="false">
+            <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
+          </button>
+          <button type="button" class="pb-btn pb-next" aria-label="Next question"><Icon name="arrow" /></button>
+        </div>
       </div>
-      <div class="pb-dots" role="tablist" aria-label="Choose a question">
-        {pages.map((_, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} aria-label={`Question ${i + 1}`} data-go={i}></button>)}
+
+      <div class="pb-steps" role="tablist" aria-label="Choose a question">
+        {cards.map((_, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-go={i}><span>{i + 1}</span></button>)}
       </div>
     </div>
 
     <div class="pb-stage">
-      <div class="pb-book">
-        <span class="pb-edges" aria-hidden="true"></span>
-        <span class="pb-ribbon" aria-hidden="true"></span>
-        <div class="pb-pages" aria-live="polite">
-          {pages.map((p, i) => (
-            <article class:list={['pg', { on: i === 0 }]} aria-hidden={i === 0 ? 'false' : 'true'} data-i={i}>
-              <span class="pg-n">Question {String(i + 1).padStart(2, '0')}</span>
-              <p class="pg-q">{p.q}</p>
-              <a class="pg-link" href={progUrl(p.prog)} tabindex={i === 0 ? 0 : -1}>How we help: <b>{p.prog.name}</b> <Icon name="arrow" /></a>
-              <span class="pg-folio" aria-hidden="true">{i + 1}</span>
-            </article>
-          ))}
-        </div>
+      <div class="pb-deck" aria-live="polite">
+        {cards.map((c, i) => (
+          <article class={`pb-card pb-card--${c.theme}`} data-pos={i < 3 ? i : 3} aria-hidden={i === 0 ? 'false' : 'true'}>
+            <div class="pc-top">
+              <span class="pc-tag">Question {String(i + 1).padStart(2, '0')}</span>
+              <span class="pc-ic"><Icon name={c.icon} /></span>
+            </div>
+            <p class="pc-q" set:html={c.html} />
+            <a class="pc-link" href={progUrl(c.prog)} tabindex={i === 0 ? 0 : -1}><span>How we help</span><b>{c.prog.name}</b><Icon name="arrow" /></a>
+            <span class="pc-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          </article>
+        ))}
       </div>
       <div class="pb-answer">
         <p><b>If not,</b> we will work with you and your team to bring about the change.</p>
@@ -61,166 +74,198 @@ const pages = [
 </section>
 
 <style>
-  .pb { background: var(--grey-900); color: #fff; padding: clamp(48px, 5vw, 72px) 0; overflow: hidden; position: relative; }
-  .pb::before { content: ""; position: absolute; left: -120px; bottom: -160px; width: 420px; height: 420px; background: var(--teal); opacity: .06; clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
-  .pb-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(36px, 6vw, 90px); align-items: center; position: relative; }
-  .pb h2 { font-size: clamp(2rem, 3.6vw, 3rem); margin-bottom: 28px; }
-  .pb-counter { font-family: var(--display); display: flex; align-items: baseline; gap: 8px; }
-  .pb-counter b { font-size: 3.4rem; font-weight: 600; color: var(--teal); line-height: 1; font-variant-numeric: tabular-nums; }
-  .pb-counter span { font-size: 1.3rem; color: rgba(255,255,255,.5); }
-  .pb-progress { height: 3px; background: rgba(255,255,255,.12); border-radius: 3px; margin: 16px 0 22px; overflow: hidden; max-width: 320px; }
-  .pb-progress i { display: block; height: 100%; width: 100%; background: var(--teal); transform-origin: left; transform: scaleX(0); }
-  .pb-controls { display: flex; gap: 10px; margin-bottom: 18px; }
-  .pb-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: transparent; color: #fff; display: grid; place-items: center; cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
-  .pb-btn:hover { background: var(--teal); border-color: var(--teal); color: var(--grey-950); }
+  .pb { position: relative; background: var(--grey-950); color: #fff; padding: clamp(56px, 6vw, 88px) 0; overflow: hidden; isolation: isolate; }
+  /* dotted grid + drifting glows */
+  .pb::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.4px); background-size: 26px 26px; mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%); }
+  .pb-blob { position: absolute; z-index: -2; border-radius: 50%; filter: blur(70px); opacity: .45; pointer-events: none; }
+  .pb-blob--a { width: 460px; height: 460px; background: var(--teal-600); right: 6%; top: -120px; animation: pbdrift 18s ease-in-out infinite alternate; }
+  .pb-blob--b { width: 380px; height: 380px; background: #3b5d63; left: -120px; bottom: -160px; animation: pbdrift 22s ease-in-out infinite alternate-reverse; }
+  @keyframes pbdrift { to { transform: translate(-80px, 90px) scale(1.15); } }
+
+  .pb-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
+  .pb h2 { font-size: clamp(2.1rem, 3.8vw, 3.2rem); margin-bottom: 14px; }
+  .pb-intro { color: rgba(255,255,255,.7); font-size: 1.02rem; max-width: 440px; margin-bottom: 30px; }
+
+  .pb-meter { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 16px 18px; border: 1px solid rgba(255,255,255,.1); border-radius: 22px; background: rgba(255,255,255,.04); backdrop-filter: blur(8px); max-width: 520px; }
+  .pb-ring { position: relative; width: 72px; height: 72px; flex: none; }
+  .pb-ring svg { width: 100%; height: 100%; rotate: -90deg; }
+  .ring-bg { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 4; }
+  .ring-fg { fill: none; stroke: var(--teal); stroke-width: 4; stroke-linecap: round; }
+  .pb-cur { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .pb-meter-txt { display: grid; gap: 2px; margin-right: auto; }
+  .pb-meter-txt b { font-size: .95rem; }
+  .pb-meter-txt small { font-size: .78rem; color: rgba(255,255,255,.55); }
+  .pb-controls { display: flex; gap: 8px; }
+  .pb-btn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; display: grid; place-items: center; cursor: pointer; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
+  .pb-btn:hover { background: var(--teal); border-color: var(--teal); color: var(--grey-950); transform: scale(1.06); }
   .pb-btn :global(svg), .pb-btn svg { width: 18px; height: 18px; }
   .pb-play .i-play { display: none; }
   .pb-play[aria-pressed="true"] .i-play { display: block; }
   .pb-play[aria-pressed="true"] .i-pause { display: none; }
-  .pb-dots { display: flex; gap: 8px; flex-wrap: wrap; }
-  .pb-dots button { width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
-  .pb-dots button::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .3s, transform .3s; }
-  .pb-dots button[aria-selected="true"]::before { background: var(--teal); transform: scale(1.35); }
 
-  /* the book */
-  .pb-stage { display: grid; gap: 26px; }
-  .pb-book { position: relative; perspective: 2000px; height: clamp(300px, 30vw, 360px); margin-right: 14px; }
-  .pb-edges { position: absolute; inset: 10px -14px -12px 10px; border-radius: 6px 18px 18px 6px; background: repeating-linear-gradient(0deg, #e9e7e2 0 2px, #d8d5ce 2px 3px); box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); }
-  .pb-ribbon { position: absolute; right: 54px; top: -10px; width: 22px; height: 70px; background: var(--teal); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); z-index: 5; }
-  .pb-pages { position: absolute; inset: 0; transform-style: preserve-3d; }
-  .pg { position: absolute; inset: 0; display: flex; flex-direction: column; padding: clamp(28px, 3.4vw, 46px) clamp(28px, 4vw, 56px); background: linear-gradient(90deg, #ebe8e1 0, #fbfaf7 7%, #fbfaf7 100%); color: var(--ink); border-radius: 6px 18px 18px 6px; box-shadow: inset 6px 0 14px -6px rgba(0,0,0,.25); transform-origin: left center; backface-visibility: hidden; visibility: hidden; }
-  .pg.on, .pg.under { visibility: visible; }
-  .pg.on { z-index: 3; }
-  .pg.under { z-index: 2; }
-  .pg.turning { z-index: 4; visibility: visible; animation: pbturn .9s cubic-bezier(.55,.06,.3,1) forwards; }
-  .pg.returning { z-index: 4; visibility: visible; animation: pbturn .9s cubic-bezier(.55,.06,.3,1) reverse forwards; }
-  @keyframes pbturn {
-    0% { transform: rotateY(0); filter: brightness(1); }
-    100% { transform: rotateY(-115deg); filter: brightness(.7); }
-  }
-  .pg::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--teal); border-radius: 6px 0 0 6px; }
-  .pg-n { font-size: .74rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--teal-ink); }
-  .pg-q { font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.6rem); line-height: 1.18; font-weight: 600; margin: 14px 0 auto; color: var(--ink); text-wrap: balance; }
-  .pg-link { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--muted); margin-top: 20px; align-self: flex-start; }
-  .pg-link b { color: var(--teal-ink); }
-  .pg-link :global(svg) { width: 16px; height: 16px; color: var(--teal-ink); transition: transform .4s var(--ease); }
-  .pg-link:hover :global(svg) { transform: translateX(4px); }
-  .pg-folio { position: absolute; right: 26px; bottom: 18px; font-family: var(--display); font-style: italic; color: var(--grey-300); font-size: 1rem; }
-  .pb-answer { display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; }
+  .pb-steps { display: flex; gap: 6px; margin-top: 18px; flex-wrap: wrap; }
+  .pb-steps button { width: 38px; height: 38px; padding: 0; border-radius: 12px; border: 1px solid rgba(255,255,255,.14); background: transparent; color: rgba(255,255,255,.55); font-weight: 700; font-size: .85rem; cursor: pointer; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
+  .pb-steps button:hover { border-color: var(--teal); color: #fff; }
+  .pb-steps button[aria-selected="true"] { background: var(--teal); border-color: var(--teal); color: var(--grey-950); transform: translateY(-3px); }
+
+  /* the deck */
+  .pb-stage { display: grid; gap: 34px; }
+  .pb-deck { position: relative; height: clamp(320px, 30vw, 380px); margin: 0 64px 34px 0; perspective: 1600px; }
+  .pb-card { position: absolute; inset: 0; display: flex; flex-direction: column; padding: clamp(26px, 3vw, 40px); border-radius: 28px; overflow: hidden; transform-origin: 50% 100%;
+    transition: transform .85s cubic-bezier(.22,1,.36,1), opacity .6s ease, box-shadow .6s; box-shadow: 0 30px 60px -24px rgba(0,0,0,.65); will-change: transform; }
+  .pb-card[data-pos="0"] { transform: none; z-index: 10; }
+  .pb-card[data-pos="1"] { transform: translate(30px, 18px) rotate(3.5deg) scale(.955); z-index: 9; }
+  .pb-card[data-pos="2"] { transform: translate(56px, 34px) rotate(7deg) scale(.91); z-index: 8; }
+  .pb-card[data-pos="3"] { transform: translate(64px, 40px) rotate(8deg) scale(.88); z-index: 1; opacity: 0; }
+  .pb-card.leaving { transform: translate(-118%, -30px) rotate(-16deg) scale(.96); opacity: 0; z-index: 11; }
+  .pb-card.snap { transition: none !important; }
+  .pb-card:not([data-pos="0"]) .pc-q, .pb-card:not([data-pos="0"]) .pc-link { opacity: .35; }
+  .pb-card--dark { background: linear-gradient(150deg, #2f3134, var(--grey-900)); color: #fff; border: 1px solid rgba(255,255,255,.08); }
+  .pb-card--teal { background: linear-gradient(150deg, #6be0d4, var(--teal-600)); color: var(--grey-950); }
+  .pb-card--cream { background: linear-gradient(150deg, #fffdf8, #ece8df); color: var(--ink); }
+  .pc-top { display: flex; justify-content: space-between; align-items: center; }
+  .pc-tag { font-size: .72rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.1); }
+  .pb-card--teal .pc-tag { background: rgba(25,26,28,.12); }
+  .pb-card--cream .pc-tag { background: var(--teal-50); color: var(--teal-ink); }
+  .pc-ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--teal); color: var(--grey-950); }
+  .pb-card--teal .pc-ic { background: var(--grey-950); color: var(--teal); }
+  .pc-ic :global(svg) { width: 22px; height: 22px; }
+  .pc-q { position: relative; z-index: 1; font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.14; font-weight: 600; margin: 22px 0 auto; text-wrap: balance; transition: opacity .5s; }
+  .pc-q :global(em) { font-style: italic; color: var(--teal); }
+  .pb .pb-card--dark .pc-q { color: #fff; }
+  .pb .pb-card--teal .pc-q { color: var(--grey-950); }
+  .pb .pb-card--cream .pc-q { color: var(--ink); }
+  .pb-card--teal .pc-q :global(em) { color: #0a4a44; }
+  .pb-card--cream .pc-q :global(em) { color: var(--teal-ink); }
+  .pc-link { position: relative; z-index: 1; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 10px 16px; border-radius: 999px; font-size: .88rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); transition: background .3s, transform .3s var(--ease), opacity .5s; }
+  .pb-card--teal .pc-link { background: rgba(25,26,28,.1); border-color: rgba(25,26,28,.18); }
+  .pb-card--cream .pc-link { background: #fff; border-color: var(--grey-200); }
+  .pc-link span { opacity: .7; }
+  .pc-link :global(svg) { width: 16px; height: 16px; transition: transform .4s var(--ease); }
+  .pc-link:hover { transform: translateY(-2px); }
+  .pc-link:hover :global(svg) { transform: translateX(4px); }
+  .pc-num { position: absolute; right: -10px; bottom: -48px; font-family: var(--display); font-size: clamp(9rem, 15vw, 13rem); font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px currentColor; opacity: .14; pointer-events: none; }
+
+  .pb-answer { display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.12); padding-top: 24px; }
   .pb-answer p { margin: 0; font-family: var(--display); font-size: clamp(1.15rem, 1.8vw, 1.45rem); font-style: italic; color: rgba(255,255,255,.9); max-width: 460px; }
   .pb-answer b { color: var(--teal); font-style: normal; }
+
   @media (prefers-reduced-motion: reduce) {
-    .pg.turning, .pg.returning { animation: pbfade .5s ease forwards; }
-    .pg.returning { animation-direction: reverse; }
-    @keyframes pbfade { to { opacity: 0; } }
+    .pb-blob { animation: none; }
+    .pb-card { transition: opacity .4s ease; }
+    .pb-card[data-pos="1"], .pb-card[data-pos="2"] { transform: none; opacity: 0; }
+    .pb-card.leaving { transform: none; }
   }
   @media (max-width: 960px) {
     .pb-grid { grid-template-columns: 1fr; }
-    .pb h2 { margin-bottom: 18px; }
-    .pb-side { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0 18px; }
-    .pb-side .eyebrow, .pb-side h2, .pb-progress, .pb-dots { grid-column: 1 / -1; }
-    .pb-controls { margin: 0; justify-self: end; }
-    .pb-progress { max-width: none; margin: 12px 0 14px; }
+    .pb-deck { margin: 0 34px 26px 0; }
+    .pb-card[data-pos="1"] { transform: translate(16px, 12px) rotate(2.5deg) scale(.96); }
+    .pb-card[data-pos="2"] { transform: translate(30px, 22px) rotate(5deg) scale(.92); }
   }
   @media (max-width: 560px) {
-    .pb-book { height: 300px; }
-    .pb-counter b { font-size: 2.6rem; }
+    .pb-deck { height: 330px; }
+    .pb-meter { padding: 12px; gap: 12px; }
+    .pb-ring { width: 58px; height: 58px; }
+    .pb-cur { font-size: 1.2rem; }
+    .pb-steps button { width: 34px; height: 34px; }
     .pb-answer .btns { width: 100%; }
   }
 </style>
 
 <script>
-  const INTERVAL = 4500;
+  const INTERVAL = 5000;
 
   function initPlaybook() {
     const root = document.querySelector<HTMLElement>('[data-playbook]');
     if (!root || root.dataset.ready) return;
     root.dataset.ready = '1';
-    const pages = [...root.querySelectorAll<HTMLElement>('.pg')];
-    const dots = [...root.querySelectorAll<HTMLButtonElement>('.pb-dots button')];
-    const cur = root.querySelector('.pb-cur')!;
-    const bar = root.querySelector<HTMLElement>('.pb-progress i')!;
+    const cards = [...root.querySelectorAll<HTMLElement>('.pb-card')];
+    const n = cards.length;
+    const steps = [...root.querySelectorAll<HTMLButtonElement>('.pb-steps button')];
+    const cur = root.querySelector('.pb-cur')!, cur2 = root.querySelector('.pb-cur2')!, status = root.querySelector('.pb-status')!;
+    const ring = root.querySelector<SVGCircleElement>('.ring-fg')!;
+    const C = parseFloat(ring.style.strokeDasharray);
     const play = root.querySelector<HTMLButtonElement>('.pb-play')!;
-    let i = 0, busy = false, paused = false, hover = false, timer = 0, started = 0, elapsed = 0;
+    let i = 0, busy = false, paused = false, hover = false, raf = 0, started = 0, elapsed = 0;
 
-    const show = (n: number) => {
-      pages.forEach((p, k) => {
-        p.setAttribute('aria-hidden', String(k !== n));
-        p.querySelector('a')?.setAttribute('tabindex', k === n ? '0' : '-1');
-      });
-      dots.forEach((d, k) => d.setAttribute('aria-selected', String(k === n)));
-      cur.textContent = String(n + 1).padStart(2, '0');
+    const layout = () => cards.forEach((c, k) => {
+      const pos = (k - i + n) % n;
+      c.dataset.pos = String(Math.min(pos, 3));
+      c.setAttribute('aria-hidden', String(pos !== 0));
+      c.querySelector('a')?.setAttribute('tabindex', pos === 0 ? '0' : '-1');
+    });
+    const label = () => {
+      cur.textContent = String(i + 1).padStart(2, '0');
+      cur2.textContent = String(i + 1);
+      steps.forEach((s, k) => s.setAttribute('aria-selected', String(k === i)));
     };
 
-    // finish a turn on animationend — or after a timeout if the browser never fires it (background tab etc.)
-    const done = (el: HTMLElement, fn: () => void) => {
-      let finished = false;
-      const end = () => { if (finished) return; finished = true; fn(); busy = false; };
-      el.addEventListener('animationend', end, { once: true });
-      setTimeout(end, 1000);
-    };
-
-    const go = (n: number) => {
-      n = (n + pages.length) % pages.length;
-      if (busy || n === i) return;
+    const go = (to: number) => {
+      to = (to + n) % n;
+      if (busy || to === i) return;
       busy = true;
-      const from = pages[i], to = pages[n];
-      const forward = n > i || (i === pages.length - 1 && n === 0);
+      const forward = (to - i + n) % n <= n / 2;
       if (forward) {
-        // current page turns away, revealing the next one underneath
-        to.classList.add('under');
-        from.classList.add('turning');
-        done(from, () => {
-          from.classList.remove('on', 'turning');
-          to.classList.replace('under', 'on');
-        });
+        // every card between the current one and the target sweeps off the deck
+        const out = [];
+        for (let k = i; k !== to; k = (k + 1) % n) out.push(cards[k]);
+        out.forEach((c, j) => setTimeout(() => c.classList.add('leaving'), j * 90));
+        i = to; label();
+        setTimeout(() => {
+          out.forEach((c) => { c.classList.add('snap'); c.classList.remove('leaving'); });
+          layout();
+          requestAnimationFrame(() => requestAnimationFrame(() => out.forEach((c) => c.classList.remove('snap'))));
+          busy = false;
+        }, 650 + out.length * 90);
+        // reveal the new stack straight away underneath
+        cards.forEach((c, k) => { if (!out.includes(c)) { const pos = (k - to + n) % n; c.dataset.pos = String(Math.min(pos, 3)); } });
       } else {
-        // previous page turns back over the current one
-        from.classList.replace('on', 'under');
-        to.classList.add('returning');
-        done(to, () => {
-          to.classList.remove('returning');
-          to.classList.add('on');
-          from.classList.remove('under');
-        });
+        // going back: the previous card flies in from the left onto the top
+        const incoming = cards[to];
+        incoming.classList.add('snap', 'leaving');
+        i = to; label();
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          incoming.classList.remove('snap', 'leaving');
+          layout();
+          setTimeout(() => (busy = false), 700);
+        }));
       }
-      i = n;
-      show(i);
       restart();
     };
 
-    // progress bar + autoplay timer (pauses on hover/focus or the pause button)
+    const restart = () => { elapsed = 0; started = performance.now(); };
     const tick = () => {
-      if (paused || hover || document.hidden) { started = performance.now() - elapsed; }
+      const hold = paused || hover || document.hidden;
+      if (hold) started = performance.now() - elapsed;
       else {
         elapsed = performance.now() - started;
-        bar.style.transform = `scaleX(${Math.min(elapsed / INTERVAL, 1)})`;
         if (elapsed >= INTERVAL) go(i + 1);
       }
-      timer = requestAnimationFrame(tick);
+      ring.style.strokeDashoffset = String(C * (1 - Math.min(elapsed / INTERVAL, 1)));
+      status.textContent = paused ? 'Paused' : hover ? 'Paused while you read' : 'Turning automatically';
+      raf = requestAnimationFrame(tick);
     };
-    const restart = () => { elapsed = 0; started = performance.now(); bar.style.transform = 'scaleX(0)'; };
 
     root.querySelector('.pb-next')!.addEventListener('click', () => go(i + 1));
     root.querySelector('.pb-prev')!.addEventListener('click', () => go(i - 1));
-    dots.forEach((d) => d.addEventListener('click', () => go(+d.dataset.go!)));
+    steps.forEach((s) => s.addEventListener('click', () => go(+s.dataset.go!)));
     play.addEventListener('click', () => {
       paused = !paused;
       play.setAttribute('aria-pressed', String(paused));
       play.setAttribute('aria-label', paused ? 'Play the playbook' : 'Pause the playbook');
     });
-    const stage = root.querySelector('.pb-book')!;
-    stage.addEventListener('mouseenter', () => (hover = true));
-    stage.addEventListener('mouseleave', () => (hover = false));
+    const deck = root.querySelector('.pb-deck')!;
+    deck.addEventListener('mouseenter', () => (hover = true));
+    deck.addEventListener('mouseleave', () => (hover = false));
     root.addEventListener('focusin', () => (hover = true));
     root.addEventListener('focusout', () => (hover = false));
     let x0 = 0;
-    stage.addEventListener('touchstart', (e) => { x0 = (e as TouchEvent).touches[0].clientX; }, { passive: true });
-    stage.addEventListener('touchend', (e) => { const dx = (e as TouchEvent).changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1); });
+    deck.addEventListener('touchstart', (e) => { x0 = (e as TouchEvent).touches[0].clientX; }, { passive: true });
+    deck.addEventListener('touchend', (e) => { const dx = (e as TouchEvent).changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1); });
 
-    restart();
-    timer = requestAnimationFrame(tick);
-    document.addEventListener('astro:before-swap', () => cancelAnimationFrame(timer), { once: true });
+    layout(); label(); restart();
+    raf = requestAnimationFrame(tick);
+    document.addEventListener('astro:before-swap', () => cancelAnimationFrame(raf), { once: true });
   }
 
   document.addEventListener('astro:page-load', initPlaybook);

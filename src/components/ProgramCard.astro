@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import { type Program, progUrl } from '../lib/site';
+import { type Program, progUrl, groupOf } from '../lib/site';
 import { photo } from '../lib/photos';
 interface Props { p: Program; compact?: boolean }
 const { p, compact } = Astro.props;
 ---
-<a href={progUrl(p)} class="pcard">
+<a href={progUrl(p)} class="pcard" data-group={groupOf(p.slug)}>
   <div class="pimg">
     <Image src={photo(p.hero)} alt="" widths={[480, 760]} sizes="(max-width: 640px) 100vw, (max-width: 1140px) 50vw, 400px" />
     <span class="num">{p.num === '+' ? '✦' : p.num}</span>

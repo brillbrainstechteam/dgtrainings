@@ -212,7 +212,7 @@ function motion() {
       tl.fromTo(a, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: .7, ease: 'power2.inOut', onComplete: () => gsap.set(a, { clearProps: 'strokeDasharray,strokeDashoffset' }) }, .3 + i * .55);
     });
     tl.from($('.ring-node', el), { scale: 0, transformOrigin: '50% 50%', duration: .6, stagger: .55, ease: 'back.out(2.4)' }, .15);
-    tl.fromTo($('.cy-step', el), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .55, ease: EASE }, .2);
+    tl.fromTo($('.cy-step', el), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .55, ease: EASE, clearProps: 'transform' }, .2);
   });
 
   // Process diagram: program impact path — stages slide in left→right, chevrons pulse
@@ -313,8 +313,86 @@ function motion() {
   });
 }
 
+
+/* ---------------- homepage polish ---------------- */
+function scrollProgress() {
+  const bar = document.querySelector<HTMLElement>('.scroll-progress i');
+  if (!bar) return;
+  const on = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(scrollY / max, 1) : 0})`;
+  };
+  on();
+  addEventListener('scroll', on, { passive: true });
+  cleanups.push(() => removeEventListener('scroll', on));
+}
+
+/** Program filter tabs: sliding pill + cards fade out/in by group. */
+function programFilter() {
+  const tabs = document.querySelector<HTMLElement>('.pf-tabs');
+  const grid = document.querySelector<HTMLElement>('.pf-grid');
+  if (!tabs || !grid) return;
+  const ink = tabs.querySelector<HTMLElement>('.pf-ink')!;
+  const btns = $<HTMLButtonElement>('button', tabs);
+  const cards = $<HTMLElement>('.pcard', grid);
+  const moveInk = (b: HTMLElement) => { ink.style.width = b.offsetWidth + 'px'; ink.style.transform = `translateX(${b.offsetLeft}px)`; };
+  const apply = (key: string) => {
+    btns.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.filter === key)));
+    moveInk(btns.find((b) => b.dataset.filter === key)!);
+    const show = (c: HTMLElement) => key === 'all' || c.dataset.group === key;
+    cards.forEach((c) => { if (!show(c)) c.classList.add('pf-out'); });
+    setTimeout(() => {
+      cards.forEach((c) => c.classList.toggle('pf-gone', !show(c)));
+      const vis = cards.filter(show);
+      vis.forEach((c) => c.classList.add('pf-out'));
+      requestAnimationFrame(() => vis.forEach((c, k) => setTimeout(() => c.classList.remove('pf-out'), k * 70)));
+      ScrollTrigger.refresh();
+    }, reduce() ? 0 : 320);
+  };
+  btns.forEach((b) => b.addEventListener('click', () => apply(b.dataset.filter!)));
+  requestAnimationFrame(() => moveInk(btns[0]));
+  const onResize = () => moveInk(btns.find((b) => b.getAttribute('aria-selected') === 'true')!);
+  addEventListener('resize', onResize);
+  cleanups.push(() => removeEventListener('resize', onResize));
+}
+
+/** Approach cycle: light up one stage at a time while it's on screen (pauses on hover). */
+function cycleHighlight() {
+  const el = document.querySelector<HTMLElement>('[data-cycle]');
+  if (!el) return;
+  const steps = $('.cy-step', el), nodes = $('.ring-node', el);
+  let k = 0, timer = 0, hover = false, visible = false;
+  const set = (n: number) => { k = n % steps.length; steps.forEach((s, j) => s.classList.toggle('is-active', j === k)); nodes.forEach((s, j) => s.classList.toggle('is-active', j === k)); };
+  const loop = () => { if (visible && !hover && !reduce()) set(k + 1); };
+  steps.forEach((s, j) => s.addEventListener('mouseenter', () => { hover = true; set(j); }));
+  el.addEventListener('mouseleave', () => (hover = false));
+  const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: .3 });
+  io.observe(el);
+  set(0);
+  timer = window.setInterval(loop, 2600);
+  cleanups.push(() => { clearInterval(timer); io.disconnect(); });
+}
+
+/** Gentle 3D tilt + cursor glow on cards (fine pointers, motion allowed). */
+function tilt() {
+  if (reduce() || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  $('.tile, .pf-grid .pcard, .stat, .snap-card, .ap-venue').forEach((el) => {
+    el.setAttribute('data-tilt', '');
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.classList.add('tilting');
+      el.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 6}deg) rotateY(${(x - 0.5) * 8}deg) translateY(-4px)`;
+      el.style.setProperty('--mx', `${x * 100}%`); el.style.setProperty('--my', `${y * 100}%`);
+    };
+    const leave = () => { el.classList.remove('tilting'); el.style.transform = ''; };
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerleave', leave);
+  });
+}
+
 function init() {
-  header(); accordions(); lightbox(); contactForm();
+  header(); accordions(); lightbox(); contactForm(); scrollProgress(); programFilter(); cycleHighlight(); tilt();
   ctx = gsap.context(() => { subnav(); if (!reduce()) motion(); });
   // fonts can shift line breaks — re-measure once loaded
   document.fonts?.ready.then(() => ScrollTrigger.refresh());

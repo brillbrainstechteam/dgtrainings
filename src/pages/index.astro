@@ -17,7 +17,7 @@ const chain = [
   { icon: 'heart', title: 'Stronger relationships', text: 'Customers come back, and bring others with them.' },
   { icon: 'sparkle', title: 'Sustainable growth', text: 'Every customer interaction becomes an opportunity for growth.' },
 ];
-import { HOME as H, TRAINER as T, SIGNATURE, WORK, GENERIC_TESTIMONIALS, rich } from '../lib/site';
+import { HOME as H, TRAINER as T, SIGNATURE, WORK, GROUPS, GENERIC_TESTIMONIALS, rich } from '../lib/site';
 import { photo } from '../lib/photos';
 
 const poster = photo('saheli-aurum/03');
@@ -157,7 +157,12 @@ const audiences = [
         </div>
         <p class="lead" data-reveal>{H.prog_intro}</p>
       </div>
-      <div class="grid3" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} compact />)}</div>
+      <div class="pf-tabs" role="tablist" aria-label="Filter programs" data-reveal>
+        <span class="pf-ink" aria-hidden="true"></span>
+        <button type="button" role="tab" aria-selected="true" data-filter="all">All <b>{SIGNATURE.length}</b></button>
+        {GROUPS.map((g) => <button type="button" role="tab" aria-selected="false" data-filter={g.key}>{g.title} <b>{g.items.length}</b></button>)}
+      </div>
+      <div class="grid3 pf-grid" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} compact />)}</div>
       <p class="center" style="margin-top:44px" data-reveal><a href="/programs/" class="btn btn--outline">Compare all 9 programs <Icon name="arrow" class="arr" /></a></p>
     </div>
   </section>

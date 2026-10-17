@@ -2,19 +2,14 @@
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Icon from '../components/Icon.astro';
-import { CONTACT, SIGNATURE, PROGRAMS, tel, wa, progUrl } from '../lib/site';
+import { CONTACT, SIGNATURE, PROGRAMS, GROUPS, bySlug, tel, wa, progUrl } from '../lib/site';
 
 interface Props { title: string; description: string; active?: string; header?: 'transparent' | 'solid' }
 const { title, description, active, header = 'transparent' } = Astro.props;
 const fullTitle = title.includes('DG Trainings') ? title : `${title} | DG Trainings`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // Programs menu: grouped into three themes, with short labels that scan quickly
-const P = (slug: string) => PROGRAMS.find((x) => x.slug === slug)!;
-const MENU = [
-  { title: 'Culture & leadership', items: [[P('life-work-culture-transformation'), 'Life & Work Culture'], [P('leadership-management'), 'Leadership & Management'], [P('orientation-training'), 'Orientation & Induction']] },
-  { title: 'Sales & customers', items: [[P('business-technical-sales-expert'), 'Sales Expert'], [P('telemarketing-training'), 'Telemarketing'], [P('marketing-mastery'), 'Marketing Mastery']] },
-  { title: 'Field, events & digital', items: [[P('sales-tour-training'), 'Sales Tour'], [P('exhibitions-training'), 'Exhibitions'], [P('digital-shakti'), 'Digital Shakti']] },
-] as const;
+const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, label]) => [bySlug(slug), label] as const) }));
 ---
 <!doctype html>
 <html lang="en">
@@ -37,6 +32,7 @@ const MENU = [
 </head>
 <body data-header={header}>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
   <div class="topbar">
     <div class="wrap">
       <div class="tb-l">

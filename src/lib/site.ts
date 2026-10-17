@@ -19,6 +19,13 @@ export type Program = (typeof data.PROGRAMS)[number] & Record<string, any>;
 export const PROGRAMS = data.PROGRAMS as Program[];
 export const SIGNATURE = PROGRAMS.filter((p) => !p.extra);
 export const bySlug = (slug: string) => PROGRAMS.find((p) => p.slug === slug)!;
+/** The three themes used by the Programs menu and the home-page filter, with short menu labels. */
+export const GROUPS = [
+  { key: 'culture', title: 'Culture & leadership', items: [['life-work-culture-transformation', 'Life & Work Culture'], ['leadership-management', 'Leadership & Management'], ['orientation-training', 'Orientation & Induction']] },
+  { key: 'sales', title: 'Sales & customers', items: [['business-technical-sales-expert', 'Sales Expert'], ['telemarketing-training', 'Telemarketing'], ['marketing-mastery', 'Marketing Mastery']] },
+  { key: 'field', title: 'Field, events & digital', items: [['sales-tour-training', 'Sales Tour'], ['exhibitions-training', 'Exhibitions'], ['digital-shakti', 'Digital Shakti']] },
+] as const;
+export const groupOf = (slug: string) => GROUPS.find((g) => g.items.some(([s]) => s === slug))?.key ?? '';
 
 const esc = (s: string) => s.replace(/&(?!\w+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
