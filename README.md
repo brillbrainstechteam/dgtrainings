@@ -24,10 +24,10 @@ Animations use GSAP (ScrollTrigger + SplitText) in `src/scripts/motion.ts` and r
 Add `?static` to any URL to view the page without animation.
 
 ## Deployment
-Every push to `main` builds the site and publishes it to GitHub Pages via `.github/workflows/deploy.yml`:
+Every push to `main` builds the site and publishes it to the `gh-pages` branch via `.github/workflows/deploy.yml`, which GitHub Pages serves:
 https://brillbrainstechteam.github.io/dgtrainings/
 
-One-time setup: in the GitHub repo go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+Pages settings: **Settings → Pages → Source: Deploy from a branch → `gh-pages` / root**. Keep the repository public (GitHub Free cannot serve Pages from a private repo).
 
 Moving to the BrillBrains sub-domain later: in the workflow set `SITE_URL` to the sub-domain and delete `BASE_PATH`,
 then add the domain under Settings → Pages → Custom domain.
