@@ -86,6 +86,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
         <div>
           <a href="/" class="logo" aria-label="DG Trainings — home"><span class="dg">DG</span><span class="tr">TRAININGS</span><span class="pp">POWER TO PERFORMANCE</span></a>
           <p>Business training for the jewellery industry, in partnership with <a class="bb" href={CONTACT.brillbrains} target="_blank" rel="noopener">BrillBrains Consultants</a> (Strategic &amp; Creative Forever).</p>
+          <a class="faddr" href={CONTACT.map} target="_blank" rel="noopener"><Icon name="pin" /><span>{CONTACT.address.replace(/^BrillBrains Consultants Pvt\. Ltd\., /, '')}</span></a>
           <div class="social">
             <a href={CONTACT.instagram} target="_blank" rel="noopener" aria-label="DG Trainings on Instagram"><Icon name="instagram" /></a>
             <a href={CONTACT.facebook} target="_blank" rel="noopener" aria-label="DG Trainings on Facebook"><Icon name="facebook" /></a>

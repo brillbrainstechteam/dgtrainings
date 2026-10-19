@@ -30,11 +30,11 @@ import { photo } from '../lib/photos';
           <li><a href={`mailto:${CONTACT.email}`}><span class="ico"><Icon name="mail" /></span><span><small>Email</small>{CONTACT.email}</span></a></li>
           <li><a href={`mailto:${CONTACT.email_bb}`}><span class="ico"><Icon name="mail" /></span><span><small>BrillBrains</small>{CONTACT.email_bb}</span></a></li>
           <li><a href={wa()} target="_blank" rel="noopener"><span class="ico"><Icon name="whatsapp" /></span><span><small>WhatsApp</small>Chat with us</span></a></li>
-          <li><span class="row"><span class="ico"><Icon name="pin" /></span><span><small>Address</small><span set:html={rich(CONTACT.address)} /></span></span></li>
+          <li><a href={CONTACT.map} target="_blank" rel="noopener"><span class="ico"><Icon name="pin" /></span><span><small>Address · open in Maps</small>{CONTACT.address}</span></a></li>
         </ul>
       </div>
 
-      <form class="form" id="plan" novalidate data-email={CONTACT.email} data-wa={CONTACT.whatsapp} data-reveal>
+      <form class="form" id="plan" novalidate data-email={CONTACT.email} data-wa={CONTACT.whatsapp} data-sheet={CONTACT.sheet_url || undefined} data-reveal>
         <div class="row2">
           <label>Full name *<input name="name" autocomplete="name" required placeholder="Your name" /></label>
           <label>Business name<input name="business" autocomplete="organization" placeholder="Jewellery brand / company" /></label>
@@ -43,12 +43,15 @@ import { photo } from '../lib/photos';
           <label>Phone / WhatsApp *<input name="phone" type="tel" autocomplete="tel" required placeholder="+91" inputmode="tel" /></label>
           <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@company.com" /></label>
         </div>
-        <label>Program of interest
-          <select name="program">
-            <option value="">Not sure — recommend one</option>
-            {PROGRAMS.map((p) => <option value={p.slug}>{p.name}</option>)}
-          </select>
-        </label>
+        <fieldset class="progs">
+          <legend>Trainings of interest <small>choose one or more</small></legend>
+          <div class="progs-list">
+            {PROGRAMS.map((p) => (
+              <label class="pchip"><input type="checkbox" name="program" value={p.slug} data-name={p.name} /><span>{p.name.replace(/ Training$/, '')}</span></label>
+            ))}
+          </div>
+          <small class="progs-note">Not sure? Leave these empty and we’ll recommend the right mix.</small>
+        </fieldset>
         <label>Team size &amp; goals<textarea name="goals" placeholder="How many people, which roles, and what you want to improve"></textarea></label>
         <p class="err" role="alert" hidden>Please add your name and phone number so we can reach you.</p>
         <button class="btn" type="submit" data-via="wa"><Icon name="whatsapp" /> Send on WhatsApp</button>
@@ -72,6 +75,18 @@ import { photo } from '../lib/photos';
   </section>
 </Base>
 <style>
+  .progs { border: 0; margin: 0 0 18px; padding: 0; min-width: 0; }
+  .progs legend { font-size: .84rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; padding: 0; }
+  .progs legend small, .progs-note { font-weight: 500; color: var(--grey-500); font-size: .78rem; }
+  .progs-note { display: block; margin-top: 8px; }
+  .progs-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pchip { position: relative; margin: 0; cursor: pointer; }
+  .pchip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .pchip span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1.5px solid var(--grey-200); background: var(--grey-50); font-size: .84rem; font-weight: 600; color: var(--ink); transition: background .25s, border-color .25s, color .25s; }
+  .pchip span::before { content: ""; width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid var(--grey-300); background: #fff; transition: background .25s, border-color .25s; }
+  .pchip input:checked + span { background: var(--grey-900); border-color: var(--grey-900); color: #fff; }
+  .pchip input:checked + span::before { background: var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23191a1c' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/11px no-repeat; border-color: var(--teal); }
+  .pchip input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 2px; }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
   .sent { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; font-size: .9rem; font-weight: 600; }
   .sent.ok { background: var(--teal-50); color: var(--teal-ink); }

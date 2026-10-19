@@ -54,7 +54,7 @@ const audiences = [
           <div class="hs is-on">
             <h1 class="hero-h1" data-split><span class="h1-brand">DG Trainings —</span> Where Great Teams Aren’t Born… <em>They’re Trained.</em></h1>
             <p class="hero-tag" data-hero>{H.headline_sub}</p>
-            <p class="sub" data-hero>17 years of turning retail floors, wholesale desks and factory units into high-performing teams.</p>
+            <p class="sub" data-hero>Since 2011, turning retail floors, wholesale desks and factory units into high-performing teams.</p>
           </div>
           <div class="hs" aria-hidden="true">
             <h2 class="hero-h1"><span class="h1-brand">Power to Performance —</span> Build a powerful team. Build an empire. <em>Be unstoppable.</em></h2>
@@ -69,7 +69,7 @@ const audiences = [
         <div class="hs-dots" data-hero aria-hidden="true"><i class="is-on"></i><i></i></div>
       </div>
       <div class="stats" aria-label="DG Trainings at a glance">
-        {H.stats.map(([n, l]) => <div class="stat" data-hero><strong data-count>{n}</strong><span>{l}</span></div>)}
+        {H.stats.map(([n, l]) => <div class="stat" data-hero>{n.startsWith('Since ') ? <strong class="since"><small>Since</small>{n.slice(6)}</strong> : <strong data-count>{n}</strong>}<span>{l}</span></div>)}
       </div>
     </div>
     <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
@@ -197,7 +197,7 @@ const audiences = [
     <div class="wrap trainer">
       <div class="portrait">
         <div class="frame" data-img><Image src={photo('shilpi/03')} alt="Portrait of Dipen Ghatalia" widths={[500, 800]} sizes="(max-width: 960px) 90vw, 480px" /></div>
-        <div class="badge" data-reveal><strong>17 years</strong><span>shaping teams through training</span></div>
+        <div class="badge" data-reveal><strong>Since 2011</strong><span>shaping teams through training</span></div>
       </div>
       <div>
         <span class="eyebrow">About the Trainer</span>

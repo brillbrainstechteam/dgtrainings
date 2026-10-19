@@ -644,3 +644,6 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
   .stat { background: rgba(35,36,38,.72); }
   .pb-blob { display: none; }
 }
+.stat strong.since small { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 6px; }
+.footer .faddr { display: flex; gap: 10px; align-items: flex-start; font-size: .84rem; line-height: 1.5; margin: -4px 0 18px; max-width: 340px; }
+.footer .faddr svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--teal); }

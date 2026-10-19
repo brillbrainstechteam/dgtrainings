@@ -3,39 +3,36 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { HOME as H, PROGRAMS, progUrl, rich } from '../lib/site';
+import { HOME as H, rich } from '../lib/site';
 import { photo } from '../lib/photos';
 
-// What each stage looks like in practice (drawn from the program sheets and FAQs)
+// Four stages as a connected timeline, each with a photo of that stage in practice.
 const stages = [
-  { icon: 'search', img: 'dishaa-platinum/01', alt: 'Working session with a leadership team', practice: [
+  { icon: 'search', key: 'Listen first', img: 'dishaa-platinum/01', alt: 'DG in a working session with a leadership team', practice: [
     'Conversations with owners, managers and HR',
-    'Your store, team, processes and goals studied first-hand',
-    'The numbers to track agreed before training starts',
+    'Your store, team and processes studied first-hand',
+    'The numbers to track agreed up front',
   ] },
-  { icon: 'pen', img: 'unique-factory/02', alt: 'DG mapping out a session plan on the whiteboard', practice: [
-    'Examples, role-plays and FAQs built on your own collections and customers',
-    'Scripts tailored to your brand, offers and customers — so they sound natural',
-    'Checklists, templates and scorecards adapted to your systems',
+  { icon: 'pen', key: 'Built for you', img: 'unique-factory/02', alt: 'DG mapping out a session plan on the whiteboard', practice: [
+    'Examples built on your own collections and customers',
+    'Scripts that sound like your brand',
+    'Checklists and scorecards for your systems',
   ] },
-  { icon: 'play', img: 'shivam-jewels/02', alt: 'A full-house interactive session', practice: [
-    'On-site at your showroom, office or factory',
+  { icon: 'play', key: 'Learn by doing', img: 'shivam-jewels/02', alt: 'A full-house interactive session', practice: [
+    'At your showroom, office or factory',
     'At a venue of your choice',
-    'In the field — during sales tours and exhibitions',
+    'In the field — on tours and at exhibitions',
+  ], places: [
+    { img: 'saheli-aurum/04', label: 'Showroom' },
+    { img: 'unique-factory/04', label: 'Factory' },
+    { img: 'gitanjali-2026/03', label: 'Outdoors' },
   ] },
-  { icon: 'refresh', img: 'dp/06', alt: 'Flip-chart follow-up session on the showroom floor', practice: [
-    'Follow-ups after the program to keep new habits alive',
-    'Simple before/after trackers, so the change is visible',
-    'Materials your team keeps for future batches [Confirm]',
+  { icon: 'refresh', key: 'Make it stick', img: 'paras-gold/03', alt: 'A trained team together after the program', practice: [
+    'Follow-ups that keep new habits alive',
+    'Before-and-after trackers, so change is visible',
+    'Support for the managers who lead it',
   ] },
 ];
-const venues = [
-  { label: 'The showroom floor', text: 'Between the counters your team works at every day', img: 'saheli-aurum/04' },
-  { label: 'Office or factory', text: 'With real products in hand', img: 'unique-factory/04' },
-  { label: 'A venue of your choice', text: 'For large teams and full-company sessions', img: 'shivam-jewels/06' },
-  { label: 'In the field', text: 'On sales tours and at exhibitions', img: 'gitanjali-2026/03' },
-];
-const measured = PROGRAMS.filter((p) => p.impact);
 ---
 <Base title="Our Approach — How DG Trainings Works" description={H.approach_intro} active="approach">
   <section class="phero phero--simple on-dark">
@@ -46,63 +43,39 @@ const measured = PROGRAMS.filter((p) => p.impact);
         <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><span aria-current="page">Our Approach</span></nav>
         <span class="eyebrow" data-hero>Our approach</span>
         <h1 data-split>A structured approach to <em>lasting change</em></h1>
-        <p class="lead" data-hero>{H.approach_intro}</p>
+        <p class="lead" data-hero>No off-the-shelf slides. Every engagement begins with your business and ends with behaviour your customers can see and feel.</p>
       </div>
     </div>
   </section>
 
   <section class="section section--white">
     <div class="wrap">
-      <div class="head head--row">
-        <div><span class="eyebrow">Four stages</span><h2 data-split>What happens <em>at every stage</em></h2></div>
-        <p class="lead" data-reveal>Every engagement follows the same four stages — the detail inside each one is built around your business.</p>
-      </div>
-      <ol class="ap-stages" role="list">
-        {H.steps.map(([t, d], i) => (
-          <li class="ap-stage">
-            <div class="frame ap-photo" data-img><Image src={photo(stages[i].img)} alt={stages[i].alt} widths={[500, 900]} sizes="(max-width: 960px) 100vw, 540px" /></div>
-            <div class="ap-body" data-reveal>
-              <span class="ap-n"><Icon name={stages[i].icon} /> Stage {String(i + 1).padStart(2, '0')}</span>
-              <h3>{t}</h3>
-              <p class="lead">{d}</p>
-              <h4>In practice</h4>
-              <ul class="ticks ticks--1">{stages[i].practice.map((x) => <li set:html={rich(x)} />)}</ul>
-            </div>
-          </li>
-        ))}
+      <div class="head center"><span class="eyebrow">Four stages</span><h2 data-split>From first conversation to <em>measurable progress</em></h2></div>
+      <ol class="tl" role="list">
+        {H.steps.map(([t, d], i) => {
+          const s = stages[i];
+          return (
+            <li class:list={['tl-row', { 'tl-row--flip': i % 2 === 1 }]}>
+              <span class="tl-node" aria-hidden="true"><Icon name={s.icon} /></span>
+              <div class="tl-media" data-reveal>
+                <div class="tl-photo"><Image src={photo(s.img)} alt={s.alt} widths={[500, 900]} sizes="(max-width: 960px) 92vw, 520px" /></div>
+                <span class="tl-tag">{s.key}</span>
+                {s.places && (
+                  <div class="tl-places">
+                    {s.places.map((pl) => <figure><Image src={photo(pl.img)} alt="" width={240} height={180} /><figcaption>{pl.label}</figcaption></figure>)}
+                  </div>
+                )}
+              </div>
+              <div class="tl-body" data-reveal>
+                <span class="tl-n">Stage {String(i + 1).padStart(2, '0')}</span>
+                <h3>{t}</h3>
+                <p>{d}</p>
+                <ul>{s.practice.map((x) => <li set:html={rich(x)} />)}</ul>
+              </div>
+            </li>
+          );
+        })}
       </ol>
-    </div>
-  </section>
-
-  <section class="section section--tint">
-    <div class="wrap">
-      <div class="head"><span class="eyebrow">Where training happens</span><h2 data-split>We come to <em>where your team works</em></h2></div>
-      <div class="ap-venues" data-stagger>
-        {venues.map((v) => (
-          <figure class="ap-venue">
-            <Image src={photo(v.img)} alt="" widths={[400, 700]} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 300px" />
-            <figcaption><b>{v.label}</b><span>{v.text}</span></figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--white">
-    <div class="wrap">
-      <div class="head head--row">
-        <div><span class="eyebrow">What we measure</span><h2 data-split>Progress you can <em>see in the numbers</em></h2></div>
-        <p class="lead" data-reveal>Before each program we agree what to track, then compare before and after.</p>
-      </div>
-      <div class="ap-measure" data-stagger>
-        {measured.map((p) => (
-          <a class="ap-m" href={progUrl(p)}>
-            <span class="ap-m-n">{p.num}</span>
-            <b>{p.short === 'LWCT' ? 'Life & Work Culture' : p.short}</b>
-            <p>{p.impact}</p>
-          </a>
-        ))}
-      </div>
     </div>
   </section>
 
@@ -110,28 +83,43 @@ const measured = PROGRAMS.filter((p) => p.impact);
 </Base>
 
 <style>
-  .ap-stages { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(36px, 5vw, 64px); }
-  .ap-stage { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
-  .ap-stage:nth-child(even) .ap-photo { order: 2; }
-  .ap-photo { aspect-ratio: 4/3; }
-  .ap-n { display: inline-flex; align-items: center; gap: 10px; font-size: .74rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-ink); }
-  .ap-n :global(svg) { width: 32px; height: 32px; padding: 7px; border-radius: 10px; background: var(--grey-900); color: var(--teal); }
-  .ap-body h3 { font-size: clamp(2rem, 3.4vw, 2.8rem); margin: 10px 0 8px; }
-  .ap-body h4 { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--grey-500); margin: 18px 0 0; }
-  .ap-venues { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .ap-venue { position: relative; margin: 0; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3/4; isolation: isolate; }
-  .ap-venue :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.2s var(--ease); }
-  .ap-venue::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 35%, rgba(25,26,28,.9)); }
-  .ap-venue:hover :global(img) { transform: scale(1.06); }
-  .ap-venue figcaption { position: absolute; left: 20px; right: 20px; bottom: 20px; color: #fff; }
-  .ap-venue b { display: block; font-family: var(--display); font-size: 1.4rem; font-weight: 600; }
-  .ap-venue span { font-size: .86rem; color: rgba(255,255,255,.8); }
-  .ap-measure { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
-  .ap-m { display: block; background: #fff; border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 20px 22px; transition: border-color .3s, transform .4s var(--ease), box-shadow .4s; }
-  .ap-m:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: var(--shadow); }
-  .ap-m-n { font-family: var(--display); color: var(--teal-ink); font-size: 1.3rem; font-weight: 600; margin-right: 8px; }
-  .ap-m b { font-size: 1.05rem; color: var(--ink); }
-  .ap-m p { margin: 8px 0 0; font-size: .9rem; color: var(--muted); }
-  @media (max-width: 960px) { .ap-stage { grid-template-columns: 1fr; } .ap-stage:nth-child(even) .ap-photo { order: 0; } .ap-venues { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .ap-venues { grid-template-columns: 1fr; } .ap-venue { aspect-ratio: 4/3; } }
+  .tl { position: relative; list-style: none; margin: 0 auto; padding: 0; max-width: 1120px; display: grid; gap: clamp(48px, 6vw, 88px); }
+  /* the spine that connects the four stages */
+  .tl::before { content: ""; position: absolute; left: 50%; top: 24px; bottom: 24px; width: 2px; transform: translateX(-50%); background: linear-gradient(var(--teal), var(--teal-ink)); opacity: .5; }
+  .tl-row { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(56px, 8vw, 120px); align-items: center; }
+  .tl-row--flip .tl-media { order: 2; }
+  .tl-node { position: absolute; left: 50%; top: 50%; z-index: 2; translate: -50% -50%; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #fff; background: linear-gradient(140deg, var(--teal), var(--teal-ink)); box-shadow: 0 0 0 8px #fff, 0 14px 30px -12px rgba(15,113,104,.7); rotate: 45deg; }
+  .tl-node :global(svg) { width: 24px; height: 24px; rotate: -45deg; }
+  .tl-media { position: relative; isolation: isolate; }
+  .tl-photo { position: relative; aspect-ratio: 4 / 3; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow-lg); }
+  .tl-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(16,24,24,.55)); }
+  .tl-photo :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .tl-row:hover .tl-photo :global(img) { transform: scale(1.05); }
+  .tl-media::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; z-index: -1; border-radius: 26px; border: 2px solid var(--teal-100); background: var(--teal-50); }
+  .tl-row--flip .tl-media::before { inset: 18px 18px -18px -18px; }
+  .tl-tag { position: absolute; left: 18px; bottom: 18px; z-index: 1; font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--grey-950); background: var(--teal); padding: 8px 14px; border-radius: 999px; }
+  .tl-places { position: absolute; right: -14px; bottom: -34px; z-index: 2; display: flex; gap: 8px; }
+  .tl-places figure { margin: 0; width: 96px; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 14px 30px -14px rgba(0,0,0,.45); border: 3px solid #fff; }
+  .tl-places :global(img) { display: block; width: 100%; height: 66px; object-fit: cover; }
+  .tl-places figcaption { font-size: .66rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; text-align: center; padding: 4px 0 2px; color: var(--ink); }
+  .tl-n { font-size: .74rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-ink); }
+  .tl-body h3 { font-size: clamp(2.1rem, 3.6vw, 3rem); margin: 6px 0 10px; }
+  .tl-body p { font-size: 1.06rem; color: var(--muted); margin: 0 0 18px; }
+  .tl-body ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .tl-body li { position: relative; padding: 11px 14px 11px 40px; border-radius: 14px; background: var(--grey-50); border: 1px solid var(--grey-100); font-size: .93rem; font-weight: 600; color: var(--ink); }
+  .tl-body li::before { content: ""; position: absolute; left: 15px; top: 16px; width: 12px; height: 9px; background: var(--teal-600); clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, 50% 50%); }
+  @media (max-width: 960px) {
+    .tl::before { left: 27px; transform: none; }
+    .tl-row { grid-template-columns: 1fr; gap: 22px; padding-left: 72px; }
+    .tl-row--flip .tl-media { order: 0; }
+    .tl-node { left: 0; top: 0; translate: 0 0; width: 54px; height: 54px; }
+    .tl-media::before { display: none; }
+    .tl-places { position: static; margin-top: 10px; }
+    .tl-places figure { flex: 1; width: auto; }
+  }
+  @media (max-width: 560px) {
+    .tl-row { padding-left: 0; }
+    .tl::before, .tl-node { display: none; }
+    .tl-photo { border-radius: 20px; }
+  }
 </style>

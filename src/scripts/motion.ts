@@ -112,14 +112,15 @@ function subnav() {
 function contactForm() {
   const f = document.querySelector<HTMLFormElement>('#plan');
   if (!f) return;
-  const sel = f.elements.namedItem('program') as HTMLSelectElement;
+  const boxes = $<HTMLInputElement>('input[name="program"]', f);
   const q = new URLSearchParams(location.search).get('program');
-  if (q) sel.value = q;
+  if (q) boxes.forEach((b) => (b.checked = b.value === q));
   let via = 'wa';
   $<HTMLButtonElement>('button[data-via]', f).forEach((b) => b.addEventListener('click', () => (via = b.dataset.via!)));
   f.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = new FormData(f);
+    if (d.get('_honey')) return;
     let ok = true;
     ['name', 'phone'].forEach((k) => {
       const el = f.elements.namedItem(k) as HTMLInputElement;
@@ -129,29 +130,40 @@ function contactForm() {
     });
     (f.querySelector('.err') as HTMLElement).hidden = ok;
     if (!ok) { f.querySelector<HTMLElement>('[aria-invalid="true"]')!.focus(); return; }
-    const prog = sel.options[sel.selectedIndex].text;
-    const msg = `Training enquiry\nName: ${d.get('name')}\nBusiness: ${d.get('business') || '-'}\nPhone: ${d.get('phone')}\nEmail: ${d.get('email') || '-'}\nProgram: ${prog}\nTeam size & goals: ${d.get('goals') || '-'}`;
-    if (via !== 'mail') { window.open(`https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener'); return; }
+    const picked = boxes.filter((b) => b.checked).map((b) => b.dataset.name!);
+    const progs = picked.length ? picked.join(', ') : 'Not sure — please recommend';
+    const v = (k: string) => String(d.get(k) || '').trim() || '-';
+    const lead = { name: v('name'), business: v('business'), phone: v('phone'), email: v('email'), programs: progs, goals: v('goals') };
+
+    // Optional: log every enquiry as a row in a Google Sheet (see docs/enquiries-to-google-sheets.md)
+    if (f.dataset.sheet) {
+      fetch(f.dataset.sheet, { method: 'POST', mode: 'no-cors', keepalive: true,
+        body: new URLSearchParams({ ...lead, via: via === 'mail' ? 'Email' : 'WhatsApp', page: location.href }) }).catch(() => {});
+    }
+
+    if (via !== 'mail') {
+      const msg = `*New training enquiry*\nName: ${lead.name}\nBusiness: ${lead.business}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nTrainings: ${lead.programs}\nTeam size & goals: ${lead.goals}`;
+      window.open(`https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+      return;
+    }
     // Email: posted straight to the training inbox through FormSubmit (no mail app needed)
     const btn = f.querySelector<HTMLButtonElement>('button[data-via="mail"]')!;
     const status = f.querySelector<HTMLElement>('.sent')!;
-    if (d.get('_honey')) return;
     btn.disabled = true; btn.dataset.label ??= btn.innerHTML; btn.textContent = 'Sending…';
     fetch(`https://formsubmit.co/ajax/${f.dataset.email}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        _subject: `New training enquiry — ${d.get('name')}${d.get('business') ? ' (' + d.get('business') + ')' : ''}`,
+        _subject: `New training enquiry — ${lead.name}${lead.business !== '-' ? ' (' + lead.business + ')' : ''}`,
         _template: 'table', _captcha: 'false',
-        ...(d.get('email') ? { _replyto: d.get('email') } : {}),
-        Name: d.get('name'), Business: d.get('business') || '-', 'Phone / WhatsApp': d.get('phone'),
-        Email: d.get('email') || '-', Program: prog, 'Team size & goals': d.get('goals') || '-',
-        Page: location.href,
+        ...(lead.email !== '-' ? { _replyto: lead.email } : {}),
+        Name: lead.name, Business: lead.business, 'Phone / WhatsApp': lead.phone, Email: lead.email,
+        Trainings: lead.programs, 'Team size & goals': lead.goals, Page: location.href,
       }),
     })
-      .then((r) => r.json().then((j) => ({ ok: r.ok && String(j.success) === 'true', j })))
-      .then(({ ok }) => {
-        if (!ok) throw new Error('not sent');
+      .then((r) => r.json().then((j) => r.ok && String(j.success) === 'true'))
+      .then((sent) => {
+        if (!sent) throw new Error('not sent');
         status.hidden = false; status.className = 'sent ok';
         status.textContent = 'Thank you — your enquiry has reached our training team. We’ll call you shortly.';
         f.reset();

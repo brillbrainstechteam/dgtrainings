@@ -13,7 +13,7 @@ const facts = [
   { icon: 'pin', k: 'Where', v: where },
   { icon: 'pen', k: 'Duration', v: 'Planned around your team and schedule' },
   { icon: 'users', k: 'Ideal for', v: p.ideal },
-  { icon: 'book', k: 'Curriculum', v: p.full ? `${p.modules.length} modules` : 'Shared on a discovery call', href: p.full ? '#curriculum' : undefined },
+  { icon: 'book', k: 'Full outline', v: 'Shared on a discovery call', href: `/contact/?program=${p.slug}` },
 ];
 const focus = (p.focus as string).split(' · ');
 ---
@@ -37,7 +37,7 @@ const focus = (p.focus as string).split(' · ');
   <div class="snap-focus" aria-label="Focus areas">{focus.map((f) => <span>{f}</span>)}</div>
   <a class="snap-trainer" href="/about-dg/">
     <Image src={photo('shilpi/03')} alt="" width={100} height={100} />
-    <span><b>Led by Dipen Ghatalia (DG)</b><small>{trainerAngle ?? 'Brand & management consultant, 17 years in training'}</small></span>
+    <span><b>Led by Dipen Ghatalia (DG)</b><small>{trainerAngle ?? 'Brand & management consultant, training teams since 2011'}</small></span>
     <Icon name="arrow" />
   </a>
 </aside>

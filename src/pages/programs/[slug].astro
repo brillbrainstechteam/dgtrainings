@@ -7,7 +7,6 @@ import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Gallery from '../../components/Gallery.astro';
 import ProgramSnapshot from '../../components/ProgramSnapshot.astro';
-import ModuleExplorer from '../../components/ModuleExplorer.astro';
 import ProgramResults from '../../components/ProgramResults.astro';
 import ProgramDiagram from '../../components/ProgramDiagram.astro';
 import { PROGRAMS, type Program, bySlug, rich, dots, wa, workFor, WORK } from '../../lib/site';
@@ -30,7 +29,7 @@ const galleryPhotos = album(galleryWork.key);
 const trainerAngle = p.trainer_bio?.split(' — ').slice(1).join(' — ').replace(/^and (is )?/, '').replace(/\.$/, '').replace(/^./, (c: string) => c.toUpperCase());
 
 const sections = p.full
-  ? [['overview', 'Overview'], ['glance', 'At a glance'], ['curriculum', 'Curriculum'], ['results', 'Results'], ['audience', 'Who attends'], ['floor', 'In action'], ['faqs', 'FAQs']]
+  ? [['overview', 'Overview'], ['glance', 'At a glance'], ['results', 'Results'], ['audience', 'Who attends'], ['floor', 'In action'], ['faqs', 'FAQs']]
   : [];
 ---
 <Base title={`${title} — ${tagline}`} description={intro} active="programs">
@@ -76,28 +75,14 @@ const sections = p.full
 
       <section class="section section--tint" id="glance"><div class="wrap"><ProgramDiagram p={p} /></div></section>
 
-      <section class="section section--white" id="curriculum">
-        <div class="wrap">
-          <div class="head head--row">
-            <div>
-              <span class="eyebrow">The curriculum</span>
-              <h2 data-split>{p.modules.length} modules, <em>tailored to you</em></h2>
-            </div>
-            <p class="lead" data-reveal>Pick a module to see what it covers. Every example is built on your own products and customers.</p>
-          </div>
-          <ModuleExplorer modules={p.modules} id={`mx-${p.slug}`} />
-          {p.optional_track && <div class="note" style="margin-top:24px" data-reveal><b>{p.optional_track[0]}</b><br /><span set:html={rich(p.optional_track[1])} /></div>}
-        </div>
-      </section>
-
-      <section class="section section--tint" id="results">
+      <section class="section section--white" id="results">
         <div class="wrap">
           <div class="head"><span class="eyebrow">Results</span><h2 data-split>{p.outcomes_h}</h2></div>
           <ProgramResults p={p} />
         </div>
       </section>
 
-      <section class="section section--white" id="audience">
+      <section class="section section--tint" id="audience">
         <div class="wrap cols2" data-stagger>
           <div class="panel">
             <span class="eyebrow">Who should attend</span>
@@ -138,7 +123,7 @@ const sections = p.full
     </>
   )}
 
-  <section class:list={['section', p.full ? 'section--tint' : 'section--white']} id="floor">
+  <section class="section section--white" id="floor">
     <div class="wrap">
       <div class="head head--row">
         <div>
@@ -152,7 +137,7 @@ const sections = p.full
   </section>
 
   {p.full && (
-    <section class="section section--white" id="faqs">
+    <section class="section section--tint" id="faqs">
       <div class="wrap">
         <div class="head center"><span class="eyebrow">FAQs</span><h2 data-split>About this <em>program</em></h2></div>
         <Faq items={p.faqs} />
@@ -160,7 +145,7 @@ const sections = p.full
     </section>
   )}
 
-  <section class="section section--tint">
+  <section class:list={['section', p.full ? 'section--white' : 'section--tint']}>
     <div class="wrap">
       <div class="head"><span class="eyebrow">Keep exploring</span><h2 data-split>Explore Our <em>Other Programs</em></h2></div>
       <div class="grid3 rail" data-stagger>{related.map((r) => <ProgramCard p={r} compact />)}</div>
