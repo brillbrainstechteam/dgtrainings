@@ -5,10 +5,11 @@ import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import { CONTACT, PROGRAMS, HOME as H, tel, wa, rich, faqSchema } from '../lib/site';
 import { photo } from '../lib/photos';
+import heroTeam from '../assets/heroes/contact-team.jpg';
 ---
 <Base title="Contact — Book Training for Your Jewellery Team" description="Tell us about your business and the results you want. We’ll recommend the right program — or build one for you." active="contact" crumbs={[['Contact', '/contact/']]} schema={[faqSchema(H.faqs)]}>
-  <section class="phero phero--simple on-dark">
-    <div class="phero-bg"><Image src={photo('shivam-jewels/10')} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
+  <section class="phero phero--simple phero--clear on-dark" style="--pos: 78% 30%">
+    <div class="phero-bg"><Image src={heroTeam} alt="The VChains team with DG after a training session" widths={[900, 1600, 2800]} sizes="100vw" loading="eager" /></div>
     <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
     <div class="wrap">
       <div>

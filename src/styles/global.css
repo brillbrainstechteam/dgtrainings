@@ -352,8 +352,14 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 /* ---------- inner page hero ---------- */
 .phero { position: relative; background: var(--grey-950); color: #fff; overflow: hidden; isolation: isolate; }
 .phero-bg { position: absolute; inset: -12% 0 0; z-index: -2; }
-.phero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.phero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, center); }
+/* Bright people photos: keep the text side dark, let faces on the right show through */
 .phero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(25,26,28,.97) 0%, rgba(25,26,28,.88) 50%, rgba(25,26,28,.62) 100%); }
+/* Composed hero banners (src/assets/heroes, made with deploy/compose-hero.cjs): photo on the right, dark on the left.
+   Light overlay so faces stay clear; heading kept to the dark half. */
+.phero--clear::before { background: linear-gradient(180deg, rgba(25,26,28,.7) 0, rgba(25,26,28,.35) 90px, rgba(25,26,28,0) 170px), linear-gradient(90deg, rgba(25,26,28,.55) 0%, rgba(25,26,28,.2) 40%, rgba(25,26,28,0) 55%); }
+.phero--clear .wrap > div { max-width: 46%; }
+@media (max-width: 960px) { .phero--clear .wrap > div { max-width: none; } .phero--clear::before { background: linear-gradient(180deg, rgba(25,26,28,.5) 0%, rgba(25,26,28,.72) 55%, rgba(25,26,28,.9) 100%); } }
 .phero::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--teal); }
 .phero .wrap { display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: start; padding-top: calc(var(--header-h) + 64px); padding-bottom: 96px; }
 .phero--simple .wrap { grid-template-columns: 1fr; padding-bottom: 88px; }

@@ -8,6 +8,7 @@ import Venn from '../components/diagrams/Venn.astro';
 import Timeline from '../components/diagrams/Timeline.astro';
 import { TRAINER as T } from '../lib/site';
 import { photo } from '../lib/photos';
+import heroDG from '../assets/heroes/about-dg.jpg';
 
 const expertise = [
   { title: 'Business', items: ['In business since 2000', 'Brand & management consultant', 'Marketing and sales expert'] },
@@ -28,9 +29,9 @@ const person = {
 };
 const moments = ['safalta-sangam/01', 'shivam-jewels/05', 'safalta-sangam/03', 'shilpi/02', 'jg/04'].map(photo);
 ---
-<Base title="Dipen Ghatalia (DG) — Jewellery Business Trainer" description={T.bio[0]} active="about" image={photo('safalta-sangam/05')} crumbs={[['About DG', '/about-dg/']]} schema={[person]}>
-  <section class="phero phero--simple on-dark">
-    <div class="phero-bg"><Image src={photo('safalta-sangam/05')} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
+<Base title="Dipen Ghatalia (DG) — Jewellery Business Trainer" description={T.bio[0]} active="about" image={heroDG} crumbs={[['About DG', '/about-dg/']]} schema={[person]}>
+  <section class="phero phero--simple phero--clear on-dark" style="--pos: 82% 20%">
+    <div class="phero-bg"><Image src={heroDG} alt="Dipen Ghatalia (DG) leading a training session" widths={[900, 1600, 2800]} sizes="100vw" loading="eager" /></div>
     <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
     <div class="wrap">
       <div>
