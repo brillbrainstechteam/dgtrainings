@@ -1,12 +1,12 @@
 // Builds a redirect-only copy of the site for GitHub Pages: every page of the real build
-// (dist-vps) gets a tiny HTML file that forwards to the same page on the sub-domain.
+// (dist-vps) gets a tiny HTML file that forwards to the same page on dgtrainings.com.
 // GitHub Pages can't send server redirects, so this uses an instant JS redirect, a meta refresh
-// fallback and a canonical link (which tells search engines the sub-domain is the real address).
+// fallback and a canonical link (which tells search engines dgtrainings.com is the real address).
 // Usage: node deploy/make-redirects.mjs <built-site-dir> <out-dir> <new-origin> <old-base>
 import { readdirSync, statSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join, relative, dirname, sep } from 'node:path';
 
-const [src = 'dist-vps', out = 'dist-redirects', origin = 'https://dgtrainings.brillbrainsconsultants.com', base = '/dgtrainings'] = process.argv.slice(2);
+const [src = 'dist-vps', out = 'dist-redirects', origin = 'https://dgtrainings.com', base = '/dgtrainings'] = process.argv.slice(2);
 
 const page = (target) => `<!doctype html>
 <html lang="en"><head><meta charset="utf-8">

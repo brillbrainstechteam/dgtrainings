@@ -18,7 +18,7 @@ program, or participating in a program, you agree to these Terms and
 Conditions and any applicable quotation, booking confirmation, proposal,
 or separate written agreement.
 
-**Website:** https://dgtrainings.brillbrainsconsultants.com/
+**Website:** https://dgtrainings.com/
 
 ## 2. Services Offered
 
@@ -375,7 +375,7 @@ contact:
 **Training Appointments:** +91 73041 92092\
 **Operations:** +91 73047 92092\
 **Training email:** transform@dgtrainings.com\
-**Website:** https://dgtrainings.brillbrainsconsultants.com/
+**Website:** https://dgtrainings.com/
 
 Please include sufficient information for us to understand and respond
 to your request. Do not send passwords, authentication codes, or

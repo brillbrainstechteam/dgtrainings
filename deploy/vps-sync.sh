@@ -1,16 +1,16 @@
 #!/bin/bash
 # Publishes the latest build of the site on the VPS.
-# Runs every minute from the dgtrainings user's crontab:
-#   * * * * * /home/dgtrainings/deploy/vps-sync.sh
+# Runs every minute from the dgtrainingscom user's crontab:
+#   * * * * * /home/dgtrainingscom/deploy/vps-sync.sh
 # GitHub Actions pushes each build to the `vps-dist` branch; this script copies it into the
 # CloudPanel site folder whenever that branch changes. The repo is public, so no credentials needed.
 set -euo pipefail
 REPO=https://github.com/brillbrainstechteam/dgtrainings.git
 BRANCH=vps-dist
-WORK=/home/dgtrainings/deploy/$BRANCH
-WEB=/home/dgtrainings/htdocs/dgtrainings.brillbrainsconsultants.com
-LOG=/home/dgtrainings/logs/deploy.log
-STAMP=/home/dgtrainings/deploy/published.sha      # last build copied into the site folder
+WORK=/home/dgtrainingscom/deploy/$BRANCH
+WEB=/home/dgtrainingscom/htdocs/dgtrainings.com
+LOG=/home/dgtrainingscom/logs/deploy.log
+STAMP=/home/dgtrainingscom/deploy/published.sha      # last build copied into the site folder
 
 exec 9>/tmp/dgtrainings-deploy.lock
 flock -n 9 || exit 0                                   # skip if the previous run is still going

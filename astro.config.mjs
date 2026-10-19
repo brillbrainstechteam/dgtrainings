@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 // Deploy targets:
 //  - GitHub Pages project site: SITE_URL=https://brillbrainstechteam.github.io BASE_PATH=/dgtrainings
-//  - Final BrillBrains sub-domain: leave BASE_PATH unset (served from the domain root)
-const SITE = process.env.SITE_URL || 'https://dgtrainings.brillbrainsconsultants.com';
+//  - Live site (dgtrainings.com): leave BASE_PATH unset (served from the domain root)
+const SITE = process.env.SITE_URL || 'https://dgtrainings.com';
 const BASE = (process.env.BASE_PATH || '/').replace(/\/?$/, '/');
 
 /** Pages link to root paths like "/programs/". When the site lives under a sub-path, prefix them after the build. */

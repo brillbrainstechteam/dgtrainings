@@ -1,11 +1,11 @@
 name: Deploy
 
 # On every push to main:
-#  1. builds the site for https://dgtrainings.brillbrainsconsultants.com and publishes it to the
+#  1. builds the site for https://dgtrainings.com and publishes it to the
 #     vps-dist branch. The VPS checks that branch every minute and goes live with any change
 #     (see deploy/vps-sync.sh) — no server credentials are stored in GitHub.
 #  2. publishes redirect-only pages to gh-pages, so the old GitHub Pages address
-#     (brillbrainstechteam.github.io/dgtrainings/…) forwards to the same page on the sub-domain.
+#     (brillbrainstechteam.github.io/dgtrainings/…) forwards to the same page on dgtrainings.com.
 
 on:
   push:
@@ -29,10 +29,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build for the BrillBrains sub-domain
+      - name: Build for dgtrainings.com
         run: npx astro build --outDir dist-vps
         env:
-          SITE_URL: https://dgtrainings.brillbrainsconsultants.com
+          SITE_URL: https://dgtrainings.com
       - name: Publish to vps-dist
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,7 +43,7 @@ jobs:
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA}"
           git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" vps-dist
       - name: Build GitHub Pages redirects
-        run: node deploy/make-redirects.mjs dist-vps dist-redirects https://dgtrainings.brillbrainsconsultants.com /dgtrainings
+        run: node deploy/make-redirects.mjs dist-vps dist-redirects https://dgtrainings.com /dgtrainings
       - name: Publish redirects to gh-pages
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}

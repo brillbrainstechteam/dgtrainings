@@ -1,6 +1,6 @@
 # DG Trainings website
 
-Static site built with [Astro](https://astro.build). Output is plain HTML/CSS/JS in `dist/` — upload it to the BrillBrains sub-domain.
+Static site built with [Astro](https://astro.build). Output is plain HTML/CSS/JS in `dist/` — served at https://dgtrainings.com (see Live site below).
 
 ```bash
 npm install
@@ -35,20 +35,23 @@ then add the domain under Settings → Pages → Custom domain.
 To build locally for the GitHub Pages path (Git Bash on Windows needs `MSYS_NO_PATHCONV=1`):
 `SITE_URL=https://brillbrainstechteam.github.io BASE_PATH=/dgtrainings npm run build`
 
-## Live site: https://dgtrainings.brillbrainsconsultants.com
+## Live site: https://dgtrainings.com
 
 Hosted on the BrillBrains VPS (187.127.176.187, CloudPanel), as the static site
-`dgtrainings.brillbrainsconsultants.com` (site user `dgtrainings`).
+`dgtrainings.com` (site user `dgtrainingscom`). `www.dgtrainings.com` redirects to `dgtrainings.com`.
 
 **How a change goes live:** push to `main` → GitHub Actions builds the site and publishes it to the `vps-dist` branch →
-the VPS checks that branch every minute (`deploy/vps-sync.sh`, in the `dgtrainings` user's crontab)
-and copies any new build into `/home/dgtrainings/htdocs/dgtrainings.brillbrainsconsultants.com`.
-Typically live within 1–2 minutes of the push. Log: `/home/dgtrainings/logs/deploy.log`.
+the VPS checks that branch every minute (`deploy/vps-sync.sh`, in the `dgtrainingscom` user's crontab)
+and copies any new build into `/home/dgtrainingscom/htdocs/dgtrainings.com`.
+Typically live within 1–2 minutes of the push. Log: `/home/dgtrainingscom/logs/deploy.log`.
 
-- DNS: Cloudflare, `A dgtrainings → 187.127.176.187`, DNS only (grey cloud).
-- HTTPS: Let's Encrypt via CloudPanel (auto-renews).
-- The site user's CloudPanel/SFTP password is in `/root/dgtrainings-siteuser.txt` on the server.
-- If `deploy/vps-sync.sh` changes, copy it to `/home/dgtrainings/deploy/` on the server.
+- Domain registered at GoDaddy, nameservers on Cloudflare. DNS: `A dgtrainings.com → 187.127.176.187` and
+  `CNAME www → dgtrainings.com`.
+- HTTPS: Let's Encrypt via CloudPanel for `dgtrainings.com` + `www.dgtrainings.com` (auto-renews).
+- The site user's CloudPanel/SFTP password is in `/root/dgtrainingscom-siteuser.txt` on the server.
+- If `deploy/vps-sync.sh` changes, copy it to `/home/dgtrainingscom/deploy/` on the server.
 
-The old GitHub Pages address (brillbrainstechteam.github.io/dgtrainings/…) now only holds redirect pages
-(`deploy/make-redirects.mjs`) that forward each page to the same page on the sub-domain.
+Old addresses that now redirect to the same page on dgtrainings.com:
+- `dgtrainings.brillbrainsconsultants.com` — 301 redirect in its CloudPanel vhost (site user `dgtrainings`, kept only for this
+  redirect and its certificate).
+- `brillbrainstechteam.github.io/dgtrainings/…` — redirect pages on `gh-pages` (`deploy/make-redirects.mjs`).

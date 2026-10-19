@@ -15,7 +15,7 @@ protect personal information when you visit our website, contact us,
 submit an enquiry, request a training appointment, book a training
 program, participate in training, or otherwise interact with us.
 
-**Website:** https://dgtrainings.brillbrainsconsultants.com/
+**Website:** https://dgtrainings.com/
 
 ## 2. Information We Collect
 
@@ -254,7 +254,7 @@ or concerns, contact the Privacy and Grievance Team at:
 **Training Appointments:** +91 73041 92092\
 **Operations:** +91 73047 92092\
 **Email for training operations:** transform@dgtrainings.com\
-**Website:** https://dgtrainings.brillbrainsconsultants.com/
+**Website:** https://dgtrainings.com/
 
 Please describe your request clearly and provide enough information for
 us to understand and respond. Do not send passwords, authentication
