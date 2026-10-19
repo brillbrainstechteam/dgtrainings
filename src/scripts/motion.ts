@@ -135,11 +135,15 @@ function contactForm() {
     const v = (k: string) => String(d.get(k) || '').trim() || '-';
     const lead = { name: v('name'), business: v('business'), phone: v('phone'), email: v('email'), programs: progs, goals: v('goals') };
 
-    // Google Sheet (see docs/enquiries-to-google-sheets.md): every enquiry becomes a row; for "Send by email"
-    // the same Apps Script also emails it to the training inbox from your Google account.
-    const toSheet = (notify: boolean) => fetch(f.dataset.sheet!, { method: 'POST', keepalive: true,
-      body: new URLSearchParams({ ...lead, via: via === 'mail' ? 'Email' : 'WhatsApp', page: location.href, notify: notify ? '1' : '0' }) });
-    if (f.dataset.sheet && via !== 'mail') toSheet(false).catch(() => {});
+    // Every enquiry is also recorded in the DG Google Form (its responses sheet + email alerts).
+    // Ticked trainings go in as separate checkbox values; "not sure" is recorded as "Other".
+    if (f.dataset.gform) {
+      const g = JSON.parse(f.dataset.gform);
+      const body = new URLSearchParams({ [g.name]: lead.name, [g.business]: lead.business, [g.phone]: lead.phone,
+        [g.email]: lead.email, [g.goals]: lead.goals, [g.via]: `${via === 'mail' ? 'Email' : 'WhatsApp'} · ${location.href}` });
+      (picked.length ? picked : ['Other']).forEach((p) => body.append(g.programs, p));
+      fetch(g.action, { method: 'POST', mode: 'no-cors', keepalive: true, body }).catch(() => {});
+    }
 
     if (via !== 'mail') {
       const msg = `*New training enquiry*\nName: ${lead.name}\nBusiness: ${lead.business}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nTrainings: ${lead.programs}\nTeam size & goals: ${lead.goals}`;
@@ -161,11 +165,7 @@ function contactForm() {
         Trainings: lead.programs, 'Team size & goals': lead.goals, Page: location.href,
       }),
     }).then((r) => r.json().then((j) => r.ok && String(j.success) === 'true'));
-    // With the Sheet connected, the Apps Script sends the email (and logs the row); otherwise FormSubmit does.
-    const send = f.dataset.sheet
-      ? toSheet(true).then((r) => r.json()).then((j) => (j.ok === true ? true : viaFormSubmit())).catch(() => viaFormSubmit())
-      : viaFormSubmit();
-    send
+    viaFormSubmit()
       .then((sent) => {
         if (!sent) throw new Error('not sent');
         status.hidden = false; status.className = 'sent ok';

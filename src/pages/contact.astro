@@ -36,7 +36,7 @@ import { photo } from '../lib/photos';
         </ul>
       </div>
 
-      <form class="form" id="plan" novalidate data-email={CONTACT.email} data-wa={CONTACT.whatsapp} data-sheet={CONTACT.sheet_url || undefined} data-reveal>
+      <form class="form" id="plan" novalidate data-email={CONTACT.email} data-wa={CONTACT.whatsapp} data-gform={JSON.stringify(CONTACT.gform)} data-reveal>
         <div class="row2">
           <label>Full name *<input name="name" autocomplete="name" required placeholder="Your name" /></label>
           <label>Business name<input name="business" autocomplete="organization" placeholder="Jewellery brand / company" /></label>
