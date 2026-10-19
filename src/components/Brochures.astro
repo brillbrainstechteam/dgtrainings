@@ -1,64 +1,80 @@
 ---
-// The two DG Trainings PDFs: cover cards with "View" (in-page reader on larger screens) and "Download".
+// The two DG Trainings brochures, shown in an in-page reader: one page at a time, fitted to the screen.
+// Pages are pre-rendered images (public/brochures/<key>/NN.jpg) — the PDFs themselves are not published.
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import profile from '../assets/brochures/dg-trainings-profile.png';
 import clientele from '../assets/brochures/dg-trainings-clientele.png';
 const docs = [
-  { file: '/docs/dg-trainings-profile.pdf', cover: profile, title: 'DG Trainings — Introduction Profile', text: 'About DG, the nine programs and why trained teams grow businesses.', pages: 24, size: '4.3 MB' },
-  { file: '/docs/dg-trainings-clientele.pdf', cover: clientele, title: 'DG Trainings — Clientele', text: 'The jewellery businesses DG has trained, with photos from the sessions.', pages: 14, size: '3.5 MB' },
+  { key: 'profile', cover: profile, title: 'DG Trainings — Introduction Profile', text: 'About DG, the nine programs and why trained teams grow businesses.', pages: 24 },
+  { key: 'clientele', cover: clientele, title: 'DG Trainings — Clientele', text: 'The jewellery businesses DG has trained, with photos from the sessions.', pages: 14 },
 ];
 ---
 <div class="br" data-brochures>
   {docs.map((d) => (
     <article class="br-card">
-      <a class="br-cover" href={d.file} target="_blank" rel="noopener" data-view={d.file} data-title={d.title} aria-label={`View ${d.title} (PDF)`}>
+      <button type="button" class="br-cover" data-view={d.key} data-pages={d.pages} data-title={d.title} aria-label={`Read ${d.title}`}>
         <Image src={d.cover} alt="" width={340} />
-        <span class="br-badge">PDF · {d.pages} pages</span>
-      </a>
+        <span class="br-badge">{d.pages} pages</span>
+      </button>
       <div class="br-body">
         <h3>{d.title}</h3>
         <p>{d.text}</p>
         <div class="br-btns">
-          <a class="btn btn--sm" href={d.file} target="_blank" rel="noopener" data-view={d.file} data-title={d.title}>View <Icon name="arrow" class="arr" /></a>
-          <a class="btn btn--sm btn--outline" href={d.file} download>Download <small>({d.size})</small></a>
+          <button type="button" class="btn btn--sm" data-view={d.key} data-pages={d.pages} data-title={d.title}>Read now <Icon name="arrow" class="arr" /></button>
         </div>
       </div>
     </article>
   ))}
 </div>
 
-<dialog class="br-dlg" aria-label="Brochure viewer">
+<dialog class="br-dlg" aria-label="Brochure reader">
   <div class="br-bar">
     <b class="br-name"></b>
-    <a class="br-dl" href="" download>Download</a>
+    <span class="br-count" aria-live="polite"></span>
     <button type="button" class="br-x" aria-label="Close"><Icon name="x" /></button>
   </div>
-  <iframe title="Brochure" src="about:blank"></iframe>
+  <div class="br-stage">
+    <button type="button" class="br-nav br-prev" aria-label="Previous page"><Icon name="arrow" /></button>
+    <img class="br-page" alt="" draggable="false" />
+    <button type="button" class="br-nav br-next" aria-label="Next page"><Icon name="arrow" /></button>
+  </div>
 </dialog>
 
 <style>
   .br { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .br-card { display: grid; grid-template-columns: 170px 1fr; gap: 22px; align-items: center; padding: 18px; border-radius: 24px; background: #fff; border: 1px solid var(--grey-200); transition: border-color .4s, box-shadow .5s var(--ease); }
   .br-card:hover { border-color: var(--teal); box-shadow: var(--shadow-lg); }
-  .br-cover { position: relative; display: block; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 34px -18px rgba(25,26,28,.55); }
+  .br-cover { position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: pointer; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; background: none; box-shadow: 0 18px 34px -18px rgba(25,26,28,.55); }
   .br-cover :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
   .br-card:hover .br-cover :global(img) { transform: scale(1.04); }
   .br-badge { position: absolute; left: 8px; bottom: 8px; font-size: .64rem; font-weight: 800; letter-spacing: .08em; padding: 4px 8px; border-radius: 999px; background: var(--grey-900); color: #fff; }
   .br-body h3 { font-size: 1.35rem; margin: 0 0 8px; }
   .br-body p { font-size: .92rem; color: var(--muted); margin: 0 0 16px; }
   .br-btns { display: flex; flex-wrap: wrap; gap: 8px; }
-  .br-btns small { font-weight: 500; opacity: .7; }
-  .br-dlg { width: min(1100px, 94vw); height: 92vh; padding: 0; border: 0; border-radius: 20px; overflow: hidden; background: var(--grey-900); }
-  .br-dlg::backdrop { background: rgba(10,12,12,.75); backdrop-filter: blur(4px); }
+
+  .br-dlg { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; padding: 0; border: 0; background: rgba(12,14,14,.96); color: #fff; }
+  .br-dlg::backdrop { background: rgba(10,12,12,.8); }
   .br-dlg[open] { display: flex; flex-direction: column; }
-  .br-bar { display: flex; align-items: center; gap: 14px; padding: 12px 16px; color: #fff; }
-  .br-name { margin-right: auto; font-size: .95rem; }
-  .br-dl { font-size: .85rem; font-weight: 700; color: var(--teal); }
-  .br-x { width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.1); color: #fff; display: grid; place-items: center; cursor: pointer; }
+  .br-bar { display: flex; align-items: center; gap: 14px; padding: 12px clamp(14px, 3vw, 28px); }
+  .br-name { margin-right: auto; font-size: .98rem; }
+  .br-count { font-size: .85rem; font-weight: 700; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .br-x { width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); color: #fff; display: grid; place-items: center; cursor: pointer; }
   .br-x :global(svg) { width: 18px; height: 18px; }
-  .br-dlg iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+  .br-stage { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 12px 16px; }
+  /* Fit the whole page on screen, whatever the window shape. */
+  .br-page { max-width: min(100%, 900px); max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 6px; background: #fff; box-shadow: 0 24px 60px -24px rgba(0,0,0,.8); user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
+  .br-nav { flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); color: #fff; display: grid; place-items: center; cursor: pointer; transition: background .3s; }
+  .br-nav:hover:not(:disabled) { background: var(--teal); color: var(--grey-950); }
+  .br-nav:disabled { opacity: .3; cursor: default; }
+  .br-nav :global(svg) { width: 20px; height: 20px; }
+  .br-prev :global(svg) { transform: rotate(180deg); }
   @media (max-width: 960px) { .br { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .br-stage { padding: 0 6px 12px; }
+    .br-nav { position: absolute; bottom: 22px; z-index: 2; background: rgba(25,26,28,.75); }
+    .br-prev { left: 14px; } .br-next { right: 14px; }
+  }
   @media (max-width: 480px) { .br-card { grid-template-columns: 110px 1fr; gap: 14px; padding: 14px; } .br-body h3 { font-size: 1.1rem; } .br-body p { display: none; } }
 </style>
 
@@ -68,21 +84,51 @@ const docs = [
     const dlg = document.querySelector<HTMLDialogElement>('.br-dlg');
     if (!root || !dlg || root.dataset.ready) return;
     root.dataset.ready = '1';
-    const frame = dlg.querySelector('iframe')!;
-    // Phones open the PDF in their own viewer (in-page PDF frames don't work well there)
-    const inline = () => matchMedia('(min-width: 761px)').matches;
-    root.querySelectorAll<HTMLAnchorElement>('[data-view]').forEach((a) => a.addEventListener('click', (e) => {
-      if (!inline()) return;
-      e.preventDefault();
-      frame.src = a.href + '#view=FitH';
-      dlg.querySelector('.br-name')!.textContent = a.dataset.title!;
-      dlg.querySelector<HTMLAnchorElement>('.br-dl')!.href = a.href;
+    const img = dlg.querySelector<HTMLImageElement>('.br-page')!;
+    const prev = dlg.querySelector<HTMLButtonElement>('.br-prev')!;
+    const next = dlg.querySelector<HTMLButtonElement>('.br-next')!;
+    const count = dlg.querySelector<HTMLElement>('.br-count')!;
+    let key = '';
+    let pages = 0;
+    let page = 1;
+    const src = (n: number) => `/brochures/${key}/${String(n).padStart(2, '0')}.jpg`;
+    const show = (n: number) => {
+      page = Math.min(Math.max(n, 1), pages);
+      img.src = src(page);
+      img.alt = `Page ${page} of ${pages}`;
+      count.textContent = `${page} / ${pages}`;
+      prev.disabled = page === 1;
+      next.disabled = page === pages;
+      if (page < pages) new Image().src = src(page + 1); // preload the next page
+    };
+    root.querySelectorAll<HTMLElement>('[data-view]').forEach((b) => b.addEventListener('click', () => {
+      key = b.dataset.view!;
+      pages = Number(b.dataset.pages);
+      dlg.querySelector('.br-name')!.textContent = b.dataset.title!;
+      show(1);
       dlg.showModal();
     }));
-    const close = () => { dlg.close(); };
+    prev.addEventListener('click', () => show(page - 1));
+    next.addEventListener('click', () => show(page + 1));
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); show(page + 1); }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(page - 1); }
+    });
+    // Swipe on touch screens
+    let x0: number | null = null;
+    img.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    img.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) show(page + (dx < 0 ? 1 : -1));
+      x0 = null;
+    });
+    // No save options on the page image (right-click / long-press menu)
+    img.addEventListener('contextmenu', (e) => e.preventDefault());
+    const close = () => dlg.close();
     dlg.querySelector('.br-x')!.addEventListener('click', close);
     dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
-    dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
+    dlg.addEventListener('close', () => { img.removeAttribute('src'); });
   }
   document.addEventListener('astro:page-load', initBrochures);
 </script>
