@@ -4,10 +4,9 @@ import Icon from './Icon.astro';
 import { wa } from '../lib/site';
 const reels = [
   { file: 'saheli-aurum', client: 'Saheli Aurum', note: 'On the showroom floor' },
-  { file: 'geetanjali-chant', client: 'Geetanjali Jewellers', note: 'Team pledge' },
+  { file: 'geetanjali-chant', client: 'Geetanjali Jewellers', note: 'How’s the josh? Team energiser' },
   { file: 'shivam-jewels', client: 'Shivam Jewels', note: 'Office team workshop' },
-  { file: 'geetanjali-activity', client: 'Geetanjali Jewellers', note: 'Outdoor team activity' },
-  { file: 'vchains', client: 'VChains', note: 'Boardroom session' },
+  { file: 'vchains-energiser', client: 'VChains', note: 'The whole team, fired up' },
 ];
 ---
 <div class="reels" data-reels>
@@ -28,7 +27,7 @@ const reels = [
 </div>
 
 <style>
-  .reels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .reels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1080px; margin: 0 auto; }
   .reel { position: relative; margin: 0; aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; background: var(--grey-900); isolation: isolate; box-shadow: 0 24px 50px -28px rgba(0,0,0,.8); transition: transform .6s var(--ease), box-shadow .6s var(--ease); }
   .reel:nth-child(even) { translate: 0 34px; }
   .reel:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -24px rgba(36,178,163,.45); }

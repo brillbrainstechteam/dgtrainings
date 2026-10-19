@@ -533,7 +533,7 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
   .wgrid { grid-template-columns: 1fr; }
   body { font-size: 16px; }
   .wrap { padding: 0 18px; }
-  .topbar .tb-l a:nth-child(2), .topbar .tb-r a:last-child { display: none; }
+  .topbar .tb-l a:nth-child(2), .topbar .tb-r > a:last-child { display: none; }
   .grid3, .compare, .fgrid, .form .row2, .aud { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .stats { gap: 10px; } .stat { padding: 18px 16px; }
@@ -660,3 +660,17 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 .stat strong.since small { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 6px; }
 .footer .faddr { display: flex; gap: 10px; align-items: flex-start; font-size: .84rem; line-height: 1.5; margin: -4px 0 18px; max-width: 340px; }
 .footer .faddr svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--teal); }
+
+/* ================= mobile: keep related items on one row ================= */
+@media (max-width: 640px) {
+  .topbar .tb-social { padding-right: 12px; gap: 14px; }
+  /* footer */
+  .social { gap: 6px; }
+  .social a { flex: 1 1 0; justify-content: center; padding: 0 8px; gap: 6px; font-size: .78rem; }
+  .fgrid > div:last-child ul { grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .fbottom { margin-top: 32px; padding-top: 18px; flex-direction: column; align-items: center; text-align: center; gap: 8px; font-size: .76rem; }
+  .fbottom nav { gap: 18px; }
+  /* call-to-action buttons side by side */
+  .cta .btns, .btns--row { flex-wrap: nowrap; gap: 8px; }
+  .cta .btns .btn { flex: 1 1 auto; justify-content: center; padding-left: 14px; padding-right: 14px; font-size: .84rem; white-space: nowrap; }
+}
