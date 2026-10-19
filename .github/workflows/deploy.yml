@@ -1,10 +1,11 @@
 name: Deploy
 
 # On every push to main:
-#  1. builds the site for GitHub Pages (base /dgtrainings) and publishes it to the gh-pages branch;
-#  2. builds it for https://dgtrainings.brillbrainsconsultants.com (served from the root) and publishes
-#     it to the vps-dist branch. The VPS checks that branch every minute and goes live with any change
+#  1. builds the site for https://dgtrainings.brillbrainsconsultants.com and publishes it to the
+#     vps-dist branch. The VPS checks that branch every minute and goes live with any change
 #     (see deploy/vps-sync.sh) — no server credentials are stored in GitHub.
+#  2. publishes redirect-only pages to gh-pages, so the old GitHub Pages address
+#     (brillbrainstechteam.github.io/dgtrainings/…) forwards to the same page on the sub-domain.
 
 on:
   push:
@@ -28,22 +29,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build
-        run: npm run build
-        env:
-          # GitHub Pages copy: https://brillbrainstechteam.github.io/dgtrainings/
-          SITE_URL: https://brillbrainstechteam.github.io
-          BASE_PATH: /dgtrainings
-      - name: Publish to gh-pages
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd dist
-          touch .nojekyll
-          git init -q -b gh-pages
-          git add -A
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA}"
-          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
       - name: Build for the BrillBrains sub-domain
         run: npx astro build --outDir dist-vps
         env:
@@ -57,3 +42,14 @@ jobs:
           git add -A
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA}"
           git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" vps-dist
+      - name: Build GitHub Pages redirects
+        run: node deploy/make-redirects.mjs dist-vps dist-redirects https://dgtrainings.brillbrainsconsultants.com /dgtrainings
+      - name: Publish redirects to gh-pages
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist-redirects
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Redirects ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
