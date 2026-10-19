@@ -31,6 +31,8 @@ import { photo } from '../lib/photos';
           <li><a href={`mailto:${CONTACT.email_bb}`}><span class="ico"><Icon name="mail" /></span><span><small>BrillBrains</small>{CONTACT.email_bb}</span></a></li>
           <li><a href={wa()} target="_blank" rel="noopener"><span class="ico"><Icon name="whatsapp" /></span><span><small>WhatsApp</small>Chat with us</span></a></li>
           <li><a href={CONTACT.map} target="_blank" rel="noopener"><span class="ico"><Icon name="pin" /></span><span><small>Address · open in Maps</small>{CONTACT.address}</span></a></li>
+          <li class="cl-social"><span class="ico"><Icon name="sparkle" /></span><span><small>Follow DG</small>
+            <span class="cl-links"><a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a><a href={CONTACT.facebook} target="_blank" rel="noopener">Facebook</a><a href={CONTACT.youtube} target="_blank" rel="noopener">YouTube</a></span></span></li>
         </ul>
       </div>
 
@@ -58,7 +60,7 @@ import { photo } from '../lib/photos';
         <button class="btn btn--outline" type="submit" data-via="mail" style="margin-top:10px"><Icon name="mail" /> Send by email</button>
         <p class="sent" role="status" hidden></p>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
-        <p class="fine">WhatsApp opens a chat with your details filled in. Email sends your enquiry straight to {CONTACT.email}. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+        <p class="fine">By sending, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p>
       </form>
     </div>
   </section>
@@ -75,6 +77,9 @@ import { photo } from '../lib/photos';
   </section>
 </Base>
 <style>
+  .cl-social { display: flex; align-items: center; gap: 16px; padding: 14px 16px; font-weight: 600; }
+  .cl-links { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .cl-links a { color: var(--teal-ink); text-decoration: underline; text-underline-offset: 3px; }
   .progs { border: 0; margin: 0 0 18px; padding: 0; min-width: 0; }
   .progs legend { font-size: .84rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; padding: 0; }
   .progs legend small, .progs-note { font-weight: 500; color: var(--grey-500); font-size: .78rem; }

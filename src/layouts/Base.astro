@@ -43,6 +43,11 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
         <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
       </div>
       <div class="tb-r">
+        <span class="tb-social">
+          <a href={CONTACT.instagram} target="_blank" rel="noopener" aria-label="DG Trainings on Instagram"><Icon name="instagram" /></a>
+          <a href={CONTACT.facebook} target="_blank" rel="noopener" aria-label="DG Trainings on Facebook"><Icon name="facebook" /></a>
+          <a href={CONTACT.youtube} target="_blank" rel="noopener" aria-label="DG Trainings on YouTube"><Icon name="youtube" /></a>
+        </span>
         <a class="wa" href={wa()} target="_blank" rel="noopener">WhatsApp us</a>
         <a href={CONTACT.brillbrains} target="_blank" rel="noopener">A BrillBrains company</a>
       </div>
@@ -87,9 +92,10 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
           <p>Business training for the jewellery industry, in partnership with <a class="bb" href={CONTACT.brillbrains} target="_blank" rel="noopener">BrillBrains Consultants</a> (Strategic &amp; Creative Forever).</p>
           <a class="faddr" href={CONTACT.map} target="_blank" rel="noopener"><Icon name="pin" /><span>{CONTACT.address.replace(/^BrillBrains Consultants Pvt\. Ltd\., /, '')}</span></a>
           <div class="social">
-            <a href={CONTACT.instagram} target="_blank" rel="noopener" aria-label="DG Trainings on Instagram"><Icon name="instagram" /></a>
-            <a href={CONTACT.facebook} target="_blank" rel="noopener" aria-label="DG Trainings on Facebook"><Icon name="facebook" /></a>
-            <a href={CONTACT.youtube} target="_blank" rel="noopener" aria-label="DG Trainings on YouTube"><Icon name="youtube" /></a>
+            <span class="social-k">Follow DG</span>
+            <a href={CONTACT.instagram} target="_blank" rel="noopener" class="s-ig"><Icon name="instagram" /><span>Instagram</span></a>
+            <a href={CONTACT.facebook} target="_blank" rel="noopener" class="s-fb"><Icon name="facebook" /><span>Facebook</span></a>
+            <a href={CONTACT.youtube} target="_blank" rel="noopener" class="s-yt"><Icon name="youtube" /><span>YouTube</span></a>
           </div>
         </div>
         <div>

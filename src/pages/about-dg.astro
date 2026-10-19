@@ -37,14 +37,27 @@ const moments = ['safalta-sangam/01', 'shivam-jewels/05', 'safalta-sangam/03', '
   </section>
 
   <section class="section section--white">
-    <div class="wrap trainer">
-      <div class="portrait">
-        <div class="frame" data-img><Image src={photo('gitanjali-2025/02')} alt="Dipen Ghatalia beside the Life and Work Culture Transformation Training title screen" widths={[500, 800]} sizes="(max-width: 960px) 90vw, 480px" loading="eager" /></div>
+    <div class="wrap ab">
+      <div class="ab-photo">
+        <div class="frame" data-img><Image src={photo('shivam-jewels/07')} alt="Dipen Ghatalia (DG) leading a training session" widths={[500, 800]} sizes="(max-width: 960px) 90vw, 460px" loading="eager" /></div>
+        <span class="ab-badge"><b>35,000+</b>professionals trained</span>
       </div>
-      <div>
-        <h2 data-split>{T.headline}</h2>
-        {T.bio.map((b) => <p class="lead" data-reveal>{b}</p>)}
-        <blockquote class="sig" data-reveal>{T.quote}<cite>— Dipen Ghatalia</cite></blockquote>
+      <div class="ab-body">
+        <span class="eyebrow">The trainer</span>
+        <h2 class="ab-h" data-split>In business since <em>2000</em>.<br />Training teams since <em>2011</em>.</h2>
+        <p class="lead" data-reveal>{T.bio[0]}</p>
+        <ul class="ab-facts" role="list" data-stagger>
+          <li><b>100+</b><span>entrepreneurs partnered</span></li>
+          <li><b>20</b><span>cities across 3 countries</span></li>
+          <li><b>3</b><span>sides of the trade — retail, wholesale, manufacturing</span></li>
+        </ul>
+        <div class="ab-roles" data-reveal>
+          {['Brand consultant', 'Management consultant', 'Marketing & sales expert', 'Natural copywriter', 'Builder of work culture'].map((r) => <span>{r}</span>)}
+        </div>
+        <div class="ab-gift" data-reveal>
+          <p>{T.bio[2]}</p>
+          <blockquote>“{T.quote}”<cite>— Dipen Ghatalia</cite></blockquote>
+        </div>
       </div>
     </div>
   </section>
@@ -80,3 +93,24 @@ const moments = ['safalta-sangam/01', 'shivam-jewels/05', 'safalta-sangam/03', '
 
   <CtaBand heading="Bring DG to your team." text="Share your goals and team size — we’ll suggest the right format, from a single workshop to a year-long journey." bg="safalta-sangam/02" compact />
 </Base>
+
+<style>
+  .ab { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(36px, 6vw, 88px); align-items: start; }
+  .ab-photo { position: sticky; top: 110px; }
+  .ab-photo .frame { aspect-ratio: 4 / 5; border-radius: 28px; }
+  .ab-badge { position: absolute; right: -18px; bottom: 28px; display: grid; gap: 2px; padding: 16px 20px; border-radius: 18px; background: var(--grey-900); color: rgba(255,255,255,.8); font-size: .8rem; box-shadow: var(--shadow-lg); }
+  .ab-badge b { font-family: var(--display); font-size: 1.9rem; color: var(--teal); line-height: 1; }
+  .ab-h { font-size: clamp(1.9rem, 3.2vw, 2.7rem); line-height: 1.15; margin: 10px 0 18px; }
+  .ab-facts { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .ab-facts li { padding: 16px; border-radius: 18px; background: var(--grey-50); border: 1px solid var(--grey-100); }
+  .ab-facts b { display: block; font-family: var(--display); font-size: 1.8rem; color: var(--teal-ink); line-height: 1; margin-bottom: 6px; }
+  .ab-facts span { font-size: .84rem; color: var(--muted); line-height: 1.4; }
+  .ab-roles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .ab-roles span { font-size: .82rem; font-weight: 700; padding: 8px 14px; border-radius: 999px; background: var(--teal-50); color: var(--teal-ink); border: 1px solid var(--teal-100); }
+  .ab-gift { margin-top: 28px; padding: 26px 28px; border-radius: 24px; color: #fff; background: radial-gradient(ellipse 80% 90% at 100% 0%, rgba(85,214,201,.28), transparent 60%), linear-gradient(150deg, #23282a, #12302c); }
+  .ab-gift p { margin: 0 0 16px; color: rgba(255,255,255,.85); font-size: 1rem; }
+  .ab-gift blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.35; color: #fff; }
+  .ab-gift cite { display: block; margin-top: 10px; font-family: var(--sans); font-style: normal; font-size: .8rem; font-weight: 700; color: var(--teal); }
+  @media (max-width: 960px) { .ab { grid-template-columns: 1fr; } .ab-photo { position: relative; top: 0; max-width: 460px; } .ab-badge { right: 12px; } }
+  @media (max-width: 560px) { .ab-facts { grid-template-columns: 1fr; } }
+</style>
