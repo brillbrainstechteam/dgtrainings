@@ -1,0 +1,27 @@
+#!/bin/bash
+# Publishes the latest build of the site on the VPS.
+# Runs every minute from the dgtrainings user's crontab:
+#   * * * * * /home/dgtrainings/deploy/vps-sync.sh
+# GitHub Actions pushes each build to the `vps-dist` branch; this script copies it into the
+# CloudPanel site folder whenever that branch changes. The repo is public, so no credentials needed.
+set -euo pipefail
+REPO=https://github.com/brillbrainstechteam/dgtrainings.git
+BRANCH=vps-dist
+WORK=/home/dgtrainings/deploy/$BRANCH
+WEB=/home/dgtrainings/htdocs/dgtrainings.brillbrainsconsultants.com
+LOG=/home/dgtrainings/logs/deploy.log
+
+exec 9>/tmp/dgtrainings-deploy.lock
+flock -n 9 || exit 0                                   # skip if the previous run is still going
+
+remote=$(git ls-remote "$REPO" "refs/heads/$BRANCH" | cut -f1)
+[ -n "$remote" ] || exit 0
+[ -d "$WORK/.git" ] || git clone -q --depth 1 -b "$BRANCH" "$REPO" "$WORK"
+current=$(git -C "$WORK" rev-parse HEAD)
+
+if [ "$remote" != "$current" ] || [ ! -f "$WEB/index.html" ]; then
+  git -C "$WORK" fetch -q --depth 1 origin "$BRANCH"
+  git -C "$WORK" reset -q --hard FETCH_HEAD
+  rsync -a --delete --exclude .git "$WORK"/ "$WEB"/
+  echo "$(date -Is) deployed $(git -C "$WORK" log -1 --format='%h %s')" >> "$LOG"
+fi

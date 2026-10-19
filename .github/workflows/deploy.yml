@@ -1,7 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
-# Builds the site on every push to main and publishes it to the gh-pages branch,
-# which GitHub Pages serves (Settings → Pages → Source: Deploy from a branch → gh-pages).
+# On every push to main:
+#  1. builds the site for GitHub Pages (base /dgtrainings) and publishes it to the gh-pages branch;
+#  2. builds it for https://dgtrainings.brillbrainsconsultants.com (served from the root) and publishes
+#     it to the vps-dist branch. The VPS checks that branch every minute and goes live with any change
+#     (see deploy/vps-sync.sh) — no server credentials are stored in GitHub.
 
 on:
   push:
@@ -28,8 +31,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Project site lives at https://brillbrainstechteam.github.io/dgtrainings/
-          # When moving to the BrillBrains sub-domain: set SITE_URL to it and remove BASE_PATH.
+          # GitHub Pages copy: https://brillbrainstechteam.github.io/dgtrainings/
           SITE_URL: https://brillbrainstechteam.github.io
           BASE_PATH: /dgtrainings
       - name: Publish to gh-pages
@@ -42,3 +44,16 @@ jobs:
           git add -A
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA}"
           git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+      - name: Build for the BrillBrains sub-domain
+        run: npx astro build --outDir dist-vps
+        env:
+          SITE_URL: https://dgtrainings.brillbrainsconsultants.com
+      - name: Publish to vps-dist
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist-vps
+          git init -q -b vps-dist
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" vps-dist
