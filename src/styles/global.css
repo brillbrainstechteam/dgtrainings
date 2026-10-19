@@ -193,6 +193,10 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(5px); }
 .marquee-group span { font-family: var(--display); font-size: clamp(1.05rem, 1.6vw, 1.3rem); font-style: italic; white-space: nowrap; font-weight: 500; color: rgba(255,255,255,.82); transition: color .3s; }
 .marquee-group span:hover { color: var(--teal); }
 .marquee-group i { width: 6px; height: 6px; background: var(--teal); transform: rotate(45deg); flex: none; opacity: .8; }
+.marquee-group .mq-logo { flex: none; display: grid; place-items: center; height: 64px; min-width: 120px; padding: 8px 18px; background: #fff; border-radius: 12px; box-shadow: 0 6px 18px -10px rgba(0,0,0,.6); transition: transform .3s; }
+.marquee-group .mq-logo:hover { transform: translateY(-2px); }
+.marquee-group .mq-logo img { display: block; max-height: 46px; max-width: 150px; width: auto; height: auto; object-fit: contain; }
+@media (max-width: 760px) { .marquee-group .mq-logo { height: 52px; min-width: 96px; padding: 6px 12px; } .marquee-group .mq-logo img { max-height: 36px; max-width: 110px; } }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- audience tiles ---------- */

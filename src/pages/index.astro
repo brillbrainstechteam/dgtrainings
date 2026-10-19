@@ -10,7 +10,6 @@ import Playbook from '../components/Playbook.astro';
 import CompareSlider from '../components/CompareSlider.astro';
 import WorkGallery from '../components/WorkGallery.astro';
 import Reels from '../components/Reels.astro';
-import InstaFeed from '../components/InstaFeed.astro';
 import ClientLogos from '../components/ClientLogos.astro';
 
 const chain = [
@@ -22,9 +21,15 @@ const chain = [
 ];
 import { HOME as H, TRAINER as T, SIGNATURE, WORK, GROUPS, rich } from '../lib/site';
 import { photo } from '../lib/photos';
+import type { ImageMetadata } from 'astro';
+import clientNames from '../assets/clients/names.json';
 
-const poster = photo('saheli-aurum/03');
-const slide2Bg = photo('gitanjali-2026/04');
+// Client logos for the strip under the hero (same files as the "Trusted by" wall).
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/clients/*.png', { eager: true });
+const stripLogos = Object.entries(clientNames as Record<string, string>).map(([k, name]) => ({ name, img: logoFiles[`../assets/clients/${k}.png`].default }));
+
+const poster = photo('saheli-aurum/02');
+const slide2Bg = photo('shivam-jewels/06');
 // "Untrained vs trained" from the home-page content, split into matching pairs
 const whyPairs = [
   ['Learns in bits and pieces, every single day', 'Aligned in mindset'],
@@ -82,7 +87,7 @@ const audiences = [
       <div class="marquee-track">
         {[0, 1].map((k) => (
           <div class="marquee-group" aria-hidden={k === 1 ? 'true' : undefined}>
-            {H.clients.map((c) => <><span>{c}</span><i></i></>)}
+            {stripLogos.map((l) => <span class="mq-logo" title={l.name}><Image src={l.img} alt={k === 1 ? '' : l.name} height={96} loading="eager" /></span>)}
           </div>
         ))}
       </div>
@@ -222,7 +227,6 @@ const audiences = [
         <p class="lead" data-reveal>Real moments from real sessions. Tap the speaker on any reel to hear the room.</p>
       </div>
       <Reels />
-      <InstaFeed />
     </div>
   </section>
 

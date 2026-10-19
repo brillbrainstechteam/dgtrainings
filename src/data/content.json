@@ -9,8 +9,8 @@
   "facebook": "https://www.facebook.com/profile.php?id=61595455521598",
   "youtube": "https://www.youtube.com/channel/UCwCm9xyOdTtLyhaQfaRDnZQ",
   "brillbrains": "https://www.brillbrainsconsultants.com/",
-  "address": "BrillBrains Consultants Pvt. Ltd., E-204, Agarwal Residency, Shankar Lane, near Shankar Park, Kandivali (West), Mumbai, Maharashtra 400067",
-  "map": "https://maps.google.com/?cid=13913515201727102002",
+  "address": "Mumbai, Maharashtra, India",
+  "map": "https://maps.google.com/?q=Mumbai,+Maharashtra,+India",
   "gform": {
    "action": "https://docs.google.com/forms/d/e/1FAIpQLSdUrCTAVlVm7RT8i_ghrrmN6qLLlNnZcphCAJXfKoJ6BFozjg/formResponse",
    "name": "entry.1887444124",
@@ -664,7 +664,7 @@
    ],
    "cta_h": "Turn your counter staff into jewellery experts.",
    "cta_text": "Book a free discovery call and we’ll show you how this program fits your showroom, team and targets.",
-   "hero": "saheli-aurum/03",
+   "hero": "saheli-aurum/02",
    "roles": "OMSN"
   },
   {
@@ -1167,7 +1167,7 @@
    ],
    "cta_h": "Give your team the power of digital.",
    "cta_text": "Book a session and make your whole team digitally confident — in days, not months.",
-   "hero": "dc/06",
+   "hero": "dishaa-platinum/02",
    "roles": "OSB"
   },
   {
@@ -1187,7 +1187,7 @@
     "digital-shakti",
     "leadership-training"
    ],
-   "hero": "gitanjali-2026/02",
+   "hero": "gitanjali-2025/08",
    "roles": "ON",
    "intro": "A new employee’s first few days shape how they connect with your organisation and contribute to its success. Orientation Training gives every new joiner a structured introduction to your company, its people, policies and customer promise — aligning them with business goals and helping them contribute to growth from day one.",
    "glance": [
@@ -1429,7 +1429,7 @@
    "program_slug": "orientation-training",
    "when": "2016",
    "where": null,
-   "blurb": "“Team Development 2016” — a day of team-building, recognition and growth for the whole company."
+   "blurb": "“Team Development” — a day of team-building, recognition and growth for the whole company."
   },
   {
    "key": "paras-gold",

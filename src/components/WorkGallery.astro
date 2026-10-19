@@ -23,7 +23,7 @@ const panels = await Promise.all(items.map(async (w) => {
       <span class="wg-idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
       <span class="wg-spine" aria-hidden="true">{w.client}</span>
       <div class="wg-body">
-        <span class="wg-meta">{[w.kind, w.when, w.where].filter(Boolean).join(' · ')}</span>
+        <span class="wg-meta">{[w.kind, w.where].filter(Boolean).join(' · ')}</span>
         <h3>{w.client}</h3>
         <p set:html={rich(w.blurb)} />
         <div class="wg-foot">
