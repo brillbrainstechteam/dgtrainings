@@ -42,3 +42,12 @@ export const tel = (n: string) => 'tel:' + n.replace(/\s/g, '');
 export const wa = (msg = 'Hi DG Trainings, I would like to know more about your training programs.') =>
   `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(msg)}`;
 export const progUrl = (p: Program) => `/programs/${p.slug}/`;
+
+/** Content text without "[to confirm]" brackets or <b> tags — for meta tags and structured data. */
+export const plain = (s: string) => s.replace(/<\/?b>/g, '').replace(/\[([^\]]+)\]/g, '$1').replace(/\s+/g, ' ').trim();
+
+/** schema.org FAQPage from [question, answer] pairs. */
+export const faqSchema = (items: string[][]) => ({
+  '@type': 'FAQPage',
+  mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: plain(q), acceptedAnswer: { '@type': 'Answer', text: plain(a) } })),
+});

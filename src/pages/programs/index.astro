@@ -15,9 +15,13 @@ const journey = [
   { stage: 'In the field', note: 'Tours and trade shows', items: ['sales-tour-training', 'exhibitions-training'].map(link) },
   { stage: 'Leadership', note: 'HODs, managers and owners', items: ['leadership-training', 'management-training'].map(link) },
 ];
+const catalog = {
+  '@type': 'ItemList', name: 'DG Trainings programs',
+  itemListElement: PROGRAMS.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.name, url: new URL(progUrl(p), Astro.site).href })),
+};
 const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sales & customer-facing'], ['B', 'Back office & production'], ['N', 'New joiners']];
 ---
-<Base title="Training Programs" description="Nine practical training programs for jewellery retailers, wholesalers and manufacturers — find the right one for every role in your team." active="programs">
+<Base title="Training Programs for Jewellery Businesses" crumbs={[['Programs', '/programs/']]} schema={[catalog]} description="Nine practical training programs for jewellery retailers, wholesalers and manufacturers — find the right one for every role in your team." active="programs">
   <section class="phero phero--simple on-dark">
     <div class="phero-bg"><Image src={photo('safalta-sangam/02')} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
     <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>

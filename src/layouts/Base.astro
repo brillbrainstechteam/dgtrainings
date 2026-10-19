@@ -4,12 +4,51 @@ import { ClientRouter } from 'astro:transitions';
 import Icon from '../components/Icon.astro';
 import LogoIntro from '../components/LogoIntro.astro';
 import BrandLogo from '../components/BrandLogo.astro';
-import { CONTACT, SIGNATURE, PROGRAMS, GROUPS, bySlug, tel, wa, progUrl } from '../lib/site';
+import { CONTACT, SIGNATURE, PROGRAMS, GROUPS, bySlug, tel, wa, progUrl, plain } from '../lib/site';
+import { photo } from '../lib/photos';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
-interface Props { title: string; description: string; active?: string; header?: 'transparent' | 'solid' }
-const { title, description, active, header = 'transparent' } = Astro.props;
+interface Props {
+  title: string; description: string; active?: string; header?: 'transparent' | 'solid';
+  /** Photo shown when the page is shared (WhatsApp, LinkedIn, Facebook…); defaults to a training-floor photo. */
+  image?: ImageMetadata;
+  /** Trail for the breadcrumb rich result, e.g. [['Programs', '/programs/'], ['Marketing', '/programs/marketing-training/']] */
+  crumbs?: [string, string][];
+  /** Extra schema.org JSON-LD objects for this page (Course, FAQPage, Person…). */
+  schema?: Record<string, unknown>[];
+  /** Keep this page out of search results (404). */
+  noindex?: boolean;
+}
+const { title, description, active, header = 'transparent', image = photo('safalta-sangam/05'), crumbs = [], schema = [], noindex = false } = Astro.props;
 const fullTitle = title.includes('DG Trainings') ? title : `${title} | DG Trainings`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Google shows ~155 characters of a description; cut long intros at a word boundary
+const desc = plain(description);
+const metaDescription = desc.length <= 158 ? desc : desc.slice(0, 155).replace(/[\s,;:—–-]+\S*$/, '') + '…';
+const ogImage = new URL((await getImage({ src: image, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src, Astro.site);
+const SITE = Astro.site!.href;
+const ORG_ID = `${SITE}#organization`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'EducationalOrganization', '@id': ORG_ID,
+    name: 'DG Trainings', alternateName: 'DG Trainings — Power to Performance', url: SITE,
+    logo: new URL('/logo.png', SITE).href, image: ogImage.href,
+    description: 'Business, sales, leadership and culture training for jewellery retailers, wholesalers and manufacturers, led by Dipen Ghatalia (DG).',
+    email: CONTACT.email, telephone: CONTACT.phone_training,
+    address: { '@type': 'PostalAddress', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', addressCountry: 'IN' },
+    areaServed: 'IN', founder: { '@type': 'Person', name: 'Dipen Ghatalia' },
+    parentOrganization: { '@type': 'Organization', name: 'BrillBrains Consultants Pvt. Ltd.', url: CONTACT.brillbrains },
+    sameAs: [CONTACT.instagram, CONTACT.facebook, CONTACT.youtube],
+    contactPoint: [{ '@type': 'ContactPoint', contactType: 'customer service', telephone: CONTACT.phone_training, email: CONTACT.email, areaServed: 'IN' }],
+  },
+  { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}#website`, name: 'DG Trainings', url: SITE, inLanguage: 'en-IN', publisher: { '@id': ORG_ID } },
+  ...(crumbs.length ? [{
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [['Home', '/'] as [string, string], ...crumbs].map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: new URL(path, SITE).href })),
+  }] : []),
+  ...schema.map((s) => ({ '@context': 'https://schema.org', ...s })),
+];
 // Programs menu: grouped into three themes, with short labels that scan quickly
 const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, label]) => [bySlug(slug), label] as const) }));
 ---
@@ -20,13 +59,28 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script is:inline>if (!matchMedia('(prefers-reduced-motion: reduce)').matches && location.search.indexOf('static') < 0) document.documentElement.classList.add('motion'); setTimeout(function () { if (!window.__dgMotion) document.documentElement.classList.remove('motion'); }, 3000);</script>
   <title>{fullTitle}</title>
-  <meta name="description" content={description} />
+  <meta name="description" content={metaDescription} />
   <link rel="canonical" href={canonical} />
+  <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
+  <meta property="og:site_name" content="DG Trainings" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:url" content={canonical} />
   <meta property="og:title" content={fullTitle} />
-  <meta property="og:description" content={description} />
+  <meta property="og:description" content={metaDescription} />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={metaDescription} />
+  <meta name="twitter:image" content={ogImage} />
   <meta name="theme-color" content="#232426" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/logo.png" type="image/png" sizes="600x600" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />

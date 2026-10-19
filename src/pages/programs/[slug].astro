@@ -9,7 +9,7 @@ import Gallery from '../../components/Gallery.astro';
 import ProgramSnapshot from '../../components/ProgramSnapshot.astro';
 import ProgramResults from '../../components/ProgramResults.astro';
 import ProgramDiagram from '../../components/ProgramDiagram.astro';
-import { PROGRAMS, type Program, bySlug, rich, dots, wa, workFor, WORK } from '../../lib/site';
+import { PROGRAMS, type Program, bySlug, rich, dots, wa, workFor, WORK, plain, faqSchema } from '../../lib/site';
 import { photo, album } from '../../lib/photos';
 
 export function getStaticPaths() {
@@ -28,11 +28,20 @@ const galleryPhotos = album(galleryWork.key);
 // The program-specific part of DG's bio ("… — and his core expertise is …")
 const trainerAngle = p.trainer_bio?.split(' — ').slice(1).join(' — ').replace(/^and (is )?/, '').replace(/\.$/, '').replace(/^./, (c: string) => c.toUpperCase());
 
+// Structured data: the program as a Course (plus its FAQs) so search engines understand the page
+const schema: Record<string, unknown>[] = [{
+  '@type': 'Course', name: p.name, description: plain(`${tagline} ${intro}`), url: new URL(`/programs/${p.slug}/`, Astro.site).href,
+  provider: { '@id': new URL('/#organization', Astro.site).href }, inLanguage: 'en-IN',
+  audience: { '@type': 'BusinessAudience', audienceType: p.ideal ? plain(p.ideal) : 'Jewellery retailers, wholesalers and manufacturers' },
+  hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Onsite', instructor: { '@type': 'Person', name: 'Dipen Ghatalia' } },
+}];
+if (p.faqs?.length) schema.push(faqSchema(p.faqs));
+
 const sections = p.full
   ? [['overview', 'Overview'], ['glance', 'At a glance'], ['results', 'Results'], ['audience', 'Who attends'], ['floor', 'In action'], ['faqs', 'FAQs']]
   : [];
 ---
-<Base title={`${title} — ${tagline}`} description={intro} active="programs">
+<Base title={title.includes(" for ") ? `${title} in Jewellery` : `${title} for Jewellers`} description={`${tagline} ${intro}`} active="programs" image={photo(p.hero)} crumbs={[['Programs', '/programs/'], [p.short, `/programs/${p.slug}/`]]} schema={schema}>
   <section class="phero on-dark">
     <div class="phero-bg"><Image src={photo(p.hero)} alt="" widths={[900, 1600]} sizes="100vw" loading="eager" /></div>
     <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>

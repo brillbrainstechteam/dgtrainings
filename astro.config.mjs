@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -35,5 +36,6 @@ export default defineConfig({
   site: SITE,
   base: BASE,
   trailingSlash: 'ignore',
-  integrations: [basePathLinks()],
+  // sitemap-index.xml for Google Search Console (404 left out); see public/robots.txt
+  integrations: [sitemap({ filter: (page) => !page.includes('/404') }), basePathLinks()],
 });

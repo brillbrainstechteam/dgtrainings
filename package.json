@@ -10,6 +10,7 @@
     "media": "node scripts/import-media.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "^5.18.2",
     "gsap": "^3.13.0"
   }
