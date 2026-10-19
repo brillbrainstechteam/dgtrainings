@@ -10,18 +10,19 @@ BRANCH=vps-dist
 WORK=/home/dgtrainings/deploy/$BRANCH
 WEB=/home/dgtrainings/htdocs/dgtrainings.brillbrainsconsultants.com
 LOG=/home/dgtrainings/logs/deploy.log
+STAMP=/home/dgtrainings/deploy/published.sha      # last build copied into the site folder
 
 exec 9>/tmp/dgtrainings-deploy.lock
 flock -n 9 || exit 0                                   # skip if the previous run is still going
 
 remote=$(git ls-remote "$REPO" "refs/heads/$BRANCH" | cut -f1)
 [ -n "$remote" ] || exit 0
-[ -d "$WORK/.git" ] || git clone -q --depth 1 -b "$BRANCH" "$REPO" "$WORK"
-current=$(git -C "$WORK" rev-parse HEAD)
+published=$(cat "$STAMP" 2>/dev/null || true)
+[ "$remote" = "$published" ] && exit 0                 # already live
 
-if [ "$remote" != "$current" ] || [ ! -f "$WEB/index.html" ]; then
-  git -C "$WORK" fetch -q --depth 1 origin "$BRANCH"
-  git -C "$WORK" reset -q --hard FETCH_HEAD
-  rsync -a --delete --exclude .git "$WORK"/ "$WEB"/
-  echo "$(date -Is) deployed $(git -C "$WORK" log -1 --format='%h %s')" >> "$LOG"
-fi
+[ -d "$WORK/.git" ] || git clone -q --depth 1 -b "$BRANCH" "$REPO" "$WORK"
+git -C "$WORK" fetch -q --depth 1 origin "$BRANCH"
+git -C "$WORK" reset -q --hard FETCH_HEAD
+rsync -a --delete --exclude .git "$WORK"/ "$WEB"/
+git -C "$WORK" rev-parse HEAD > "$STAMP"
+echo "$(date -Is) deployed $(git -C "$WORK" log -1 --format='%h %s')" >> "$LOG"
