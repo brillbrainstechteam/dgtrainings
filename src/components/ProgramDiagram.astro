@@ -57,9 +57,9 @@ switch (p.slug) {
       { tag: 'Phase 3', icon: 'trend', title: 'After the show', items: ['Lead list entered the same week', 'Thank-you creatives to all visitors', 'Every prospect called within 3 days', 'Quotations, dispatch and invoicing'] },
     ] };
     break;
-  case 'leadership-management':
+  case 'leadership-training':
     kind = 'cadence';
-    heading = 'The rhythm of a <em>great manager</em>';
+    heading = 'The rhythm of a <em>great leader</em>';
     lead = 'Routines that make the showroom run the same way every day — whether the owner is in or not.';
     data = { lanes: [
       { when: 'Every day', note: 'Open, lead, close', steps: ['Day-begin routine', 'Daily meeting', 'Attend key customers', 'Day-end routine'] },
@@ -82,23 +82,25 @@ switch (p.slug) {
       { label: 'Zoom & ChatGPT', text: 'Meetings and AI help', icon: 'sparkle' },
     ] };
     break;
-  case 'telemarketing-training':
+  case 'management-training':
     kind = 'flow';
-    heading = 'How a <em>trained call</em> flows';
-    lead = 'The right opening, a clear reason to engage, a ready answer for every reply — and a strong next step.';
+    heading = 'From running the business <em>to growing it</em>';
+    lead = 'Owners, partners and directors step back from daily firefighting and rebuild the business on stronger foundations.';
     data = {
-      start: 'The opening — the first 10 seconds',
-      step: { title: 'A clear reason to call', chips: ['New collection', 'Birthday or anniversary', 'Festive offer', 'Exhibition invite', 'Post-purchase thanks'] },
-      decision: 'The customer replies',
+      start: 'Where the business stands today',
+      step: { title: 'Strengthen every facet of the business', chips: ['Strategy', 'Finance', 'Operations', 'People', 'Sales & marketing'] },
+      decision: 'Rebuild the foundations',
       branches: [
-        { reply: 'Not interested', response: 'Turn the objection into a conversation, not an argument.' },
-        { reply: 'Call me later', response: 'Agree a time, then log it so the callback happens.' },
-        { reply: 'I already have a jeweller', response: 'Offer a reason to visit — without pressure.' },
+        { reply: 'Systems', response: 'Automate operations so the business runs the same way every day.' },
+        { reply: 'People', response: 'Build leaders and a team that owns results.' },
+        { reply: 'Growth', response: 'A clear plan that takes the business to the next level.' },
       ],
-      end: ['Store visit', 'Callback', 'Logged in the tracker'],
+      respLabel: 'What changes',
+      quoted: false,
+      end: ['Stronger foundations', 'Automated operations', 'Next-level growth'],
     };
     break;
-  case 'marketing-mastery':
+  case 'marketing-training':
     kind = 'track';
     heading = 'From attention <em>to loyalty</em>';
     lead = 'Attract, engage and retain the right customers — and keep them coming back.';

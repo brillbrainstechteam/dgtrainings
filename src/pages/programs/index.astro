@@ -10,9 +10,9 @@ const link = (slug: string) => { const p = PROGRAMS.find((x) => x.slug === slug)
 const journey = [
   { stage: 'Foundation', note: 'Start everyone right', items: ['orientation-training', 'digital-shakti'].map(link) },
   { stage: 'Culture', note: 'Mindset, habits, ownership', items: ['life-work-culture-transformation'].map(link) },
-  { stage: 'Selling skills', note: 'Know it, sell it, call it', items: ['business-technical-sales-expert', 'telemarketing-training', 'marketing-mastery'].map(link) },
+  { stage: 'Selling skills', note: 'Know it, sell it, market it', items: ['business-technical-sales-expert', 'marketing-training'].map(link) },
   { stage: 'In the field', note: 'Tours and trade shows', items: ['sales-tour-training', 'exhibitions-training'].map(link) },
-  { stage: 'Leadership', note: 'Managers, HODs and owners', items: ['leadership-management'].map(link) },
+  { stage: 'Leadership', note: 'HODs, managers and owners', items: ['leadership-training', 'management-training'].map(link) },
 ];
 const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sales & customer-facing'], ['B', 'Back office & production'], ['N', 'New joiners']];
 ---
@@ -83,8 +83,12 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
 <style>
   .stair-head { margin-bottom: 0; }
   .stair-head .lead { margin: 10px 0 0; }
-  .matrix-wrap { overflow-x: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); background: #fff; }
-  .matrix { width: 100%; border-collapse: collapse; min-width: 760px; }
+  /* no overflow clipping here, so the header row can stick under the site header while scrolling */
+  .matrix-wrap { border: 1px solid var(--grey-200); border-radius: var(--radius-lg); background: #fff; }
+  .matrix thead th { position: sticky; top: 71px; z-index: 5; }
+  .matrix thead th:first-child { border-top-left-radius: calc(var(--radius-lg) - 1px); }
+  .matrix thead th:last-child { border-top-right-radius: calc(var(--radius-lg) - 1px); }
+  .matrix { width: 100%; border-collapse: separate; border-spacing: 0; }
   .matrix th, .matrix td { padding: 14px 16px; border-bottom: 1px solid var(--grey-100); text-align: center; }
   .matrix thead th { background: var(--grey-900); color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .04em; vertical-align: bottom; }
   .matrix thead th:first-child { text-align: left; }

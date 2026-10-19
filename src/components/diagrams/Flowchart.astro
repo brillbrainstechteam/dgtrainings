@@ -1,7 +1,7 @@
 ---
 // Branching flow: start → step → decision (three branches with responses) → merged outcome.
-interface Props { start: string; step: { title: string; chips: string[] }; decision: string; branches: { reply: string; response: string }[]; end: string[] }
-const { start, step, decision, branches, end } = Astro.props;
+interface Props { start: string; step: { title: string; chips: string[] }; decision: string; branches: { reply: string; response: string }[]; end: string[]; respLabel?: string; quoted?: boolean }
+const { start, step, decision, branches, end, respLabel = 'Ready response', quoted = true } = Astro.props;
 ---
 <div class="flow" data-flow>
   <div class="fl-node fl-start"><span class="fl-k">Start</span>{start}</div>
@@ -12,9 +12,9 @@ const { start, step, decision, branches, end } = Astro.props;
   <div class="fl-branches">
     {branches.map((b) => (
       <div class="fl-br">
-        <div class="fl-reply">“{b.reply}”</div>
+        <div class="fl-reply">{quoted ? `“${b.reply}”` : b.reply}</div>
         <span class="fl-v fl-v--s" aria-hidden="true"></span>
-        <div class="fl-resp"><span class="fl-k">Ready response</span>{b.response}</div>
+        <div class="fl-resp"><span class="fl-k">{respLabel}</span>{b.response}</div>
       </div>
     ))}
   </div>

@@ -13,7 +13,6 @@ export const WORK: Work[] = [
     when: '[Date]', where: c.where ?? '[City]', blurb: `Inside a DG Trainings session with the ${c.name} team.`,
   }) as Work),
 ];
-export const workUrl = (w: Work) => `/work/${w.key}/`;
 export const workFor = (slug: string) => WORK.filter((w) => w.program_slug === slug);
 export type Program = (typeof data.PROGRAMS)[number] & Record<string, any>;
 export const PROGRAMS = data.PROGRAMS as Program[];
@@ -21,9 +20,9 @@ export const SIGNATURE = PROGRAMS.filter((p) => !p.extra);
 export const bySlug = (slug: string) => PROGRAMS.find((p) => p.slug === slug)!;
 /** The three themes used by the Programs menu and the home-page filter, with short menu labels. */
 export const GROUPS = [
-  { key: 'culture', title: 'Culture & leadership', items: [['life-work-culture-transformation', 'Life & Work Culture'], ['leadership-management', 'Leadership & Management'], ['orientation-training', 'Orientation & Induction']] },
-  { key: 'sales', title: 'Sales & customers', items: [['business-technical-sales-expert', 'Sales Expert'], ['telemarketing-training', 'Telemarketing'], ['marketing-mastery', 'Marketing Mastery']] },
-  { key: 'field', title: 'Field, events & digital', items: [['sales-tour-training', 'Sales Tour'], ['exhibitions-training', 'Exhibitions'], ['digital-shakti', 'Digital Shakti']] },
+  { key: 'lead', title: 'Leadership & culture', items: [['management-training', 'Management'], ['leadership-training', 'Leadership for HODs'], ['life-work-culture-transformation', 'Life & Work Culture']] },
+  { key: 'sales', title: 'Sales & marketing', items: [['business-technical-sales-expert', 'Business & Technical – Sales Expert'], ['marketing-training', 'Marketing'], ['sales-tour-training', 'Sales Tour']] },
+  { key: 'teams', title: 'Teams, events & digital', items: [['exhibitions-training', 'Exhibition'], ['digital-shakti', 'Digital Shakti & Smartphone'], ['orientation-training', 'Orientation']] },
 ] as const;
 export const groupOf = (slug: string) => GROUPS.find((g) => g.items.some(([s]) => s === slug))?.key ?? '';
 

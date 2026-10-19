@@ -10,7 +10,7 @@ import ProgramSnapshot from '../../components/ProgramSnapshot.astro';
 import ModuleExplorer from '../../components/ModuleExplorer.astro';
 import ProgramResults from '../../components/ProgramResults.astro';
 import ProgramDiagram from '../../components/ProgramDiagram.astro';
-import { PROGRAMS, type Program, bySlug, rich, dots, wa, workFor, workUrl, WORK } from '../../lib/site';
+import { PROGRAMS, type Program, bySlug, rich, dots, wa, workFor, WORK } from '../../lib/site';
 import { photo, album } from '../../lib/photos';
 
 export function getStaticPaths() {
@@ -145,7 +145,7 @@ const sections = p.full
           <span class="eyebrow">On the training floor</span>
           <h2 data-split>Inside a session at <em>{galleryWork.client}</em></h2>
         </div>
-        <p class="lead" data-reveal><span set:html={rich(galleryWork.blurb)} /> <a class="link-arrow" href={workUrl(galleryWork)}>Full gallery <Icon name="arrow" /></a></p>
+        <p class="lead" data-reveal><span set:html={rich(galleryWork.blurb)} /></p>
       </div>
       <Gallery photos={galleryPhotos} alt={`${galleryWork.client} training session`} layout="strip" />
     </div>

@@ -53,7 +53,9 @@ import { photo } from '../lib/photos';
         <p class="err" role="alert" hidden>Please add your name and phone number so we can reach you.</p>
         <button class="btn" type="submit" data-via="wa"><Icon name="whatsapp" /> Send on WhatsApp</button>
         <button class="btn btn--outline" type="submit" data-via="mail" style="margin-top:10px"><Icon name="mail" /> Send by email</button>
-        <p class="fine">Your request opens in WhatsApp or your email app, ready to send to our training team.</p>
+        <p class="sent" role="status" hidden></p>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
+        <p class="fine">WhatsApp opens a chat with your details filled in. Email sends your enquiry straight to {CONTACT.email}. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
       </form>
     </div>
   </section>
@@ -70,6 +72,11 @@ import { photo } from '../lib/photos';
   </section>
 </Base>
 <style>
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .sent { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; font-size: .9rem; font-weight: 600; }
+  .sent.ok { background: var(--teal-50); color: var(--teal-ink); }
+  .sent.bad { background: #FEF3F2; color: #B42318; }
+  .sent a, .form .fine a { color: inherit; text-decoration: underline; }
   .faq-head h2 { margin-bottom: 12px; }
   .faq-head .lead { margin: 0; }
   .faq-head .lead a { color: var(--teal-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }

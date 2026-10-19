@@ -25,7 +25,8 @@ function header() {
   const h = document.querySelector<HTMLElement>('.header');
   if (!h) return;
   const solidAlways = document.body.dataset.header === 'solid';
-  const on = () => h.classList.toggle('is-solid', solidAlways || scrollY > 40);
+  let solid: boolean | null = null;
+  const on = () => { const v = solidAlways || scrollY > 40; if (v !== solid) { solid = v; h.classList.toggle('is-solid', v); } };
   on();
   addEventListener('scroll', on, { passive: true });
   cleanups.push(() => removeEventListener('scroll', on));
@@ -130,8 +131,36 @@ function contactForm() {
     if (!ok) { f.querySelector<HTMLElement>('[aria-invalid="true"]')!.focus(); return; }
     const prog = sel.options[sel.selectedIndex].text;
     const msg = `Training enquiry\nName: ${d.get('name')}\nBusiness: ${d.get('business') || '-'}\nPhone: ${d.get('phone')}\nEmail: ${d.get('email') || '-'}\nProgram: ${prog}\nTeam size & goals: ${d.get('goals') || '-'}`;
-    if (via === 'mail') location.href = `mailto:${f.dataset.email}?subject=${encodeURIComponent('Training enquiry — ' + prog)}&body=${encodeURIComponent(msg)}`;
-    else window.open(`https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    if (via !== 'mail') { window.open(`https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener'); return; }
+    // Email: posted straight to the training inbox through FormSubmit (no mail app needed)
+    const btn = f.querySelector<HTMLButtonElement>('button[data-via="mail"]')!;
+    const status = f.querySelector<HTMLElement>('.sent')!;
+    if (d.get('_honey')) return;
+    btn.disabled = true; btn.dataset.label ??= btn.innerHTML; btn.textContent = 'Sending…';
+    fetch(`https://formsubmit.co/ajax/${f.dataset.email}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: `New training enquiry — ${d.get('name')}${d.get('business') ? ' (' + d.get('business') + ')' : ''}`,
+        _template: 'table', _captcha: 'false',
+        ...(d.get('email') ? { _replyto: d.get('email') } : {}),
+        Name: d.get('name'), Business: d.get('business') || '-', 'Phone / WhatsApp': d.get('phone'),
+        Email: d.get('email') || '-', Program: prog, 'Team size & goals': d.get('goals') || '-',
+        Page: location.href,
+      }),
+    })
+      .then((r) => r.json().then((j) => ({ ok: r.ok && String(j.success) === 'true', j })))
+      .then(({ ok }) => {
+        if (!ok) throw new Error('not sent');
+        status.hidden = false; status.className = 'sent ok';
+        status.textContent = 'Thank you — your enquiry has reached our training team. We’ll call you shortly.';
+        f.reset();
+      })
+      .catch(() => {
+        status.hidden = false; status.className = 'sent bad';
+        status.innerHTML = `Sorry, that didn’t go through. Please <a href="mailto:${f.dataset.email}">email us</a> or use WhatsApp.`;
+      })
+      .finally(() => { btn.disabled = false; btn.innerHTML = btn.dataset.label!; });
   });
 }
 
@@ -149,19 +178,21 @@ function countUp(el: HTMLElement) {
 
 function motion() {
   // Headline line reveals
+  // hold the hero entrance until the opening logo animation has lifted
+  const introDelay = document.documentElement.classList.contains('intro') ? 2.2 : 0;
   $('[data-split]').forEach((el) => {
     const split = SplitText.create(el, { type: 'lines', mask: 'lines', linesClass: 'split-line' });
     splits.push(split);
     const hero = el.closest('.hero, .phero');
-    gsap.from(split.lines, { yPercent: 110, duration: 1.2, stagger: .1, ease: EASE, delay: hero ? .25 : 0,
+    gsap.from(split.lines, { yPercent: 110, duration: 1.2, stagger: .1, ease: EASE, delay: hero ? .25 + introDelay : 0,
       scrollTrigger: hero ? undefined : { trigger: el, start: 'top 88%', once: true } });
   });
 
   // Hero entrance sequence
   const hero = $('[data-hero]');
-  if (hero.length) gsap.fromTo(hero, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: .09, ease: EASE, delay: .5 });
+  if (hero.length) gsap.fromTo(hero, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: .09, ease: EASE, delay: .5 + introDelay });
   $('.hero-media, .phero-bg').forEach((m) => {
-    gsap.fromTo(m, { scale: 1.12 }, { scale: 1, duration: 2.4, ease: 'power2.out' });
+    gsap.fromTo(m, { scale: 1.12 }, { scale: 1, duration: 2.4, ease: 'power2.out', delay: introDelay });
     gsap.to(m, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: m.parentElement, start: 'top top', end: 'bottom top', scrub: true } });
   });
 
@@ -307,13 +338,27 @@ function motion() {
 function scrollProgress() {
   const bar = document.querySelector<HTMLElement>('.scroll-progress i');
   if (!bar) return;
-  const on = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    bar.style.transform = `scaleX(${max > 0 ? Math.min(scrollY / max, 1) : 0})`;
-  };
-  on();
+  // page height is measured on resize only; scroll just schedules one cheap transform per frame
+  let max = 1, queued = false;
+  const measure = () => { max = Math.max(document.documentElement.scrollHeight - innerHeight, 1); paint(); };
+  const paint = () => { queued = false; bar.style.transform = `scaleX(${Math.min(scrollY / max, 1)})`; };
+  const on = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+  const ro = new ResizeObserver(measure);
+  ro.observe(document.body);
+  measure();
   addEventListener('scroll', on, { passive: true });
-  cleanups.push(() => removeEventListener('scroll', on));
+  cleanups.push(() => { removeEventListener('scroll', on); ro.disconnect(); });
+}
+
+/** Pause looping animations and videos while they are off screen (saves CPU/GPU, especially on phones). */
+function offscreenPause() {
+  const els = $('.marquee, [data-hub], [data-route], .hero, .pb');
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    e.target.classList.toggle('is-offscreen', !e.isIntersecting);
+    e.target.querySelectorAll<HTMLVideoElement>(':scope > .hero-media video').forEach((v) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()));
+  }), { rootMargin: '100px 0px' });
+  els.forEach((el) => io.observe(el));
+  cleanups.push(() => io.disconnect());
 }
 
 /** Program filter tabs: sliding pill + cards fade out/in by group. */
@@ -398,7 +443,7 @@ function compareSlider() {
 }
 
 function init() {
-  header(); accordions(); lightbox(); contactForm(); scrollProgress(); programFilter(); cycleHighlight(); tilt();
+  header(); accordions(); lightbox(); contactForm(); scrollProgress(); offscreenPause(); programFilter(); cycleHighlight(); tilt();
   ctx = gsap.context(() => { subnav(); compareSlider(); if (!reduce()) motion(); });
   // fonts can shift line breaks — re-measure once loaded
   document.fonts?.ready.then(() => ScrollTrigger.refresh());

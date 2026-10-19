@@ -8,12 +8,14 @@ import { bySlug, progUrl } from '../lib/site';
 // [[...]] marks the words to highlight in each question
 const cards = [
   { q: 'When was the [[last time]] your team was trained?', slug: 'life-work-culture-transformation', icon: 'users' },
-  { q: 'Is your team ready for the [[next stage of growth]]?', slug: 'orientation-training', icon: 'trend' },
-  { q: 'Is your [[marketing team]] delivering results?', slug: 'marketing-mastery', icon: 'target' },
-  { q: 'Is your team keeping up with [[digital change]]?', slug: 'digital-shakti', icon: 'sparkle' },
-  { q: 'Are your [[managers]] bringing out the best in their teams?', slug: 'leadership-management', icon: 'chart' },
-  { q: 'Is your customer getting the [[experience]] your brand promises?', slug: 'business-technical-sales-expert', icon: 'heart' },
-  { q: 'Your targets are set. Is your team [[delivering]]?', slug: 'telemarketing-training', icon: 'check' },
+  { q: 'Do you need a [[training solution]] when a new employee joins?', slug: 'orientation-training', icon: 'sparkle' },
+  { q: 'Do you have a [[marketing team]] for getting new customer leads?', slug: 'marketing-training', icon: 'target' },
+  { q: 'Is your team [[digitally equipped]] in their day-to-day work?', slug: 'digital-shakti', icon: 'chat' },
+  { q: 'Do you have an [[ownership and leadership]] culture in your organization?', slug: 'leadership-training', icon: 'chart' },
+  { q: 'Is your team equipped with the best [[business knowledge]]?', slug: 'business-technical-sales-expert', icon: 'book' },
+  { q: 'Do you need [[extraordinary results]] from every exhibition you participate in? Do you provide training before every exhibition?', slug: 'exhibitions-training', icon: 'globe' },
+  { q: 'Your targets are set. Is your team [[delivering]] on every sales tour?', slug: 'sales-tour-training', icon: 'trend' },
+  { q: 'Is your business ready for the [[next stage of growth]]?', slug: 'management-training', icon: 'heart' },
 ].map((c, i) => ({ ...c, prog: bySlug(c.slug), html: c.q.replace(/\[\[(.+?)\]\]/g, '<em>$1</em>'), theme: ['dark', 'teal', 'cream'][i % 3] }));
 ---
 <section class="pb on-dark" aria-labelledby="pb-h" data-playbook>
@@ -39,7 +41,7 @@ const cards = [
               <span class="pc-tag">Question {String(i + 1).padStart(2, '0')}</span>
               <span class="pc-ic"><Icon name={c.icon} /></span>
             </div>
-            <p class="pc-q" set:html={c.html} />
+            <p class:list={['pc-q', { 'pc-q--long': c.q.length > 80 }]} set:html={c.html} />
             <a class="pc-link" href={progUrl(c.prog)} tabindex={i === 0 ? 0 : -1}><span>How we help</span><b>{c.prog.name}</b><Icon name="arrow" /></a>
             <span class="pc-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           </article>
@@ -66,9 +68,8 @@ const cards = [
   /* dotted grid + drifting glows */
   .pb::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.4px); background-size: 26px 26px; mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%); }
   .pb-blob { position: absolute; z-index: -2; border-radius: 50%; filter: blur(70px); opacity: .45; pointer-events: none; }
-  .pb-blob--a { width: 460px; height: 460px; background: var(--teal-600); right: 6%; top: -120px; animation: pbdrift 18s ease-in-out infinite alternate; }
-  .pb-blob--b { width: 420px; height: 420px; background: var(--teal-600); left: -140px; bottom: -180px; animation: pbdrift 22s ease-in-out infinite alternate-reverse; }
-  @keyframes pbdrift { to { transform: translate(-80px, 90px) scale(1.15); } }
+  .pb-blob--a { width: 460px; height: 460px; background: var(--teal-600); right: 6%; top: -120px; }
+  .pb-blob--b { width: 420px; height: 420px; background: var(--teal-600); left: -140px; bottom: -180px; }
 
   .pb-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
   .pb h2 { font-size: clamp(2.1rem, 3.8vw, 3.2rem); margin-bottom: 14px; }
@@ -103,6 +104,7 @@ const cards = [
   .pc-ic :global(svg) { width: 22px; height: 22px; }
   .pc-q { position: relative; z-index: 1; font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.14; font-weight: 600; margin: 22px 0 auto; text-wrap: balance; transition: opacity .5s; }
   .pc-q :global(em) { font-style: italic; color: var(--teal); }
+  .pc-q--long { font-size: clamp(1.45rem, 2.3vw, 2.05rem); }
   .pb .pb-card--dark .pc-q { color: #fff; }
   .pb .pb-card--teal .pc-q { color: var(--grey-950); }
   .pb .pb-card--cream .pc-q { color: var(--ink); }

@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Icon from '../components/Icon.astro';
+import LogoIntro from '../components/LogoIntro.astro';
 import { CONTACT, SIGNATURE, PROGRAMS, GROUPS, bySlug, tel, wa, progUrl } from '../lib/site';
 
 interface Props { title: string; description: string; active?: string; header?: 'transparent' | 'solid' }
@@ -31,6 +32,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
   <ClientRouter fallback="swap" />
 </head>
 <body data-header={header}>
+  <LogoIntro />
   <a class="skip" href="#main">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
   <div class="topbar">
@@ -41,7 +43,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
       </div>
       <div class="tb-r">
         <a class="wa" href={wa()} target="_blank" rel="noopener">WhatsApp us</a>
-        <a href="https://www.brillbrainsconsultants.com/" rel="noopener">A BrillBrains company</a>
+        <a href={CONTACT.brillbrains} target="_blank" rel="noopener">A BrillBrains company</a>
       </div>
     </div>
   </div>
@@ -68,7 +70,6 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
             <a class="dd-all" href="/programs/">View all {PROGRAMS.length} programs <Icon name="arrow" /></a>
           </div>
         </div>
-        <a href="/work/" class:list={{ active: active === 'work' }}>Our Work</a>
         <a href="/approach/" class:list={{ active: active === 'approach' }}>Approach</a>
         <a href="/about-dg/" class:list={{ active: active === 'about' }}>About DG</a>
         <a href="/contact/" class:list={{ active: active === 'contact' }}>Contact Us</a>
@@ -84,12 +85,11 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
       <div class="fgrid">
         <div>
           <a href="/" class="logo" aria-label="DG Trainings — home"><span class="dg">DG</span><span class="tr">TRAININGS</span><span class="pp">POWER TO PERFORMANCE</span></a>
-          <p>Business training for the jewellery industry, in partnership with BrillBrains Consultants (Strategic &amp; Creative Forever).</p>
+          <p>Business training for the jewellery industry, in partnership with <a class="bb" href={CONTACT.brillbrains} target="_blank" rel="noopener">BrillBrains Consultants</a> (Strategic &amp; Creative Forever).</p>
           <div class="social">
-            <a href={CONTACT.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="instagram" /></a>
-            <a href="#" aria-label="Facebook"><Icon name="facebook" /></a>
-            <a href="#" aria-label="LinkedIn"><Icon name="linkedin" /></a>
-            <a href="#" aria-label="YouTube"><Icon name="youtube" /></a>
+            <a href={CONTACT.instagram} target="_blank" rel="noopener" aria-label="DG Trainings on Instagram"><Icon name="instagram" /></a>
+            <a href={CONTACT.facebook} target="_blank" rel="noopener" aria-label="DG Trainings on Facebook"><Icon name="facebook" /></a>
+            <a href={CONTACT.youtube} target="_blank" rel="noopener" aria-label="DG Trainings on YouTube"><Icon name="youtube" /></a>
           </div>
         </div>
         <div>
@@ -103,17 +103,18 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
         <div>
           <h4>Company</h4>
           <ul>
-            <li><a href="/work/">Our Work</a></li>
             <li><a href="/about-dg/">About the Trainer</a></li>
-            <li><a href="https://www.brillbrainsconsultants.com/">Consulting Services</a></li>
-            <li><a href="https://www.brillbrainsconsultants.com/">Hiring Solutions</a></li>
+            <li><a href={CONTACT.brillbrains} target="_blank" rel="noopener">Consulting Services</a></li>
+            <li><a href={CONTACT.brillbrains} target="_blank" rel="noopener">Hiring Solutions</a></li>
+            <li><a href="/approach/">Our Approach</a></li>
+            <li><a href="/contact/#faq">FAQs</a></li>
             <li><a href="/contact/">Contact</a></li>
           </ul>
         </div>
       </div>
       <div class="fbottom">
-        <span>© {new Date().getFullYear()} BrillBrains Consultants Pvt. Ltd. All rights reserved.</span>
-        <nav aria-label="Legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></nav>
+        <span>© {new Date().getFullYear()} <a href={CONTACT.brillbrains} target="_blank" rel="noopener">BrillBrains Consultants Pvt. Ltd.</a> All rights reserved.</span>
+        <nav aria-label="Legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-and-conditions/">Terms &amp; Conditions</a></nav>
       </div>
     </div>
   </footer>

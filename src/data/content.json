@@ -6,6 +6,9 @@
   "email_bb": "connect@brillbrainsconsultants.com",
   "whatsapp": "917304192092",
   "instagram": "https://www.instagram.com/dg_trainings/",
+  "facebook": "https://www.facebook.com/profile.php?id=61595455521598",
+  "youtube": "https://www.youtube.com/channel/UCwCm9xyOdTtLyhaQfaRDnZQ",
+  "brillbrains": "https://www.brillbrainsconsultants.com/",
   "address": "Mumbai, India [full address]"
  },
  "TRAINER_SHORT": "Dipen Ghatalia (DG) — 25+ years in business, 17 years in training",
@@ -166,8 +169,168 @@
  ],
  "PROGRAMS": [
   {
-   "slug": "life-work-culture-transformation",
+   "slug": "management-training",
+   "tag": "Management",
+   "full": false,
+   "name": "Management Training",
+   "short": "Management",
+   "tagline": "Strong in every facet of business.",
+   "card": "For business owners, partners and directors — trained to be strong in every facet of the business, rebuild its foundations, automate operations and take business growth to the next level.",
+   "focus": "Business foundations · Systems & automation · Leadership · Growth strategy",
+   "ideal": "Business owners, partners and directors",
+   "img": "srk-hongkong/01",
+   "hero": "safalta-sangam/01",
+   "roles": "O",
    "num": "01",
+   "related": [
+    "leadership-training",
+    "life-work-culture-transformation",
+    "marketing-training"
+   ]
+  },
+  {
+   "slug": "leadership-training",
+   "num": "02",
+   "tag": "Leadership",
+   "full": true,
+   "name": "Leadership Training",
+   "short": "Leadership",
+   "tagline": "Leaders who build more leaders.",
+   "page_tagline": "Great Leaders. Stronger Teams. Better Results.",
+   "card": "Designed for your company's leaders to be the strongest pillars of the business — driving results consistently, tracking their team members' productivity and creating more leaders aligned with the company's vision and mission.",
+   "focus": "Decision-making · Team leadership · Accountability · Motivation · Systems",
+   "ideal": "Heads of department, showroom and floor managers",
+   "img": "dp/05",
+   "intro": "Great businesses are built on great leadership. This program equips showroom managers and heads of department to streamline daily operations, lead and motivate teams, build a culture of accountability, improve employee retention and drive measurable business performance.",
+   "glance": [
+    [
+     "Format",
+     "On-site · Interactive workshop with real showroom scenarios, tools and templates [Confirm]"
+    ],
+    [
+     "Duration",
+     "[X] days / [X] hours [Confirm]"
+    ],
+    [
+     "Ideal for",
+     "Showroom managers, floor managers, heads of department and team leaders"
+    ],
+    [
+     "Language",
+     "English, Hindi & Gujarati [Confirm]"
+    ],
+    [
+     "Batch size",
+     "Up to [XX] participants per batch [Confirm]"
+    ],
+    [
+     "Certificate",
+     "DG Trainings Certificate of Completion for every participant [Confirm]"
+    ]
+   ],
+   "overview_h": "A great team starts with a great manager.",
+   "overview": [
+    "Employees look up to their manager — for direction, standards and motivation. Strong leadership builds trust, strengthens teamwork and creates an environment where people feel valued and perform at their best.",
+    "This program equips managers to lead with confidence, establish clear standards, streamline daily operations, develop their teams and drive measurable results — from opening the showroom to reviewing performance."
+   ],
+   "highlights": [
+    "Clear roles and responsibilities — 18 areas every manager owns",
+    "Day-begin and day-end operating routines for the showroom",
+    "Leading, team management and motivation that people respond to",
+    "Reducing attrition — workload, appreciation and culture",
+    "Effective daily, weekly, monthly and one-on-one meetings",
+    "Staff performance reviews, report cards and reporting systems",
+    "Jewellery security, ethics, time management and cost control"
+   ],
+   "modules": [
+    [
+     "The role of a manager",
+     "Leadership fundamentals: managerial roles, responsibilities, leadership styles and their impact on team performance."
+    ],
+    [
+     "Daily operations",
+     "Opening and closing routines, counter readiness, grooming, gold-rate updates, orders, repairs, stock checks and security."
+    ],
+    [
+     "Customer leadership",
+     "Understanding customer needs, ensuring satisfaction, handling complaints, managing returns and repairs, and post-sale communication."
+    ],
+    [
+     "Leading & team management",
+     "Goal setting, workflow planning, role clarity, team development, constructive feedback and problem-solving."
+    ],
+    [
+     "Motivation & retention",
+     "Building trust, recognising employees, supporting growth, balancing workloads and reducing attrition."
+    ],
+    [
+     "Meetings that work",
+     "Daily, weekly and monthly meetings; setting objectives and agendas; action lists and follow-up; weekly one-on-ones to coach and motivate."
+    ],
+    [
+     "Performance management",
+     "Target tracking, performance reviews, constructive feedback, staff development and rewards for top performers."
+    ],
+    [
+     "Standards, ethics & an inclusive workplace",
+     "Grooming and hygiene standards; building ethical behaviour; a respectful, inclusive workplace for every team member."
+    ],
+    [
+     "Systems & control",
+     "Maintaining sales, department, stock and operations reports; time management and delegation; jewellery security on the floor; reducing waste and cost."
+    ],
+    [
+     "The manager’s own scorecard",
+     "Measuring managerial effectiveness across administration, communication, teamwork, expense control, people management, leadership, customer responsiveness, professional appearance and initiative."
+    ]
+   ],
+   "attend": [
+    "Showroom and store managers",
+    "Heads of department and team leaders",
+    "High performers being prepared for a manager role",
+    "Owners who want managers to run the business without daily supervision"
+   ],
+   "outcomes_h": "What changes after the training",
+   "outcomes": [
+    "Smooth, consistent showroom operations every day",
+    "Lower attrition and a more motivated team",
+    "Regular, productive meetings and one-on-ones",
+    "Clear performance tracking and fair reviews",
+    "Better security, cost control and reporting discipline"
+   ],
+   "method": "Interactive workshop · Real showroom scenarios · Role-plays of feedback and review conversations · Ready checklists and templates",
+   "takeaways_label": "Take-aways",
+   "takeaways": "Day-begin and day-end checklist · Meeting agenda template · Staff report card · Manager’s scorecard",
+   "impact": "Track attrition, attendance, target achievement, customer feedback and report discipline before and after the program.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and has worked with 100+ entrepreneurs and their management teams.",
+   "faqs": [
+    [
+     "Is the program practical or theoretical?",
+     "It focuses on real showroom situations, practical management tools and workplace application."
+    ],
+    [
+     "Is it customised to our showroom?",
+     "Yes — routines, reports and scorecards are adapted to your store, team size and systems."
+    ],
+    [
+     "Does it address employee motivation and retention?",
+     "Yes. It covers recognition, trust, team development and practices that support employee engagement and retention."
+    ]
+   ],
+   "related": [
+    "management-training",
+    "life-work-culture-transformation",
+    "orientation-training"
+   ],
+   "cta_h": "Build leaders your team wants to follow.",
+   "cta_text": "Book a free discovery call — we’ll design a leadership program around your managers and your goals.",
+   "hero": "dp/01",
+   "roles": "M",
+   "page_title": "Leadership Training for HODs"
+  },
+  {
+   "slug": "life-work-culture-transformation",
+   "num": "03",
    "tag": "Culture",
    "full": true,
    "name": "Life & Work Culture Transformation",
@@ -330,311 +493,14 @@
     ]
    ],
    "related": [
-    "leadership-management",
-    "business-technical-sales-expert",
-    "orientation-training"
+    "leadership-training",
+    "orientation-training",
+    "business-technical-sales-expert"
    ],
    "cta_h": "Build a culture your customers can feel.",
    "cta_text": "Let’s talk about your team, your culture and the transformation you want to see.",
    "hero": "shivam-jewels/01",
    "roles": "OMSBN"
-  },
-  {
-   "slug": "leadership-management",
-   "num": "02",
-   "tag": "Leadership",
-   "full": true,
-   "name": "Leadership & Management Training",
-   "short": "Leadership & Management",
-   "tagline": "Leaders who build more leaders.",
-   "page_tagline": "Great Leaders. Stronger Teams. Better Results.",
-   "card": "Shape your managers and heads of department into the strongest pillars of your business. They learn to run daily operations to one standard, track team productivity and develop the next generation of leaders — so the business runs without daily supervision.",
-   "focus": "Decision-making · Team leadership · Accountability · Motivation · Systems",
-   "ideal": "Showroom managers, heads of department and owners",
-   "img": "dp/05",
-   "intro": "Great businesses are built on great leadership. This program equips showroom managers and heads of department to streamline daily operations, lead and motivate teams, build a culture of accountability, improve employee retention and drive measurable business performance.",
-   "glance": [
-    [
-     "Format",
-     "On-site · Interactive workshop with real showroom scenarios, tools and templates [Confirm]"
-    ],
-    [
-     "Duration",
-     "[X] days / [X] hours [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "Showroom managers, floor managers, heads of department and team leaders"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "A great team starts with a great manager.",
-   "overview": [
-    "Employees look up to their manager — for direction, standards and motivation. Strong leadership builds trust, strengthens teamwork and creates an environment where people feel valued and perform at their best.",
-    "This program equips managers to lead with confidence, establish clear standards, streamline daily operations, develop their teams and drive measurable results — from opening the showroom to reviewing performance."
-   ],
-   "highlights": [
-    "Clear roles and responsibilities — 18 areas every manager owns",
-    "Day-begin and day-end operating routines for the showroom",
-    "Leading, team management and motivation that people respond to",
-    "Reducing attrition — workload, appreciation and culture",
-    "Effective daily, weekly, monthly and one-on-one meetings",
-    "Staff performance reviews, report cards and reporting systems",
-    "Jewellery security, ethics, time management and cost control"
-   ],
-   "modules": [
-    [
-     "The role of a manager",
-     "Leadership fundamentals: managerial roles, responsibilities, leadership styles and their impact on team performance."
-    ],
-    [
-     "Daily operations",
-     "Opening and closing routines, counter readiness, grooming, gold-rate updates, orders, repairs, stock checks and security."
-    ],
-    [
-     "Customer leadership",
-     "Understanding customer needs, ensuring satisfaction, handling complaints, managing returns and repairs, and post-sale communication."
-    ],
-    [
-     "Leading & team management",
-     "Goal setting, workflow planning, role clarity, team development, constructive feedback and problem-solving."
-    ],
-    [
-     "Motivation & retention",
-     "Building trust, recognising employees, supporting growth, balancing workloads and reducing attrition."
-    ],
-    [
-     "Meetings that work",
-     "Daily, weekly and monthly meetings; setting objectives and agendas; action lists and follow-up; weekly one-on-ones to coach and motivate."
-    ],
-    [
-     "Performance management",
-     "Target tracking, performance reviews, constructive feedback, staff development and rewards for top performers."
-    ],
-    [
-     "Standards, ethics & an inclusive workplace",
-     "Grooming and hygiene standards; building ethical behaviour; a respectful, inclusive workplace for every team member."
-    ],
-    [
-     "Systems & control",
-     "Maintaining sales, department, stock and operations reports; time management and delegation; jewellery security on the floor; reducing waste and cost."
-    ],
-    [
-     "The manager’s own scorecard",
-     "Measuring managerial effectiveness across administration, communication, teamwork, expense control, people management, leadership, customer responsiveness, professional appearance and initiative."
-    ]
-   ],
-   "attend": [
-    "Showroom and store managers",
-    "Heads of department and team leaders",
-    "High performers being prepared for a manager role",
-    "Owners who want managers to run the business without daily supervision"
-   ],
-   "outcomes_h": "What changes after the training",
-   "outcomes": [
-    "Smooth, consistent showroom operations every day",
-    "Lower attrition and a more motivated team",
-    "Regular, productive meetings and one-on-ones",
-    "Clear performance tracking and fair reviews",
-    "Better security, cost control and reporting discipline"
-   ],
-   "method": "Interactive workshop · Real showroom scenarios · Role-plays of feedback and review conversations · Ready checklists and templates",
-   "takeaways_label": "Take-aways",
-   "takeaways": "Day-begin and day-end checklist · Meeting agenda template · Staff report card · Manager’s scorecard",
-   "impact": "Track attrition, attendance, target achievement, customer feedback and report discipline before and after the program.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and has worked with 100+ entrepreneurs and their management teams.",
-   "faqs": [
-    [
-     "Is the program practical or theoretical?",
-     "It focuses on real showroom situations, practical management tools and workplace application."
-    ],
-    [
-     "Is it customised to our showroom?",
-     "Yes — routines, reports and scorecards are adapted to your store, team size and systems."
-    ],
-    [
-     "Does it address employee motivation and retention?",
-     "Yes. It covers recognition, trust, team development and practices that support employee engagement and retention."
-    ]
-   ],
-   "related": [
-    "life-work-culture-transformation",
-    "business-technical-sales-expert",
-    "exhibitions-training"
-   ],
-   "cta_h": "Build managers your team wants to follow.",
-   "cta_text": "Book a free discovery call — we’ll design a leadership program around your managers and your goals.",
-   "hero": "dp/01",
-   "roles": "OM"
-  },
-  {
-   "slug": "orientation-training",
-   "num": "03",
-   "tag": "Onboarding",
-   "full": true,
-   "name": "Orientation Training (Employee Induction)",
-   "short": "Orientation",
-   "tagline": "The right start, from day one.",
-   "card": "A warm, structured welcome that gives every new joiner a clear picture of your company, its products, services and code of conduct, and introduces them to your key people and culture.",
-   "focus": "Company & product knowledge · Code of conduct · Jewellery business basics · Culture",
-   "ideal": "New joiners",
-   "img": "shivam-jewels/11",
-   "related": [
-    "life-work-culture-transformation",
-    "business-technical-sales-expert",
-    "leadership-management"
-   ],
-   "hero": "gitanjali-2026/02",
-   "roles": "ON",
-   "intro": "A new employee’s first few days shape how they connect with your organisation and contribute to its success. Orientation Training gives every new joiner a structured introduction to your company, its people, policies and customer promise — aligning them with business goals and helping them contribute to growth from day one.",
-   "glance": [
-    [
-     "Format",
-     "On-site at your showroom or office · Customised induction presentation built for your company, delivered by DG Trainings [Confirm]"
-    ],
-    [
-     "Duration",
-     "[X] hours per batch [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "New joiners across all departments — sales, back office, accounts, production and support"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "First impressions work both ways.",
-   "overview": [
-    "When new joiners learn the company in bits and pieces from whoever is nearby, they pick up half-truths, unclear rules and old habits. When they’re welcomed properly, they understand the brand, respect the systems and settle in faster.",
-    "We work with your management and HR to build a branded induction program around your company — your history, leaders, products, presence, organisation structure and policies — written in simple, friendly language and delivered so that every new joiner hears the same, correct message."
-   ],
-   "highlights": [
-    "A complete, branded induction program built around your company",
-    "Your story, mission, vision and values — told in a way that builds pride",
-    "Leadership, team, presence and business explained clearly",
-    "Every key policy explained simply — work hours, leave, salary, promotion, grievance, travel",
-    "Code of conduct, dress code and customer promise — the standards everyone follows",
-    "Benefits and perks presented so employees value what they receive",
-    "One consistent message for every new joiner, in every branch"
-   ],
-   "modules": [
-    [
-     "Company overview",
-     "Your journey: when and where it began, key milestones, customers served and what makes you different."
-    ],
-    [
-     "Mission, vision & values",
-     "Where the company is going, why it exists, and the core values every employee lives by — with simple examples of each."
-    ],
-    [
-     "Leadership & people",
-     "Founders, leadership team, departments, key contacts and reporting structure."
-    ],
-    [
-     "Business & company presence",
-     "Products, brands, showrooms, manufacturing units, markets, new launches and essential product knowledge."
-    ],
-    [
-     "Company policies & code of conduct",
-     "Workplace expectations, professional conduct, confidentiality, company assets and ethical behaviour."
-    ],
-    [
-     "Work hours, attendance & leave",
-     "Shift timings, breaks, punctuality, weekly offs, leave types and application procedures."
-    ],
-    [
-     "Salary, benefits & growth",
-     "Salary cycle, loans and advances, incentives, benefits, probation, confirmation, appraisals, promotions and increments."
-    ],
-    [
-     "Employee grievances & support",
-     "Raising concerns, complaint procedures and the appropriate channels for resolution."
-    ],
-    [
-     "Travel, dress code & workplace standards",
-     "Official travel, expense claims, uniforms, grooming and professional presentation."
-    ],
-    [
-     "Customer promise",
-     "Customer service standards, showroom etiquette, customer trust and the do’s and don’ts of customer engagement."
-    ]
-   ],
-   "attend": [
-    "Every new joiner, in their first week",
-    "Existing employees who need a refresher on policies and standards",
-    "Companies opening new branches or hiring in large batches"
-   ],
-   "outcomes_h": "What changes with a proper induction",
-   "outcomes": [
-    "New joiners settle in faster and contribute sooner",
-    "Fewer policy misunderstandings and HR queries",
-    "Stronger pride and loyalty from day one — lower early attrition",
-    "The same values, rules and customer standards across every branch"
-   ],
-   "delivery_steps": [
-    [
-     "Discover",
-     "We meet your management and HR to gather your story, structure and policies."
-    ],
-    [
-     "Design",
-     "We create a branded induction presentation in simple, friendly language."
-    ],
-    [
-     "Deliver",
-     "DG Trainings delivers the induction to new joiners — interactive, warm and engaging."
-    ],
-    [
-     "Hand over",
-     "Your HR team keeps the presentation to use for future batches. [Confirm]"
-    ]
-   ],
-   "method": "Meeting with your management & HR · Branded induction presentation · Interactive delivery to new joiners · Hand-over to your HR team [Confirm]",
-   "takeaways_label": "Take-aways",
-   "takeaways": "Branded induction presentation · ‘Remember these’ summary for new joiners · Policy quick-reference [Confirm]",
-   "impact": "Track early attrition (first 90 days), time to productivity and new-joiner feedback — before and after a structured induction.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and is an expert in building the culture that new joiners step into.",
-   "faqs": [
-    [
-     "Will the induction be about our company or generic?",
-     "Entirely about your company. We build it from your story, leaders, products, structure and policies."
-    ],
-    [
-     "What information will be required from us?",
-     "Your company history, leadership details, organisation chart, policies and a few photos. We handle the writing and design."
-    ],
-    [
-     "Can we include department-specific information in the program?",
-     "Yes. Relevant roles, reporting structures and departmental responsibilities can be incorporated into the program."
-    ],
-    [
-     "Do you also cover culture and soft skills?",
-     "Orientation covers the company and its rules. For mindset, habits and culture, pair it with Life & Work Culture Transformation."
-    ]
-   ],
-   "cta_h": "Give every new joiner the right start.",
-   "cta_text": "Book a free discovery call — we’ll build an induction program that makes your company proud and your people productive from day one."
   },
   {
    "slug": "business-technical-sales-expert",
@@ -777,13 +643,13 @@
     ],
     [
      "Can it be combined with other programs?",
-     "Yes. It pairs well with Life & Work Culture Transformation and Telemarketing Training for a complete retail team upgrade."
+     "Yes. It pairs well with Life & Work Culture Transformation and Marketing Training for a complete retail team upgrade."
     ]
    ],
    "related": [
-    "life-work-culture-transformation",
-    "telemarketing-training",
-    "digital-shakti"
+    "marketing-training",
+    "exhibitions-training",
+    "life-work-culture-transformation"
    ],
    "cta_h": "Turn your counter staff into jewellery experts.",
    "cta_text": "Book a free discovery call and we’ll show you how this program fits your showroom, team and targets.",
@@ -791,162 +657,41 @@
    "roles": "OMSN"
   },
   {
-   "slug": "telemarketing-training",
+   "slug": "marketing-training",
    "num": "05",
-   "tag": "Calling",
-   "full": true,
-   "name": "Telemarketing Training",
-   "short": "Telemarketing",
-   "tagline": "Every ‘Hello’ is an opportunity.",
-   "card": "Train your team to call with confidence, handle objections gracefully and turn every call into store visits, sales and lasting relationships.",
-   "focus": "Openings · Objection handling · Scripts · Call tracking",
-   "ideal": "Telecallers, CRM executives and store teams",
-   "img": "suraj-bhan/03",
-   "intro": "A phone call, done right, is a handshake you can’t see but the customer can feel. This program trains your team to call with confidence, handle objections gracefully and turn every call — new collections, birthdays, festive offers, follow-ups — into store visits, sales and lasting relationships.",
-   "glance": [
-    [
-     "Format",
-     "On-site · Workshop with live call demos and role-plays"
-    ],
-    [
-     "Duration",
-     "[X] hours [Confirm]"
-    ],
-    [
-     "Ideal for",
-     "Telecallers, sales associates, CRM executives and store teams who call customers"
-    ],
-    [
-     "Language",
-     "English, Hindi & Gujarati [Confirm]"
-    ],
-    [
-     "Batch size",
-     "Up to [XX] participants per batch [Confirm]"
-    ],
-    [
-     "Certificate",
-     "DG Trainings Certificate of Completion for every participant [Confirm]"
-    ]
-   ],
-   "overview_h": "Your customer list is your most underused asset.",
-   "overview": [
-    "Every jeweller has a customer base full of untapped sales opportunities. But a call without the right approach can lose a customer’s interest in seconds. The right opening, a clear reason to engage, and a strong next step can turn a routine call into a sales opportunity.",
-    "This program gives your team the confidence, scripts and discipline to make every call warm, purposeful and memorable — and a simple tracker to measure results."
-   ],
-   "highlights": [
-    "Inbound and outbound calling — cold calls, lead generation and appointments",
-    "The first 10 seconds — openings that make customers listen",
-    "Ready responses to ‘Not interested’, ‘Call me later’ and ‘I already have a jeweller’",
-    "Sample scripts for new-collection, birthday and thank-you calls",
-    "A 6-step calling process, daily checklist and call tracker",
-    "Live call demos and before/after result tracking"
-   ],
-   "modules": [
-    [
-     "Telemarketing fundamentals",
-     "What telemarketing is and why it matters; cold calling, lead generation and appointment setting; core essentials; inbound vs outbound."
-    ],
-    [
-     "The confident caller",
-     "The importance of the first call; making every call interesting; challenges telemarketers face; qualities and habits of the best; confidence mantras."
-    ],
-    [
-     "Handling difficult customers",
-     "Turning objections into conversations, with ready responses for the most common replies."
-    ],
-    [
-     "Reasons and occasions to call",
-     "Relationship calls, post-purchase thanks, birthdays and anniversaries, new collections, festivals, offers, exhibition invites, surveys, upselling and feedback."
-    ],
-    [
-     "Scripts & call discipline",
-     "Sample call scripts; points to remember on every call; maintaining a tracker and minutes of the call; the telemarketer’s oath."
-    ],
-    [
-     "Process & daily routine",
-     "The 6-step telemarketing process; daily telecalling checklist; homework and role-play practice."
-    ],
-    [
-     "Live practice & results",
-     "Live call demos; turning learning into numbers; tracking before-and-after results."
-    ]
-   ],
-   "attend": [
-    "Dedicated telecallers and CRM executives",
-    "Showroom staff who follow up with customers by phone",
-    "Managers who want a measurable calling program"
-   ],
-   "outcomes_h": "What changes after the training",
-   "outcomes": [
-    "More calls converting into store visits and callbacks",
-    "Confident, warm and professional calling across the team",
-    "A disciplined calling routine with a tracker for every customer",
-    "Stronger relationships and more repeat business"
-   ],
-   "method": "Interactive session · Live call demonstrations · Role-play of tricky responses · Ready scripts and checklists",
-   "impact": "Evaluate improvement in call quality, customer engagement, follow-ups and conversions after the program.",
-   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and is a natural copywriter who knows how words win customers.",
-   "faqs": [
-    [
-     "Will you give us scripts?",
-     "Yes — and we tailor them to your brand, offers and customers, so they sound natural, not read."
-    ],
-    [
-     "Is this useful for showroom staff, not just telecallers?",
-     "Yes. Any team member who calls customers will benefit — especially for festive and wedding seasons."
-    ],
-    [
-     "How do we know it worked?",
-     "We set up a simple before/after tracker so you can see the change in visits and callbacks."
-    ]
-   ],
-   "related": [
-    "business-technical-sales-expert",
-    "digital-shakti",
-    "marketing-mastery"
-   ],
-   "cta_h": "Turn your customer list into footfall.",
-   "cta_text": "Book a free discovery call — we’ll show you how a trained calling team can bring customers back every season.",
-   "hero": "saheli-aurum/07",
-   "roles": "MS"
-  },
-  {
-   "slug": "marketing-mastery",
-   "num": "06",
    "tag": "Marketing",
    "full": false,
-   "name": "Marketing Mastery",
+   "name": "Marketing Training",
    "short": "Marketing",
    "tagline": "Turn attention into loyalty.",
-   "card": "Equip your team to attract, engage and retain the right customers — and to keep them coming back. Learn to bring in a steady stream of new prospects and convert relationships into remarkable revenue.",
+   "card": "Trains your team to attract, retain and engage customers and build a loyal customer base — consistently bringing in new prospects and contributing to remarkable revenue for the business.",
    "focus": "Business promotion · Client engagement · Campaigns · Customer loyalty",
    "ideal": "Marketing, sales and customer-facing teams",
    "img": "paras-gold/02",
    "related": [
-    "telemarketing-training",
+    "business-technical-sales-expert",
     "digital-shakti",
-    "business-technical-sales-expert"
+    "sales-tour-training"
    ],
    "hero": "paras-gold/01",
    "roles": "S"
   },
   {
    "slug": "sales-tour-training",
-   "num": "07",
+   "num": "06",
    "tag": "Field Sales",
    "full": true,
    "name": "Sales Tour Training",
-   "short": "Sales Tours",
+   "short": "Sales Tour",
    "tagline": "Every tour, a success story.",
    "card": "Sales tours are expensive, and every day on the road should pay for itself. Your team learns to plan and strategise before they travel, and to run every buyer meeting with a systematic, proactive approach.",
    "focus": "Tour planning · Field execution · Buyer meetings · Lead handling · Follow-up",
    "ideal": "Wholesale and manufacturing sales teams",
    "img": "srk-hongkong/01",
    "related": [
-    "exhibitions-training",
     "business-technical-sales-expert",
-    "digital-shakti"
+    "exhibitions-training",
+    "marketing-training"
    ],
    "hero": "jg/01",
    "roles": "OMS",
@@ -1055,11 +800,11 @@
   },
   {
    "slug": "exhibitions-training",
-   "num": "08",
+   "num": "07",
    "tag": "Exhibitions",
    "full": true,
-   "name": "Exhibitions Training",
-   "short": "Exhibitions",
+   "name": "Exhibition Training",
+   "short": "Exhibition",
    "tagline": "Turn footfall into orders.",
    "card": "Master the practical fundamentals of winning exhibitions, with a clear plan for before, during and after the show. Your booth team learns to prepare well, engage with discipline and convert visitors — for maximum return on every rupee invested.",
    "focus": "Pre-show preparation · Booth discipline · Conversion · Post-show follow-up",
@@ -1186,8 +931,8 @@
    ],
    "related": [
     "sales-tour-training",
-    "business-technical-sales-expert",
-    "leadership-management"
+    "marketing-training",
+    "business-technical-sales-expert"
    ],
    "cta_h": "Make your next exhibition your most profitable one.",
    "cta_text": "Tell us about your exhibition calendar and your team — we’ll design the training around your next show.",
@@ -1196,7 +941,7 @@
   },
   {
    "slug": "digital-shakti",
-   "num": "09",
+   "num": "08",
    "tag": "Digital",
    "full": true,
    "name": "Digital Shakti & Smartphone Training",
@@ -1315,14 +1060,172 @@
     ]
    ],
    "related": [
-    "telemarketing-training",
-    "marketing-mastery",
-    "orientation-training"
+    "marketing-training",
+    "orientation-training",
+    "life-work-culture-transformation"
    ],
    "cta_h": "Give your team the power of digital.",
    "cta_text": "Book a session and make your whole team digitally confident — in days, not months.",
    "hero": "dc/01",
    "roles": "OSB"
+  },
+  {
+   "slug": "orientation-training",
+   "num": "09",
+   "tag": "Onboarding",
+   "full": true,
+   "name": "Orientation Training",
+   "short": "Orientation",
+   "tagline": "The right start, from day one.",
+   "card": "A warm, structured welcome that gives every new joiner a clear picture of your company, its products, services and code of conduct, and introduces them to your key people and culture.",
+   "focus": "Company & product knowledge · Code of conduct · Jewellery business basics · Culture",
+   "ideal": "New joiners",
+   "img": "shivam-jewels/11",
+   "related": [
+    "life-work-culture-transformation",
+    "digital-shakti",
+    "leadership-training"
+   ],
+   "hero": "gitanjali-2026/02",
+   "roles": "ON",
+   "intro": "A new employee’s first few days shape how they connect with your organisation and contribute to its success. Orientation Training gives every new joiner a structured introduction to your company, its people, policies and customer promise — aligning them with business goals and helping them contribute to growth from day one.",
+   "glance": [
+    [
+     "Format",
+     "On-site at your showroom or office · Customised induction presentation built for your company, delivered by DG Trainings [Confirm]"
+    ],
+    [
+     "Duration",
+     "[X] hours per batch [Confirm]"
+    ],
+    [
+     "Ideal for",
+     "New joiners across all departments — sales, back office, accounts, production and support"
+    ],
+    [
+     "Language",
+     "English, Hindi & Gujarati [Confirm]"
+    ],
+    [
+     "Batch size",
+     "Up to [XX] participants per batch [Confirm]"
+    ],
+    [
+     "Certificate",
+     "DG Trainings Certificate of Completion for every participant [Confirm]"
+    ]
+   ],
+   "overview_h": "First impressions work both ways.",
+   "overview": [
+    "When new joiners learn the company in bits and pieces from whoever is nearby, they pick up half-truths, unclear rules and old habits. When they’re welcomed properly, they understand the brand, respect the systems and settle in faster.",
+    "We work with your management and HR to build a branded induction program around your company — your history, leaders, products, presence, organisation structure and policies — written in simple, friendly language and delivered so that every new joiner hears the same, correct message."
+   ],
+   "highlights": [
+    "A complete, branded induction program built around your company",
+    "Your story, mission, vision and values — told in a way that builds pride",
+    "Leadership, team, presence and business explained clearly",
+    "Every key policy explained simply — work hours, leave, salary, promotion, grievance, travel",
+    "Code of conduct, dress code and customer promise — the standards everyone follows",
+    "Benefits and perks presented so employees value what they receive",
+    "One consistent message for every new joiner, in every branch"
+   ],
+   "modules": [
+    [
+     "Company overview",
+     "Your journey: when and where it began, key milestones, customers served and what makes you different."
+    ],
+    [
+     "Mission, vision & values",
+     "Where the company is going, why it exists, and the core values every employee lives by — with simple examples of each."
+    ],
+    [
+     "Leadership & people",
+     "Founders, leadership team, departments, key contacts and reporting structure."
+    ],
+    [
+     "Business & company presence",
+     "Products, brands, showrooms, manufacturing units, markets, new launches and essential product knowledge."
+    ],
+    [
+     "Company policies & code of conduct",
+     "Workplace expectations, professional conduct, confidentiality, company assets and ethical behaviour."
+    ],
+    [
+     "Work hours, attendance & leave",
+     "Shift timings, breaks, punctuality, weekly offs, leave types and application procedures."
+    ],
+    [
+     "Salary, benefits & growth",
+     "Salary cycle, loans and advances, incentives, benefits, probation, confirmation, appraisals, promotions and increments."
+    ],
+    [
+     "Employee grievances & support",
+     "Raising concerns, complaint procedures and the appropriate channels for resolution."
+    ],
+    [
+     "Travel, dress code & workplace standards",
+     "Official travel, expense claims, uniforms, grooming and professional presentation."
+    ],
+    [
+     "Customer promise",
+     "Customer service standards, showroom etiquette, customer trust and the do’s and don’ts of customer engagement."
+    ]
+   ],
+   "attend": [
+    "Every new joiner, in their first week",
+    "Existing employees who need a refresher on policies and standards",
+    "Companies opening new branches or hiring in large batches"
+   ],
+   "outcomes_h": "What changes with a proper induction",
+   "outcomes": [
+    "New joiners settle in faster and contribute sooner",
+    "Fewer policy misunderstandings and HR queries",
+    "Stronger pride and loyalty from day one — lower early attrition",
+    "The same values, rules and customer standards across every branch"
+   ],
+   "delivery_steps": [
+    [
+     "Discover",
+     "We meet your management and HR to gather your story, structure and policies."
+    ],
+    [
+     "Design",
+     "We create a branded induction presentation in simple, friendly language."
+    ],
+    [
+     "Deliver",
+     "DG Trainings delivers the induction to new joiners — interactive, warm and engaging."
+    ],
+    [
+     "Hand over",
+     "Your HR team keeps the presentation to use for future batches. [Confirm]"
+    ]
+   ],
+   "method": "Meeting with your management & HR · Branded induction presentation · Interactive delivery to new joiners · Hand-over to your HR team [Confirm]",
+   "takeaways_label": "Take-aways",
+   "takeaways": "Branded induction presentation · ‘Remember these’ summary for new joiners · Policy quick-reference [Confirm]",
+   "impact": "Track early attrition (first 90 days), time to productivity and new-joiner feedback — before and after a structured induction.",
+   "trainer_bio": "25+ years of business experience, 17 years in training and 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry since 2011, DG brings real retail, wholesale and manufacturing experience to every session — and is an expert in building the culture that new joiners step into.",
+   "faqs": [
+    [
+     "Will the induction be about our company or generic?",
+     "Entirely about your company. We build it from your story, leaders, products, structure and policies."
+    ],
+    [
+     "What information will be required from us?",
+     "Your company history, leadership details, organisation chart, policies and a few photos. We handle the writing and design."
+    ],
+    [
+     "Can we include department-specific information in the program?",
+     "Yes. Relevant roles, reporting structures and departmental responsibilities can be incorporated into the program."
+    ],
+    [
+     "Do you also cover culture and soft skills?",
+     "Orientation covers the company and its rules. For mindset, habits and culture, pair it with Life & Work Culture Transformation."
+    ]
+   ],
+   "cta_h": "Give every new joiner the right start.",
+   "cta_text": "Book a free discovery call — we’ll build an induction program that makes your company proud and your people productive from day one."
   }
  ],
  "WORK": [
@@ -1331,7 +1234,7 @@
    "client": "Saheli Aurum",
    "kind": "Luxury retail showroom",
    "program": null,
-   "program_slug": "telemarketing-training",
+   "program_slug": "",
    "when": null,
    "where": null,
    "blurb": "Training delivered right on the showroom floor — between the counters, with the team in uniform and real customers’ questions in mind.",
@@ -1352,7 +1255,7 @@
    "client": "D.P. Jewellers",
    "kind": "Retail jewellery brand",
    "program": null,
-   "program_slug": "leadership-management",
+   "program_slug": "leadership-training",
    "when": null,
    "where": null,
    "blurb": "A full-house “Time to Give a Thought” session for the entire team — followed by flip-chart workshops right on the showroom floor."
@@ -1402,7 +1305,7 @@
    "client": "Safalta Sangam",
    "kind": "Business community forum",
    "program": null,
-   "program_slug": "leadership-management",
+   "program_slug": "leadership-training",
    "when": null,
    "where": null,
    "blurb": "DG addressing a gathering of entrepreneurs and business owners on growth, discipline and ownership."
@@ -1422,7 +1325,7 @@
    "client": "Paras Gold",
    "kind": "Gold jewellery business",
    "program": null,
-   "program_slug": "marketing-mastery",
+   "program_slug": "marketing-training",
    "when": null,
    "where": null,
    "blurb": "An interactive session for the full team, from the sales floor to the back office."

@@ -1,0 +1,27 @@
+---
+// Logo wall of businesses DG has trained (logos taken from the DG Trainings clientele deck).
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import names from '../assets/clients/names.json';
+const files = import.meta.glob<{ default: ImageMetadata }>('../assets/clients/*.png', { eager: true });
+const order = ['shivam-jewels', 'srk', 'jewel-goldi', 'shine-shilpi', 'dishaa', 'hardik-zaveri', 'maa-silver', 'dc-jewellers', 'chetmani', 'pachchigar', 'keshavji-chhaganlal', 'mk-ghare', 'dp-jewellers', 'shree-meher'];
+const logos = order.map((k) => ({ k, name: (names as Record<string, string>)[k], img: files[`../assets/clients/${k}.png`].default }));
+---
+<ul class="logos" role="list" data-stagger>
+  {logos.map((l) => (
+    <li title={l.name}>
+      <Image src={l.img} alt={l.name} height={120} loading="lazy" />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .logos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+  .logos li { display: grid; place-items: center; height: 118px; padding: 18px; background: #fff; border: 1px solid var(--grey-200); border-radius: 18px; transition: border-color .4s, box-shadow .5s var(--ease), transform .5s var(--ease); }
+  .logos li:hover { border-color: var(--teal); box-shadow: var(--shadow); transform: translateY(-4px); }
+  .logos :global(img) { max-width: 100%; max-height: 74px; width: auto; height: auto; object-fit: contain; filter: grayscale(1) contrast(.9); opacity: .78; transition: filter .5s, opacity .5s; }
+  .logos li:hover :global(img) { filter: none; opacity: 1; }
+  @media (hover: none) { .logos :global(img) { filter: none; opacity: 1; } }
+  @media (max-width: 1100px) { .logos { grid-template-columns: repeat(5, 1fr); } }
+  @media (max-width: 760px) { .logos { grid-template-columns: repeat(3, 1fr); gap: 8px; } .logos li { height: 84px; padding: 10px; border-radius: 14px; } .logos :global(img) { max-height: 52px; } }
+</style>

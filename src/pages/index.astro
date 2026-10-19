@@ -11,6 +11,7 @@ import CompareSlider from '../components/CompareSlider.astro';
 import WorkGallery from '../components/WorkGallery.astro';
 import Reels from '../components/Reels.astro';
 import InstaFeed from '../components/InstaFeed.astro';
+import ClientLogos from '../components/ClientLogos.astro';
 
 const chain = [
   { icon: 'users', title: 'Train your team', text: 'Right skills, processes and accountability — in one structured program.' },
@@ -23,7 +24,7 @@ import { HOME as H, TRAINER as T, SIGNATURE, WORK, GROUPS, rich } from '../lib/s
 import { photo } from '../lib/photos';
 
 const poster = photo('saheli-aurum/03');
-const slide2Bg = photo('gitanjali-2025/02');
+const slide2Bg = photo('gitanjali-2026/04');
 // "Untrained vs trained" from the home-page content, split into matching pairs
 const whyPairs = [
   ['Learns in bits and pieces, every single day', 'Aligned in mindset'],
@@ -76,7 +77,7 @@ const audiences = [
 
   <!-- CLIENT MARQUEE -->
   <div class="marquee" aria-label="Clients">
-    <a class="mq-label" href="/work/"><b>100+</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
+    <a class="mq-label" href="#clients"><b>100+</b><span>Trusted by<span class="mq-txt"><br />jewellery businesses</span></span></a>
     <div class="mq-view">
       <div class="marquee-track">
         {[0, 1].map((k) => (
@@ -171,7 +172,7 @@ const audiences = [
           <span class="eyebrow">Inside the room</span>
           <h2 id="work-h" data-split>Showrooms, factories, <em>ballrooms and boardrooms</em></h2>
         </div>
-        <p class="lead" data-reveal>Hover or tap a team to step inside the session. <a class="link-arrow" href="/work/">All {WORK.length} galleries <Icon name="arrow" /></a></p>
+        <p class="lead" data-reveal>Hover or tap a team to step inside the session.</p>
       </div>
       <WorkGallery items={featured} />
     </div>
@@ -221,12 +222,19 @@ const audiences = [
         <p class="lead" data-reveal>Real moments from real sessions. Tap the speaker on any reel to hear the room.</p>
       </div>
       <Reels />
+      <InstaFeed />
     </div>
   </section>
 
-  <!-- INSTAGRAM -->
-  <section class="section section--tint ig-sec">
-    <div class="wrap"><InstaFeed /></div>
+  <!-- CLIENTS: logo wall -->
+  <section class="section section--tint" id="clients">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">Trusted by</span><h2 data-split>Businesses that <em>trained with DG</em></h2></div>
+        <p class="lead" data-reveal>From century-old family jewellers to fast-growing brands and exporters — a few of the 100+ businesses DG has trained.</p>
+      </div>
+      <ClientLogos />
+    </div>
   </section>
 
   <CtaBand heading={H.cta_h} text={H.cta_text} />
@@ -255,6 +263,5 @@ const audiences = [
 </script>
 
 <style>
-  .ig-sec { padding-block: clamp(40px, 5vw, 64px); }
   .why-close { margin: 28px 0 0; max-width: 820px; font-family: var(--display); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.4; color: var(--ink); border-left: 3px solid var(--teal); padding-left: 22px; }
 </style>

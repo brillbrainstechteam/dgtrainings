@@ -1,0 +1,35 @@
+---
+// Shared layout for the policy pages: simple hero, then the markdown body as readable prose.
+import Base from '../layouts/Base.astro';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <section class="phero phero--simple on-dark">
+    <div class="wrap">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><span aria-current="page">{title}</span></nav>
+        <span class="eyebrow" data-hero>Legal</span>
+        <h1 data-split>{title}</h1>
+      </div>
+    </div>
+  </section>
+  <section class="section section--white">
+    <div class="wrap">
+      <article class="legal"><slot /></article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { max-width: 820px; margin: 0 auto; color: var(--text); font-size: 1rem; line-height: 1.75; }
+  .legal :global(h2) { font-size: clamp(1.4rem, 2.2vw, 1.8rem); margin: 2.4em 0 .6em; padding-top: 1.2em; border-top: 1px solid var(--grey-200); }
+  .legal :global(h2:first-of-type) { border-top: 0; padding-top: 0; margin-top: 1.2em; }
+  .legal :global(h3) { font-family: var(--sans); font-size: 1.06rem; font-weight: 800; margin: 1.6em 0 .4em; color: var(--ink); }
+  .legal :global(p), .legal :global(li) { color: var(--muted); }
+  .legal :global(ul), .legal :global(ol) { padding-left: 1.3em; }
+  .legal :global(li) { margin: .35em 0; }
+  .legal :global(strong) { color: var(--ink); }
+  .legal :global(a) { color: var(--teal-ink); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .legal > :global(p:first-child) { display: inline-block; font-size: .9rem; padding: 6px 14px; border-radius: 999px; background: var(--teal-50); }
+</style>

@@ -1,17 +1,21 @@
 ---
 // Expanding gallery: client panels side by side; the active one widens to show its photo and story.
 // Hover, focus or tap to switch; it advances on its own while on screen. No scroll-jacking.
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Icon from './Icon.astro';
-import { type Work, workUrl, rich } from '../lib/site';
+import { type Work, rich } from '../lib/site';
 import { album } from '../lib/photos';
 interface Props { items: Work[] }
 const { items } = Astro.props;
-const panels = items.map((w) => ({ w, pics: album(w.key) }));
+const panels = await Promise.all(items.map(async (w) => {
+  const pics = album(w.key);
+  const full = await Promise.all(pics.map((p) => getImage({ src: p, width: 1600, format: 'webp' })));
+  return { w, pics, full: full.map((f) => f.src) };
+}));
 ---
 <div class="wg" data-gallery-x>
-  {panels.map(({ w, pics }, i) => (
-    <a class:list={['wg-p', { 'is-on': i === 0 }]} href={workUrl(w)} aria-label={`${w.client} — view ${pics.length} photos`}>
+  {panels.map(({ w, pics, full }, i) => (
+    <div class:list={['wg-p', { 'is-on': i === 0 }]} tabindex="0" role="group" aria-label={`${w.client} training session`}>
       {w.video && i === 0
         ? <video class="wg-media" src={w.video} muted loop playsinline autoplay preload="metadata" poster={pics[0].src} aria-hidden="true"></video>
         : <Image class="wg-media" src={pics[0]} alt="" widths={[600, 1100]} sizes="(max-width: 760px) 100vw, 800px" />}
@@ -24,11 +28,14 @@ const panels = items.map((w) => ({ w, pics: album(w.key) }));
         <p set:html={rich(w.blurb)} />
         <div class="wg-foot">
           <span class="wg-thumbs" aria-hidden="true">{pics.slice(1, 4).map((p) => <Image src={p} alt="" width={96} height={96} />)}</span>
-          <span class="wg-cta">{pics.length} photos <Icon name="arrow" /></span>
+          <span class="wg-photos" data-gallery>
+            <button type="button" class="wg-cta" data-full={full[0]}>View {pics.length} photos <Icon name="arrow" /></button>
+            {full.slice(1).map((f, k) => <button type="button" hidden data-full={f} aria-label={`Photo ${k + 2}`}></button>)}
+          </span>
         </div>
       </div>
       <span class="wg-bar" aria-hidden="true"><i></i></span>
-    </a>
+    </div>
   ))}
 </div>
 
@@ -55,6 +62,7 @@ const panels = items.map((w) => ({ w, pics: album(w.key) }));
   .wg-cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: .9rem; color: var(--grey-950); background: var(--teal); padding: 10px 16px; border-radius: 999px; }
   .wg-cta :global(svg) { width: 16px; height: 16px; transition: transform .4s var(--ease); }
   .wg-p:hover .wg-cta :global(svg) { transform: translateX(4px); }
+  button.wg-cta { border: 0; font-family: inherit; cursor: pointer; }
   .wg-bar { position: absolute; left: 0; right: 0; top: 0; height: 3px; background: rgba(255,255,255,.15); opacity: 0; transition: opacity .4s; }
   .wg-p.is-on .wg-bar { opacity: 1; }
   .wg-bar i { display: block; height: 100%; background: var(--teal); transform-origin: left; transform: scaleX(var(--prog, 0)); }
@@ -75,7 +83,7 @@ const panels = items.map((w) => ({ w, pics: album(w.key) }));
     const root = document.querySelector<HTMLElement>('[data-gallery-x]');
     if (!root || root.dataset.ready) return;
     root.dataset.ready = '1';
-    const panels = [...root.querySelectorAll<HTMLAnchorElement>('.wg-p')];
+    const panels = [...root.querySelectorAll<HTMLElement>('.wg-p')];
     const touch = matchMedia('(hover: none)').matches;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.includes('static');
     let i = 0, hover = false, visible = false, start = performance.now(), raf = 0;
@@ -83,21 +91,24 @@ const panels = items.map((w) => ({ w, pics: album(w.key) }));
     panels.forEach((p, k) => {
       if (!touch) p.addEventListener('mouseenter', () => set(k));
       p.addEventListener('focus', () => set(k));
-      // on touch screens the first tap opens the panel, the second follows the link
-      p.addEventListener('click', (e) => { if (k !== i) { e.preventDefault(); set(k); } });
+      // the first tap opens a panel; "View photos" then opens the lightbox
+      p.addEventListener('click', (e) => { if (k !== i) { e.preventDefault(); e.stopPropagation(); set(k); } }, true);
     });
     root.addEventListener('mouseenter', () => (hover = true));
     root.addEventListener('mouseleave', () => { hover = false; start = performance.now(); });
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; start = performance.now(); }, { threshold: .35 });
-    io.observe(root);
+    // the progress loop only runs while the gallery is on screen
     const tick = () => {
       const t = performance.now() - start;
-      const p = hover || !visible || reduce ? 0 : Math.min(t / STEP, 1);
+      const p = hover || reduce ? 0 : Math.min(t / STEP, 1);
       panels[i].style.setProperty('--prog', String(p));
       if (p >= 1) set(i + 1);
-      raf = requestAnimationFrame(tick);
+      raf = visible ? requestAnimationFrame(tick) : 0;
     };
-    raf = requestAnimationFrame(tick);
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting; start = performance.now();
+      if (visible && !raf) raf = requestAnimationFrame(tick);
+    }, { threshold: .35 });
+    io.observe(root);
     document.addEventListener('astro:before-swap', () => { cancelAnimationFrame(raf); io.disconnect(); }, { once: true });
   }
   document.addEventListener('astro:page-load', initWorkGallery);
