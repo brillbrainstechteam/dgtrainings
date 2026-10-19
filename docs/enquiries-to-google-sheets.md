@@ -29,7 +29,20 @@ That's it. From then on every enquiry appears as a new row in the **Enquiries** 
 const SHEET = 'Enquiries';
 const HEADERS = ['Received', 'Name', 'Business', 'Phone / WhatsApp', 'Email', 'Trainings', 'Team size & goals', 'Sent via', 'Page'];
 
+// Called by the website for every enquiry. (Clicking "Run" on this in the editor has no form data —
+// use testSetup() below instead.)
 function doPost(e) {
+  const p = (e && e.parameter) || {};
+  addRow_(p);
+  return ContentService.createTextOutput('ok');
+}
+
+// Run this once from the editor (select "testSetup" → Run) to create the tab and add a test row.
+function testSetup() {
+  addRow_({ name: 'Test enquiry', business: 'DG Trainings', phone: '-', email: '-', programs: 'Marketing Training', goals: 'Setup test — delete this row', via: 'Test', page: 'Apps Script editor' });
+}
+
+function addRow_(p) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
@@ -40,9 +53,7 @@ function doPost(e) {
       sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
       sh.setFrozenRows(1);
     }
-    const p = e.parameter;
-    sh.appendRow([new Date(), p.name, p.business, p.phone, p.email, p.programs, p.goals, p.via, p.page]);
-    return ContentService.createTextOutput('ok');
+    sh.appendRow([new Date(), p.name || '', p.business || '', p.phone || '', p.email || '', p.programs || '', p.goals || '', p.via || '', p.page || '']);
   } finally {
     lock.releaseLock();
   }
@@ -50,6 +61,9 @@ function doPost(e) {
 ```
 
 ## Notes
+
+- **"Cannot read properties of undefined (reading 'parameter')"** means `doPost` was run with the
+  editor's Run button — that's expected, because only the website sends form data. Run `testSetup` instead.
 
 - If you change the script later, use **Deploy → Manage deployments → Edit → New version**
   so the same URL keeps working.
