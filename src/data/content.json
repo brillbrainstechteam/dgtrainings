@@ -189,7 +189,7 @@
    "card": "For business owners, partners and directors — trained to be strong in every facet of the business, rebuild its foundations, automate operations and take business growth to the next level.",
    "focus": "Business foundations · Systems & automation · Leadership · Growth strategy",
    "ideal": "Business owners, partners and directors",
-   "img": "srk-hongkong/01",
+   "img": "safalta-sangam/06",
    "hero": "safalta-sangam/01",
    "roles": "O",
    "num": "01",
@@ -788,13 +788,13 @@
    "card": "Trains your team to plan and strategise before they go on a tour, with a systematic and proactive approach that makes every tour successful.",
    "focus": "Tour planning · Field execution · Buyer meetings · Lead handling · Follow-up",
    "ideal": "Wholesale and manufacturing sales teams",
-   "img": "srk-hongkong/01",
+   "img": "unique-factory/06",
    "related": [
     "business-technical-sales-expert",
     "exhibitions-training",
     "marketing-training"
    ],
-   "hero": "jg/01",
+   "hero": "unique-factory/04",
    "roles": "OMS",
    "intro": "“You don’t build a business behind a desk — you build it on the tour.” Sales tours are one of the biggest investments a wholesaler or manufacturer makes. This program trains your team to plan smarter, present better, negotiate confidently and follow up relentlessly — so every day on the road pays for itself.",
    "glance": [
@@ -1037,7 +1037,7 @@
    ],
    "cta_h": "Make your next exhibition your most profitable one.",
    "cta_text": "Tell us about your exhibition calendar and your team — we’ll design the training around your next show.",
-   "hero": "srk-hongkong/02",
+   "hero": "gitanjali-2026/09",
    "roles": "OMSB"
   },
   {
@@ -1396,7 +1396,7 @@
    "client": "Unique",
    "kind": "Jewellery manufacturing unit",
    "program": null,
-   "program_slug": "",
+   "program_slug": "sales-tour-training",
    "when": null,
    "where": null,
    "blurb": "Training for the factory team on the production floor — with real products in hand and the plan on the whiteboard."
@@ -1406,7 +1406,7 @@
    "client": "SRK",
    "kind": "Jewellery manufacturer & exporter",
    "program": null,
-   "program_slug": "exhibitions-training",
+   "program_slug": "",
    "when": "September 2014",
    "where": "Hong Kong",
    "blurb": "International training for an exporter’s team — proof that one standard of excellence travels across borders."
@@ -1446,7 +1446,7 @@
    "client": "Geetanjali Jewellers",
    "kind": "Retail jewellery group",
    "program": null,
-   "program_slug": "",
+   "program_slug": "exhibitions-training",
    "when": "February 2026",
    "where": null,
    "blurb": "High-energy classroom sessions and outdoor team activities across three days, with the entire workforce in the room."
@@ -1466,7 +1466,7 @@
    "client": "Jewel Goldi",
    "kind": "Jewellery business",
    "program": null,
-   "program_slug": "sales-tour-training",
+   "program_slug": "",
    "when": "2014",
    "where": null,
    "blurb": "A full-day classroom program with group exercises and presentations by the team."
