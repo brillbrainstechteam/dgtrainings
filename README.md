@@ -34,3 +34,19 @@ then add the domain under Settings → Pages → Custom domain.
 
 To build locally for the GitHub Pages path (Git Bash on Windows needs `MSYS_NO_PATHCONV=1`):
 `SITE_URL=https://brillbrainstechteam.github.io BASE_PATH=/dgtrainings npm run build`
+
+## Live site: https://dgtrainings.brillbrainsconsultants.com
+
+Hosted on the BrillBrains VPS (187.127.176.187, CloudPanel), as the static site
+`dgtrainings.brillbrainsconsultants.com` (site user `dgtrainings`).
+
+**How a change goes live:** push to `main` → GitHub Actions builds the site twice
+(GitHub Pages copy + sub-domain copy) and publishes the sub-domain copy to the `vps-dist` branch →
+the VPS checks that branch every minute (`deploy/vps-sync.sh`, in the `dgtrainings` user's crontab)
+and copies any new build into `/home/dgtrainings/htdocs/dgtrainings.brillbrainsconsultants.com`.
+Typically live within 1–2 minutes of the push. Log: `/home/dgtrainings/logs/deploy.log`.
+
+- DNS: Cloudflare, `A dgtrainings → 187.127.176.187`, DNS only (grey cloud).
+- HTTPS: Let's Encrypt via CloudPanel (auto-renews).
+- The site user's CloudPanel/SFTP password is in `/root/dgtrainings-siteuser.txt` on the server.
+- If `deploy/vps-sync.sh` changes, copy it to `/home/dgtrainings/deploy/` on the server.
