@@ -135,22 +135,22 @@ function contactForm() {
     const v = (k: string) => String(d.get(k) || '').trim() || '-';
     const lead = { name: v('name'), business: v('business'), phone: v('phone'), email: v('email'), programs: progs, goals: v('goals') };
 
-    // Optional: log every enquiry as a row in a Google Sheet (see docs/enquiries-to-google-sheets.md)
-    if (f.dataset.sheet) {
-      fetch(f.dataset.sheet, { method: 'POST', mode: 'no-cors', keepalive: true,
-        body: new URLSearchParams({ ...lead, via: via === 'mail' ? 'Email' : 'WhatsApp', page: location.href }) }).catch(() => {});
-    }
+    // Google Sheet (see docs/enquiries-to-google-sheets.md): every enquiry becomes a row; for "Send by email"
+    // the same Apps Script also emails it to the training inbox from your Google account.
+    const toSheet = (notify: boolean) => fetch(f.dataset.sheet!, { method: 'POST', keepalive: true,
+      body: new URLSearchParams({ ...lead, via: via === 'mail' ? 'Email' : 'WhatsApp', page: location.href, notify: notify ? '1' : '0' }) });
+    if (f.dataset.sheet && via !== 'mail') toSheet(false).catch(() => {});
 
     if (via !== 'mail') {
       const msg = `*New training enquiry*\nName: ${lead.name}\nBusiness: ${lead.business}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nTrainings: ${lead.programs}\nTeam size & goals: ${lead.goals}`;
       window.open(`https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       return;
     }
-    // Email: posted straight to the training inbox through FormSubmit (no mail app needed)
+    // Email: sent straight to the training inbox (no mail app needed on the visitor's side)
     const btn = f.querySelector<HTMLButtonElement>('button[data-via="mail"]')!;
     const status = f.querySelector<HTMLElement>('.sent')!;
     btn.disabled = true; btn.dataset.label ??= btn.innerHTML; btn.textContent = 'Sending…';
-    fetch(`https://formsubmit.co/ajax/${f.dataset.email}`, {
+    const viaFormSubmit = () => fetch(`https://formsubmit.co/ajax/${f.dataset.email}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
@@ -160,8 +160,12 @@ function contactForm() {
         Name: lead.name, Business: lead.business, 'Phone / WhatsApp': lead.phone, Email: lead.email,
         Trainings: lead.programs, 'Team size & goals': lead.goals, Page: location.href,
       }),
-    })
-      .then((r) => r.json().then((j) => r.ok && String(j.success) === 'true'))
+    }).then((r) => r.json().then((j) => r.ok && String(j.success) === 'true'));
+    // With the Sheet connected, the Apps Script sends the email (and logs the row); otherwise FormSubmit does.
+    const send = f.dataset.sheet
+      ? toSheet(true).then((r) => r.json()).then((j) => (j.ok === true ? true : viaFormSubmit())).catch(() => viaFormSubmit())
+      : viaFormSubmit();
+    send
       .then((sent) => {
         if (!sent) throw new Error('not sent');
         status.hidden = false; status.className = 'sent ok';

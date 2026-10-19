@@ -1,45 +1,50 @@
-# Save every website enquiry as a row in a Google Sheet
+# Website enquiries → Google Sheet rows + Gmail alerts
 
-Each time someone submits the Contact form (by WhatsApp **or** email), the site can also
-add one row to a Google Sheet: date, name, business, phone, email, trainings, goals,
-how it was sent and the page. It costs nothing and needs no server.
-You can open the sheet in Excel at any time (File → Download → Microsoft Excel).
+When this is set up, every Contact-form enquiry:
 
-## One-time setup (about 5 minutes)
+- becomes **one row** in your Google Sheet (open it in Excel any time: File → Download → Microsoft Excel), and
+- if the visitor pressed **Send by email**, is also **emailed to transform@dgtrainings.com** from your own
+  Google (Gmail) account, with *Reply* going straight to the visitor.
 
-1. Sign in to Google with the account that should own the enquiries
-   (for example the transform@dgtrainings.com Google account).
-2. Create a new Google Sheet and name it **DG Trainings — Website enquiries**.
-3. In the sheet, open **Extensions → Apps Script**.
-4. Delete everything in the editor and paste the code below. Click **Save**.
-5. Click **Deploy → New deployment**.
-   - Type: **Web app**
-   - Description: `Website enquiries`
-   - Execute as: **Me**
-   - Who has access: **Anyone**
-   - Click **Deploy**, approve the permissions Google asks for (it only gets access to this sheet).
-6. Copy the **Web app URL** (it ends in `/exec`).
-7. Paste it into `src/data/content.json` → `CONTACT` → `"sheet_url": "…"` and push the site
-   (or send the URL to whoever maintains the site).
+WhatsApp enquiries are logged as rows too (the chat itself still opens in WhatsApp).
+Until the web-app URL is added to the site, email falls back to FormSubmit.
 
-That's it. From then on every enquiry appears as a new row in the **Enquiries** tab.
+## One-time setup
+
+1. Open the sheet → **Extensions → Apps Script**.
+2. Delete everything in the editor, paste the code below, click **Save**.
+3. In the function dropdown at the top choose **testSetup** and click **Run**.
+   Google asks for permission (Sheets + "send email as you") → allow it.
+   You should see a test row in the **DG Training Enquiries** tab and a test email in the inbox.
+   *Don't run `doPost` yourself — it only works when the website calls it.*
+4. **Deploy → New deployment** → type **Web app** → Execute as **Me** → Who has access **Anyone** → **Deploy**.
+5. Copy the **Web app URL** (starts with `https://script.google.com/macros/s/…` and ends with `/exec`)
+   and send it to whoever maintains the site (it goes into `src/data/content.json` → `CONTACT.sheet_url`).
+   *The sheet's own link (docs.google.com/spreadsheets/…) is not the web-app URL.*
+
+If you edit the script later: **Deploy → Manage deployments → ✏️ → Version: New version → Deploy**
+(the URL stays the same).
 
 ```js
-// Google Apps Script — paste into Extensions → Apps Script of your Google Sheet
-const SHEET = 'Enquiries';
+// DG Trainings — website enquiries. Paste into Extensions → Apps Script of the Google Sheet.
+const SHEET = 'DG Training Enquiries';
+const NOTIFY_TO = 'transform@dgtrainings.com';   // where "Send by email" enquiries are emailed
 const HEADERS = ['Received', 'Name', 'Business', 'Phone / WhatsApp', 'Email', 'Trainings', 'Team size & goals', 'Sent via', 'Page'];
 
-// Called by the website for every enquiry. (Clicking "Run" on this in the editor has no form data —
-// use testSetup() below instead.)
+// Called by the website for every enquiry (don't Run this one from the editor — use testSetup).
 function doPost(e) {
   const p = (e && e.parameter) || {};
   addRow_(p);
-  return ContentService.createTextOutput('ok');
+  if (p.notify === '1') sendEmail_(p);
+  return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
 }
 
-// Run this once from the editor (select "testSetup" → Run) to create the tab and add a test row.
+// Run once from the editor: grants permissions, adds a test row and sends a test email.
 function testSetup() {
-  addRow_({ name: 'Test enquiry', business: 'DG Trainings', phone: '-', email: '-', programs: 'Marketing Training', goals: 'Setup test — delete this row', via: 'Test', page: 'Apps Script editor' });
+  const p = { name: 'Test enquiry', business: 'DG Trainings', phone: '-', email: '-', programs: 'Marketing Training',
+              goals: 'Setup test — you can delete this row', via: 'Test', page: 'Apps Script editor' };
+  addRow_(p);
+  sendEmail_(p);
 }
 
 function addRow_(p) {
@@ -58,15 +63,24 @@ function addRow_(p) {
     lock.releaseLock();
   }
 }
+
+function sendEmail_(p) {
+  const esc = (s) => String(s || '-').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const rows = [['Name', p.name], ['Business', p.business], ['Phone / WhatsApp', p.phone], ['Email', p.email],
+                ['Trainings', p.programs], ['Team size & goals', p.goals], ['Page', p.page]];
+  const html = '<h2 style="font-family:Arial;color:#0F7168">New training enquiry</h2>' +
+    '<table style="font-family:Arial;font-size:14px;border-collapse:collapse">' +
+    rows.map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;color:#58595B"><b>${k}</b></td><td style="padding:6px 0">${esc(v)}</td></tr>`).join('') +
+    '</table>';
+  const opts = { to: NOTIFY_TO, subject: `New training enquiry — ${p.name || 'website'}${p.business && p.business !== '-' ? ' (' + p.business + ')' : ''}`,
+                 htmlBody: html, name: 'DG Trainings website' };
+  if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(p.email || '')) opts.replyTo = p.email;
+  MailApp.sendEmail(opts);
+}
 ```
 
 ## Notes
 
-- **"Cannot read properties of undefined (reading 'parameter')"** means `doPost` was run with the
-  editor's Run button — that's expected, because only the website sends form data. Run `testSetup` instead.
-
-- If you change the script later, use **Deploy → Manage deployments → Edit → New version**
-  so the same URL keeps working.
-- To get an email or WhatsApp alert for each new row, add a Google Sheets notification:
-  **Tools → Notification settings** in the sheet.
-- The form only sends to the sheet when `sheet_url` is filled in; until then nothing changes.
+- Gmail sending limit: about 100 emails/day on a free Google account, 1,500/day on Google Workspace — far above normal enquiry volume.
+- To also get a phone alert per enquiry, turn on Gmail notifications for transform@dgtrainings.com, or in the sheet use
+  **Tools → Notification settings → Edit notifications**.
