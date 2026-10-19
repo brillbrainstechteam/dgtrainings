@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import Brochures from '../../components/Brochures.astro';
 import ProgramCard from '../../components/ProgramCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Staircase from '../../components/diagrams/Staircase.astro';
@@ -74,6 +75,16 @@ const roles = [['O', 'Owners & directors'], ['M', 'Managers & HODs'], ['S', 'Sal
     <div class="wrap">
       <div class="head"><span class="eyebrow">{H.prog_label}</span><h2 data-split>Explore <em>each program</em></h2></div>
       <div class="grid3 rail" data-stagger>{SIGNATURE.map((p) => <ProgramCard p={p} />)}</div>
+    </div>
+  </section>
+
+  <section class="section section--white" id="brochures">
+    <div class="wrap">
+      <div class="head head--row">
+        <div><span class="eyebrow">Brochures</span><h2 data-split>Read the details <em>at your own pace</em></h2></div>
+        <p class="lead" data-reveal>View the DG Trainings profile and clientele right here, or download them to share with your team.</p>
+      </div>
+      <Brochures />
     </div>
   </section>
 

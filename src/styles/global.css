@@ -106,11 +106,10 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(5px); }
 .header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 100%; }
 .header.is-solid { --header-h: 72px; background: rgba(251,250,248,.92); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); color: var(--ink); box-shadow: 0 1px 0 var(--grey-200), 0 10px 30px -20px rgba(0,0,0,.25); }
 .logo { display: flex; flex-direction: column; align-items: center; line-height: 1; flex: none; }
-.logo .dg { font-family: var(--display); font-weight: 600; font-size: 34px; letter-spacing: -1.5px; position: relative; }
-.logo .dg::after { content: ""; position: absolute; left: 2px; bottom: 4px; border: 5px solid transparent; border-bottom: 8px solid var(--teal); border-top: 0; }
-.logo .tr { font-family: var(--display); font-size: 14.5px; letter-spacing: .12em; color: var(--teal); margin-top: 3px; }
-.header.is-solid .logo .tr { color: var(--teal-ink); }
-.logo .pp { font-size: 6.4px; letter-spacing: .34em; opacity: .7; margin-top: 4px; font-weight: 700; }
+.logo .brand-logo { display: block; height: 58px; width: auto; transition: height .4s var(--ease); }
+.header.is-solid .logo .brand-logo { height: 50px; }
+@media (max-width: 640px) { .logo .brand-logo { height: 48px; } .header.is-solid .logo .brand-logo { height: 44px; } }
+.brand-logo .lg-tri path, .brand-logo .lg-tag use { fill: currentColor; }
 .nav { display: flex; align-items: center; gap: 30px; }
 .nav > a, .dd > a { font-weight: 600; font-size: .93rem; position: relative; padding: 8px 0; }
 .nav > a:not(.btn)::after, .dd > a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--teal); transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease); }
@@ -331,6 +330,7 @@ blockquote.sig cite { display: block; margin-top: 14px; font-family: var(--sans)
 .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .footer a { transition: color .2s; } .footer a:hover { color: var(--teal); }
 .footer .logo { align-items: flex-start; margin-bottom: 18px; color: #fff; }
+.footer .logo .brand-logo { height: 64px; }
 .social { display: flex; gap: 10px; margin-top: 20px; }
 .social a { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; transition: background .3s, border-color .3s, color .3s; }
 .social a:hover { background: var(--teal); border-color: var(--teal); color: var(--grey-950); }

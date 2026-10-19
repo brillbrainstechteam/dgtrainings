@@ -338,7 +338,7 @@
    "name": "Life & Work Culture Transformation",
    "short": "LWCT",
    "tagline": "Where great workplaces begin.",
-   "card": "A transformational experience that elevates both the personal and professional lives of every team member. It rebuilds your work culture from within, replacing friction with energy, excuses with ownership and routine with purpose.",
+   "card": "Designed to enhance and develop the personal and professional life of every team member. It transforms your work culture — creating more power and positive energy, and a workforce that is result- and growth-oriented.",
    "focus": "Communication · Discipline · Ownership · Mindset",
    "ideal": "The entire organisation",
    "img": "gitanjali-2025/02",
@@ -512,7 +512,7 @@
    "name": "Business & Technical – Sales Expert Training",
    "short": "Sales Expert",
    "tagline": "Know every piece. Close every deal.",
-   "card": "Your team gains deep business and technical knowledge of your products and domain, paired with proven sales tactics. The result: salespeople who speak with authority, handle any client and close with confidence.",
+   "card": "Gives your team in-depth business and technical knowledge of your product offerings and domain expertise — and trains them in the ideal sales tactics and skills to use it.",
    "focus": "Product & technical knowledge · Client handling · Negotiation · Relationship building",
    "ideal": "Showroom, wholesale and B2B sales teams",
    "img": "suraj-bhan/01",
@@ -662,13 +662,13 @@
    "slug": "marketing-training",
    "num": "05",
    "tag": "Marketing",
-   "full": false,
+   "full": true,
    "name": "Marketing Training",
    "short": "Marketing",
    "tagline": "Turn attention into loyalty.",
    "card": "Trains your team to attract, retain and engage customers and build a loyal customer base — consistently bringing in new prospects and contributing to remarkable revenue for the business.",
-   "focus": "Business promotion · Client engagement · Campaigns · Customer loyalty",
-   "ideal": "Marketing, sales and customer-facing teams",
+   "focus": "Business promotion · Client engagement · Telemarketing · Customer loyalty",
+   "ideal": "Marketing, CRM, telecalling and customer-facing teams",
    "img": "paras-gold/02",
    "related": [
     "business-technical-sales-expert",
@@ -676,7 +676,97 @@
     "sales-tour-training"
    ],
    "hero": "paras-gold/01",
-   "roles": "S"
+   "roles": "MS",
+   "intro": "Marketing Training trains your team to attract, retain and engage customers and build a loyal customer base. It covers how your business is promoted and how your team reaches out — including confident, purposeful calling — so new prospects keep coming in and relationships turn into remarkable revenue.",
+   "glance": [
+    [
+     "Format",
+     "On-site · Workshop with live call demos, role-plays and ready scripts"
+    ],
+    [
+     "Ideal for",
+     "Marketing, CRM, telecalling and customer-facing teams"
+    ]
+   ],
+   "overview_h": "Your customer list is your most underused asset.",
+   "overview": [
+    "Every jeweller has a customer base full of untapped sales opportunities. Marketing Training empowers your team to consistently bring in new prospects, engage them the right way and build loyalty that brings them back season after season.",
+    "Telemarketing is a core part of it: the right opening, a clear reason to engage and a strong next step turn a routine call — new collections, birthdays, festive offers, follow-ups — into store visits, sales and lasting relationships."
+   ],
+   "highlights": [
+    "Business promotion and client engagement that bring a steady stream of prospects",
+    "Inbound and outbound calling — cold calls, lead generation and appointments",
+    "The first 10 seconds — openings that make customers listen",
+    "Ready responses to ‘Not interested’, ‘Call me later’ and ‘I already have a jeweller’",
+    "Sample scripts for new-collection, birthday and thank-you calls",
+    "A 6-step calling process, daily checklist and call tracker",
+    "Live call demos and before/after result tracking"
+   ],
+   "modules": [
+    [
+     "Telemarketing fundamentals",
+     "What telemarketing is and why it matters; cold calling, lead generation and appointment setting; core essentials; inbound vs outbound."
+    ],
+    [
+     "The confident caller",
+     "The importance of the first call; making every call interesting; challenges telemarketers face; qualities and habits of the best; confidence mantras."
+    ],
+    [
+     "Handling difficult customers",
+     "Turning objections into conversations, with ready responses for the most common replies."
+    ],
+    [
+     "Reasons and occasions to call",
+     "Relationship calls, post-purchase thanks, birthdays and anniversaries, new collections, festivals, offers, exhibition invites, surveys, upselling and feedback."
+    ],
+    [
+     "Scripts & call discipline",
+     "Sample call scripts; points to remember on every call; maintaining a tracker and minutes of the call; the telemarketer’s oath."
+    ],
+    [
+     "Process & daily routine",
+     "The 6-step telemarketing process; daily telecalling checklist; homework and role-play practice."
+    ],
+    [
+     "Live practice & results",
+     "Live call demos; turning learning into numbers; tracking before-and-after results."
+    ]
+   ],
+   "attend": [
+    "Marketing and CRM executives",
+    "Telecallers and showroom staff who reach out to customers",
+    "Managers who want a steady, measurable flow of new prospects"
+   ],
+   "outcomes_h": "What changes after the training",
+   "outcomes": [
+    "A steady stream of new prospects and enquiries",
+    "More calls and campaigns converting into store visits",
+    "Confident, warm and professional outreach across the team",
+    "Stronger relationships, loyalty and repeat business"
+   ],
+   "method": "Interactive workshop · Live call demonstrations · Role-plays of tricky responses · Ready scripts, checklists and a call tracker",
+   "impact": "Track enquiries, call quality, follow-ups, store visits and repeat business before and after the program.",
+   "trainer_bio": "Working with businesses since 2000 and training teams since 2011, with 35,000+ professionals trained across 20 cities in 3 countries. Dedicated to the jewellery industry, DG brings real retail, wholesale and manufacturing experience to every session — and is a natural copywriter who knows how words win customers.",
+   "faqs": [
+    [
+     "Does Marketing Training include telemarketing?",
+     "Yes. Calling customers with confidence — openings, ready responses to objections, scripts and a call tracker — is a core part of the program."
+    ],
+    [
+     "Will you give us scripts?",
+     "Yes — and we tailor them to your brand, offers and customers, so they sound natural, not read."
+    ],
+    [
+     "Is this useful for showroom staff, not just the marketing team?",
+     "Yes. Any team member who reaches out to customers will benefit — especially before festive and wedding seasons."
+    ],
+    [
+     "How do we know it worked?",
+     "We set up a simple before/after tracker so you can see the change in enquiries, visits and callbacks."
+    ]
+   ],
+   "cta_h": "Turn your customer list into footfall.",
+   "cta_text": "Book a free discovery call — we’ll show you how a trained marketing and calling team can bring customers back every season."
   },
   {
    "slug": "sales-tour-training",
@@ -686,7 +776,7 @@
    "name": "Sales Tour Training",
    "short": "Sales Tour",
    "tagline": "Every tour, a success story.",
-   "card": "Sales tours are expensive, and every day on the road should pay for itself. Your team learns to plan and strategise before they travel, and to run every buyer meeting with a systematic, proactive approach.",
+   "card": "Trains your team to plan and strategise before they go on a tour, with a systematic and proactive approach that makes every tour successful.",
    "focus": "Tour planning · Field execution · Buyer meetings · Lead handling · Follow-up",
    "ideal": "Wholesale and manufacturing sales teams",
    "img": "srk-hongkong/01",
@@ -808,7 +898,7 @@
    "name": "Exhibition Training",
    "short": "Exhibition",
    "tagline": "Turn footfall into orders.",
-   "card": "Master the practical fundamentals of winning exhibitions, with a clear plan for before, during and after the show. Your booth team learns to prepare well, engage with discipline and convert visitors — for maximum return on every rupee invested.",
+   "card": "The most practical fundamentals of successful exhibitions, with precise pre-, during- and post-exhibition work segregation — so your team achieves the maximum return on your investment.",
    "focus": "Pre-show preparation · Booth discipline · Conversion · Post-show follow-up",
    "ideal": "Exhibition and trade-show teams",
    "img": "gitanjali-2026/03",
@@ -949,7 +1039,7 @@
    "name": "Digital Shakti & Smartphone Training",
    "short": "Digital Shakti",
    "tagline": "Digital confidence for every desk.",
-   "card": "Practical, hands-on training that helps every team member use technology with ease in their daily work — and build a strong, growing network for personal and professional success.",
+   "card": "Gives team members the knowledge and skills to use technology effectively in their day-to-day work, and to build a robust, growing social network for their personal and professional development.",
    "focus": "Practical tech skills · Smartphone mastery · Social networking · Digital confidence",
    "ideal": "Team members at every level",
    "img": "dishaa-platinum/02",
@@ -1079,7 +1169,7 @@
    "name": "Orientation Training",
    "short": "Orientation",
    "tagline": "The right start, from day one.",
-   "card": "A warm, structured welcome that gives every new joiner a clear picture of your company, its products, services and code of conduct, and introduces them to your key people and culture.",
+   "card": "Customised to give every new joiner detailed information about your company, its products, services and code of conduct — and to introduce them to your key members and work culture.",
    "focus": "Company & product knowledge · Code of conduct · Jewellery business basics · Culture",
    "ideal": "New joiners",
    "img": "shivam-jewels/11",

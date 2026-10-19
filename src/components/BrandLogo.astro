@@ -1,0 +1,13 @@
+---
+// The real DG Trainings logo (vector, from the brand PDF). Each copy gets its own id prefix so
+// several logos can sit on one page. The triangle and tagline follow the text colour (white on
+// dark backgrounds, charcoal on light ones); DG and TRAININGS stay brand teal.
+import raw from '../assets/brand/dg-logo.svg?raw';
+interface Props { id: string; class?: string }
+const { id, class: cls = '' } = Astro.props;
+const svg = raw
+  .replace(/font_/g, `${id}_font_`)
+  .replace('class="dg-logo"', `class="brand-logo ${cls}"`)
+  .replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true" focusable="false"');
+---
+<Fragment set:html={svg} />

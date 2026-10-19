@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Icon from '../components/Icon.astro';
 import LogoIntro from '../components/LogoIntro.astro';
+import BrandLogo from '../components/BrandLogo.astro';
 import { CONTACT, SIGNATURE, PROGRAMS, GROUPS, bySlug, tel, wa, progUrl } from '../lib/site';
 
 interface Props { title: string; description: string; active?: string; header?: 'transparent' | 'solid' }
@@ -49,9 +50,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
   </div>
   <header class="header">
     <div class="wrap">
-      <a href="/" class="logo" aria-label="DG Trainings — home">
-        <span class="dg">DG</span><span class="tr">TRAININGS</span><span class="pp">POWER TO PERFORMANCE</span>
-      </a>
+      <a href="/" class="logo" aria-label="DG Trainings — home"><BrandLogo id="hd" /></a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       <nav class="nav" id="nav" aria-label="Main">
         <div class="dd">
@@ -84,7 +83,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
     <div class="wrap">
       <div class="fgrid">
         <div>
-          <a href="/" class="logo" aria-label="DG Trainings — home"><span class="dg">DG</span><span class="tr">TRAININGS</span><span class="pp">POWER TO PERFORMANCE</span></a>
+          <a href="/" class="logo" aria-label="DG Trainings — home"><BrandLogo id="ft" /></a>
           <p>Business training for the jewellery industry, in partnership with <a class="bb" href={CONTACT.brillbrains} target="_blank" rel="noopener">BrillBrains Consultants</a> (Strategic &amp; Creative Forever).</p>
           <a class="faddr" href={CONTACT.map} target="_blank" rel="noopener"><Icon name="pin" /><span>{CONTACT.address.replace(/^BrillBrains Consultants Pvt\. Ltd\., /, '')}</span></a>
           <div class="social">
@@ -108,6 +107,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
             <li><a href={CONTACT.brillbrains} target="_blank" rel="noopener">Consulting Services</a></li>
             <li><a href={CONTACT.brillbrains} target="_blank" rel="noopener">Hiring Solutions</a></li>
             <li><a href="/approach/">Our Approach</a></li>
+            <li><a href="/programs/#brochures">Brochures (PDF)</a></li>
             <li><a href="/contact/#faq">FAQs</a></li>
             <li><a href="/contact/">Contact</a></li>
           </ul>

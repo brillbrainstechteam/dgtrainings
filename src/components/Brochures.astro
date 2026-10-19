@@ -1,0 +1,88 @@
+---
+// The two DG Trainings PDFs: cover cards with "View" (in-page reader on larger screens) and "Download".
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import profile from '../assets/brochures/dg-trainings-profile.png';
+import clientele from '../assets/brochures/dg-trainings-clientele.png';
+const docs = [
+  { file: '/docs/dg-trainings-profile.pdf', cover: profile, title: 'DG Trainings — Introduction Profile', text: 'About DG, the nine programs and why trained teams grow businesses.', pages: 24, size: '4.3 MB' },
+  { file: '/docs/dg-trainings-clientele.pdf', cover: clientele, title: 'DG Trainings — Clientele', text: 'The jewellery businesses DG has trained, with photos from the sessions.', pages: 14, size: '3.5 MB' },
+];
+---
+<div class="br" data-brochures>
+  {docs.map((d) => (
+    <article class="br-card">
+      <a class="br-cover" href={d.file} target="_blank" rel="noopener" data-view={d.file} data-title={d.title} aria-label={`View ${d.title} (PDF)`}>
+        <Image src={d.cover} alt="" width={340} />
+        <span class="br-badge">PDF · {d.pages} pages</span>
+      </a>
+      <div class="br-body">
+        <h3>{d.title}</h3>
+        <p>{d.text}</p>
+        <div class="br-btns">
+          <a class="btn btn--sm" href={d.file} target="_blank" rel="noopener" data-view={d.file} data-title={d.title}>View <Icon name="arrow" class="arr" /></a>
+          <a class="btn btn--sm btn--outline" href={d.file} download>Download <small>({d.size})</small></a>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
+
+<dialog class="br-dlg" aria-label="Brochure viewer">
+  <div class="br-bar">
+    <b class="br-name"></b>
+    <a class="br-dl" href="" download>Download</a>
+    <button type="button" class="br-x" aria-label="Close"><Icon name="x" /></button>
+  </div>
+  <iframe title="Brochure" src="about:blank"></iframe>
+</dialog>
+
+<style>
+  .br { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .br-card { display: grid; grid-template-columns: 170px 1fr; gap: 22px; align-items: center; padding: 18px; border-radius: 24px; background: #fff; border: 1px solid var(--grey-200); transition: border-color .4s, box-shadow .5s var(--ease); }
+  .br-card:hover { border-color: var(--teal); box-shadow: var(--shadow-lg); }
+  .br-cover { position: relative; display: block; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 34px -18px rgba(25,26,28,.55); }
+  .br-cover :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+  .br-card:hover .br-cover :global(img) { transform: scale(1.04); }
+  .br-badge { position: absolute; left: 8px; bottom: 8px; font-size: .64rem; font-weight: 800; letter-spacing: .08em; padding: 4px 8px; border-radius: 999px; background: var(--grey-900); color: #fff; }
+  .br-body h3 { font-size: 1.35rem; margin: 0 0 8px; }
+  .br-body p { font-size: .92rem; color: var(--muted); margin: 0 0 16px; }
+  .br-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .br-btns small { font-weight: 500; opacity: .7; }
+  .br-dlg { width: min(1100px, 94vw); height: 92vh; padding: 0; border: 0; border-radius: 20px; overflow: hidden; background: var(--grey-900); }
+  .br-dlg::backdrop { background: rgba(10,12,12,.75); backdrop-filter: blur(4px); }
+  .br-dlg[open] { display: flex; flex-direction: column; }
+  .br-bar { display: flex; align-items: center; gap: 14px; padding: 12px 16px; color: #fff; }
+  .br-name { margin-right: auto; font-size: .95rem; }
+  .br-dl { font-size: .85rem; font-weight: 700; color: var(--teal); }
+  .br-x { width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.1); color: #fff; display: grid; place-items: center; cursor: pointer; }
+  .br-x :global(svg) { width: 18px; height: 18px; }
+  .br-dlg iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+  @media (max-width: 960px) { .br { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .br-card { grid-template-columns: 110px 1fr; gap: 14px; padding: 14px; } .br-body h3 { font-size: 1.1rem; } .br-body p { display: none; } }
+</style>
+
+<script>
+  function initBrochures() {
+    const root = document.querySelector<HTMLElement>('[data-brochures]');
+    const dlg = document.querySelector<HTMLDialogElement>('.br-dlg');
+    if (!root || !dlg || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    const frame = dlg.querySelector('iframe')!;
+    // Phones open the PDF in their own viewer (in-page PDF frames don't work well there)
+    const inline = () => matchMedia('(min-width: 761px)').matches;
+    root.querySelectorAll<HTMLAnchorElement>('[data-view]').forEach((a) => a.addEventListener('click', (e) => {
+      if (!inline()) return;
+      e.preventDefault();
+      frame.src = a.href + '#view=FitH';
+      dlg.querySelector('.br-name')!.textContent = a.dataset.title!;
+      dlg.querySelector<HTMLAnchorElement>('.br-dl')!.href = a.href;
+      dlg.showModal();
+    }));
+    const close = () => { dlg.close(); };
+    dlg.querySelector('.br-x')!.addEventListener('click', close);
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+    dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
+  }
+  document.addEventListener('astro:page-load', initBrochures);
+</script>
