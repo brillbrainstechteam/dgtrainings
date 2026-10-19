@@ -1333,6 +1333,16 @@
    "video": "/media/showroom-loop.mp4"
   },
   {
+   "key": "vchains",
+   "client": "VChains",
+   "kind": "Luxury jewellery brand",
+   "program": null,
+   "program_slug": "",
+   "when": "Sep 2026",
+   "where": null,
+   "blurb": "A session in the VChains boardroom — the whole team around one table, under their own brand, from the owner to the newest joiner."
+  },
+  {
    "key": "shivam-jewels",
    "client": "Shivam Jewels",
    "kind": "Jewellery manufacturer & retailer",

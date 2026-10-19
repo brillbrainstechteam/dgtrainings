@@ -20,6 +20,7 @@ const save = async (input, out) =>
 
 for (const [key, cfg] of Object.entries(map)) {
   if (key.startsWith('_') || (only && key !== only)) continue;
+  if (cfg.manual) { console.log(`- ${key}: hand-curated album, left as is`); continue; }
   const outDir = join(root, 'src/assets/work', key);
   const srcPath = join(MEDIA, cfg.video ?? cfg.source);
   if (!existsSync(srcPath)) { console.log(`- ${key}: not uploaded yet (${cfg.video ?? cfg.source})`); continue; }

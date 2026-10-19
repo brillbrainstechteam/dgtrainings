@@ -233,6 +233,7 @@
   },
   "vchains": {
     "source": "VChains",
-    "max": 12
+    "manual": true,
+    "_note": "Curated by hand (HEIC photos converted, frames taken from the 4K clips) — not re-imported."
   }
 }
