@@ -29,10 +29,8 @@ const person = {
 };
 const moments = ['safalta-sangam/01', 'shivam-jewels/05', 'safalta-sangam/03', 'shilpi/02', 'jg/04'].map(photo);
 ---
-<Base title="Dipen Ghatalia (DG) — Jewellery Business Trainer" description={T.bio[0]} active="about" image={heroDG} crumbs={[['About DG', '/about-dg/']]} schema={[person]}>
-  <section class="phero phero--simple phero--clear on-dark" style="--pos: 82% 20%">
-    <div class="phero-bg"><Image src={heroDG} alt="Dipen Ghatalia (DG) leading a training session" widths={[900, 1600, 2800]} sizes="100vw" loading="eager" /></div>
-    <div class="chev-deco" aria-hidden="true"><i></i><i></i></div>
+<Base header="solid" title="Dipen Ghatalia (DG) — Jewellery Business Trainer" description={T.bio[0]} active="about" crumbs={[['About DG', '/about-dg/']]} schema={[person]}>
+  <section class="lhero">
     <div class="wrap">
       <div>
         <nav class="crumbs" aria-label="Breadcrumb" data-hero><a href="/">Home</a><span>/</span><span aria-current="page">About the Trainer</span></nav>
@@ -40,6 +38,7 @@ const moments = ['safalta-sangam/01', 'shivam-jewels/05', 'safalta-sangam/03', '
         <h1 data-split>Dipen Ghatalia <em>(DG)</em></h1>
         <p class="lead" data-hero>{T.title}</p>
       </div>
+      <div class="lhero-photo" data-hero><Image src={heroDG} alt="Dipen Ghatalia (DG) leading a Life and Work Culture Training session" widths={[600, 900, 1200]} sizes="(max-width: 960px) 90vw, 460px" loading="eager" /></div>
     </div>
   </section>
 
