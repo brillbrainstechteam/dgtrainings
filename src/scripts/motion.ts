@@ -2,6 +2,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { track } from './analytics';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -134,6 +135,7 @@ function contactForm() {
     const progs = picked.length ? picked.join(', ') : 'Not sure — please recommend';
     const v = (k: string) => String(d.get(k) || '').trim() || '-';
     const lead = { name: v('name'), business: v('business'), phone: v('phone'), email: v('email'), programs: progs, goals: v('goals') };
+    track('enquiry-submitted', { via: via === 'mail' ? 'email' : 'whatsapp', programs: progs.slice(0, 100) }); // no personal details
 
     // Every enquiry is also recorded in the DG Google Form (its responses sheet + email alerts).
     // Ticked trainings go in as separate checkbox values; "not sure" is recorded as "Other".

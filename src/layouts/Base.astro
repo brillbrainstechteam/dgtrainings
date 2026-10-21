@@ -81,6 +81,8 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
   <link rel="apple-touch-icon" href="/logo.png" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <!-- Umami analytics (cookieless; dashboard at analytics.dgtrainings.com). Counts dgtrainings.com only, not local previews. -->
+  <script is:inline defer src="/u/s.js" data-website-id="17a967af-69f3-44ba-873f-c7b1a1ee3d08" data-host-url="https://dgtrainings.com/u" data-domains="dgtrainings.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
@@ -191,6 +193,7 @@ const MENU = GROUPS.map((g) => ({ title: g.title, items: g.items.map(([slug, lab
 
   <script>
     import '../scripts/motion';
+    import '../scripts/analytics';
     (window as any).__dgMotion = true;
   </script>
   <style is:global>.flip { transform: scaleX(-1); }</style>
